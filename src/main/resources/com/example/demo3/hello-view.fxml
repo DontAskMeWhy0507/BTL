@@ -28,14 +28,14 @@
          </Label>
          <DatePicker fx:id="datePicker" layoutX="677.0" layoutY="41.0" onAction="#datePicker" promptText="Enter date" />
          <Label layoutX="660.0" layoutY="8.0" prefHeight="26.0" prefWidth="209.0" text="Select a date" />
-         <Label layoutX="654.0" layoutY="70.0" prefHeight="39.0" prefWidth="216.0" text="Selected Date" />
+         <Label fx:id="selectedDate" layoutX="654.0" layoutY="70.0" prefHeight="39.0" prefWidth="216.0" text="Selected Date" />
          <ComboBox layoutX="60.0" layoutY="117.0" prefWidth="150.0" promptText="Chaha" />
          <ImageView fx:id="myImageView" fitHeight="150.0" fitWidth="200.0" layoutX="43.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@meme.jpg" />
             </image>
          </ImageView>
-         <Button fx:id="myButton" layoutX="97.0" layoutY="312.0" mnemonicParsing="false" onAction="#displayImage" text="Button" />
+         <Button fx:id="myButton" layoutX="109.0" layoutY="288.0" mnemonicParsing="false" onAction="#displayImage" text="Button" />
       </children>
    </AnchorPane>
 </VBox>

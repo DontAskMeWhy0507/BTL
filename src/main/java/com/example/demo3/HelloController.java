@@ -19,13 +19,13 @@ public class HelloController implements Initializable {
     /**
      * Start button
      */
-    @FXML
-    private Label welcomeText1;
-
-    @FXML
-    protected void onAbc123() {
-        welcomeText1.setText("Welcome Text1!");
-    }
+//    @FXML
+//    private Label welcomeText1;
+//
+//    @FXML
+//    protected void onAbc123() {
+//        welcomeText1.setText("Welcome Text1!");
+//    }
     /**
      * Select thing from box
      */

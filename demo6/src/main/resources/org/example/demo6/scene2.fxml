@@ -5,14 +5,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.HelloController">
+<AnchorPane prefHeight="534.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.HelloController">
    <children>
-      <Button layoutX="274.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchScene1" text="DCM" />
-      <Label layoutX="235.0" layoutY="220.0" text="Xin loi vi da lam phien!" />
-      <Label layoutX="65.0" layoutY="31.0" prefHeight="171.0" prefWidth="370.0" text="ERROR 404:NOT FOUND">
+      <Button layoutX="342.0" layoutY="284.0" mnemonicParsing="false" onAction="#switchScene1" text="DCM" />
+      <Label layoutX="304.0" layoutY="234.0" text="Xin loi vi da lam phien!" />
+      <Label layoutX="218.0" layoutY="44.0" prefHeight="171.0" prefWidth="370.0" text="ERROR 404:NOT FOUND">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
+      <Button layoutX="707.0" layoutY="18.0" mnemonicParsing="false" onAction="#SwitchLogin" text="Đăng xuất" />
    </children>
 </AnchorPane>

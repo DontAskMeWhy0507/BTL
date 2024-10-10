@@ -15,5 +15,7 @@
       <Label layoutX="59.0" layoutY="244.0" text="Nhập lại mật khẩu" />
       <Button layoutX="208.0" layoutY="287.0" mnemonicParsing="false" onAction="#SwitchLogin" text="OK" />
       <Label layoutX="167.0" layoutY="334.0" text="check neu nhap thieu" />
+      <TextField layoutX="167.0" layoutY="90.0" promptText="Ma sinh vien" />
+      <Label layoutX="88.0" layoutY="94.0" text="Mã sinh viên" />
    </children>
 </AnchorPane>

@@ -71,4 +71,28 @@ public class HelloController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void switchForgotPass(ActionEvent event)  {
+        try {
+            root = FXMLLoader.load(HelloApplication.class.getResource("ForgotPassword.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public  void switchChangePass(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(HelloApplication.class.getResource("ChangePassword.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

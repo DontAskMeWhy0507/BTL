@@ -25,6 +25,7 @@
             <Button layoutX="304.0" layoutY="238.0" mnemonicParsing="false" onAction="#switchScene1" text="Login" />
             <CheckBox layoutX="203.0" layoutY="285.0" mnemonicParsing="false" text="Remember me" />
             <Button layoutX="187.0" layoutY="238.0" mnemonicParsing="false" onAction="#switchSignUp" text="Sign up" />
+            <Button layoutX="196.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchForgotPass" prefHeight="40.0" prefWidth="134.0" text="Quên mật khẩu" />
          </children>
       </AnchorPane>
    </children>

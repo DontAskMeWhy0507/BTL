@@ -26,7 +26,7 @@ public class HelloController {
 
     public void switchScene1(ActionEvent event) {
         try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("scene1.fxml"));
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/scene1.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

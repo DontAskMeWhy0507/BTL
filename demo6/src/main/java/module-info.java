@@ -6,6 +6,7 @@ module org.example.demo6 {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires annotations;
 
     opens org.example.demo6 to javafx.fxml;
     exports org.example.demo6;

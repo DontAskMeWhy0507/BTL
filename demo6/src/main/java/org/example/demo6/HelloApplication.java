@@ -5,13 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(HelloApplication.class.getResource("Login.fxml"));
+    public void start(@NotNull Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(HelloApplication.class.getResource("/View/Login.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Hello!");
         stage.setScene(scene);

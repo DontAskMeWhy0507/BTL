@@ -38,7 +38,7 @@ public class HelloController {
 
     public void switchScene2(ActionEvent event) {
         try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("scene2.fxml"));
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/scene2.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -50,7 +50,7 @@ public class HelloController {
 
     public void switchSignUp(ActionEvent event) {
         try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("SignUp.fxml"));
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/SignUp.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -62,7 +62,7 @@ public class HelloController {
 
     public void SwitchLogin(ActionEvent event) {
         try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("Login.fxml"));
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/Login.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -74,7 +74,7 @@ public class HelloController {
 
     public void switchForgotPass(ActionEvent event)  {
         try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("ForgotPassword.fxml"));
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/ForgotPassword.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -86,7 +86,7 @@ public class HelloController {
 
     public  void switchChangePass(ActionEvent event) {
         try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("ChangePassword.fxml"));
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/ChangePassword.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="734.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="org.example.demo6.HelloController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="603.0" prefWidth="930.0">
+         <children>
+            <Label layoutX="245.0" layoutY="516.0" prefHeight="40.0" prefWidth="206.0" text="Check label" textFill="#2bcf3d" AnchorPane.bottomAnchor="48.799999999999955" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="479.79999999999995" AnchorPane.topAnchor="516.0">
+               <font>
+                  <Font name="System Bold Italic" size="29.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>

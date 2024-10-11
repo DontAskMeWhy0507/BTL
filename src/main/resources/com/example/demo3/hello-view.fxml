@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="616.0" prefWidth="910.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo3.HelloController">
+<VBox alignment="CENTER" prefHeight="695.0" prefWidth="990.0" spacing="20.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo3.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <AnchorPane prefHeight="618.0" prefWidth="870.0">
+   <AnchorPane prefHeight="421.0" prefWidth="950.0">
       <children>
          <Button layoutX="766.0" layoutY="514.0" mnemonicParsing="false" onAction="#onAbc123" text="DUng bam" />
          <Label fx:id="welcomeText1" layoutX="785.0" layoutY="488.0" text="HELLO" />

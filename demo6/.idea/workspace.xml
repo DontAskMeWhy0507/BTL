@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6ac2b4f-2a5b-4646-9fb3-1febead23a8a" name="Changes" comment="" />
+    <list default="true" id="b6ac2b4f-2a5b-4646-9fb3-1febead23a8a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../demo7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo7/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +53,7 @@
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "tung1",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "G:/file/BTL",
@@ -64,6 +66,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\file\BTL\demo6\src\main\resources\View" />
+      <recent name="G:\file\BTL\demo6\src\main\resources" />
+      <recent name="G:\file\BTL\demo6\src\main\resources\Image" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -83,6 +92,9 @@
       <workItem from="1728647952532" duration="346000" />
       <workItem from="1728653662614" duration="2707000" />
       <workItem from="1728656894416" duration="3131000" />
+      <workItem from="1728824945077" duration="3310000" />
+      <workItem from="1728828971392" duration="12000" />
+      <workItem from="1728829000232" duration="4123000" />
     </task>
     <servers />
   </component>

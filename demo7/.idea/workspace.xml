@@ -4,34 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6ac2b4f-2a5b-4646-9fb3-1febead23a8a" name="Changes" comment="" />
+    <list default="true" id="ba39b47a-4d45-4a4e-a795-ad74bd695d8d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../demo6/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo6/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="FxmlFile" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;VuTienTuanTrung&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "TR01b17B0y5"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/VuTienTuanTrung/BTL.git&quot;,
-    &quot;accountId&quot;: &quot;edeb487b-9bec-4b91-b696-6c5b5d3639fd&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/VuTienTuanTrung/BTL.git",
+    "accountId": "edeb487b-9bec-4b91-b696-6c5b5d3639fd"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -39,28 +34,25 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2nI5rqRxcZEdYvYa20KVZSdIaY7" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2nINA4PeF5MKw9fu25uZReqLjP7" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "G:/file/BTL",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -75,14 +67,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b6ac2b4f-2a5b-4646-9fb3-1febead23a8a" name="Changes" comment="" />
-      <created>1728647951285</created>
+      <changelist id="ba39b47a-4d45-4a4e-a795-ad74bd695d8d" name="Changes" comment="" />
+      <created>1728656485349</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1728647951285</updated>
-      <workItem from="1728647952532" duration="346000" />
-      <workItem from="1728653662614" duration="2707000" />
-      <workItem from="1728656894416" duration="3131000" />
+      <updated>1728656485349</updated>
+      <workItem from="1728656486695" duration="405000" />
     </task>
     <servers />
   </component>

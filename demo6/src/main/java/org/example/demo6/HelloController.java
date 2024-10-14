@@ -30,7 +30,7 @@ public class HelloController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -42,7 +42,7 @@ public class HelloController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -54,7 +54,7 @@ public class HelloController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -66,33 +66,68 @@ public class HelloController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void switchForgotPass(ActionEvent event)  {
+    public void switchForgotPass(ActionEvent event) {
         try {
             root = FXMLLoader.load(HelloApplication.class.getResource("/View/ForgotPassword.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public  void switchChangePass(ActionEvent event) {
+    public void switchChangePass(ActionEvent event) {
         try {
             root = FXMLLoader.load(HelloApplication.class.getResource("/View/ChangePassword.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void clickTopBooks(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/TopBooks.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void clickSearchButton(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/Search.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+
+    }
+    public void returnHome(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(HelloApplication.class.getResource("/View/Home.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+
     }
 }

@@ -24,7 +24,7 @@
             <Label layoutX="113.0" layoutY="193.0" text="Mật khẩu: " />
             <PasswordField layoutX="191.0" layoutY="189.0" promptText="Mat khau" />
             <TextField layoutX="192.0" layoutY="153.0" promptText="Nhap vao day" />
-            <Button layoutX="304.0" layoutY="238.0" mnemonicParsing="false" onAction="#switchScene1" text="Login" />
+            <Button layoutX="304.0" layoutY="238.0" mnemonicParsing="false" onAction="#returnHome" text="Login" />
             <CheckBox layoutX="203.0" layoutY="285.0" mnemonicParsing="false" text="Remember me" />
             <Button layoutX="187.0" layoutY="238.0" mnemonicParsing="false" onAction="#switchSignUp" text="Sign up" />
             <Button layoutX="196.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchForgotPass" prefHeight="40.0" prefWidth="134.0" text="Quên mật khẩu" />

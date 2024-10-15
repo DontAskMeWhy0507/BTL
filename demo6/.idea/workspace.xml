@@ -29,7 +29,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/VuTienTuanTrung/BTL.git&quot;,
-    &quot;accountId&quot;: &quot;edeb487b-9bec-4b91-b696-6c5b5d3639fd&quot;
+    &quot;accountId&quot;: &quot;b701bd6f-6f4c-4ac3-8e01-b0229a38c1fe&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -51,10 +51,10 @@
   &quot;keyToString&quot;: {
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;tung1&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;trung1&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/ProgramData/Microsoft/Windows/Start Menu/Programs/MySQL/MySQL Workbench 8.0 CE.lnk&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Working/BTL1/BTL/demo6&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -79,8 +79,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -102,6 +102,8 @@
       <workItem from="1728914413585" duration="4345000" />
       <workItem from="1728918823172" duration="640000" />
       <workItem from="1728919511610" duration="35000" />
+      <workItem from="1728921006513" duration="607000" />
+      <workItem from="1728922663161" duration="15000" />
     </task>
     <servers />
   </component>

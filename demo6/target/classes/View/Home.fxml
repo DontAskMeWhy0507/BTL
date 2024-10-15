@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="backGround" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="819.0" styleClass="white-background" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.HelloController">
+<BorderPane fx:id="backGround" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="936.0" prefWidth="1393.0" styleClass="white-background" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.HelloController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="819.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,18 +27,29 @@
                </font>
             </Label>
             <AnchorPane prefHeight="56.0" prefWidth="70.0" />
-            <HBox fx:id="HBoxRound" alignment="CENTER" prefHeight="56.0" prefWidth="222.0">
+            <HBox fx:id="HBoxRound" alignment="CENTER" prefHeight="56.0" prefWidth="383.0">
                <children>
-                  <TextField fx:id="textBox" promptText="Ban muon doc gi?" />
-                  <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickSearchButton" prefHeight="43.0" prefWidth="14.0">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Image/search.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <TextField fx:id="textBox" prefHeight="25.0" prefWidth="324.0" promptText="Ban muon doc gi?" />
+                  <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickSearchButton" prefHeight="43.0" prefWidth="14.0" />
+                  <ImageView fitHeight="18.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/search.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="470.0">
+               <children>
+                  <Label alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="299.0" text="Sage read book   ">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="59.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/avatar.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
          </children>

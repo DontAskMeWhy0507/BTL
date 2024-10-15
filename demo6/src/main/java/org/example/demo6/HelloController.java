@@ -7,11 +7,21 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class HelloController {
+
+    @FXML
+    private VBox dropdownMenu; // The VBox holding the menu items
+
+    @FXML
+    private void toggleMenu() {
+        dropdownMenu.setVisible(!dropdownMenu.isVisible());
+    }
+
     @FXML
     private Label welcomeText;
 

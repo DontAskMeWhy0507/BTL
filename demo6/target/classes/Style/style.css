@@ -1,25 +1,25 @@
 
-#backGround {
+.backGround {
     -fx-background-color: rgba(0,0,0,0);
 }
-#Loginbutton {
+.Loginbutton {
     -fx-background-color: white;
 }
-#textBox {
+.textBox {
     -fx-background-color: rgba(0,0,0,0);
 }
 
-#HBoxRound {
+.HBoxRound {
     -fx-background-color: white;
     -fx-border-color: D7D7D7;
     -fx-border-radius: 50;
     -fx-background-radius: 50;
 }
-#ButtonTransparent {
+.ButtonTransparent {
     -fx-background-color: transparent;
     -fx-border-color: rgba(0,0,0,0);
 }
-#ButtonTransparent1 {
+.ButtonTransparent1 {
     -fx-background-color: #D64349;
     -fx-border-color: rgba(0,0,0,0);
 }

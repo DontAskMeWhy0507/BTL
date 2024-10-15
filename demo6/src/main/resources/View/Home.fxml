@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="backGround" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="936.0" prefWidth="1393.0" styleClass="white-background" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.HelloController">
+<BorderPane fx:id="backGround" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="936.0" prefWidth="1393.0" styleClass="backGround" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.HelloController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="819.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="78.0" prefWidth="79.0" />
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="45.0" prefWidth="2.0" />
-            <Button fx:id="Loginbutton" mnemonicParsing="false" onAction="#SwitchLogin" prefHeight="70.0" prefWidth="112.0" styleClass="white-background" stylesheets="@../Style/style.css" text="Login | Sign up" />
+            <Button fx:id="Loginbutton" mnemonicParsing="false" onAction="#SwitchLogin" prefHeight="70.0" prefWidth="112.0" styleClass="ButtonTransparent" stylesheets="@../Style/style.css" text="Login | Sign up" />
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="41.0" prefWidth="2.0" />
             <AnchorPane prefHeight="56.0" prefWidth="101.0" />
             <Label prefHeight="90.0" prefWidth="167.0" text="Sample Home">
@@ -27,15 +27,17 @@
                </font>
             </Label>
             <AnchorPane prefHeight="56.0" prefWidth="70.0" />
-            <HBox fx:id="HBoxRound" alignment="CENTER" prefHeight="56.0" prefWidth="383.0">
+            <HBox fx:id="HBoxRound" alignment="CENTER" prefHeight="56.0" prefWidth="383.0" styleClass="HBoxRound" stylesheets="@../Style/style.css">
                <children>
-                  <TextField fx:id="textBox" prefHeight="25.0" prefWidth="324.0" promptText="Ban muon doc gi?" />
-                  <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickSearchButton" prefHeight="43.0" prefWidth="14.0" />
-                  <ImageView fitHeight="18.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/search.png" />
-                     </image>
-                  </ImageView>
+                  <TextField fx:id="textBox" prefHeight="25.0" prefWidth="324.0" promptText="Ban muon doc gi?" styleClass="ButtonTransparent" />
+                  <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickSearchButton" prefHeight="43.0" prefWidth="14.0" styleClass="ButtonTransparent">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="470.0">
@@ -68,19 +70,19 @@
                               <Image url="@../Image/UET.jpg" />
                            </image>
                         </ImageView>
-                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="60.0" prefWidth="110.0" text="Top Books" />
+                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="60.0" prefWidth="110.0" styleClass="ButtonTransparent" text="Top Books" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="177.0">
                      <children>
                         <ImageView fitHeight="53.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" text="Category" />
+                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" styleClass="ButtonTransparent" text="Category" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="177.0">
                      <children>
                         <ImageView fitHeight="53.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" text="Browse" />
+                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" styleClass="ButtonTransparent" text="Browse" />
                      </children>
                   </HBox>
                </children>
@@ -92,19 +94,19 @@
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="177.0">
                      <children>
                         <ImageView fitHeight="53.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="60.0" prefWidth="110.0" text="Reading" />
+                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="60.0" prefWidth="110.0" styleClass="ButtonTransparent" text="Reading" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="177.0">
                      <children>
                         <ImageView fitHeight="53.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="60.0" prefWidth="110.0" text="Favorite" />
+                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="60.0" prefWidth="110.0" styleClass="ButtonTransparent" text="Favorite" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="177.0">
                      <children>
                         <ImageView fitHeight="53.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="60.0" prefWidth="110.0" text="History" />
+                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="60.0" prefWidth="110.0" styleClass="ButtonTransparent" text="History" />
                      </children>
                   </HBox>
                </children>
@@ -115,7 +117,7 @@
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="177.0">
                      <children>
                         <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="45.0" prefWidth="91.0" text="Your shelves book">
+                        <Button fx:id="ButtonTransparent" mnemonicParsing="false" onAction="#clickTopBooks" prefHeight="45.0" prefWidth="91.0" styleClass="ButtonTransparent" text="Your shelves book">
                            <font>
                               <Font size="9.0" />
                            </font>
@@ -124,7 +126,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="ButtonTransparent1" mnemonicParsing="false" prefHeight="62.0" prefWidth="185.0" text="CREATE YOUR SHELVE BOOKS" />
+                        <Button fx:id="ButtonTransparent1" mnemonicParsing="false" prefHeight="62.0" prefWidth="185.0" styleClass="ButtonTransparent1" text="CREATE YOUR SHELVE BOOKS" />
                      </children>
                   </HBox>
                </children>

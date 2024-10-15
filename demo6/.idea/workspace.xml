@@ -26,12 +26,12 @@
     &quot;assignee&quot;: &quot;VuTienTuanTrung&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/VuTienTuanTrung/BTL.git&quot;,
-    &quot;accountId&quot;: &quot;edeb487b-9bec-4b91-b696-6c5b5d3639fd&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/VuTienTuanTrung/BTL.git",
+    "accountId": "b701bd6f-6f4c-4ac3-8e01-b0229a38c1fe"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -51,15 +51,18 @@
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "tung1",
+    "git-widget-placeholder": "trung1",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "G:/file/BTL/demo6/src/main/resources/View",
+    "last_opened_file_path": "C:/Users/tuant/OneDrive/Máy tính/library-management-javafx-main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.32068965",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
@@ -82,8 +85,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -106,6 +109,7 @@
       <workItem from="1728918823172" duration="640000" />
       <workItem from="1728919511610" duration="35000" />
       <workItem from="1728990449019" duration="1146000" />
+      <workItem from="1728995862140" duration="9211000" />
     </task>
     <servers />
   </component>

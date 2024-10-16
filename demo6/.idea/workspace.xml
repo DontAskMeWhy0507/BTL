@@ -26,12 +26,12 @@
     &quot;assignee&quot;: &quot;VuTienTuanTrung&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/VuTienTuanTrung/BTL.git",
-    "accountId": "b701bd6f-6f4c-4ac3-8e01-b0229a38c1fe"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/VuTienTuanTrung/BTL.git&quot;,
+    &quot;accountId&quot;: &quot;b701bd6f-6f4c-4ac3-8e01-b0229a38c1fe&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -54,7 +54,7 @@
     "git-widget-placeholder": "trung1",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/tuant/OneDrive/Máy tính/library-management-javafx-main",
+    "last_opened_file_path": "C:/Users/tuant/OneDrive/Máy tính/BTL-main/demo6",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -110,6 +110,8 @@
       <workItem from="1728919511610" duration="35000" />
       <workItem from="1728990449019" duration="1146000" />
       <workItem from="1728995862140" duration="9211000" />
+      <workItem from="1729076662907" duration="15000" />
+      <workItem from="1729076702865" duration="10000" />
     </task>
     <servers />
   </component>

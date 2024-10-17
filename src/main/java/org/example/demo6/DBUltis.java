@@ -35,7 +35,7 @@ public class DBUltis {
         ResultSet rsID = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:G:\\file\\BTL\\demo6\\src\\Library");
+            connection = DriverManager.getConnection("jdbc:sqlite:src\\Library");
 
             psCheckUserExist = connection.prepareStatement("SELECT * FROM USERS WHERE username = ?");
             psCheckUserExist.setString(1, username);
@@ -117,7 +117,7 @@ public class DBUltis {
         ResultSet rs = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:G://file//BTL//src//Library");
+            connection = DriverManager.getConnection("jdbc:sqlite:src//Library");
 
             psCheckUserExist = connection.prepareStatement("SELECT * FROM USERS WHERE username = ? AND password = ?");
             psCheckUserExist.setString(1, username);

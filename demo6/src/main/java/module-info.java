@@ -7,6 +7,7 @@ module org.example.demo6 {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
     requires annotations;
+    requires java.sql;
 
     opens org.example.demo6 to javafx.fxml;
     exports org.example.demo6;

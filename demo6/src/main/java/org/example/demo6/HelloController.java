@@ -1,17 +1,32 @@
 package org.example.demo6;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class HelloController {
+
+    @FXML
+    private VBox dropdownMenu; // The VBox holding the menu items
+
+    @FXML
+    private void toggleMenu() {
+        dropdownMenu.setVisible(!dropdownMenu.isVisible());
+    }
+
     @FXML
     private Label welcomeText;
 
@@ -48,29 +63,29 @@ public class HelloController {
         stage.show();
     }
 
-    public void switchSignUp(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("/View/SignUp.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    public void switchSignUp(ActionEvent event) {
+//        try {
+//            root = FXMLLoader.load(HelloApplication.class.getResource("/View/SignUp.fxml"));
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
-    public void SwitchLogin(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("/View/Login.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    public void SwitchLogin(ActionEvent event) {
+//        try {
+//            root = FXMLLoader.load(HelloApplication.class.getResource("/View/Login.fxml"));
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
     public void switchForgotPass(ActionEvent event) {
         try {
@@ -129,5 +144,63 @@ public class HelloController {
         scene = new Scene(root);
         stage.setScene(scene);
 
+    }
+
+    @FXML
+    private Button buttonLogin;
+
+    @FXML
+    private Button buttonSignUp;
+
+    @FXML
+    private TextField tf_username;
+
+    @FXML
+    private TextField tf_password;
+
+    public void loginToHome(ActionEvent event) {
+        try {
+            DBUltis.logIn(event, tf_username.getText(), tf_password.getText());
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Throwable cause = e.getCause();
+            if (cause != null) {
+                cause.printStackTrace();
+            }
+        }
+    }
+
+    public void signUp1(ActionEvent event) {
+        try {
+            DBUltis.changescene(event, "/View/SignUp.fxml", "Sign Up!");
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Throwable cause = e.getCause();
+            if (cause != null) {
+                cause.printStackTrace();
+            }
+        }
+    }
+    public void initialize(URL location, ResourceBundle resources) {
+        buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                DBUltis.logIn(event, tf_username.getText(), tf_password.getText());
+            }
+        });
+        buttonSignUp.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                DBUltis.changescene(event, "/View/SignUp.fxml", "Sign Up!");
+            }
+        });
     }
 }

@@ -158,6 +158,9 @@ public class HelloController {
     @FXML
     private TextField tf_password;
 
+    @FXML
+    private Button buttonLogOut;
+
     public void loginToHome(ActionEvent event) {
         try {
             DBUltis.logIn(event, tf_username.getText(), tf_password.getText());
@@ -189,18 +192,21 @@ public class HelloController {
             }
         }
     }
-    public void initialize(URL location, ResourceBundle resources) {
-        buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUltis.logIn(event, tf_username.getText(), tf_password.getText());
+
+    public void logOut(ActionEvent event) {
+        try {
+            DBUltis.changescene(event, "/View/Login.fxml", "Login!");
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Throwable cause = e.getCause();
+            if (cause != null) {
+                cause.printStackTrace();
             }
-        });
-        buttonSignUp.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUltis.changescene(event, "/View/SignUp.fxml", "Sign Up!");
-            }
-        });
+        }
     }
+
 }

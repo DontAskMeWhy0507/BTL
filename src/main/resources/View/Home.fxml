@@ -196,7 +196,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="buttonlogOut" layoutX="67.0" layoutY="111.0" mnemonicParsing="false" text="Log Out" />
+                  <Button fx:id="buttonLogOut" layoutX="67.0" layoutY="111.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
                </children>
             </AnchorPane>
          </children>

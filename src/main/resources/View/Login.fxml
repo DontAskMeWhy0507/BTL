@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="792.0" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.HelloController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="792.0" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.LoginController">
    <children>
       <AnchorPane prefHeight="534.0" prefWidth="792.0">
          <children>
@@ -27,7 +27,7 @@
             <Button fx:id="buttonLogin" layoutX="304.0" layoutY="238.0" mnemonicParsing="false" onAction="#loginToHome" text="Login" />
             <CheckBox layoutX="203.0" layoutY="285.0" mnemonicParsing="false" text="Remember me" />
             <Button fx:id="buttonSignUp" layoutX="187.0" layoutY="238.0" mnemonicParsing="false" onAction="#signUp1" text="Sign up" />
-            <Button fx:id="buttonForgotPass" layoutX="196.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchForgotPass" prefHeight="40.0" prefWidth="134.0" text="Quên mật khẩu" />
+            <Button fx:id="buttonForgotPassword" layoutX="196.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchForgotPassword" prefHeight="40.0" prefWidth="134.0" text="Quên mật khẩu" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="437.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/thuc-pham-tot-cho-nao-bo-14.png" />

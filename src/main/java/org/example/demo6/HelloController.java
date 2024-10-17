@@ -30,74 +30,9 @@ public class HelloController {
     @FXML
     private Label welcomeText;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-    public void switchScene1(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("/View/scene1.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void switchScene2(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("/View/scene2.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-//    public void switchSignUp(ActionEvent event) {
-//        try {
-//            root = FXMLLoader.load(HelloApplication.class.getResource("/View/SignUp.fxml"));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
-//    public void SwitchLogin(ActionEvent event) {
-//        try {
-//            root = FXMLLoader.load(HelloApplication.class.getResource("/View/Login.fxml"));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
-    public void switchForgotPass(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(HelloApplication.class.getResource("/View/ForgotPassword.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void switchChangePass(ActionEvent event) {
         try {
@@ -146,52 +81,13 @@ public class HelloController {
 
     }
 
-    @FXML
-    private Button buttonLogin;
 
-    @FXML
-    private Button buttonSignUp;
 
-    @FXML
-    private TextField tf_username;
 
-    @FXML
-    private TextField tf_password;
 
     @FXML
     private Button buttonLogOut;
 
-    public void loginToHome(ActionEvent event) {
-        try {
-            DBUltis.logIn(event, tf_username.getText(), tf_password.getText());
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                cause.printStackTrace();
-            }
-        }
-    }
-
-    public void signUp1(ActionEvent event) {
-        try {
-            DBUltis.changescene(event, "/View/SignUp.fxml", "Sign Up!");
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                cause.printStackTrace();
-            }
-        }
-    }
 
     public void logOut(ActionEvent event) {
         try {

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SqlDialectMappings">
-    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/45fb3972-6ce9-492e-93e2-e2b1e7d07b7c/console.sql" dialect="SQLite" />
-    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/6f2814b9-ad29-4475-9711-eb0f60fef186/console.sql" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/demo6/DBUltis.java" dialect="GenericSQL" />
-    <file url="PROJECT" dialect="SQLite" />
-  </component>
-</project>

@@ -14,7 +14,7 @@ import java.sql.*;
 
 public class DBUltis {
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
-        Parent root = null;
+        Parent root;
         try {
             root = FXMLLoader.load(HelloApplication.class.getResource(fxmlFile));
         } catch (IOException e) {

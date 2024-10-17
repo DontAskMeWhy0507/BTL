@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="LibraryMain" uuid="691ae01d-2e3e-40b0-93cf-eaa0f421e5b8">
+    <data-source source="LOCAL" name="library" uuid="d4964dd9-0531-4036-a16c-4583c257bf10">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:G:\file\BTL\database\LibraryMain</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Java\BTL\BTL\database\LibraryMain</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

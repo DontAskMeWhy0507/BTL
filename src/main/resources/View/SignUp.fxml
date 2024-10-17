@@ -5,18 +5,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.SignUpController">
    <children>
-      <TextField fx:id="tf_username" layoutX="166.0" layoutY="136.0" promptText="Nhap ten tai khoan" />
-      <TextField fx:id="tf_password" layoutX="167.0" layoutY="187.0" promptText="Nhap mat khau" />
-      <TextField fx:id="tf_repassword" layoutX="168.0" layoutY="240.0" promptText="Nhap lai mat khau" />
       <Label layoutX="86.0" layoutY="140.0" text="Tên tài khoản" />
       <Label layoutX="73.0" layoutY="191.0" text="Nhập mật khẩu" />
       <Label layoutX="59.0" layoutY="244.0" text="Nhập lại mật khẩu" />
-      <Button fx:id="buttonSign_Up" layoutX="208.0" layoutY="287.0" mnemonicParsing="false" text="OK" />
       <Label layoutX="167.0" layoutY="334.0" text="check neu nhap thieu" />
-      <TextField fx:id="tf_id" layoutX="167.0" layoutY="90.0" promptText="Ma sinh vien" />
       <Label layoutX="88.0" layoutY="94.0" text="Mã sinh viên" />
-      <Button fx:id="buttonLog_in" layoutX="274.0" layoutY="287.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Đã có tài khoản?" />
    </children>
 </AnchorPane>

@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="backGround" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" styleClass="backGround" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.HelloController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="819.0" BorderPane.alignment="CENTER">
          <children>
@@ -178,16 +177,11 @@
             </VBox>
             <AnchorPane prefHeight="247.0" prefWidth="186.0">
                <children>
-                  <VBox fx:id="dropdownMenu" layoutX="93.0" layoutY="37.0" prefHeight="84.0" prefWidth="92.0" visible="false">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Notification" />
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="Settings" />
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Upload books" />
                         <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="92.0" text="Profile" />
-                        <Button fx:id="buttonLogOut" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Log out" />
-                     </children>
-                  </VBox>
-                  <Button layoutX="1.0" layoutY="162.0" mnemonicParsing="false" onAction="#toggleMenu" prefHeight="84.0" prefWidth="184.0" text=" Sage">
                      <graphic>
                         <ImageView fitHeight="53.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -196,9 +190,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="buttonlogOut" layoutX="67.0" layoutY="111.0" mnemonicParsing="false" text="Log Out" />
                </children>
-            </AnchorPane>
          </children>
       </VBox>
    </left>
@@ -206,7 +198,6 @@
       <VBox prefHeight="842.0" prefWidth="11.0" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <HBox prefHeight="35.0" prefWidth="1393.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />

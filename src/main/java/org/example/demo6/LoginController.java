@@ -1,5 +1,6 @@
 package org.example.demo6;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -35,7 +37,7 @@ public class LoginController {
     private TextField tf_username;
 
     @FXML
-    private TextField tf_password;
+    private PasswordField tf_password;
 
     @FXML
     private Button buttonLogin;
@@ -44,7 +46,7 @@ public class LoginController {
     private Button buttonSignUp;
 
     @FXML
-    private Button buttonForgotPassword;
+    private JFXButton buttonForgotPassword;
 
     public void loginToHome(ActionEvent event) {
         try {

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -10,29 +11,63 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="792.0" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.LoginController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="792.0" stylesheets="@../Style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.LoginController">
    <children>
       <AnchorPane prefHeight="534.0" prefWidth="792.0">
          <children>
-            <Label layoutX="84.0" layoutY="56.0" prefHeight="78.0" prefWidth="155.0" text="Login">
+            <Label alignment="CENTER" layoutX="54.0" layoutY="40.0" prefHeight="78.0" prefWidth="306.0" text="Đăng Nhập">
                <font>
                   <Font size="42.0" />
                </font>
             </Label>
-            <Label layoutX="113.0" layoutY="157.0" text="Tên tài khoản: " />
-            <Label layoutX="113.0" layoutY="193.0" text="Mật khẩu: " />
-            <PasswordField fx:id="tf_password" layoutX="191.0" layoutY="189.0" promptText="Mat khau" />
-            <TextField fx:id="tf_username" layoutX="192.0" layoutY="153.0" promptText="Nhap vao day" />
-            <Button fx:id="buttonLogin" layoutX="304.0" layoutY="238.0" mnemonicParsing="false" onAction="#loginToHome" text="Login" />
-            <CheckBox layoutX="203.0" layoutY="285.0" mnemonicParsing="false" text="Remember me" />
-            <Button fx:id="buttonSignUp" layoutX="187.0" layoutY="238.0" mnemonicParsing="false" onAction="#signUp1" text="Sign up" />
-            <Button fx:id="buttonForgotPassword" layoutX="196.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchForgotPassword" prefHeight="40.0" prefWidth="134.0" text="Quên mật khẩu" />
+            <Label layoutX="58.0" layoutY="142.0" text="Tên tài khoản: ">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="58.0" layoutY="191.0" text="Mật khẩu: ">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <TextField fx:id="tf_username" layoutX="177.0" layoutY="137.0" promptText="Nhap vao day">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="tf_password" layoutX="177.0" layoutY="186.0" promptText="Mat khau">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </PasswordField>
+            <JFXCheckBox layoutX="54.0" layoutY="252.0" prefHeight="18.0" prefWidth="136.0" text="Remember me?">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXButton fx:id="buttonForgotPassword" layoutX="252.0" layoutY="247.0" onAction="#switchForgotPassword" text="Quên mật khẩu?">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <Button fx:id="buttonLogin" layoutX="56.0" layoutY="314.0" mnemonicParsing="false" onAction="#loginToHome" prefHeight="31.0" prefWidth="316.0" text="Đăng Nhập">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="buttonSignUp" layoutX="262.0" layoutY="378.0" mnemonicParsing="false" onAction="#signUp1" text="Đăng Ký ">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="437.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/thuc-pham-tot-cho-nao-bo-14.png" />
                </image>
             </ImageView>
+            <Text layoutX="80.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chưa có tài khoản?">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

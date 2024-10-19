@@ -23,6 +23,7 @@ public class DBUltis {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
         stage.setScene(new Scene(root));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -133,7 +134,7 @@ public class DBUltis {
                 while (rs.next()) {
                     String retrievedPassword = rs.getString("password");
                     if (retrievedPassword.equals(password)) {
-                        changescene(event, "/View/Home.fxml", "Home to Library");
+                        changescene(event, "/View/MainScene.fxml", "Home to Library");
                     } else {
                         System.out.println("Password is incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);

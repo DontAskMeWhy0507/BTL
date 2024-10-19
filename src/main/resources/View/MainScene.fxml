@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="889.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.MainSceneClass">
+   <top>
+      <Pane prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField layoutX="572.0" layoutY="34.0" prefHeight="25.0" prefWidth="268.0" />
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="840.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Icon/search.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+   </top>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="31.0" layoutY="40.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Home">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/Icon/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button layoutX="31.0" layoutY="102.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Discovery">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/Icon/Discover.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="31.0" layoutY="183.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="All">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/Icon/Library.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="31.0" layoutY="417.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Home">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/Icon/collection.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="31.0" layoutY="465.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Home">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/Icon/add-button.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="31.0" layoutY="243.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Want to read">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/Icon/Star.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="31.0" layoutY="362.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="All">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/Icon/Upload.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="31.0" layoutY="305.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Finished">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/Icon/Finished.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="avatarButton" layoutX="15.0" layoutY="712.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="171.0" text="Name of  user">
+               <graphic>
+                  <ImageView fitHeight="57.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../Image/avatar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox layoutX="25.0" layoutY="562.0" prefHeight="150.0" prefWidth="151.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Home">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                           <image>
+                              <Image url="@../Image/Icon/add-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Home">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                           <image>
+                              <Image url="@../Image/Icon/add-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Settings">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                           <image>
+                              <Image url="@../Image/Icon/add-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Logout">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                           <image>
+                              <Image url="@../Image/Icon/add-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+
+         </children></Pane>
+   </left>
+   <center>
+      <AnchorPane fx:id="mainContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

@@ -18,6 +18,14 @@
 
     <dependencies>
 
+                <dependency>
+                    <groupId>com.google.apis</groupId>
+                    <artifactId>google-api-services-books</artifactId>
+                    <version>v1-rev20201021-1.30.10</version>
+                </dependency>
+
+
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

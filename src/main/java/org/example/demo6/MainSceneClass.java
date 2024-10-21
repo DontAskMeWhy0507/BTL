@@ -3,41 +3,58 @@ package org.example.demo6;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 public class MainSceneClass {
+
+    @FXML
+    private TextField SearchField;
+
+    @FXML
+    private VBox seeMoreProfile;
+    @FXML
+    private ScrollPane mainScrollPane;
+
     @FXML
     private AnchorPane mainContent;
 
+    @FXML
+    void searchButton() throws IOException {
+        apiGoogleBooks.searchBooks(SearchField.getText());
+    }
+
+    @FXML
+    void moreButton() {
+       seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
+    }
+
+
+
+    public void initialize() {
+        // Bạn có thể tùy chỉnh tốc độ cuộn hoặc các thiết lập khác cho ScrollPane ở đây nếu cần
+        mainScrollPane.setFitToWidth(true);  // Để nội dung khớp theo chiều rộng của ScrollPane
+        mainScrollPane.setFitToHeight(true); // Để nội dung khớp theo chiều cao của ScrollPane (nếu cần)
+    }
+
     public void showHome() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/HomePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageHome.fxml"));
             Parent homeView = loader.load();
-            mainContent.getChildren().clear();
-            mainContent.getChildren().add(homeView);
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(homeView);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void showSubscriptions() {
-        // Hiển thị nội dung Subscriptions
-        mainContent.getChildren().clear();
-        mainContent.getChildren().add(new Label("Subscriptions Content"));
+        // Hiển thị nội dung Subscriptions trong ScrollPane
+        mainScrollPane.setContent(new Label("Subscriptions Content"));
     }
-
-
-    @FXML
-    private Button avatarButton;
-
-
-
-
 }

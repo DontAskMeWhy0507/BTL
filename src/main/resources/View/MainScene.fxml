@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,18 +13,18 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="889.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.MainSceneClass">
    <top>
-      <Pane prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="69.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" layoutX="490.0" layoutY="7.0" prefHeight="78.0" prefWidth="336.0" styleClass="HBoxRound" stylesheets="@../Style/style.css">
-               <children>
-                  <TextField prefHeight="25.0" prefWidth="268.0" styleClass="ButtonTransparent" stylesheets="@../Style/style.css" />
-                  <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="SearchField" layoutX="503.0" layoutY="23.0" prefHeight="25.0" prefWidth="268.0" />
+            <Button layoutX="771.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchButton" text="Button">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/Icon/search.png" />
                      </image>
                   </ImageView>
-               </children>
-            </HBox>
+               </graphic>
+            </Button>
          </children></Pane>
    </top>
    <left>
@@ -100,7 +101,12 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="avatarButton" layoutX="15.0" layoutY="674.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="171.0" text="Name of  user">
+         </children></Pane>
+   </left>
+   <bottom>
+      <HBox prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#moreButton" prefHeight="117.0" prefWidth="201.0" text="Name of  user">
                <graphic>
                   <ImageView fitHeight="57.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -109,9 +115,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <VBox layoutX="25.0" layoutY="516.0" prefHeight="150.0" prefWidth="151.0">
+            <VBox fx:id="seeMoreProfile" prefHeight="95.0" prefWidth="151.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Home">
+                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="37.0" prefWidth="151.0" text="Account">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
@@ -120,7 +126,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Home">
+                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="37.0" prefWidth="155.0" text="Settings">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
@@ -129,16 +135,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Settings">
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                           <image>
-                              <Image url="@../Image/Icon/add-button.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Logout">
+                  <Button mnemonicParsing="false" onAction="#showHome" prefHeight="37.0" prefWidth="161.0" text="Logout">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
@@ -149,10 +146,14 @@
                   </Button>
                </children>
             </VBox>
-
-         </children></Pane>
-   </left>
+         </children>
+      </HBox>
+   </bottom>
    <center>
-      <AnchorPane fx:id="mainContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="mainScrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <content>
+          <AnchorPane fx:id="mainContent" minHeight="0.0" minWidth="0.0" prefHeight="703.0" prefWidth="1103.0" />
+        </content>
+      </ScrollPane>
    </center>
 </BorderPane>

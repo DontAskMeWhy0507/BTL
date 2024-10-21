@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -15,23 +14,25 @@ public class MainSceneClass {
     @FXML
     private TextField SearchField;
 
-
-    @FXML
-    private Button avatarButton;
-
     @FXML
     private VBox seeMoreProfile;
-
-
-    @FXML
-    void moreButton() {
-       seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
-    }
     @FXML
     private ScrollPane mainScrollPane;
 
     @FXML
     private AnchorPane mainContent;
+
+    @FXML
+    void searchButton() throws IOException {
+        apiGoogleBooks.searchBooks(SearchField.getText());
+    }
+
+    @FXML
+    void moreButton() {
+       seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
+    }
+
+
 
     public void initialize() {
         // Bạn có thể tùy chỉnh tốc độ cuộn hoặc các thiết lập khác cho ScrollPane ở đây nếu cần
@@ -41,7 +42,7 @@ public class MainSceneClass {
 
     public void showHome() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/HomePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageHome.fxml"));
             Parent homeView = loader.load();
 
             // Đặt nội dung mới vào ScrollPane

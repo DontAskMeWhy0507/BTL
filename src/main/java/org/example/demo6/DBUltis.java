@@ -49,7 +49,7 @@ public class DBUltis {
             if (rsUsername.isBeforeFirst()) {
                 System.out.println("User already exists");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You cannot use this username");
+                alert.setContentText("User already exists");
                 alert.show();
             } else if (rsID.isBeforeFirst()) {
                 System.out.println("ID already exists");

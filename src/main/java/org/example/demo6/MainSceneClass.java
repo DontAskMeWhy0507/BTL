@@ -64,6 +64,19 @@ public class MainSceneClass {
         }
     }
 
+    public void showUpload() {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));
+            Parent UploadView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(UploadView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void showSubscriptions() {
         // Hiển thị nội dung Subscriptions trong ScrollPane
         mainScrollPane.setContent(new Label("Subscriptions Content"));

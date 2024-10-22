@@ -1,13 +1,18 @@
 package org.example.demo6;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainSceneClass {
 
@@ -22,6 +27,12 @@ public class MainSceneClass {
     @FXML
     private AnchorPane mainContent;
 
+    @FXML
+    private Label welcomeText;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     @FXML
     void searchButton() throws IOException {
         apiGoogleBooks.searchBooks(SearchField.getText());
@@ -56,5 +67,28 @@ public class MainSceneClass {
     public void showSubscriptions() {
         // Hiển thị nội dung Subscriptions trong ScrollPane
         mainScrollPane.setContent(new Label("Subscriptions Content"));
+    }
+    public void logOut(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Đăng xuất");
+        alert.setHeaderText(null);
+        alert.setContentText("Bạn có chắc chắn muốn đăng xuất?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                DBUltis.changescene(event, "/View/Login.fxml", "Login!");
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Throwable cause = e.getCause();
+                if (cause != null) {
+                    cause.printStackTrace();
+                }
+            }
+        }
     }
 }

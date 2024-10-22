@@ -146,7 +146,11 @@ public class DBUltis {
                 while (rs.next()) {
                     String retrievedPassword = rs.getString("password");
                     if (retrievedPassword.equals(password)) {
-                        changescene(event, "/View/MainScene.fxml", "Home to Library");
+                        if (username.equals("admin") && password.equals("admin123")) {
+                            changescene(event, "/View/MemberTable.fxml", "Member Table");
+                        } else {
+                            changescene(event, "/View/MainScene.fxml", "Home to Library");
+                        }
                     } else {
                         System.out.println("Password is incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);

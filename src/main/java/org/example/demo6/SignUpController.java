@@ -28,6 +28,8 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField tf_repassword;
     @FXML
+    private TextField tf_email;
+    @FXML
     private Label password_check;
 
 
@@ -51,8 +53,14 @@ public class SignUpController implements Initializable {
 //                        alert.setContentText("Password must be at least 8 characters long and include a mix of uppercase letters, lowercase letters, numbers, and special characters.");
 //                        alert.show();
                         password_check.setText("Mat khau phai co 8 ki tu, in hoa, in thuong va ki tu dac biet");
-                    } else {
-                        DBUltis.signUp(event, tf_id.getText(), tf_username.getText(), tf_password.getText());
+                    } else if (!isEmailValid(tf_email.getText())) {
+//                        Alert alert = new Alert(Alert.AlertType.ERROR);
+//                        alert.setContentText("Email khong hop le");
+//                        alert.show();
+                        password_check.setText("Email khong hop le");
+                    }
+                    else {
+                        DBUltis.signUp(event, tf_id.getText(), tf_username.getText(), tf_password.getText(), tf_email.getText());
                     }
                 } else {
                     System.out.println("Please fill all the fields");
@@ -83,5 +91,9 @@ public class SignUpController implements Initializable {
                 Pattern.matches(lowerCaseChars, password) &&
                 Pattern.matches(numbers, password) &&
                 Pattern.matches(specialChars, password);
+    }
+    private boolean isEmailValid(String email) {
+        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return Pattern.matches(emailPattern, email);
     }
 }

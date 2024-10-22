@@ -14,4 +14,6 @@ module org.example.demo6 {
 
     opens org.example.demo6 to javafx.fxml;
     exports org.example.demo6;
+    exports org.example.demo6.Admin;
+    opens org.example.demo6.Admin to javafx.fxml;
 }

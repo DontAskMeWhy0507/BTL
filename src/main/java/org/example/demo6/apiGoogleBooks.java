@@ -40,7 +40,7 @@ public class apiGoogleBooks {
                 Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
                 System.out.println(volumeInfo.getTitle() + " by " + volumeInfo.getAuthors()
                         + " - " + volumeInfo.getPublishedDate() + " - " + volumeInfo.getPageCount() + " pages"
-                        + " - " + volumeInfo.getCategories() );
+                        + " - " + volumeInfo.getCategories() + " - " + volumeInfo.getImageLinks());
 
             }
         } else {

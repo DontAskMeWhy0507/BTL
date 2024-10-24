@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.SignUpController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.SignUpController">
    <children>
       <GridPane alignment="CENTER" layoutX="26.0" layoutY="38.0" prefHeight="311.0" prefWidth="486.0">
         <columnConstraints>
@@ -21,20 +21,23 @@
           <RowConstraints maxHeight="60.800006103515614" minHeight="10.0" prefHeight="60.800006103515614" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="58.600012207031256" minHeight="10.0" prefHeight="49.79999389648438" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="58.600012207031256" minHeight="10.0" prefHeight="49.79999389648438" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="58.600012207031256" minHeight="10.0" prefHeight="49.79999389648438" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="tf_id" promptText="Ma sinh vien" GridPane.columnIndex="1" />
+            <TextField fx:id="tf_email" promptText="\@gmail.com" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Mã sinh viên" />
-            <TextField fx:id="tf_username" promptText="Nhap ten tai khoan" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Tên tài khoản" GridPane.rowIndex="1" />
-            <TextField fx:id="tf_password" promptText="Nhap mat khau" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Nhập mật khẩu" GridPane.rowIndex="2" />
-            <TextField fx:id="tf_repassword" promptText="Nhap lai mat khau" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Nhập lại mật khẩu" GridPane.rowIndex="3" />
-            <Button fx:id="buttonLog_in" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Đã có tài khoản?" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button fx:id="buttonSign_Up" mnemonicParsing="false" text="OK" GridPane.rowIndex="5" />
-            <Label fx:id="password_check" prefHeight="18.0" prefWidth="484.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tf_username" promptText="Nhap ten tai khoan" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Tên tài khoản" GridPane.rowIndex="2" />
+            <TextField fx:id="tf_password" promptText="Nhap mat khau" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Nhập mật khẩu" GridPane.rowIndex="3" />
+            <TextField fx:id="tf_repassword" promptText="Nhap lai mat khau" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Nhập lại mật khẩu" GridPane.rowIndex="4" />
+            <Button fx:id="buttonLog_in" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Đã có tài khoản?" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="buttonSign_Up" mnemonicParsing="false" text="OK" GridPane.rowIndex="6" />
+            <Label fx:id="password_check" prefHeight="18.0" prefWidth="484.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Email" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

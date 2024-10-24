@@ -1,8 +1,7 @@
-package org.example.demo6;
+package org.example.demo6.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,6 +33,7 @@ public class ForgotPasswordController {
     @FXML
     private Text nhapLai;
 
+
     @FXML
     private AnchorPane ap1;
 
@@ -44,6 +44,7 @@ public class ForgotPasswordController {
         ap.setVisible(true);
         ap1.setVisible(false);
 
-        }
+    }
+
 }
 

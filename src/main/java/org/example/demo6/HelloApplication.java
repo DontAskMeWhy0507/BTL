@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     public void start(@NotNull Stage stage) throws IOException {
         Parent root = FXMLLoader.load(HelloApplication.class.getResource("/View/Login.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Library Management System");
+        stage.setTitle("Library management system");
         stage.setScene(scene);
         stage.show();
     }

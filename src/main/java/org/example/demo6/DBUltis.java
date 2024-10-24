@@ -13,29 +13,6 @@ import java.io.IOException;
 import java.sql.*;
 
 public class DBUltis {
-    public static void saveBookToDatabase(Book book) {
-        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
-
-        String sql = "INSERT INTO books(title, author, category, description, language, publisher, published_date, cover_image_path)";
-
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, book.getTitle());
-            pstmt.setString(2, book.getAuthor());
-            pstmt.setString(3, book.getCategory());
-            pstmt.setString(4, book.getDescription());
-            pstmt.setString(5, book.getLanguage());
-            pstmt.setString(6, book.getPublisher());
-            pstmt.setString(7, book.getPublishedDate());
-            pstmt.setString(8, book.getCoverImagePath());
-
-            pstmt.executeUpdate();
-            System.out.println("Book saved to database.");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
         Parent root;
         try {

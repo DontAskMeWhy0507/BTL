@@ -1,4 +1,4 @@
-package org.example.demo6.Controller;
+package org.example.demo6;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,7 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.example.demo6.DBUltis;
 
 import java.net.URL;
 import java.util.ResourceBundle;

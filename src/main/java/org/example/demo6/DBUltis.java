@@ -11,31 +11,10 @@ import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class DBUltis {
-    public static void saveBookToDatabase(Book book) {
-        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
-
-        String sql = "INSERT INTO books(title, author, category, description, language, publisher, published_date, cover_image_path)";
-
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, book.getTitle());
-            pstmt.setString(2, book.getAuthor());
-            pstmt.setString(3, book.getCategory());
-            pstmt.setString(4, book.getDescription());
-            pstmt.setString(5, book.getLanguage());
-            pstmt.setString(6, book.getPublisher());
-            pstmt.setString(7, book.getPublishedDate());
-            pstmt.setString(8, book.getCoverImagePath());
-
-            pstmt.executeUpdate();
-            System.out.println("Book saved to database.");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
         Parent root;
         try {
@@ -208,4 +187,47 @@ public class DBUltis {
             }
         }
     }
+
+    public static Date stringToDate(String dateStr) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return new Date(formatter.parse(dateStr).getTime()); // Convert to java.sql.Date
+    }
+
+    public static void saveBookToDatabase(Book book) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+
+        // Câu lệnh SQL không bao gồm book_id
+        String sql = "INSERT INTO Books(isbn, title, author, publisher, published_date, language, category, description, cover_image_path, audio_path) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, book.getIsbn());              // Mã ISBN
+            pstmt.setString(2, book.getTitle());             // Tên sách
+            pstmt.setString(3, book.getAuthor());            // Tác giả
+            pstmt.setString(4, book.getPublisher());         // Nhà xuất bản
+
+            // Convert and set the published date
+            Date publishedDate = stringToDate(book.getPublishedDate());
+            pstmt.setDate(5, publishedDate);                // Ngày xuất bản
+
+            pstmt.setString(6, book.getLanguage());          // Ngôn ngữ
+            pstmt.setString(7, book.getCategory());          // Thể loại
+            pstmt.setString(8, book.getDescription());       // Mô tả
+            pstmt.setString(9, book.getCoverImagePath());    // Đường dẫn đến ảnh bìa
+            pstmt.setString(10, book.getAudioPath());        // Đường dẫn đến file audio
+
+            pstmt.executeUpdate();
+            System.out.println("Book saved to database.");
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+            e.printStackTrace(); // Log the stack trace for better debugging
+        } catch (ParseException e) {
+            System.out.println("Date parsing error: " + e.getMessage());
+            e.printStackTrace(); // Log the stack trace for better debugging
+        }
+    }
+
+
 }

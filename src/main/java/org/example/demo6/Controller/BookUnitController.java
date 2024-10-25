@@ -2,10 +2,12 @@ package org.example.demo6.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.example.demo6.Book;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -14,7 +16,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class BookUnitController {
+public class BookUnitController extends Node {
 
     @FXML
     private Label authorBook;
@@ -34,7 +36,7 @@ public class BookUnitController {
     private boolean isFavorite = false;
 
     @FXML
-    void favorite(ActionEvent event) {
+    public void favorite(ActionEvent event) {
         if (isFavorite) {
             Image heart = new Image(getClass().getResourceAsStream("/Image/heartnone.png"));
             heartImage.setImage(heart);
@@ -43,6 +45,14 @@ public class BookUnitController {
             Image heart = new Image(getClass().getResourceAsStream("/Image/heart.png"));
             heartImage.setImage(heart);
             isFavorite = true;
+        }
+    }
+
+    public void setData(Book book) {
+        nameBook.setText(book.getTitle());
+        authorBook.setText(book.getAuthor());
+        if (book.getCoverImagePath() != null) {
+            imageBook.setImage(new Image(book.getCoverImagePath()));
         }
     }
 
@@ -71,9 +81,8 @@ public class BookUnitController {
                 String author = volumeInfo.getJSONArray("authors").getString(0);
                 String imageUrl = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
 
-                nameBook.setText(title);
-                authorBook.setText(author);
-                imageBook.setImage(new Image(imageUrl));
+                Book book = new Book(null, title, author, null, null, null, null, null, imageUrl, null);
+                setData(book);
             }
         } catch (Exception e) {
             e.printStackTrace();

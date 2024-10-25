@@ -1,4 +1,4 @@
-package org.example.demo6;
+package org.example.demo6.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.demo6.DBUltis;
+import org.example.demo6.apiGoogleBooks;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -58,6 +60,19 @@ public class MainSceneClass {
 
             // Đặt nội dung mới vào ScrollPane
             mainScrollPane.setContent(homeView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showUpload() {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));
+            Parent UploadView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(UploadView);
 
         } catch (IOException e) {
             e.printStackTrace();

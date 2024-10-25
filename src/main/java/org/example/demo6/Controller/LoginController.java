@@ -1,12 +1,14 @@
-package org.example.demo6;
+package org.example.demo6.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import javafx.stage.Stage;
+import org.example.demo6.DBUltis;
 
 
 public class LoginController {

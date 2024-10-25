@@ -11,6 +11,9 @@ import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class DBUltis {
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
@@ -66,8 +69,7 @@ public class DBUltis {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("You cannot use this email");
                 alert.show();
-            }
-            else {
+            } else {
                 psInsert = connection.prepareStatement("INSERT INTO USERS (ID, USERNAME, PASSWORD, EMAIL) VALUES (?, ?, ?, ?)");
                 psInsert.setString(1, id);
                 psInsert.setString(2, username);
@@ -124,6 +126,7 @@ public class DBUltis {
             }
         }
     }
+
     public static void logIn(ActionEvent event, String username, String password) {
         Connection connection = null;
         PreparedStatement psCheckUserExist = null;
@@ -146,7 +149,11 @@ public class DBUltis {
                 while (rs.next()) {
                     String retrievedPassword = rs.getString("password");
                     if (retrievedPassword.equals(password)) {
-                        changescene(event, "/View/MainScene.fxml", "Home to Library");
+                        if (username.equals("admin") && password.equals("admin123")) {
+                            changescene(event, "/View/MemberTable.fxml", "Member Table");
+                        } else {
+                            changescene(event, "/View/MainScene.fxml", "Home to Library");
+                        }
                     } else {
                         System.out.println("Password is incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -160,7 +167,7 @@ public class DBUltis {
         } finally {
             if (rs != null) {
                 try {
-                     rs.close();
+                    rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -181,4 +188,84 @@ public class DBUltis {
             }
         }
     }
+
+    public static Date stringToDate(String dateStr) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return new Date(formatter.parse(dateStr).getTime()); // Convert to java.sql.Date
+    }
+
+    public static void saveBookToDatabase(Book book) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+
+        // Câu lệnh SQL không bao gồm book_id
+        String sql = "INSERT INTO Books(isbn, title, author, publisher, published_date, language, category, description, cover_image_path, audio_path) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, book.getIsbn());              // Mã ISBN
+            pstmt.setString(2, book.getTitle());             // Tên sách
+            pstmt.setString(3, book.getAuthor());            // Tác giả
+            pstmt.setString(4, book.getPublisher());         // Nhà xuất bản
+
+            // Convert and set the published date
+            Date publishedDate = stringToDate(book.getPublishedDate());
+            pstmt.setDate(5, publishedDate);                // Ngày xuất bản
+
+            pstmt.setString(6, book.getLanguage());          // Ngôn ngữ
+            pstmt.setString(7, book.getCategory());          // Thể loại
+            pstmt.setString(8, book.getDescription());       // Mô tả
+            pstmt.setString(9, book.getCoverImagePath());    // Đường dẫn đến ảnh bìa
+            pstmt.setString(10, book.getAudioPath());        // Đường dẫn đến file audio
+
+            pstmt.executeUpdate();
+            System.out.println("Book saved to database.");
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+            e.printStackTrace(); // Log the stack trace for better debugging
+        } catch (ParseException e) {
+            System.out.println("Date parsing error: " + e.getMessage());
+            e.printStackTrace(); // Log the stack trace for better debugging
+        }
+    }
+
+
+
+        // Method to fetch all books from the database
+        public static ArrayList<Book> getBooksFromDatabase() {
+            String url = "jdbc:sqlite:database/LibraryMain"; // Adjust the path to your SQLite file
+            String sql = "SELECT * FROM Books"; // SQL query to fetch all books
+
+            ArrayList<Book> books = new ArrayList<>();
+
+            try (Connection conn = DriverManager.getConnection(url);
+                 PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+
+                while (rs.next()) {
+                    // Extract data from each row in the ResultSet
+                    String isbn = rs.getString("isbn");
+                    String title = rs.getString("title");
+                    String author = rs.getString("author");
+                    String publisher = rs.getString("publisher");
+                    String publishedDate = rs.getString("published_date"); // stored as String
+                    String language = rs.getString("language");
+                    String category = rs.getString("category");
+                    String description = rs.getString("description");
+                    String coverImagePath = rs.getString("cover_image_path");
+                    String audioPath = rs.getString("audio_path");
+
+                    // Create and add the Book object to the list
+                    Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description, coverImagePath, audioPath);
+                    books.add(book);
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Error retrieving books from database: " + e.getMessage());
+            }
+
+            return books;
+        }
+
 }

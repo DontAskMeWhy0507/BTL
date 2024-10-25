@@ -1,6 +1,0 @@
-.custom-text-field {
-    -fx-border-color: #cccccc;     /* Border color */
-    -fx-border-radius: 15;         /* Rounded corners */
-    -fx-background-radius: 15;     /* Background rounded corners */
-    -fx-padding: 10;                /* Padding inside the TextField */
-}

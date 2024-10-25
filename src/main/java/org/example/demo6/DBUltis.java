@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class DBUltis {
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
@@ -68,8 +69,7 @@ public class DBUltis {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("You cannot use this email");
                 alert.show();
-            }
-            else {
+            } else {
                 psInsert = connection.prepareStatement("INSERT INTO USERS (ID, USERNAME, PASSWORD, EMAIL) VALUES (?, ?, ?, ?)");
                 psInsert.setString(1, id);
                 psInsert.setString(2, username);
@@ -126,6 +126,7 @@ public class DBUltis {
             }
         }
     }
+
     public static void logIn(ActionEvent event, String username, String password) {
         Connection connection = null;
         PreparedStatement psCheckUserExist = null;
@@ -166,7 +167,7 @@ public class DBUltis {
         } finally {
             if (rs != null) {
                 try {
-                     rs.close();
+                    rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -229,5 +230,42 @@ public class DBUltis {
         }
     }
 
+
+
+        // Method to fetch all books from the database
+        public static ArrayList<Book> getBooksFromDatabase() {
+            String url = "jdbc:sqlite:database/LibraryMain"; // Adjust the path to your SQLite file
+            String sql = "SELECT * FROM Books"; // SQL query to fetch all books
+
+            ArrayList<Book> books = new ArrayList<>();
+
+            try (Connection conn = DriverManager.getConnection(url);
+                 PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+
+                while (rs.next()) {
+                    // Extract data from each row in the ResultSet
+                    String isbn = rs.getString("isbn");
+                    String title = rs.getString("title");
+                    String author = rs.getString("author");
+                    String publisher = rs.getString("publisher");
+                    String publishedDate = rs.getString("published_date"); // stored as String
+                    String language = rs.getString("language");
+                    String category = rs.getString("category");
+                    String description = rs.getString("description");
+                    String coverImagePath = rs.getString("cover_image_path");
+                    String audioPath = rs.getString("audio_path");
+
+                    // Create and add the Book object to the list
+                    Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description, coverImagePath, audioPath);
+                    books.add(book);
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Error retrieving books from database: " + e.getMessage());
+            }
+
+            return books;
+        }
 
 }

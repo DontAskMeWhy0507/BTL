@@ -7,6 +7,8 @@ import com.google.api.services.books.model.Volumes;
 import com.google.api.services.books.model.Volume;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class apiGoogleBooks {
 
@@ -39,6 +41,38 @@ public class apiGoogleBooks {
         } else {
             System.out.println("No matches found.");
         }
+    }
+    public static List<Book> searchBooks1(String query) throws IOException {
+        List<Book> books = new ArrayList<>();
+
+        Books booksApi = new Books.Builder(new com.google.api.client.http.javanet.NetHttpTransport(),
+                new com.google.api.client.json.jackson2.JacksonFactory(),
+                null)
+                .setApplicationName("LibraryApp")
+                .setGoogleClientRequestInitializer(new BooksRequestInitializer(API_KEY))
+                .build();
+
+        Books.Volumes.List volumesList = booksApi.volumes().list(query);
+        Volumes volumes = volumesList.execute();
+
+        if (volumes.getTotalItems() > 0 && volumes.getItems() != null) {
+            for (Volume volume : volumes.getItems()) {
+                Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
+                String title = volumeInfo.getTitle();
+                String author = volumeInfo.getAuthors() != null ? volumeInfo.getAuthors().get(0) : "Unknown";
+                String category = volumeInfo.getCategories() != null ? volumeInfo.getCategories().get(0) : "Unknown";
+                String description = volumeInfo.getDescription() != null ? volumeInfo.getDescription() : "No description available";
+                String language = volumeInfo.getLanguage();
+                String publisher = volumeInfo.getPublisher() != null ? volumeInfo.getPublisher() : "Unknown";
+                String publishedDate = volumeInfo.getPublishedDate() != null ? volumeInfo.getPublishedDate() : "Unknown";
+                String coverImagePath = volumeInfo.getImageLinks() != null ? volumeInfo.getImageLinks().getThumbnail() : null;
+                String audioPath = null;
+
+                Book book = new Book(null, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath);
+                books.add(book);
+            }
+        }
+        return books;
     }
 }
 

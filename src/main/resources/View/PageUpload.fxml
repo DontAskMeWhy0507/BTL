@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="558.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.PageUploadController">
    <children>
       <Button fx:id="uploadButton" layoutX="39.0" layoutY="426.0" mnemonicParsing="false" text="Add text book" />
-      <TextField fx:id="Tittle" layoutX="305.0" layoutY="67.0" prefHeight="25.0" prefWidth="209.0" promptText="Tittle" />
+      <TextField fx:id="Tittle" layoutX="305.0" layoutY="63.0" prefHeight="25.0" prefWidth="209.0" promptText="Tittle" />
       <TextField fx:id="Authors" layoutX="305.0" layoutY="101.0" prefHeight="25.0" prefWidth="209.0" promptText="Authors" />
       <TextField fx:id="Publisher" layoutX="305.0" layoutY="152.0" prefHeight="25.0" prefWidth="209.0" promptText="Publisher" />
       <TextField fx:id="Categories" layoutX="305.0" layoutY="237.0" prefHeight="25.0" prefWidth="209.0" promptText="Categories" />
@@ -20,5 +20,6 @@
       <DatePicker fx:id="PublishedDate" layoutX="305.0" layoutY="191.0" prefHeight="25.0" prefWidth="209.0" promptText="Published date" />
       <ImageView fx:id="BookCover" fitHeight="257.0" fitWidth="203.0" layoutX="39.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="Confirm" layoutX="304.0" layoutY="493.0" mnemonicParsing="false" text="Confirm" />
+      <TextField fx:id="ISBN" layoutX="304.0" layoutY="24.0" prefHeight="25.0" prefWidth="209.0" promptText="ISBN" />
    </children>
 </AnchorPane>

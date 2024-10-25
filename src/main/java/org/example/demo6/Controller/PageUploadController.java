@@ -15,6 +15,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
+import static org.example.demo6.DBUltis.saveBookToDatabase;
+
 public class PageUploadController {
 
     @FXML
@@ -52,6 +54,12 @@ public class PageUploadController {
 
     @FXML
     private Button Confirm;
+
+    @FXML
+    private TextField ISBN;
+
+    private String Audiopath;
+    private String CoverPath;
 
     // Thư mục đích để lưu file
     private static final String UPLOAD_DIRECTORY = "Uploaded/";
@@ -92,6 +100,26 @@ public class PageUploadController {
             if (selectedImageFile != null) {
                 // Hiển thị ảnh trong ImageView
                 BookCover.setImage(new javafx.scene.image.Image(selectedImageFile.toURI().toString()));
+                CoverPath = selectedImageFile.getAbsolutePath();
+            }
+        });
+
+        AudioBook.setOnAction(event-> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Select Audio Book");
+
+            // Chỉ cho phép chọn file audio
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Audio Files", "*.mp3", "*.wav")
+            );
+
+            Stage stage = (Stage) AudioBook.getScene().getWindow();
+            File selectedAudioFile = fileChooser.showOpenDialog(stage);
+
+            if (selectedAudioFile != null) {
+                // Lưu đường dẫn file audio vào đối tượng Book
+                // Nếu không cần đường dẫn file audio, có thể bỏ phần này
+                Audiopath = selectedAudioFile.getAbsolutePath();
             }
         });
 
@@ -109,6 +137,7 @@ public class PageUploadController {
                     saveFileToFolder(selectedFile);
 
                     // Lấy dữ liệu từ các trường trong giao diện
+                    String isbn = ISBN.getText();
                     String title = Tittle.getText();
                     String author = Authors.getText();
                     String category = Categories.getText();
@@ -116,11 +145,15 @@ public class PageUploadController {
                     String language = Language.getText();
                     String publisher = Publisher.getText();
                     String publishedDate = (PublishedDate.getValue() != null) ? PublishedDate.getValue().toString() : null;
-                    String coverImagePath = selectedFile.getAbsolutePath(); // Đường dẫn tới file ảnh bìa
+                    String coverImagePath = CoverPath; // Đường dẫn đến ảnh bìa
+                    String audioPathIfHave = Audiopath; // Đường dẫn đến file audio
 
                     // Tạo đối tượng Book
-                    Book newBook = new Book(title, author, category, description, language, publisher, publishedDate, coverImagePath);
+                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPathIfHave);
+
+                    // Lưu đối tượng Book vào cơ sở dữ liệu
                     DBUltis.saveBookToDatabase(newBook);
+
                     // Thực hiện các thao tác khác với đối tượng Book (lưu vào cơ sở dữ liệu, hiển thị, ...)
                     System.out.println("Book created: " + newBook.getTitle());
                 }

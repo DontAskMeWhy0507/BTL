@@ -13,13 +13,6 @@ public class apiGoogleBooks {
     // Replace with your API Key from Google Cloud Console
     private static final String API_KEY = "AIzaSyCyibUKHM6uRFhx6bzrhHyNDbt1GO3h-Lk";
 
-//    public static void main(String[] args) {
-//        try {
-//            searchBooks("Khong gia dinh");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static void searchBooks(String query) throws IOException {
         // Initialize the Books API client

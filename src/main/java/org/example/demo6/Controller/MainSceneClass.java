@@ -66,6 +66,20 @@ public class MainSceneClass {
         }
     }
 
+    public void showAll() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AllPage.fxml"));
+            Parent homeView = loader.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(homeView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void showUpload() {
         try {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));

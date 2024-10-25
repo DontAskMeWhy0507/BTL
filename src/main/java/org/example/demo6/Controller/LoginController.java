@@ -27,7 +27,6 @@ public class LoginController {
     private JFXButton buttonForgotPassword;
 
     public void loginToHome(ActionEvent event) {
-
         try {
             DBUltis.logIn(event, tf_username.getText(), tf_password.getText());
         } catch (Exception e) {

@@ -6,10 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.example.demo6.Book;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class BookUnitController extends Node {
 
     @FXML
     private Label nameBook;
+    private Book currentBook;
 
     private boolean isFavorite = false;
 
@@ -47,6 +50,7 @@ public class BookUnitController extends Node {
     }
 
     public void setData(Book book) {
+        this.currentBook = book;
         nameBook.setText(book.getTitle());
         authorBook.setText(book.getAuthor());
         if (book.getCoverImagePath() != null) {
@@ -56,11 +60,19 @@ public class BookUnitController extends Node {
         }
     }
 
+    @FXML
     public void switchToBookDetails(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/BookPreview.fxml"));
             Parent root = fxmlLoader.load();
-            MainSceneClass.setMainContent(root);
+
+            // Lấy controller của trang chi tiết
+            BookPreviewController bookPreviewController = fxmlLoader.getController();
+            bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

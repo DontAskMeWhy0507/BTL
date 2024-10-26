@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import org.example.demo6.Book;
 
 public class BookPreviewController {
@@ -13,30 +14,43 @@ public class BookPreviewController {
     private Label bookTitleLabel;
 
     @FXML
-    private Label bookAuthorLabel;
+    private Text bookAuthor;
+
+
 
     @FXML
-    private Label bookPublisherLabel;
-
-    @FXML
-    private Label bookPublishedDateLabel;
+    private Text bookPublishedDate;
 
     @FXML
     private Label bookCategoryLabel;
 
     @FXML
-    private Label bookDescriptionLabel;
+    private Text bookDescription;
 
     @FXML
     private ImageView bookCoverImage;
 
-    public void setBookDetails(Book book) {
+//    public void setBookDetails(Book book) {
+//        bookTitleLabel.setText(book.getTitle());
+//        bookAuthorLabel.setText(book.getAuthor());
+//        bookPublisherLabel.setText(book.getPublisher());
+//        bookPublishedDateLabel.setText(book.getPublishedDate());
+//        bookCategoryLabel.setText(book.getCategory());
+//        bookDescriptionLabel.setText(book.getDescription());
+//
+//        if (book.getCoverImagePath() != null) {
+//            bookCoverImage.setImage(new Image(book.getCoverImagePath()));
+//        } else {
+//            bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
+//        }
+//    }
+
+    public void setBookData(Book book) {
         bookTitleLabel.setText(book.getTitle());
-        bookAuthorLabel.setText(book.getAuthor());
-        bookPublisherLabel.setText(book.getPublisher());
-        bookPublishedDateLabel.setText(book.getPublishedDate());
-        bookCategoryLabel.setText(book.getCategory());
-        bookDescriptionLabel.setText(book.getDescription());
+        bookDescription.setText(book.getDescription());
+        bookAuthor.setText(book.getAuthor());
+        bookPublishedDate.setText(book.getPublishedDate());
+        bookCoverImage.setImage(new Image(book.getCoverImagePath()));
 
         if (book.getCoverImagePath() != null) {
             bookCoverImage.setImage(new Image(book.getCoverImagePath()));

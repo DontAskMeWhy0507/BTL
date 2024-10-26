@@ -14,6 +14,7 @@ public class BookPreviewController {
     private Label bookTitleLabel;
 
     @FXML
+
     private Text bookAuthor;
 
     @FXML

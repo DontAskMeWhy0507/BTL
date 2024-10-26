@@ -36,6 +36,8 @@ public class BookUnitController extends Node {
 
     private boolean isFavorite = false;
 
+
+
     @FXML
     public void favorite(ActionEvent event) {
         if (isFavorite) {

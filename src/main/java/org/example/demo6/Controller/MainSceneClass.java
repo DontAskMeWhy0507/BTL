@@ -51,6 +51,7 @@ public class MainSceneClass {
         // Bạn có thể tùy chỉnh tốc độ cuộn hoặc các thiết lập khác cho ScrollPane ở đây nếu cần
         mainScrollPane.setFitToWidth(true);  // Để nội dung khớp theo chiều rộng của ScrollPane
         mainScrollPane.setFitToHeight(true); // Để nội dung khớp theo chiều cao của ScrollPane (nếu cần)
+        showHome();
     }
 
     public void showHome() {

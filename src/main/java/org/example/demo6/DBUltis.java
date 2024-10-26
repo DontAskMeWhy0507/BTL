@@ -151,7 +151,12 @@ public class DBUltis {
                         if (username.equals("admin") && password.equals("admin123")) {
                             changescene(event, "/View/MemberTable.fxml", "Member Table");
                         } else {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Đăng Nhập");
+                            alert.setContentText("Logging in...");
+                            alert.show();
                             changescene(event, "/View/MainScene.fxml", "Home to Library");
+                            alert.close();
                         }
                     } else {
                         System.out.println("Password is incorrect");

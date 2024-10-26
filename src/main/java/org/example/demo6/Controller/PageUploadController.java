@@ -18,7 +18,6 @@ import java.util.Optional;
 import static org.example.demo6.DBUltis.saveBookToDatabase;
 
 public class PageUploadController {
-
     @FXML
     private TextField Authors;
 

@@ -13,7 +13,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(@NotNull Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(HelloApplication.class.getResource("/View/Login.fxml"));
+        Parent root = FXMLLoader.load(HelloApplication.class.getResource("/View/MainScene.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Library management system");
         stage.setScene(scene);

@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="558.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.PageUploadController">
+<AnchorPane prefHeight="558.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.PageUploadController">
    <children>
       <Button fx:id="uploadButton" layoutX="39.0" layoutY="426.0" mnemonicParsing="false" text="Add text book" />
       <TextField fx:id="Tittle" layoutX="305.0" layoutY="63.0" prefHeight="25.0" prefWidth="209.0" promptText="Tittle" />

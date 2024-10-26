@@ -28,6 +28,8 @@ public class MainSceneClass {
     @FXML
     private ScrollPane mainScrollPane;
 
+
+
     @FXML
     private AnchorPane mainContent;
 
@@ -73,7 +75,7 @@ public class MainSceneClass {
 
     public void showHome() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageHome.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Page/Home.fxml"));
             Parent homeView = loader.load();
             setMainContent(homeView);
         } catch (IOException e) {
@@ -81,19 +83,53 @@ public class MainSceneClass {
         }
     }
 
-    public void showUpload() {
+    public void showAll() {
         try {
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));
-            Parent uploadView = loader1.load();
-            setMainContent(uploadView);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Page/All.fxml"));
+            Parent homeView = loader.load();
+
+            // Get the controller instance
+            AllPageController controller = loader.getController();
+
+            // Optionally: you can call a method to set up data if needed
+            // controller.initialize();
+
+            // Set the content of the ScrollPane (or the appropriate parent node)
+            mainScrollPane.setContent(homeView);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void showUpload() {
+        try {
+
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));
+            Parent uploadView = loader1.load();
+            setMainContent(uploadView);
+          
+          
+
+            System.out.println("Upload");
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/Page/Upload.fxml"));
+            Parent UploadView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(UploadView);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void showSubscriptions() {
         setMainContent(new Label("Subscriptions Content"));
     }
+
+
+  
 
     public void logOut(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -118,4 +154,46 @@ public class MainSceneClass {
             }
         }
     }
+
 }
+
+
+
+  
+  
+    @FXML
+    void showAccount(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showCollection1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showDiscovery(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showFinished(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showSettings(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showWantToRead(ActionEvent event) {
+
+    }
+    @FXML
+    void addNewCollection(ActionEvent event) {
+
+    }
+
+}
+

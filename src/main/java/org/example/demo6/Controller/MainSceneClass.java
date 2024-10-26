@@ -26,6 +26,8 @@ public class MainSceneClass {
     @FXML
     private ScrollPane mainScrollPane;
 
+
+
     @FXML
     private AnchorPane mainContent;
 
@@ -56,7 +58,7 @@ public class MainSceneClass {
 
     public void showHome() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageHome.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Page/Home.fxml"));
             Parent homeView = loader.load();
 
             // Đặt nội dung mới vào ScrollPane
@@ -69,7 +71,7 @@ public class MainSceneClass {
 
     public void showAll() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AllPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Page/All.fxml"));
             Parent homeView = loader.load();
 
             // Get the controller instance
@@ -85,12 +87,10 @@ public class MainSceneClass {
         }
     }
 
-
-
-
     public void showUpload() {
         try {
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));
+            System.out.println("Upload");
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/Page/Upload.fxml"));
             Parent UploadView = loader1.load();
 
             // Đặt nội dung mới vào ScrollPane
@@ -101,10 +101,6 @@ public class MainSceneClass {
         }
     }
 
-    public void showSubscriptions() {
-        // Hiển thị nội dung Subscriptions trong ScrollPane
-        mainScrollPane.setContent(new Label("Subscriptions Content"));
-    }
     public void logOut(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Đăng xuất");
@@ -128,4 +124,40 @@ public class MainSceneClass {
             }
         }
     }
+
+
+    @FXML
+    void showAccount(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showCollection1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showDiscovery(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showFinished(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showSettings(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showWantToRead(ActionEvent event) {
+
+    }
+    @FXML
+    void addNewCollection(ActionEvent event) {
+
+    }
+
 }

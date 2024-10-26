@@ -81,4 +81,10 @@ public class HelloController {
 
 
 
+    @FXML
+    private Button buttonLogOut;
+
+
+
+
 }

@@ -71,13 +71,20 @@ public class MainSceneClass {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AllPage.fxml"));
             Parent homeView = loader.load();
 
-            // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(homeView);
+            // Get the controller instance
+            AllPageController controller = loader.getController();
 
+            // Optionally: you can call a method to set up data if needed
+            // controller.initialize();
+
+            // Set the content of the ScrollPane (or the appropriate parent node)
+            mainScrollPane.setContent(homeView);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
 
     public void showUpload() {

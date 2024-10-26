@@ -58,14 +58,15 @@ public class PageUploadController {
     @FXML
     private TextField ISBN;
 
-    private String Audiopath;
-    private String CoverPath;
-
     // Thư mục đích để lưu file
-    private static final String UPLOAD_DIRECTORY = "Uploaded/";
+    private static final String UPLOAD_DIRECTORY_BOOKS = "Uploaded/Books";
+    private static final String UPLOAD_DIRECTORY_AUDIO = "Uploaded/AudioBooks";
+    private static final String UPLOAD_DIRECTORY_IMAGE = "Uploaded/BookCovers";
 
     // Biến lưu trữ file đã chọn tạm thời
     private File selectedFile;
+    private File selectedImageFile;
+    private File selectedAudioFile;
 
     @FXML
     private void initialize() {
@@ -95,12 +96,11 @@ public class PageUploadController {
             );
 
             Stage stage = (Stage) SelectCover.getScene().getWindow();
-            File selectedImageFile = fileChooser.showOpenDialog(stage);
+            selectedImageFile = fileChooser.showOpenDialog(stage);
 
             if (selectedImageFile != null) {
                 // Hiển thị ảnh trong ImageView
                 BookCover.setImage(new javafx.scene.image.Image(selectedImageFile.toURI().toString()));
-                CoverPath = selectedImageFile.getAbsolutePath();
             }
         });
 
@@ -114,13 +114,9 @@ public class PageUploadController {
             );
 
             Stage stage = (Stage) AudioBook.getScene().getWindow();
-            File selectedAudioFile = fileChooser.showOpenDialog(stage);
+            selectedAudioFile = fileChooser.showOpenDialog(stage);
 
-            if (selectedAudioFile != null) {
-                // Lưu đường dẫn file audio vào đối tượng Book
-                // Nếu không cần đường dẫn file audio, có thể bỏ phần này
-                Audiopath = selectedAudioFile.getAbsolutePath();
-            }
+
         });
 
         Confirm.setOnAction(event -> {
@@ -134,8 +130,13 @@ public class PageUploadController {
                 Optional<ButtonType> result = confirmAlert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     // Nếu người dùng chọn OK, lưu file và tạo đối tượng Book
-                    saveFileToFolder(selectedFile);
-
+                    saveFileToFolder(selectedFile, "BOOKS");
+                    if (selectedImageFile != null) {
+                        saveFileToFolder(selectedImageFile, "IMAGE");
+                    }
+                    if (selectedAudioFile != null) {
+                        saveFileToFolder(selectedAudioFile, "AUDIO");
+                    }
                     // Lấy dữ liệu từ các trường trong giao diện
                     String isbn = ISBN.getText();
                     String title = Tittle.getText();
@@ -145,9 +146,9 @@ public class PageUploadController {
                     String language = Language.getText();
                     String publisher = Publisher.getText();
                     String publishedDate = (PublishedDate.getValue() != null) ? PublishedDate.getValue().toString() : null;
-                    String coverImagePath = CoverPath; // Đường dẫn đến ảnh bìa
-                    String audioPathIfHave = Audiopath; // Đường dẫn đến file audio
 
+                    String coverImagePath = (selectedImageFile != null) ? "/Uploaded/BookCovers/" + selectedImageFile.getName() : null;
+                    String audioPathIfHave = (selectedAudioFile != null) ? "/Uploaded/AudioBooks/" + selectedAudioFile.getName() : null;
                     // Tạo đối tượng Book
                     Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPathIfHave);
 
@@ -164,9 +165,24 @@ public class PageUploadController {
     }
 
     // Phương thức lưu file vào thư mục 'uploads'
-    private void saveFileToFolder(File file) {
+    private void saveFileToFolder(File file, String type) {
+        String directoryPath;
+        switch (type) {
+            case "BOOKS":
+                directoryPath = UPLOAD_DIRECTORY_BOOKS;
+                break;
+            case "IMAGE":
+                directoryPath = UPLOAD_DIRECTORY_IMAGE;
+                break;
+            case "AUDIO":
+                directoryPath = UPLOAD_DIRECTORY_AUDIO;
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown type: " + type);
+        }
+
         // Tạo thư mục đích nếu nó chưa tồn tại
-        File dir = new File(UPLOAD_DIRECTORY);
+        File dir = new File(directoryPath);
         if (!dir.exists()) {
             dir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
         }
@@ -184,3 +200,4 @@ public class PageUploadController {
         }
     }
 }
+

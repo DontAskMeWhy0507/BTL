@@ -67,6 +67,27 @@ public class MainSceneClass {
         }
     }
 
+    public void showAll() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AllPage.fxml"));
+            Parent homeView = loader.load();
+
+            // Get the controller instance
+            AllPageController controller = loader.getController();
+
+            // Optionally: you can call a method to set up data if needed
+            // controller.initialize();
+
+            // Set the content of the ScrollPane (or the appropriate parent node)
+            mainScrollPane.setContent(homeView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
     public void showUpload() {
         try {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));

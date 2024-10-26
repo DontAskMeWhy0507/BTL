@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
+        <javafx.version>23.0.1</javafx.version>
     </properties>
 
 
@@ -24,7 +25,30 @@
             <version>v1-rev20201021-1.30.10</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>9.0.10</version> <!-- Update version as needed -->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/jfoenix-9.0.10.jar</systemPath>
+        </dependency>
 
+        <dependency>
+            <groupId>org.xerial.sqlitejdbc</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.36.0.3</version> <!-- Update version as needed -->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/sqlite-jdbc-3.45.1.0.jar</systemPath>
+        </dependency>
+
+        <!-- JSON Processing Library (example with org.json) -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version> <!-- Update version as needed -->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/json-20140107.jar</systemPath>
+        </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>

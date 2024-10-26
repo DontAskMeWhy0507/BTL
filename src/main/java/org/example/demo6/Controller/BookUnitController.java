@@ -49,6 +49,7 @@ public class BookUnitController extends Node {
         }
     }
 
+
     public void setData(Book book) {
         this.currentBook = book;
         nameBook.setText(book.getTitle());
@@ -59,6 +60,8 @@ public class BookUnitController extends Node {
             imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
         }
     }
+
+
 
     @FXML
     public void switchToBookDetails(ActionEvent event) {

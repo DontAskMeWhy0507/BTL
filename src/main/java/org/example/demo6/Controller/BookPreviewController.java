@@ -16,8 +16,6 @@ public class BookPreviewController {
     @FXML
     private Text bookAuthor;
 
-
-
     @FXML
     private Text bookPublishedDate;
 
@@ -45,6 +43,8 @@ public class BookPreviewController {
 //        }
 //    }
 
+
+
     public void setBookData(Book book) {
         bookTitleLabel.setText(book.getTitle());
         bookDescription.setText(book.getDescription());
@@ -58,4 +58,5 @@ public class BookPreviewController {
             bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
         }
     }
+
 }

@@ -103,13 +103,6 @@ public class MainSceneClass {
 
     public void showUpload() {
         try {
-
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));
-            Parent uploadView = loader1.load();
-            setMainContent(uploadView);
-          
-          
-
             System.out.println("Upload");
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/Page/Upload.fxml"));
             Parent UploadView = loader1.load();
@@ -155,12 +148,6 @@ public class MainSceneClass {
         }
     }
 
-}
-
-
-
-  
-  
     @FXML
     void showAccount(ActionEvent event) {
 
@@ -196,4 +183,10 @@ public class MainSceneClass {
     }
 
 }
+
+
+
+  
+
+
 

@@ -125,6 +125,7 @@ public class MainSceneClass {
         }
     }
 
+
     @FXML
     void showAccount(ActionEvent event) {
 
@@ -158,11 +159,5 @@ public class MainSceneClass {
     void addNewCollection(ActionEvent event) {
 
     }
+
 }
-
-
-
-  
-
-
-

@@ -58,31 +58,21 @@ public class apiGoogleBooks {
         if (volumes.getTotalItems() > 0 && volumes.getItems() != null) {
             for (Volume volume : volumes.getItems()) {
                 Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
-                String isbn = "Unknown"; // Giá trị mặc định
-                List<Volume.VolumeInfo.IndustryIdentifiers> identifiers = volumeInfo.getIndustryIdentifiers();
-
-                if (identifiers != null && !identifiers.isEmpty()) {
-                    // Chỉ lấy phần tử đầu tiên của danh sách
-                    isbn = identifiers.get(0).getIdentifier() != null ? identifiers.get(0).getIdentifier() : "Unknown";
-                }
-
-                String title = volumeInfo.getTitle() != null ? volumeInfo.getTitle() : "Unknown Title";
-                String author = (volumeInfo.getAuthors() != null && !volumeInfo.getAuthors().isEmpty()) ? volumeInfo.getAuthors().get(0) : "Unknown";
-                String category = (volumeInfo.getCategories() != null && !volumeInfo.getCategories().isEmpty()) ? volumeInfo.getCategories().get(0) : "Unknown";
+                String title = volumeInfo.getTitle();
+                String author = volumeInfo.getAuthors() != null ? volumeInfo.getAuthors().get(0) : "Unknown";
+                String category = volumeInfo.getCategories() != null ? volumeInfo.getCategories().get(0) : "Unknown";
                 String description = volumeInfo.getDescription() != null ? volumeInfo.getDescription() : "No description available";
-                String language = volumeInfo.getLanguage() != null ? volumeInfo.getLanguage() : "Unknown";
+                String language = volumeInfo.getLanguage();
                 String publisher = volumeInfo.getPublisher() != null ? volumeInfo.getPublisher() : "Unknown";
                 String publishedDate = volumeInfo.getPublishedDate() != null ? volumeInfo.getPublishedDate() : "Unknown";
-                String coverImagePath = (volumeInfo.getImageLinks() != null && volumeInfo.getImageLinks().getThumbnail() != null) ? volumeInfo.getImageLinks().getThumbnail() : null;
+                String coverImagePath = volumeInfo.getImageLinks() != null ? volumeInfo.getImageLinks().getThumbnail() : null;
                 String audioPath = null;
 
-                Book book = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath);
+                Book book = new Book(null, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath);
                 books.add(book);
             }
         }
         return books;
     }
-
-
 }
 

@@ -35,7 +35,6 @@ public class LoginController {
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo
 
-
         try {
             // Giả lập độ trễ khi đăng nhập (thay bằng logic thực tế)
             DBUltis.logIn(event, tf_username.getText(), tf_password.getText());

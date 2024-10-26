@@ -111,8 +111,8 @@ public class MainSceneClass {
           
 
             System.out.println("Upload");
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/Page/Upload.fxml"));
-            Parent UploadView = loader1.load();
+            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/View/Page/Upload.fxml"));
+            Parent UploadView = loader2.load();
 
             // Đặt nội dung mới vào ScrollPane
             mainScrollPane.setContent(UploadView);
@@ -158,42 +158,4 @@ public class MainSceneClass {
 }
 
 
-
-  
-  
-    @FXML
-    void showAccount(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showCollection1(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showDiscovery(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showFinished(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showSettings(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showWantToRead(ActionEvent event) {
-
-    }
-    @FXML
-    void addNewCollection(ActionEvent event) {
-
-    }
-
-}
 

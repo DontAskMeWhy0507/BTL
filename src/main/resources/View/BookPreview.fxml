@@ -19,7 +19,7 @@
          <children>
             <ImageView fx:id="bookCoverImage" fitHeight="406.0" fitWidth="316.0" layoutX="61.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Image/Book_Cover.jpg" />
+                  <Image url="@../Image/Book_cover.jpg" />
                </image>
             </ImageView>
             <Label fx:id="bookTitleLabel" layoutX="391.0" layoutY="135.0" text="Star Wars: Ewoks (2024) #3">

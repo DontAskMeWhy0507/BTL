@@ -20,6 +20,8 @@ public class MainSceneClass {
 
     @FXML
     private TextField SearchField;
+    @FXML
+    private ListView<String> suggestionsList;
 
     @FXML
     private VBox seeMoreProfile;
@@ -35,33 +37,45 @@ public class MainSceneClass {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    private static ScrollPane staticMainScrollPane;
+
+    @FXML
+    public void initialize() {
+        staticMainScrollPane = mainScrollPane;
+        mainScrollPane.setFitToWidth(true);
+        mainScrollPane.setFitToHeight(true);
+        showHome();
+    }
+
+    public static void setMainContent(Parent content) {
+        staticMainScrollPane.setContent(content);
+    }
+
     @FXML
     void searchButton() throws IOException {
         apiGoogleBooks.searchBooks(SearchField.getText());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageSearch.fxml"));
+            Parent homeView = loader.load();
+            setMainContent(homeView);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void moreButton() {
-       seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
-    }
-
-
-
-    public void initialize() {
-        // Bạn có thể tùy chỉnh tốc độ cuộn hoặc các thiết lập khác cho ScrollPane ở đây nếu cần
-        mainScrollPane.setFitToWidth(true);  // Để nội dung khớp theo chiều rộng của ScrollPane
-        mainScrollPane.setFitToHeight(true); // Để nội dung khớp theo chiều cao của ScrollPane (nếu cần)
-        showHome();
+        seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
     }
 
     public void showHome() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageHome.fxml"));
             Parent homeView = loader.load();
-
-            // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(homeView);
-
+            setMainContent(homeView);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,20 +84,17 @@ public class MainSceneClass {
     public void showUpload() {
         try {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/PageUpload.fxml"));
-            Parent UploadView = loader1.load();
-
-            // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(UploadView);
-
+            Parent uploadView = loader1.load();
+            setMainContent(uploadView);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void showSubscriptions() {
-        // Hiển thị nội dung Subscriptions trong ScrollPane
-        mainScrollPane.setContent(new Label("Subscriptions Content"));
+        setMainContent(new Label("Subscriptions Content"));
     }
+
     public void logOut(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Đăng xuất");

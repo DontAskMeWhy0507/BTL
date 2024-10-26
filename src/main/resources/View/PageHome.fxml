@@ -8,9 +8,21 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1250.0" prefWidth="1103.0" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.HomePageController">
    <children>
       <Label prefHeight="43.0" prefWidth="80.0" text="Top 10" />
-      <ScrollPane prefHeight="218.0" prefWidth="1108.0">
+      <ScrollPane prefHeight="268.0" prefWidth="1112.0">
          <content>
-            <HBox fx:id="cardLayOut" prefHeight="215.0" prefWidth="1102.0" />
+            <HBox fx:id="cardLayOut" prefHeight="246.0" prefWidth="1113.0" />
+         </content>
+      </ScrollPane>
+      <Label prefHeight="50.0" prefWidth="81.0" text="Tiểu thuyết" />
+      <ScrollPane prefHeight="268.0" prefWidth="1112.0">
+         <content>
+            <HBox fx:id="cardLayOut1" prefHeight="246.0" prefWidth="1113.0" />
+         </content>
+      </ScrollPane>
+      <Label prefHeight="50.0" prefWidth="81.0" text="Anime" />
+      <ScrollPane prefHeight="268.0" prefWidth="1112.0">
+         <content>
+            <HBox fx:id="cardLayOut2" prefHeight="246.0" prefWidth="1113.0" />
          </content>
       </ScrollPane>
    </children>

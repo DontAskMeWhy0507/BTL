@@ -181,7 +181,6 @@ public class MainSceneClass {
     void addNewCollection(ActionEvent event) {
 
     }
-
 }
 
 

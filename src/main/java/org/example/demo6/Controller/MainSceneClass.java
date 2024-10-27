@@ -37,10 +37,27 @@ public class MainSceneClass {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    private static ScrollPane staticMainScrollPane;
     @FXML
     void searchButton() throws IOException {
         apiGoogleBooks.searchBooks(SearchField.getText());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageSearch.fxml"));
+            Parent homeView = loader.load();
+            setMainContent(homeView);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public static void setMainContent(Parent content) {
+        staticMainScrollPane.setContent(content);
+    }
+
+
 
     @FXML
     void moreButton() {
@@ -49,10 +66,11 @@ public class MainSceneClass {
 
 
 
+    @FXML
     public void initialize() {
-        // Bạn có thể tùy chỉnh tốc độ cuộn hoặc các thiết lập khác cho ScrollPane ở đây nếu cần
-        mainScrollPane.setFitToWidth(true);  // Để nội dung khớp theo chiều rộng của ScrollPane
-        mainScrollPane.setFitToHeight(true); // Để nội dung khớp theo chiều cao của ScrollPane (nếu cần)
+        staticMainScrollPane = mainScrollPane;
+        mainScrollPane.setFitToWidth(true);
+        mainScrollPane.setFitToHeight(true);
         showHome();
     }
 

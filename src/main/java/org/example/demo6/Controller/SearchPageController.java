@@ -4,33 +4,39 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.control.ScrollPane;
+import org.example.demo6.Book;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SearchPageController {
 
     @FXML
     private GridPane bookContainer;
 
-    @FXML
-    private ScrollPane mainScrollPane;
+    private List<Book> searchResults;
 
-    @FXML
-    public void initialize() {
+    public void setSearchResults(List<Book> searchResults) {
+        this.searchResults = searchResults;
+        displaySearchResults();
+    }
+
+    private void displaySearchResults() {
+        bookContainer.getChildren().clear();
         int columns = 7;
         int rows = 6;
         int bookCount = 0;
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                if (bookCount >= 20) {
+                if (bookCount >= searchResults.size()) {
                     break;
                 }
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Book.fxml"));
                     Pane bookPane = loader.load();
                     BookUnitController controller = loader.getController();
+                    controller.setData(searchResults.get(bookCount));
                     bookContainer.add(bookPane, col, row);
                     bookCount++;
                 } catch (IOException e) {

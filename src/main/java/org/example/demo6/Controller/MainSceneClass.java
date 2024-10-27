@@ -10,10 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.demo6.Book;
 import org.example.demo6.DBUltis;
 import org.example.demo6.apiGoogleBooks;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class MainSceneClass {
@@ -41,10 +43,15 @@ public class MainSceneClass {
     private static ScrollPane staticMainScrollPane;
     @FXML
     void searchButton() throws IOException {
-        apiGoogleBooks.searchBooks(SearchField.getText());
+        List<Book> searchResults = apiGoogleBooks.searchBooks1(SearchField.getText());
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageSearch.fxml"));
             Parent homeView = loader.load();
+
+            // Get the controller instance
+            SearchPageController searchPageController = loader.getController();
+            searchPageController.setSearchResults(searchResults);
+
             setMainContent(homeView);
             staticMainScrollPane.setFitToWidth(true);
             staticMainScrollPane.setFitToHeight(true);

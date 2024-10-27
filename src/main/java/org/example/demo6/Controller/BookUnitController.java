@@ -81,9 +81,7 @@ public class BookUnitController extends Node {
             BookPreviewController bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            MainSceneClass.setMainContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

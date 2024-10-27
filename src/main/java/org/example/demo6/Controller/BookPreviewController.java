@@ -51,14 +51,22 @@ public class BookPreviewController {
         bookDescription.setText(book.getDescription());
         bookAuthor.setText(book.getAuthor());
         bookPublishedDate.setText(book.getPublishedDate());
-        bookCoverImage.setImage(new Image(book.getCoverImagePath()));
 
-        if (book.getCoverImagePath() != null) {
-            bookCoverImage.setImage(new Image(book.getCoverImagePath()));
+        // Check if cover image path is available and valid
+        if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {
+            try {
+                bookCoverImage.setImage(new Image(book.getCoverImagePath(), true));  // Use background loading
+            } catch (Exception e) {
+                // Log or handle error and set a default image in case of an invalid URL
+                System.err.println("Error loading image: " + e.getMessage());
+                bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/UET.jpg")));
+            }
         } else {
-            bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
+            // Set a default image if the cover path is null or empty
+            bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/UET.jpg")));
         }
     }
+
 
 }
 

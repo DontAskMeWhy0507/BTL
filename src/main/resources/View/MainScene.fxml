@@ -17,20 +17,16 @@
    <top>
       <Pane prefHeight="69.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" layoutX="503.0" layoutY="15.0" style="-fx-border-color: brown; -fx-border-radius: 15;">
-               <children>
-                  <TextField fx:id="SearchField" prefHeight="26.0" prefWidth="267.0" style="-fx-background-color: transparent;" />
-                  <Button mnemonicParsing="false" onAction="#searchButton" style="-fx-background-color: transparent;">
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Image/Icon/search.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
+            <TextField fx:id="SearchField" layoutX="503.0" layoutY="23.0" prefHeight="25.0" prefWidth="268.0" />
+            <Button layoutX="771.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchButton" text="Button">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/Icon/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children></Pane>
    </top>
    <left>

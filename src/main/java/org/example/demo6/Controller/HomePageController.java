@@ -49,19 +49,7 @@ public class HomePageController {
     }
     @FXML
     public void initialize() {
-        topBooks = topBooks();
-        try {
-            for (int i = 0; i < 10; i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/View/Book.fxml"));
-                VBox cardBox = fxmlLoader.load();
-                BookUnitController bookUnitController = fxmlLoader.getController();
-                bookUnitController.setData(topBooks.get(i));
-                cardLayOut.getChildren().add(cardBox);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
         tieuThuyet = bookTieuThuyet();
         try {

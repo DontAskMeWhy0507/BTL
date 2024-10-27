@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -37,8 +38,11 @@ public class BookUnitController extends Node {
 
     @FXML
     private Label nameBook;
+    private Book currentBook;
 
     private boolean isFavorite = false;
+
+
 
     @FXML
     public void favorite(ActionEvent event) {
@@ -53,7 +57,9 @@ public class BookUnitController extends Node {
         }
     }
 
+
     public void setData(Book book) {
+        this.currentBook = book;
         nameBook.setText(book.getTitle());
         authorBook.setText(book.getAuthor());
         if (book.getCoverImagePath() != null) {
@@ -63,39 +69,9 @@ public class BookUnitController extends Node {
         }
     }
 
-//    public void fetchBookDetails(String query) {
-//        try {
-//            String apiKey = "AIzaSyCyibUKHM6uRFhx6bzrhHyNDbt1GO3h-Lk";
-//            String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" + query + "&key=" + apiKey;
-//            URL url = new URL(apiUrl);
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//            conn.setRequestMethod("GET");
-//
-//            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//            String inputLine;
-//            StringBuilder content = new StringBuilder();
-//            while ((inputLine = in.readLine()) != null) {
-//                content.append(inputLine);
-//            }
-//            in.close();
-//            conn.disconnect();
-//
-//            JSONObject json = new JSONObject(content.toString());
-//            JSONArray items = json.getJSONArray("items");
-//            if (items.length() > 0) {
-//                JSONObject volumeInfo = items.getJSONObject(0).getJSONObject("volumeInfo");
-//                String title = volumeInfo.getString("title");
-//                String author = volumeInfo.getJSONArray("authors").getString(0);
-//                String imageUrl = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
-//
-//                Book book = new Book(null, title, author, null, null, null, null, null, imageUrl, null);
-//                setData(book);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
+
+    @FXML
     public void switchToBookDetails(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/BookPreview.fxml"));
@@ -105,9 +81,7 @@ public class BookUnitController extends Node {
             BookPreviewController bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            MainSceneClass.setMainContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

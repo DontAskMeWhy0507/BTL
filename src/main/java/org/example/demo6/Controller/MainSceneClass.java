@@ -45,7 +45,7 @@ public class MainSceneClass {
     void searchButton() throws IOException {
         List<Book> searchResults = apiGoogleBooks.searchBooks1(SearchField.getText());
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PageSearch.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Page/PageSearch.fxml"));
             Parent homeView = loader.load();
 
             // Get the controller instance

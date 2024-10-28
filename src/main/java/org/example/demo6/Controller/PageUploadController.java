@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.demo6.Book;
+import org.example.demo6.Classes.Book;
 import org.example.demo6.DBUltis;
 
 import java.io.File;
@@ -14,8 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Optional;
-
-import static org.example.demo6.DBUltis.saveBookToDatabase;
 
 public class PageUploadController {
     @FXML

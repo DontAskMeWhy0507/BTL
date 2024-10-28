@@ -2,7 +2,7 @@ package org.example.demo6.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
-import org.example.demo6.Book;
+import org.example.demo6.Classes.Book;
 import org.example.demo6.DBUltis;
 
 import java.io.File;

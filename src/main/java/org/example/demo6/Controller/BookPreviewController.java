@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import org.example.demo6.Book;
+import org.example.demo6.Classes.Book;
 
 public class BookPreviewController {
 

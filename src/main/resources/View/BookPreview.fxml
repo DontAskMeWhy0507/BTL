@@ -9,10 +9,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="834.0" prefWidth="1228.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.BookPreviewController">
 
-
-
+<ScrollPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.BookPreviewController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1045.0" prefWidth="1216.0">
          <children>
@@ -39,6 +37,9 @@
             </ImageView>
             <Text fx:id="bookPublishedDate" layoutX="403.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="December 18, 2024" wrappingWidth="69.47789001464844" />
             <Text fx:id="bookAuthor" layoutX="397.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-         </children></AnchorPane>
+            <Label layoutX="219.0" layoutY="891.0" prefHeight="63.0" prefWidth="254.0" text="Check scroll" />
+            <Button layoutX="35.0" layoutY="32.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="66.0" text="Quay lại" />
+         </children>
+      </AnchorPane>
    </content>
 </ScrollPane>

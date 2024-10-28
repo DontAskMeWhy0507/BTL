@@ -19,6 +19,10 @@ TextField, PassWordField, JFX CheckBox, JFX Button, Button {
 }
 
 .login_button {
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-color-fill : #D8D2C2;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #4A4947;

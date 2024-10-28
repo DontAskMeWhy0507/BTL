@@ -7,10 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.demo6.Book;
+import org.example.demo6.Classes.Book;
 import org.example.demo6.DBUltis;
 import org.example.demo6.apiGoogleBooks;
 

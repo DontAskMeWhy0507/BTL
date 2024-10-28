@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import org.example.demo6.Book;
+import org.example.demo6.Classes.Book;
 
 import java.io.IOException;
 import java.util.List;

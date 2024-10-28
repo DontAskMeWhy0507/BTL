@@ -28,14 +28,6 @@ public class MainSceneClass {
     @FXML
     private ScrollPane mainScrollPane;
 
-
-
-    @FXML
-    private AnchorPane mainContent;
-
-    @FXML
-    private Label welcomeText;
-
     private Stage stage;
     private Scene scene;
     private Parent root;

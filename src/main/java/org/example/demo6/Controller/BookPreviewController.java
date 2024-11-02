@@ -66,7 +66,5 @@ public class BookPreviewController {
             bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/UET.jpg")));
         }
     }
-
-
 }
 

@@ -10,14 +10,14 @@ public class Book {
     private String language;           // Ngôn ngữ
     private String category;           // Thể loại
     private String description;        // Mô tả
+
+    private String bookPath;           // Đường dẫn đến file sách
     private String coverImagePath;     // Đường dẫn đến ảnh bìa
     private String audioPath;          // Đường dẫn đến file audio
 
-    private List<Review> Reviews;      // Danh sách các đánh giá của sách
-
     // Constructor
     public Book(String isbn, String title, String author, String category, String description,
-                String language, String publisher, String publishedDate,
+                String language, String publisher, String publishedDate, String bookPath,
                 String coverImagePath, String audioPath) {
         this.isbn = isbn;
         this.title = title;
@@ -27,14 +27,14 @@ public class Book {
         this.language = language;
         this.publisher = publisher;
         this.publishedDate = publishedDate;
+
+        this.bookPath = bookPath;
         this.coverImagePath = coverImagePath;
         this.audioPath = audioPath;      // Có thể là null nếu không có
     }
 
     // Getters và Setters
 
-    public List<Review> getReviews() { return Reviews; }
-    public void addReview(Review review) { Reviews.add(review); }
 
     public String getIsbn() { return isbn; }
     public void setIsbn(String isbn) { this.isbn = isbn; }
@@ -65,4 +65,12 @@ public class Book {
 
     public String getAudioPath() { return audioPath; }
     public void setAudioPath(String audioPath) { this.audioPath = audioPath; }
+
+    public String getBookPath() {
+        return bookPath;
+    }
+
+    public void setBookPath(String bookPath) {
+        this.bookPath = bookPath;
+    }
 }

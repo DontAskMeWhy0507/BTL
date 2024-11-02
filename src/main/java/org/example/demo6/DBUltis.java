@@ -258,11 +258,14 @@ public class DBUltis {
                     String language = rs.getString("language");
                     String category = rs.getString("category");
                     String description = rs.getString("description");
+
+                    String bookPath = rs.getString("book_path");
                     String coverImagePath = rs.getString("cover_image_path");
                     String audioPath = rs.getString("audio_path");
 
+
                     // Create and add the Book object to the list
-                    Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description, coverImagePath, audioPath);
+                    Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description,bookPath,coverImagePath, audioPath);
                     books.add(book);
                 }
 

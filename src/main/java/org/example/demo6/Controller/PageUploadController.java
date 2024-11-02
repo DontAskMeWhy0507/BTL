@@ -6,13 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
-import org.example.demo6.DBUltis;
+import org.example.demo6.Classes.Library;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
 public class PageUploadController {
@@ -55,10 +51,6 @@ public class PageUploadController {
     @FXML
     private TextField ISBN;
 
-    // Thư mục đích để lưu file
-    private static final String UPLOAD_DIRECTORY_BOOKS = "Uploaded/Books";
-    private static final String UPLOAD_DIRECTORY_AUDIO = "Uploaded/AudioBooks";
-    private static final String UPLOAD_DIRECTORY_IMAGE = "Uploaded/BookCovers";
 
     // Biến lưu trữ file đã chọn tạm thời
     private File selectedFile;
@@ -126,14 +118,7 @@ public class PageUploadController {
 
                 Optional<ButtonType> result = confirmAlert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-                    // Nếu người dùng chọn OK, lưu file và tạo đối tượng Book
-                    saveFileToFolder(selectedFile, "BOOKS");
-                    if (selectedImageFile != null) {
-                        saveFileToFolder(selectedImageFile, "IMAGE");
-                    }
-                    if (selectedAudioFile != null) {
-                        saveFileToFolder(selectedAudioFile, "AUDIO");
-                    }
+
                     // Lấy dữ liệu từ các trường trong giao diện
                     String isbn = ISBN.getText();
                     String title = Tittle.getText();
@@ -144,13 +129,13 @@ public class PageUploadController {
                     String publisher = Publisher.getText();
                     String publishedDate = (PublishedDate.getValue() != null) ? PublishedDate.getValue().toString() : null;
 
+                    String bookPath = "/Uploaded/Books/" + selectedFile.getName();
                     String coverImagePath = (selectedImageFile != null) ? "/Uploaded/BookCovers/" + selectedImageFile.getName() : null;
                     String audioPathIfHave = (selectedAudioFile != null) ? "/Uploaded/AudioBooks/" + selectedAudioFile.getName() : null;
                     // Tạo đối tượng Book
-                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPathIfHave);
+                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate,bookPath ,coverImagePath, audioPathIfHave);
 
-                    // Lưu đối tượng Book vào cơ sở dữ liệu
-                    DBUltis.saveBookToDatabase(newBook);
+                    Library.upLoadBook(newBook, selectedFile, selectedImageFile, selectedAudioFile);
 
                     // Thực hiện các thao tác khác với đối tượng Book (lưu vào cơ sở dữ liệu, hiển thị, ...)
                     System.out.println("Book created: " + newBook.getTitle());
@@ -161,40 +146,5 @@ public class PageUploadController {
 
     }
 
-    // Phương thức lưu file vào thư mục 'uploads'
-    private void saveFileToFolder(File file, String type) {
-        String directoryPath;
-        switch (type) {
-            case "BOOKS":
-                directoryPath = UPLOAD_DIRECTORY_BOOKS;
-                break;
-            case "IMAGE":
-                directoryPath = UPLOAD_DIRECTORY_IMAGE;
-                break;
-            case "AUDIO":
-                directoryPath = UPLOAD_DIRECTORY_AUDIO;
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown type: " + type);
-        }
-
-        // Tạo thư mục đích nếu nó chưa tồn tại
-        File dir = new File(directoryPath);
-        if (!dir.exists()) {
-            dir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
-        }
-
-        // Đường dẫn đích để lưu file
-        Path destinationPath = new File(dir, file.getName()).toPath();
-
-        try {
-            // Sao chép file vào thư mục đích
-            Files.copy(file.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("File saved to: " + destinationPath.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Failed to save the file.");
-        }
-    }
 }
 

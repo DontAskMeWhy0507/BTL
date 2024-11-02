@@ -67,10 +67,12 @@ public class apiGoogleBooks {
                 String language = volumeInfo.getLanguage();
                 String publisher = volumeInfo.getPublisher() != null ? volumeInfo.getPublisher() : "Unknown";
                 String publishedDate = volumeInfo.getPublishedDate() != null ? volumeInfo.getPublishedDate() : "Unknown";
+
+                String bookPath  = null;
                 String coverImagePath = volumeInfo.getImageLinks() != null ? volumeInfo.getImageLinks().getThumbnail() : null;
                 String audioPath = null;
 
-                Book book = new Book(null, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath);
+                Book book = new Book(null, title, author, category, description, language, publisher, publishedDate, bookPath,coverImagePath, audioPath);
                 books.add(book);
             }
         }

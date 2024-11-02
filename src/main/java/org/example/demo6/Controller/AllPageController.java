@@ -37,7 +37,11 @@ public class AllPageController {
 
             // Load the cover image and set it in the Button
             ImageView coverImageView = new ImageView();
-            File imageFile = new File(book.getCoverImagePath());
+            String correctedPath = "@../../" + book.getCoverImagePath();
+            File imageFile = new File(correctedPath);
+
+            System.out.println("Loading image from: " + imageFile.getAbsolutePath());
+
 
             if (imageFile.exists()) {
                 // Use a try-catch to handle possible Image loading issues
@@ -46,7 +50,7 @@ public class AllPageController {
                     coverImageView.setImage(image);
                     coverImageView.setFitHeight(100);
                     coverImageView.setFitWidth(70);
-                    coverImageView.setPreserveRatio(true);
+                    //coverImageView.setPreserveRatio(true);
                 } catch (Exception e) {
                     System.err.println("Failed to load image: " + imageFile.getPath());
                 }

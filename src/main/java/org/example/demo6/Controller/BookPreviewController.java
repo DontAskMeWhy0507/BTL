@@ -7,14 +7,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import org.example.demo6.Classes.Book;
+import org.example.demo6.Classes.FileUpload;
+import org.example.demo6.Classes.Library;
+
+import java.io.File;
+
+import static org.example.demo6.Classes.FileUpload.downloadFileImage;
 
 public class BookPreviewController {
+
+    private Book currentBook;
+
 
     @FXML
     private Label bookTitleLabel;
 
     @FXML
-
     private Text bookAuthor;
 
     @FXML
@@ -28,6 +36,7 @@ public class BookPreviewController {
 
     @FXML
     private ImageView bookCoverImage;
+
 
 //    public void setBookDetails(Book book) {
 //        bookTitle Label.setText(book.getTitle());
@@ -47,6 +56,7 @@ public class BookPreviewController {
 
 
     public void setBookData(Book book) {
+        currentBook = book;
         bookTitleLabel.setText(book.getTitle());
         bookDescription.setText(book.getDescription());
         bookAuthor.setText(book.getAuthor());
@@ -66,5 +76,15 @@ public class BookPreviewController {
             bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/UET.jpg")));
         }
     }
+
+    public void addToDatabase() {
+        String imageURL = currentBook.getCoverImagePath();
+        String localPath = "Uploaded/BookCovers";
+        File coverImageFile = FileUpload.downloadFileImage(imageURL,localPath);
+
+        // Pass the cover image file correctly to the `upLoadBook` method
+        Library.upLoadBook(currentBook, null, coverImageFile, null);
+    }
+
 }
 

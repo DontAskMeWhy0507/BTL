@@ -7,13 +7,8 @@ public class User {
     private int id;
     private String password;
     private String email;
-    private String dateOfBirth;
     private String pathToProfilePicture;
 
-    private List <Book> booksBorrowed;  // Danh sách các sách mà người dùng đã mượn trong All
-    private List <Book> booksReturned;  // Danh sách các sách mà người dùng đã trả trong finished
-    private List <Review> reviews;      // Danh sách các đánh giá của người dùng
- 
 
     public User(String username, int id, String password, String email, String pathToProfilePicture) {
         this.username = username;
@@ -21,9 +16,6 @@ public class User {
         this.password = password;
         this.email = email;
         this.pathToProfilePicture = pathToProfilePicture;
-        this.booksBorrowed = new ArrayList<>();
-        this.booksReturned  = new ArrayList<>();
-        this.reviews = new ArrayList<>();
     }
 
     public String getUsername() { return username; }
@@ -41,14 +33,6 @@ public class User {
     public String getPathToProfilePicture() { return pathToProfilePicture; }
     public void setPathToProfilePicture(String pathToProfilePicture) { this.pathToProfilePicture = pathToProfilePicture; }
 
-    public List<Book> getBooksBorrowed() { return booksBorrowed; }
-    public void addBookBorrowed(Book book) { booksBorrowed.add(book); }
-
-    public List<Book> getBooksReturned() { return booksReturned; }
-    public void addBookReturned(Book book) { booksReturned.add(book); }
-
-    public List<Review> getReviews() { return reviews; }
-    public void addReview(Review review) { reviews.add(review); }
 
     // books
     

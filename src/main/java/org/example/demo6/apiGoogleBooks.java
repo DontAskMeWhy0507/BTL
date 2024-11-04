@@ -5,6 +5,7 @@ import com.google.api.services.books.Books;
 import com.google.api.services.books.BooksRequestInitializer;
 import com.google.api.services.books.model.Volumes;
 import com.google.api.services.books.model.Volume;
+import org.example.demo6.Classes.Book;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,11 +46,12 @@ public class apiGoogleBooks {
     public static List<Book> searchBooks1(String query) throws IOException {
         List<Book> books = new ArrayList<>();
 
-        Books booksApi = new Books.Builder(new com.google.api.client.http.javanet.NetHttpTransport(),
+        Books.Builder builder = new Books.Builder(new com.google.api.client.http.javanet.NetHttpTransport(),
                 new com.google.api.client.json.jackson2.JacksonFactory(),
-                null)
-                .setApplicationName("LibraryApp")
-                .setGoogleClientRequestInitializer(new BooksRequestInitializer(API_KEY))
+                null);
+        builder.setApplicationName("LibraryApp");
+        builder.setGoogleClientRequestInitializer(new BooksRequestInitializer(API_KEY));
+        Books booksApi = builder
                 .build();
 
         Books.Volumes.List volumesList = booksApi.volumes().list(query);

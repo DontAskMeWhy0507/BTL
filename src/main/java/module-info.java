@@ -18,6 +18,8 @@ module org.example.demo6 {
     opens org.example.demo6.Admin to javafx.fxml;
     exports org.example.demo6.Controller;
     opens org.example.demo6.Controller to javafx.fxml;
+    exports org.example.demo6.Classes;
+    opens org.example.demo6.Classes to javafx.fxml;
 
     requires javafx.controls;
     requires json;

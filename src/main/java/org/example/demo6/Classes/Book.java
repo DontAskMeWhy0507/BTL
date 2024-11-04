@@ -1,16 +1,19 @@
-package org.example.demo6;
+package org.example.demo6.Classes;
 
+import java.util.List;
 public class Book {
     private String isbn;
     private String title;              // Tên sách
     private String author;             // Tác giả
-    private String category;           // Thể loại
-    private String description;        // Mô tả
-    private String language;           // Ngôn ngữ
     private String publisher;          // Nhà xuất bản
     private String publishedDate;      // Ngày xuất bản
+    private String language;           // Ngôn ngữ
+    private String category;           // Thể loại
+    private String description;        // Mô tả
     private String coverImagePath;     // Đường dẫn đến ảnh bìa
     private String audioPath;          // Đường dẫn đến file audio
+
+    private List<Review> Reviews;      // Danh sách các đánh giá của sách
 
     // Constructor
     public Book(String isbn, String title, String author, String category, String description,
@@ -29,6 +32,9 @@ public class Book {
     }
 
     // Getters và Setters
+
+    public List<Review> getReviews() { return Reviews; }
+    public void addReview(Review review) { Reviews.add(review); }
 
     public String getIsbn() { return isbn; }
     public void setIsbn(String isbn) { this.isbn = isbn; }
@@ -60,5 +66,3 @@ public class Book {
     public String getAudioPath() { return audioPath; }
     public void setAudioPath(String audioPath) { this.audioPath = audioPath; }
 }
-
-

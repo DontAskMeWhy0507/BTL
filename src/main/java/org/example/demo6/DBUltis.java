@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
+import org.example.demo6.Classes.Book;
 
 import java.io.IOException;
 import java.sql.*;

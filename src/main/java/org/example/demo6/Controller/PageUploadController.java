@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 public class PageUploadController {
@@ -48,6 +51,9 @@ public class PageUploadController {
 
     @FXML
     private Button AudioBook;
+
+    @FXML
+    private TextField TextField_count;
 
     @FXML
     private Button Confirm;
@@ -143,12 +149,12 @@ public class PageUploadController {
                     String language = Language.getText();
                     String publisher = Publisher.getText();
                     String publishedDate = (PublishedDate.getValue() != null) ? PublishedDate.getValue().toString() : null;
+                    int count = Integer.parseInt(TextField_count.getText());
 
                     String coverImagePath = (selectedImageFile != null) ? "/Uploaded/BookCovers/" + selectedImageFile.getName() : null;
                     String audioPathIfHave = (selectedAudioFile != null) ? "/Uploaded/AudioBooks/" + selectedAudioFile.getName() : null;
                     // Tạo đối tượng Book
-                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPathIfHave);
-
+                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPathIfHave, count);
                     // Lưu đối tượng Book vào cơ sở dữ liệu
                     DBUltis.saveBookToDatabase(newBook);
 
@@ -196,5 +202,27 @@ public class PageUploadController {
             System.out.println("Failed to save the file.");
         }
     }
+
+    public void setBookData(Book book) {
+        Tittle.setText(book.getTitle());
+        Authors.setText(book.getAuthor());
+        Publisher.setText(book.getPublisher());
+        Categories.setText(book.getCategory());
+        Language.setText(book.getLanguage());
+        Description.setText(book.getDescription());
+        ISBN.setText(book.getIsbn());
+
+        // Set the published date if available
+        if (book.getPublishedDate() != null && !book.getPublishedDate().isEmpty()) {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                PublishedDate.setValue(LocalDate.parse(book.getPublishedDate(), formatter));
+            } catch (DateTimeParseException e) {
+                System.err.println("Error parsing date: " + e.getMessage());
+            }
+        }
+
+    }
+
 }
 

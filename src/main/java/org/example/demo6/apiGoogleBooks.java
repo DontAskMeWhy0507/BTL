@@ -60,6 +60,7 @@ public class apiGoogleBooks {
         if (volumes.getTotalItems() > 0 && volumes.getItems() != null) {
             for (Volume volume : volumes.getItems()) {
                 Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
+                String ISBN = volumeInfo.getIndustryIdentifiers() != null ? volumeInfo.getIndustryIdentifiers().get(0).getIdentifier() : null;
                 String title = volumeInfo.getTitle();
                 String author = volumeInfo.getAuthors() != null ? volumeInfo.getAuthors().get(0) : "Unknown";
                 String category = volumeInfo.getCategories() != null ? volumeInfo.getCategories().get(0) : "Unknown";
@@ -69,8 +70,9 @@ public class apiGoogleBooks {
                 String publishedDate = volumeInfo.getPublishedDate() != null ? volumeInfo.getPublishedDate() : "Unknown";
                 String coverImagePath = volumeInfo.getImageLinks() != null ? volumeInfo.getImageLinks().getThumbnail() : null;
                 String audioPath = null;
+                int count = 1;
 
-                Book book = new Book(null, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath);
+                Book book = new Book(ISBN, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath, count);
                 books.add(book);
             }
         }

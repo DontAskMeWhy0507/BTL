@@ -12,13 +12,13 @@ public class Book {
     private String publishedDate;      // Ngày xuất bản
     private String coverImagePath;     // Đường dẫn đến ảnh bìa
     private String audioPath;          // Đường dẫn đến file audio
-
+    private int count;                 // Số lượng sách
     private List<Review> Reviews;      // Danh sách các đánh giá của sách
 
     // Constructor
     public Book(String isbn, String title, String author, String category, String description,
                 String language, String publisher, String publishedDate,
-                String coverImagePath, String audioPath) {
+                String coverImagePath, String audioPath, int count) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -29,6 +29,7 @@ public class Book {
         this.publishedDate = publishedDate;
         this.coverImagePath = coverImagePath;
         this.audioPath = audioPath;      // Có thể là null nếu không có
+        this.count = count;
     }
 
     // Getters và Setters
@@ -66,5 +67,6 @@ public class Book {
     public String getAudioPath() { return audioPath; }
     public void setAudioPath(String audioPath) { this.audioPath = audioPath; }
 
-
+    public int getCount() { return count; }
+    public void setCount(int count) { this.count = count; }
 }

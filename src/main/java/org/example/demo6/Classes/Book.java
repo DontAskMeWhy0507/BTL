@@ -5,11 +5,11 @@ public class Book {
     private String isbn;
     private String title;              // Tên sách
     private String author;             // Tác giả
-    private String publisher;          // Nhà xuất bản
-    private String publishedDate;      // Ngày xuất bản
-    private String language;           // Ngôn ngữ
     private String category;           // Thể loại
     private String description;        // Mô tả
+    private String language;           // Ngôn ngữ
+    private String publisher;          // Nhà xuất bản
+    private String publishedDate;      // Ngày xuất bản
     private String coverImagePath;     // Đường dẫn đến ảnh bìa
     private String audioPath;          // Đường dẫn đến file audio
 

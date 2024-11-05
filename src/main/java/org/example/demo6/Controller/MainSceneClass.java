@@ -79,9 +79,6 @@ public class MainSceneClass {
 
             // Đặt nội dung mới vào ScrollPane
             mainScrollPane.setContent(homeView);
-            staticMainScrollPane = mainScrollPane;
-            mainScrollPane.setFitToWidth(true);
-            mainScrollPane.setFitToHeight(true);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -178,12 +175,5 @@ public class MainSceneClass {
     void addNewCollection(ActionEvent event) {
 
     }
-
-
-
-
-
-
-
 
 }

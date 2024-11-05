@@ -23,6 +23,5 @@ module org.example.demo6 {
 
     requires javafx.controls;
     requires json;
-    requires java.net.http;
 
 }

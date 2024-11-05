@@ -150,7 +150,7 @@ public class DBUltis {
                     String retrievedPassword = rs.getString("password");
                     if (retrievedPassword.equals(password)) {
                         if (username.equals("admin") && password.equals("admin123")) {
-                            changescene(event, "/View/Admin.fxml", "Library Management");
+                            changescene(event, "/View/MemberTable.fxml", "Member Table");
                         } else {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Đăng Nhập");
@@ -203,8 +203,8 @@ public class DBUltis {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id
-        String sql = "INSERT INTO Books(isbn, title, author, publisher, published_date, language, category, description, cover_image_path, audio_path, count) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Books(isbn, title, author, publisher, published_date, language, category, description, cover_image_path, audio_path) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -223,7 +223,6 @@ public class DBUltis {
             pstmt.setString(8, book.getDescription());       // Mô tả
             pstmt.setString(9, book.getCoverImagePath());    // Đường dẫn đến ảnh bìa
             pstmt.setString(10, book.getAudioPath());        // Đường dẫn đến file audio
-            pstmt.setInt(11, book.getCount());               // Số lượng sách
 
             pstmt.executeUpdate();
             System.out.println("Book saved to database.");
@@ -261,11 +260,10 @@ public class DBUltis {
                     String description = rs.getString("description");
                     String coverImagePath = rs.getString("cover_image_path");
                     String audioPath = rs.getString("audio_path");
-                    int count = rs.getInt("count");
 
                     // Create and add the Book object to the list
-                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath, count);
-                    books.add(newBook);
+                    Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description, coverImagePath, audioPath);
+                    books.add(book);
                 }
 
             } catch (SQLException e) {

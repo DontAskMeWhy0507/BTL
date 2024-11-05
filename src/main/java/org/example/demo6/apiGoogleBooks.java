@@ -72,7 +72,7 @@ public class apiGoogleBooks {
                 String audioPath = null;
                 int count = 1;
 
-                Book book = new Book(ISBN, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath, count);
+                Book book = new Book(ISBN, title, author, category, description, language, publisher, publishedDate,null, coverImagePath, audioPath, count);
                 books.add(book);
             }
         }

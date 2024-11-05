@@ -154,7 +154,7 @@ public class PageUploadController {
                     String coverImagePath = (selectedImageFile != null) ? "/Uploaded/BookCovers/" + selectedImageFile.getName() : null;
                     String audioPathIfHave = (selectedAudioFile != null) ? "/Uploaded/AudioBooks/" + selectedAudioFile.getName() : null;
                     // Tạo đối tượng Book
-                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPathIfHave, count);
+                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate,null,  coverImagePath, audioPathIfHave, count);
                     // Lưu đối tượng Book vào cơ sở dữ liệu
                     DBUltis.saveBookToDatabase(newBook);
 

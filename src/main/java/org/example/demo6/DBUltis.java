@@ -264,7 +264,7 @@ public class DBUltis {
                     int count = rs.getInt("count");
 
                     // Create and add the Book object to the list
-                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate, coverImagePath, audioPath, count);
+                    Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate,null, coverImagePath, audioPath, count);
                     books.add(newBook);
                 }
 

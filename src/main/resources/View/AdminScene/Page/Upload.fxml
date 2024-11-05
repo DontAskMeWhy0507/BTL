@@ -6,21 +6,35 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<<<<<<< HEAD:src/main/resources/View/AdminScene/Page/Upload.fxml
 <AnchorPane prefHeight="558.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.PageUploadController">
+=======
+<AnchorPane prefHeight="558.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.PageUploadController">
+>>>>>>> 7fc29bf8b060f19cac0820631ba1a6e5f35cbcde:src/main/resources/View/Page/Upload.fxml
    <children>
-      <Button fx:id="uploadButton" layoutX="39.0" layoutY="426.0" mnemonicParsing="false" text="Add text book" />
+      <Button fx:id="uploadButton" layoutX="39.0" layoutY="456.0" mnemonicParsing="false" text="Add text book" />
       <TextField fx:id="Tittle" layoutX="305.0" layoutY="63.0" prefHeight="25.0" prefWidth="209.0" promptText="Tittle" />
       <TextField fx:id="Authors" layoutX="305.0" layoutY="101.0" prefHeight="25.0" prefWidth="209.0" promptText="Authors" />
       <TextField fx:id="Publisher" layoutX="304.0" layoutY="176.0" prefHeight="25.0" prefWidth="209.0" promptText="Publisher" />
       <TextField fx:id="Categories" layoutX="304.0" layoutY="254.0" prefHeight="25.0" prefWidth="209.0" promptText="Categories" />
       <TextField fx:id="Language" layoutX="305.0" layoutY="296.0" prefHeight="25.0" prefWidth="209.0" promptText="Language (Vietnamese, English, ..)" />
       <TextField fx:id="Description" layoutX="305.0" layoutY="330.0" prefHeight="56.0" prefWidth="209.0" promptText="Description" />
+<<<<<<< HEAD:src/main/resources/View/AdminScene/Page/Upload.fxml
       <Button fx:id="AudioBook" layoutX="472.0" layoutY="426.0" mnemonicParsing="false" text="Add audio book (if have)" />
       <Button fx:id="SelectCover" layoutX="292.0" layoutY="426.0" mnemonicParsing="false" text="Book cover" />
       <DatePicker fx:id="PublishedDate" layoutX="304.0" layoutY="217.0" prefHeight="25.0" prefWidth="209.0" promptText="Published date" />
+=======
+      <Button fx:id="AudioBook" layoutX="472.0" layoutY="469.0" mnemonicParsing="false" text="Add audio book (if have)" />
+      <Button fx:id="SelectCover" layoutX="292.0" layoutY="469.0" mnemonicParsing="false" text="Book cover" />
+      <DatePicker fx:id="PublishedDate" layoutX="305.0" layoutY="191.0" prefHeight="25.0" prefWidth="209.0" promptText="Published date" />
+>>>>>>> 7fc29bf8b060f19cac0820631ba1a6e5f35cbcde:src/main/resources/View/Page/Upload.fxml
       <ImageView fx:id="BookCover" fitHeight="257.0" fitWidth="203.0" layoutX="39.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="Confirm" layoutX="304.0" layoutY="493.0" mnemonicParsing="false" text="Confirm" />
+      <Button fx:id="Confirm" layoutX="300.0" layoutY="507.0" mnemonicParsing="false" text="Confirm" />
       <TextField fx:id="ISBN" layoutX="304.0" layoutY="24.0" prefHeight="25.0" prefWidth="209.0" promptText="ISBN" />
+<<<<<<< HEAD:src/main/resources/View/AdminScene/Page/Upload.fxml
       <TextField fx:id="quantity" layoutX="304.0" layoutY="141.0" prefHeight="25.0" prefWidth="209.0" promptText="Quantity" />
+=======
+      <TextField fx:id="TextField_count" layoutX="305.0" layoutY="407.0" prefHeight="26.0" prefWidth="210.0" promptText="Count" />
+>>>>>>> 7fc29bf8b060f19cac0820631ba1a6e5f35cbcde:src/main/resources/View/Page/Upload.fxml
    </children>
 </AnchorPane>

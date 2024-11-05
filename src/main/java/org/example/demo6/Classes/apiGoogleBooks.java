@@ -59,7 +59,11 @@ public class apiGoogleBooks {
         if (volumes.getTotalItems() > 0 && volumes.getItems() != null) {
             for (Volume volume : volumes.getItems()) {
                 Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
+<<<<<<< HEAD:src/main/java/org/example/demo6/Classes/apiGoogleBooks.java
                 String isbn = volumeInfo.getIndustryIdentifiers() != null ? volumeInfo.getIndustryIdentifiers().get(0).getIdentifier() : "Unknown";
+=======
+                String ISBN = volumeInfo.getIndustryIdentifiers() != null ? volumeInfo.getIndustryIdentifiers().get(0).getIdentifier() : null;
+>>>>>>> 7fc29bf8b060f19cac0820631ba1a6e5f35cbcde:src/main/java/org/example/demo6/apiGoogleBooks.java
                 String title = volumeInfo.getTitle();
                 String author = volumeInfo.getAuthors() != null ? volumeInfo.getAuthors().get(0) : "Unknown";
                 String category = volumeInfo.getCategories() != null ? volumeInfo.getCategories().get(0) : "Unknown";

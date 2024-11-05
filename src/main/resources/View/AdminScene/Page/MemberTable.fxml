@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="522.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
+   <children>
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="14.0" prefHeight="438.0" prefWidth="660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="tf_ID" prefWidth="99.19994813203812" text="ID" />
+          <TableColumn fx:id="tf_name" minWidth="7.200042724609375" prefWidth="220.00001525878906" text="Name" />
+            <TableColumn fx:id="tf_email" prefWidth="257.5999755859375" text="Email" />
+            <TableColumn fx:id="tf_book" prefWidth="208.00006103515625" text="Book" />
+            <TableColumn fx:id="tf_day" prefWidth="211.9998779296875" text="Day" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

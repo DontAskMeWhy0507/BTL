@@ -10,6 +10,7 @@ public class Book {
     private String language;           // Ngôn ngữ
     private String category;           // Thể loại
     private String description;        // Mô tả
+    private int quantity;           // Số lượng
 
     private String bookPath;           // Đường dẫn đến file sách
     private String coverImagePath;     // Đường dẫn đến ảnh bìa
@@ -18,7 +19,7 @@ public class Book {
     // Constructor
     public Book(String isbn, String title, String author, String category, String description,
                 String language, String publisher, String publishedDate, String bookPath,
-                String coverImagePath, String audioPath) {
+                String coverImagePath, String audioPath, int quantity) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -27,6 +28,7 @@ public class Book {
         this.language = language;
         this.publisher = publisher;
         this.publishedDate = publishedDate;
+        this.quantity = quantity;
 
         this.bookPath = bookPath;
         this.coverImagePath = coverImagePath;
@@ -72,5 +74,13 @@ public class Book {
 
     public void setBookPath(String bookPath) {
         this.bookPath = bookPath;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

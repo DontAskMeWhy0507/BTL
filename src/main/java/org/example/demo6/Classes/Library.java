@@ -1,16 +1,7 @@
 package org.example.demo6.Classes;
-import org.example.demo6.DBUltis;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.example.demo6.Classes.FileUpload.uploadFile;
 
 public class Library {
 
@@ -24,17 +15,26 @@ public class Library {
 
 
         // Upload the book file
-        FileUpload.uploadFile(selectedFile, UPLOAD_DIRECTORY_BOOKS);
+        if (selectedFile != null) {
+            UpDownFile.uploadFile(selectedFile, UPLOAD_DIRECTORY_BOOKS);
+            book.setBookPath("Uploaded/Books/" + selectedFile.getName());
+        }
         // Upload the cover image
         if (selectedCover != null) {
-            FileUpload.uploadFile(selectedCover, UPLOAD_DIRECTORY_IMAGE);
+            UpDownFile.uploadFile(selectedCover, UPLOAD_DIRECTORY_IMAGE);
+            book.setCoverImagePath("Uploaded/BookCovers/" + selectedCover.getName());
         }
         if (selectedAudio != null) {
-            FileUpload.uploadFile(selectedAudio, UPLOAD_DIRECTORY_AUDIO);
+            UpDownFile.uploadFile(selectedAudio, UPLOAD_DIRECTORY_AUDIO);
+            book.setAudioPath("Uploaded/AudioBooks/" + selectedAudio.getName());
         }
 
-        DBUltis.saveBookToDatabase(book);
-
+        //
+        try {
+            DBUltis.saveBookToDatabase(book);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void borrowBook (User user, Book book) {

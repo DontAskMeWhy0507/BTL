@@ -1,0 +1,38 @@
+TextField, PassWordField, JFX CheckBox, JFX Button, Button {
+    -fx-font-family: "Montserrat";
+}
+
+.account_name_tf, .password_tf {
+    -fx-background-color: "white";
+    -fx-border-color: #B17457;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-font-size: 20px;
+}
+
+
+.sign_in_label {
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 45px;
+    -fx-text-fill: #4A4947;
+}
+
+.login_button {
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-color-fill : #D8D2C2;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4A4947;
+}
+
+.no_account, .register {
+    -fx-font-size: 17px;
+}
+
+.check, .forget_pass {
+    -fx-font-size: 15px;
+}
+

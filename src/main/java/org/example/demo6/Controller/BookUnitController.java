@@ -35,7 +35,18 @@ public class BookUnitController extends Node {
 
 
 
-
+    @FXML
+    public void favorite(ActionEvent event) {
+        if (isFavorite) {
+            Image heart = new Image(getClass().getResourceAsStream("/Image/heartnone.png"));
+            heartImage.setImage(heart);
+            isFavorite = false;
+        } else {
+            Image heart = new Image(getClass().getResourceAsStream("/Image/heart.png"));
+            heartImage.setImage(heart);
+            isFavorite = true;
+        }
+    }
 
 
     public void setData(Book book) {

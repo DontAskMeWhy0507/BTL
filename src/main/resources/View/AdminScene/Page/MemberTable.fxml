@@ -6,12 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<<<<<<< HEAD:src/main/resources/View/AdminScene/Page/MemberTable.fxml
 
 <AnchorPane prefHeight="522.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
-=======
-<AnchorPane prefHeight="607.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Admin.AdminController">
->>>>>>> 7fc29bf8b060f19cac0820631ba1a6e5f35cbcde:src/main/resources/View/MemberTable.fxml
+
    <children>
       <TableView fx:id="tableView" layoutX="14.0" layoutY="36.0" prefHeight="546.0" prefWidth="1000.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
         <columns>

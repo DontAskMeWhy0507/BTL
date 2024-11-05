@@ -10,8 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.demo6.Classes.Book;
-import org.example.demo6.Controller.AdminScene.MainSceneClass;
-
+import org.example.demo6.Controller.UserScene.MainSceneUser;
 import java.io.File;
 import java.io.IOException;
 
@@ -58,7 +57,6 @@ public class BookUnitController extends Node {
         authorBook.setText(book.getAuthor());
         if (book.getCoverImagePath() != null) {
             imageBook.setImage(new Image(new File(book.getCoverImagePath()).toURI().toString()));
-
         } else {
             imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
         }
@@ -71,12 +69,11 @@ public class BookUnitController extends Node {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Scene/BookPreview.fxml"));
             Parent root = fxmlLoader.load();
-
             // Lấy controller của trang chi tiết
             BookPreviewController bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
-            MainSceneClass.setMainContent(root);
+            MainSceneUser.setMainContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

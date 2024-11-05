@@ -156,14 +156,9 @@ public class DBUltis {
                     String retrievedPassword = rs.getString("password");
                     String role = rs.getString("role");
                     if (retrievedPassword.equals(password)) {
-<<<<<<< HEAD:src/main/java/org/example/demo6/Classes/DBUltis.java
                         // Check the role of the user
                         if (role.equals("Admin")) {
-=======
-                        if (username.equals("admin") && password.equals("admin123")) {
-                            changescene(event, "/View/Admin.fxml", "Library Management");
-                        } else {
->>>>>>> 7fc29bf8b060f19cac0820631ba1a6e5f35cbcde:src/main/java/org/example/demo6/DBUltis.java
+
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Đăng Nhập");
                             alert.setContentText("Logging in as Admin...");

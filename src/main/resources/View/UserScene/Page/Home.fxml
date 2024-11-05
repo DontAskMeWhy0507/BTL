@@ -5,11 +5,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<<<<<<< HEAD:src/main/resources/View/UserScene/Page/Home.fxml
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.HomePageUser">
-=======
-<VBox fx:id="mainVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.HomePageController">
->>>>>>> 7fc29bf8b060f19cac0820631ba1a6e5f35cbcde:src/main/resources/View/Page/Home.fxml
+
    <children>
       <Label prefHeight="50.0" prefWidth="81.0" text="Tiểu thuyết" />
       <ScrollPane prefHeight="268.0" prefWidth="1112.0">

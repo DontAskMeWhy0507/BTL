@@ -93,8 +93,18 @@ public class MainSceneUser {
 
     }
 
-    @FXML
-    void showAll(ActionEvent event) {
+    public void showAll() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/All.fxml"));
+            Parent homeView = loader.load();
+
+
+            setMainContent(homeView);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

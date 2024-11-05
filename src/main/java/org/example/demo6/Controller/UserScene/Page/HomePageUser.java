@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class HomePageUser {
+
     @FXML
     private HBox cardLayOut;
     @FXML
@@ -30,6 +31,7 @@ public class HomePageUser {
             return null;
         }
     }
+
     private List<Book> bookTieuThuyet() {
         try {
             return apiGoogleBooks.searchBooks1("Tiểu thuyết");
@@ -37,7 +39,9 @@ public class HomePageUser {
             e.printStackTrace();
             return null;
         }
-    }    private List<Book> Anime() {
+    }
+
+    private List<Book> Anime() {
         try {
             return apiGoogleBooks.searchBooks1("Anime");
         } catch (IOException e) {
@@ -45,6 +49,7 @@ public class HomePageUser {
             return null;
         }
     }
+
     @FXML
     public void initialize() {
 

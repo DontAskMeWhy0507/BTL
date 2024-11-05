@@ -1,6 +1,7 @@
 // src/main/java/org/example/demo6/Controller/BookPreviewController.java
 package org.example.demo6.Controller.Scene;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -13,6 +14,7 @@ import org.example.demo6.Classes.UpDownFile;
 
 import java.io.File;
 
+
 public class BookPreviewController {
 
     private Book currentBook;
@@ -22,7 +24,6 @@ public class BookPreviewController {
     private Label bookTitleLabel;
 
     @FXML
-
     private Text bookAuthor;
 
     @FXML
@@ -37,24 +38,6 @@ public class BookPreviewController {
     @FXML
     private ImageView bookCoverImage;
 
-
-//    public void setBookDetails(Book book) {
-//        bookTitle Label.setText(book.getTitle());
-//        bookAuthorLabel.setText(book.getAuthor());
-//        bookPublisherLabel.setText(book.getPublisher());
-//        bookPublishedDateLabel.setText(book.getPublishedDate());
-//        bookCategoryLabel.setText(book.getCategory());
-//        bookDescriptionLabel.setText(book.getDescription());
-//
-//        if (book.getCoverImagePath() != null) {
-//            bookCoverImage.setImage(new Image(book.getCoverImagePath()));
-//        } else {
-//            bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
-//        }
-//    }
-
-
-
     public void setBookData(Book book) {
         currentBook = book;
         bookTitleLabel.setText(book.getTitle());
@@ -66,10 +49,16 @@ public class BookPreviewController {
         if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {
             try {
                 if (book.getCoverImagePath().startsWith("http")) {
-                    bookCoverImage.setImage(new Image(book.getCoverImagePath(), true));  // Use background loading
+                    // Download the image from the URL and set it in the ImageView
+                    Image coverImage = new Image(book.getCoverImagePath(), true);  // Use background loading
+                    bookCoverImage.setImage(coverImage);
                 } else {
-                    bookCoverImage.setImage(new Image(new File(book.getCoverImagePath()).toURI().toString()));
+                    // Load the image from the local file system
+                    File coverImageFile = new File(book.getCoverImagePath());
+                    Image coverImage = new Image(coverImageFile.toURI().toString());
+                    bookCoverImage.setImage(coverImage);
                 }
+
             } catch (Exception e) {
                 // Log or handle error and set a default image in case of an invalid URL
                 System.err.println("Error loading image: " + e.getMessage());
@@ -83,14 +72,14 @@ public class BookPreviewController {
 
     public void addToDatabase() {
         String imageURL = currentBook.getCoverImagePath();
-        String localPath = "Uploaded/BookCovers/" + currentBook.getTitle() + ".jpg";
+        String localPath = "/Uploaded/BookCovers" + currentBook.getTitle() + ".jpg";
         File coverImageFile = UpDownFile.downloadFileImage(imageURL,localPath);
 
         // Pass the cover image file correctly to the `upLoadBook` method
         Library.upLoadBook(currentBook, null, coverImageFile, null);
-
-        System.out.println("Book added to the database.");
     }
 
 }
+
+
 

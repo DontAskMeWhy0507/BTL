@@ -150,7 +150,7 @@ public class DBUltis {
                     String retrievedPassword = rs.getString("password");
                     if (retrievedPassword.equals(password)) {
                         if (username.equals("admin") && password.equals("admin123")) {
-                            changescene(event, "/View/MemberTable.fxml", "Member Table");
+                            changescene(event, "/View/Admin.fxml", "Library Management");
                         } else {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Đăng Nhập");

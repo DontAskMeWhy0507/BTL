@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="792.0" style="-fx-background-color: FAF7F0;">
+      <AnchorPane prefHeight="534.0" prefWidth="792.0" style="-fx-background-color: FAF7F0;">
          <children>
-            <Label alignment="CENTER" layoutX="38.0" layoutY="50.0" prefHeight="78.0" prefWidth="306.0" styleClass="sign_in_label" stylesheets="@../Style/Login.css" text="Đăng Nhập">
+            <Label alignment="CENTER" layoutX="39.0" layoutY="38.0" prefHeight="78.0" prefWidth="306.0" styleClass="sign_in_label" stylesheets="@../Style/Login.css" text="Đăng Nhập">
                <font>
                   <Font size="42.0" />
                </font>
@@ -54,13 +54,11 @@
                   <Image url="@../Image/Lib_on_login.jpg" />
                </image>
             </ImageView>
-            <JFXButton fx:id="buttonSignUp" layoutX="226.0" layoutY="411.0" onAction="#signUp1" styleClass="register" stylesheets="@../Style/Login.css" text="Đăng ký" textFill="#b17457">
+            <JFXButton fx:id="buttonSignUp" layoutX="226.0" layoutY="424.0" onAction="#signUp1" styleClass="register" stylesheets="@../Style/Login.css" text="Đăng ký" textFill="#b17457">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <Label layoutX="66.0" layoutY="417.0" styleClass="no_account" stylesheets="@../Style/Login.css" text="Chưa có tài khoản?" textFill="#4a4947" />
+            <Label layoutX="64.0" layoutY="430.0" styleClass="no_account" stylesheets="@../Style/Login.css" text="Chưa có tài khoản?" textFill="#4a4947" />
          </children>
       </AnchorPane>
-   </children>
-</VBox>

@@ -150,13 +150,13 @@ public class DBUltis {
                     String retrievedPassword = rs.getString("password");
                     if (retrievedPassword.equals(password)) {
                         if (username.equals("admin") && password.equals("admin123")) {
-                            changescene(event, "/View/Admin.fxml", "Library Management");
+                            changescene(event, "/View/AdminScene/MainScene.fxml", "Library Management");
                         } else {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Đăng Nhập");
                             alert.setContentText("Logging in...");
                             alert.show();
-                            changescene(event, "/View/MainScene.fxml", "Home to Library");
+                            changescene(event, "/View/UserPage/HomeUser.fxml", "Home to Library");
                             alert.close();
                         }
                     } else {
@@ -203,7 +203,7 @@ public class DBUltis {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id
-        String sql = "INSERT INTO Books(isbn, title, author, publisher, published_date, language, category, description, cover_image_path, audio_path, count) " +
+        String sql = "INSERT INTO Books(isbn, title, author, publisher, published_date, language, category, description, cover_image_path, audio_path, quantity) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);

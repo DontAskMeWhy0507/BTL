@@ -55,7 +55,7 @@ public class HomePageController {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/View/Book.fxml"));
                 VBox cardBox = fxmlLoader.load();
-                BookUnitController bookUnitController = fxmlLoader.getController();
+                BookUnitController1 bookUnitController = fxmlLoader.getController();
                 bookUnitController.setData(tieuThuyet.get(i));
                 cardLayOut1.getChildren().add(cardBox);
             }
@@ -69,7 +69,7 @@ public class HomePageController {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/View/Book.fxml"));
                 VBox cardBox = fxmlLoader.load();
-                BookUnitController bookUnitController = fxmlLoader.getController();
+                BookUnitController1 bookUnitController = fxmlLoader.getController();
                 bookUnitController.setData(anime.get(i));
                 cardLayOut2.getChildren().add(cardBox);
             }

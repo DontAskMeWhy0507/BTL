@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.example.demo6.Classes.Book;
-import org.example.demo6.Controller.Scene.BookUnitController;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,7 +33,7 @@ public class SearchPageController {
                     break;
                 }
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Scene/Book.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Book.fxml"));
                     Pane bookPane = loader.load();
                     BookUnitController controller = loader.getController();
                     controller.setData(searchResults.get(bookCount));

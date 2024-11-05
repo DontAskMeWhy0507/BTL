@@ -1,6 +1,5 @@
 module org.example.demo6 {
     requires javafx.fxml;
-
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
@@ -25,4 +24,10 @@ module org.example.demo6 {
     requires json;
     requires java.net.http;
 
+    opens org.example.demo6.Controller.AdminScene to javafx.fxml;
+    exports org.example.demo6.Controller.AdminScene to javafx.fxml;
+    opens org.example.demo6.Controller.AdminScene.Page to javafx.fxml, javafx.base;
+    exports org.example.demo6.Controller.AdminScene.Page to javafx.fxml;
+    opens org.example.demo6.Controller.Scene to javafx.fxml;
+    exports org.example.demo6.Controller.Scene to javafx.fxml;
 }

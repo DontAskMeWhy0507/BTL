@@ -1,21 +1,25 @@
-// src/main/java/org/example/demo6/Controller/BookPreviewController.java
+// src/main/java/org/example/demo6/Controller/BookPreviewController1.java
 package org.example.demo6.Controller.Scene;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.UpDownFile;
 import org.example.demo6.Classes.Library;
-import org.example.demo6.Classes.UpDownFile;
+import org.example.demo6.Controller.PageUploadController1;
 
 import java.io.File;
+import java.io.IOException;
 
 
-public class BookPreviewController {
+public class BookPreviewController2 {
 
     private Book currentBook;
 
@@ -79,6 +83,30 @@ public class BookPreviewController {
         Library.upLoadBook(currentBook, null, coverImageFile, null);
     }
 
+    @FXML
+    public void addBook() {
+        if (currentBook == null) {
+            System.err.println("No book data available to add.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Page/Upload.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller of the upload page
+            PageUploadController1 uploadController = loader.getController();
+
+            // Set the current book data to the upload page
+            uploadController.setBookData(currentBook);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

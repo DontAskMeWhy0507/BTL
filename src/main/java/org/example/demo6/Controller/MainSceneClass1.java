@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-public class MainSceneClass {
+public class MainSceneClass1 {
 
     @FXML
     private TextField SearchField;

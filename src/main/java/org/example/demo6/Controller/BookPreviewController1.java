@@ -1,4 +1,4 @@
-// src/main/java/org/example/demo6/Controller/BookPreviewController.java
+// src/main/java/org/example/demo6/Controller/BookPreviewController1.java
 package org.example.demo6.Controller;
 
 import javafx.fxml.FXML;
@@ -13,12 +13,8 @@ import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
-public class BookPreviewController {
+public class BookPreviewController1 {
 
     @FXML
     private Label bookTitleLabel;
@@ -94,7 +90,7 @@ public class BookPreviewController {
             Parent root = loader.load();
 
             // Get the controller of the upload page
-            PageUploadController uploadController = loader.getController();
+            PageUploadController1 uploadController = loader.getController();
 
             // Set the current book data to the upload page
             uploadController.setBookData(currentBook);

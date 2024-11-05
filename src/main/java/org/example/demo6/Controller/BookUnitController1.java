@@ -13,7 +13,7 @@ import org.example.demo6.Classes.Book;
 
 import java.io.IOException;
 
-public class BookUnitController extends Node {
+public class BookUnitController1 extends Node {
 
     @FXML
     private Label authorBook;
@@ -58,10 +58,10 @@ public class BookUnitController extends Node {
             Parent root = fxmlLoader.load();
 
             // Lấy controller của trang chi tiết
-            BookPreviewController bookPreviewController = fxmlLoader.getController();
+            BookPreviewController1 bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
-            MainSceneClass.setMainContent(root);
+            MainSceneClass1.setMainContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

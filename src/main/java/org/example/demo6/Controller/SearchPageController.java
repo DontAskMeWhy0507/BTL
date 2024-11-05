@@ -35,7 +35,7 @@ public class SearchPageController {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Book.fxml"));
                     Pane bookPane = loader.load();
-                    BookUnitController controller = loader.getController();
+                    BookUnitController1 controller = loader.getController();
                     controller.setData(searchResults.get(bookCount));
                     bookContainer.add(bookPane, col, row);
                     bookCount++;

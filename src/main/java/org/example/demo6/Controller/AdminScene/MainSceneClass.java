@@ -33,6 +33,7 @@ public class MainSceneClass {
     private Parent root;
 
     private static ScrollPane staticMainScrollPane;
+
     @FXML
     void searchButton() throws IOException {
         List<Book> searchResults = apiGoogleBooks.searchBooks1(SearchField.getText());
@@ -53,17 +54,17 @@ public class MainSceneClass {
     }
 
     public static void setMainContent(Parent content) {
-        staticMainScrollPane.setContent(content);
+        if (staticMainScrollPane != null) {
+            staticMainScrollPane.setContent(content);
+        } else {
+            System.err.println("staticMainScrollPane is null");
+        }
     }
-
-
 
     @FXML
     void moreButton() {
-       seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
+        seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
     }
-
-
 
     @FXML
     public void initialize() {
@@ -78,7 +79,7 @@ public class MainSceneClass {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/MemberTable.fxml"));
             Parent homeView = loader.load();
 
-            // Đặt nội dung mới vào ScrollPane
+            // Set new content into ScrollPane
             mainScrollPane.setContent(homeView);
             staticMainScrollPane = mainScrollPane;
             mainScrollPane.setFitToWidth(true);
@@ -94,14 +95,12 @@ public class MainSceneClass {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/All.fxml"));
             Parent homeView = loader.load();
 
-
             setMainContent(homeView);
             staticMainScrollPane.setFitToWidth(true);
             staticMainScrollPane.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void showUpload() {
@@ -110,7 +109,7 @@ public class MainSceneClass {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
             Parent UploadView = loader1.load();
 
-            // Đặt nội dung mới vào ScrollPane
+            // Set new content into ScrollPane
             mainScrollPane.setContent(UploadView);
 
         } catch (IOException e) {
@@ -138,7 +137,6 @@ public class MainSceneClass {
         }
     }
 
-
     @FXML
     void changeToUserView(ActionEvent event) {
         try {
@@ -158,15 +156,6 @@ public class MainSceneClass {
 
     @FXML
     void showSettings(ActionEvent event) {
-
+        // Implement settings functionality here
     }
-
-
-
-
-
-
-
-
-
 }

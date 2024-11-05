@@ -70,7 +70,7 @@ public class BookUnitController extends Node {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Scene/BookPreview.fxml"));
             Parent root = fxmlLoader.load();
             // Lấy controller của trang chi tiết
-            BookPreviewController bookPreviewController = fxmlLoader.getController();
+            BookPreviewController2 bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
             MainSceneUser.setMainContent(root);

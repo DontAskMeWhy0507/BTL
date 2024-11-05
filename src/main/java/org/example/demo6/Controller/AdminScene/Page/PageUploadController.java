@@ -9,6 +9,9 @@ import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.Library;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 public class PageUploadController {
@@ -146,6 +149,27 @@ public class PageUploadController {
             }
 
         });
+
+    }
+
+    public void setBookData(Book book) {
+        Tittle.setText(book.getTitle());
+        Authors.setText(book.getAuthor());
+        Publisher.setText(book.getPublisher());
+        Categories.setText(book.getCategory());
+        Language.setText(book.getLanguage());
+        Description.setText(book.getDescription());
+        ISBN.setText(book.getIsbn());
+
+        // Set the published date if available
+        if (book.getPublishedDate() != null && !book.getPublishedDate().isEmpty()) {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                PublishedDate.setValue(LocalDate.parse(book.getPublishedDate(), formatter));
+            } catch (DateTimeParseException e) {
+                System.err.println("Error parsing date: " + e.getMessage());
+            }
+        }
 
     }
 

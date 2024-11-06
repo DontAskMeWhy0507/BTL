@@ -23,7 +23,7 @@ AnchorPane {
 .switchRegister {
     -fx-underline: false;
     -fx-text-fill: #3B3424;
-    -fx-font-family: 'Merriweather';
+    -fx-font-family: 'AntonSC';
     -fx-font-size: 20px;
 }
 

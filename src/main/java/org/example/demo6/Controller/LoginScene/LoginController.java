@@ -20,13 +20,7 @@ import com.jfoenix.controls.JFXTextField;
 public class LoginController {
 
     @FXML
-    private JFXButton switchLogin;
-
-    @FXML
     private JFXButton buttonSignUp;
-
-    @FXML
-    private Text LoginText;
 
     @FXML
     private Text WelcomeText;
@@ -45,7 +39,6 @@ public class LoginController {
 
     @FXML
     private Button buttonLogin;
-
 
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo

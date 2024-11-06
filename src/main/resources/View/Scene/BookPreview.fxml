@@ -38,7 +38,7 @@
             </ImageView>
             <Text fx:id="bookPublishedDate" layoutX="494.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="December 18, 2024" wrappingWidth="116.107421875" />
             <Text fx:id="bookAuthor" layoutX="397.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Released" wrappingWidth="82.0" />
-            <Button layoutX="501.0" layoutY="181.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" text="Tra sach" />
+            <Button layoutX="501.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="103.0" text="Add detail" />
             <Button layoutX="622.0" layoutY="181.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="128.0" text="Add to database" />
             <Text layoutX="397.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language" />
             <Text layoutX="403.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" wrappingWidth="74.591796875" />

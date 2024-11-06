@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.demo6.Classes.Book;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import org.example.demo6.Controller.UserScene.MainSceneUser;
 import java.io.File;
 import java.io.IOException;
@@ -73,7 +74,7 @@ public class BookUnitController extends Node {
             BookPreviewController bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
-            MainSceneUser.setMainContent(root);
+            MainSceneClass.setMainContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

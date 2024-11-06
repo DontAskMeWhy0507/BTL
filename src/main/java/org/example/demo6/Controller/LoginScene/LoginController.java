@@ -66,7 +66,7 @@ public class LoginController {
 
     public void signUp1(ActionEvent event) {
         try {
-            DBUltis.changescene(event, "/View/SignUp.fxml", "Sign Up!");
+            DBUltis.changescene(event, "/View/LoginScene/SignUp.fxml", "Sign Up!");
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();
@@ -78,7 +78,7 @@ public class LoginController {
 
     public void switchForgotPassword(ActionEvent event) {
         try {
-            DBUltis.changescene(event, "/View/ForgotPassword.fxml", "ForgotPassword!");
+            DBUltis.changescene(event, "/View/LoginScene/ForgotPassword.fxml", "ForgotPassword!");
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();

@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="730.0" fitWidth="578.0" layoutX="703.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../Users/daqfo/Downloads/temp_lib.jpg" />
+            <Image url="@../../Image/Lib_on_login.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="tf_username" layoutX="62.0" layoutY="295.0" prefHeight="56.0" prefWidth="442.0" promptText="Tên đăng nhập">

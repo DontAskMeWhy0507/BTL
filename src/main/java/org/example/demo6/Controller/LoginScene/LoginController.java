@@ -1,4 +1,4 @@
-package org.example.demo6.Controller;
+package org.example.demo6.Controller.LoginScene;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.example.demo6.DBUltis;
+import org.example.demo6.Classes.DBUltis;
 import com.jfoenix.controls.JFXTextField;
 
 
@@ -66,7 +66,7 @@ public class LoginController {
 
     public void signUp1(ActionEvent event) {
         try {
-            DBUltis.changescene(event, "/View/SignUp.fxml", "Sign Up!");
+            DBUltis.changescene(event, "/View/LoginScene/SignUp.fxml", "Sign Up!");
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();
@@ -78,7 +78,7 @@ public class LoginController {
 
     public void switchForgotPassword(ActionEvent event) {
         try {
-            DBUltis.changescene(event, "/View/ForgotPassword.fxml", "ForgotPassword!");
+            DBUltis.changescene(event, "/View/LoginScene/ForgotPassword.fxml", "ForgotPassword!");
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();

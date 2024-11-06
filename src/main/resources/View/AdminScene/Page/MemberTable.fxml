@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane prefHeight="522.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
+<AnchorPane prefHeight="522.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
 
    <children>
       <TableView fx:id="tableView" layoutX="14.0" layoutY="36.0" prefHeight="546.0" prefWidth="1000.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
@@ -23,8 +22,8 @@
       <HBox layoutX="-15.0" layoutY="-30.0" prefHeight="100.0" prefWidth="200.0" />
       <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="593.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="Thêm người dùng" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" text="Xóa người dùng" />
+            <Button mnemonicParsing="false" onAction="#addUser" prefHeight="26.0" prefWidth="144.0" text="Thêm người dùng" />
+            <Button mnemonicParsing="false" onAction="#deleteUser" prefHeight="26.0" prefWidth="154.0" text="Xóa người dùng" />
          </children>
       </HBox>
    </children>

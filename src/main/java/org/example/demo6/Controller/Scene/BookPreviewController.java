@@ -79,6 +79,11 @@ public class BookPreviewController {
         Library.upLoadBook(currentBook, null, coverImageFile, null);
     }
 
+    public void switchToUpLoad(ActionEvent event) {
+        // Switch to the upload scene
+        // Use the same method as in the `MainSceneClass` to switch scenes
+
+    }
 }
 
 

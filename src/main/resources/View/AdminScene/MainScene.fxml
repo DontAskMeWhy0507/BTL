@@ -17,7 +17,7 @@
             <TextField fx:id="SearchField" layoutX="503.0" layoutY="15.0" prefHeight="25.0" prefWidth="268.0" />
             <Button layoutX="771.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchButton" text="Button">
                <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onDragDetected="#searchButton" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Image/Icon/search.png" />
                      </image>
@@ -69,7 +69,7 @@
    <bottom>
       <HBox prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#moreButton" prefHeight="117.0" prefWidth="201.0" text="Name of  user">
+            <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#moreButton" prefHeight="117.0" prefWidth="201.0" text="CHekc Main">
                <graphic>
                   <ImageView fitHeight="57.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>

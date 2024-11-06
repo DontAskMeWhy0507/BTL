@@ -35,7 +35,7 @@ public class MainSceneUser {
     @FXML
     private VBox seeMoreProfile;
 
-    private static ScrollPane staticMainScrollPane;
+    private static ScrollPane staticMainScrollPane1;
     @FXML
     void searchButton() throws IOException {
         List<Book> searchResults = apiGoogleBooks.searchBooks1(SearchField.getText());
@@ -48,15 +48,15 @@ public class MainSceneUser {
             searchPageController.setSearchResults(searchResults);
 
             setMainContent(homeView);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
+            staticMainScrollPane1.setFitToWidth(true);
+            staticMainScrollPane1.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void setMainContent(Parent content) {
-        staticMainScrollPane.setContent(content);
+        staticMainScrollPane1.setContent(content);
     }
 
 
@@ -100,8 +100,8 @@ public class MainSceneUser {
 
 
             setMainContent(homeView);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
+            staticMainScrollPane1.setFitToWidth(true);
+            staticMainScrollPane1.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -110,7 +110,7 @@ public class MainSceneUser {
 
     @FXML
     public void initialize() {
-        staticMainScrollPane = mainScrollPane;
+        staticMainScrollPane1 = mainScrollPane;
         mainScrollPane.setFitToWidth(true);
         mainScrollPane.setFitToHeight(true);
         showHome();

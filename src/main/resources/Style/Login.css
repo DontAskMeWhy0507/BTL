@@ -1,38 +1,43 @@
-TextField, PassWordField, JFX CheckBox, JFX Button, Button {
-    -fx-font-family: "Montserrat";
+AnchorPane {
+    -fx-background-color: #C1AF9C;
+    -fx-border-radius: 10px;
 }
 
-.account_name_tf, .password_tf {
-    -fx-background-color: "white";
-    -fx-border-color: #B17457;
-    -fx-border-radius: 15;
-    -fx-background-radius: 15;
-    -fx-padding: 10;
+@font-face {
+    font-family: Merriweather;
+    src: url(Font/Merriweather/Merriweather-Black.ttf);
+}
+
+@font-face {
+    font-family: AntonSC;
+    src: url(Font/AntonSC-Regular.ttf);
+}
+
+.switchLogin {
+    -fx-underline: true;
+    -fx-text-fill: #536A5C;
+    -fx-font-family: 'AntonSC';
     -fx-font-size: 20px;
 }
 
-
-.sign_in_label {
-    -fx-font-family: "Montserrat";
-    -fx-font-size: 45px;
-    -fx-text-fill: #4A4947;
-}
-
-.login_button {
-    -fx-border-radius: 15;
-    -fx-background-radius: 15;
-    -fx-padding: 10;
-    -fx-color-fill : #D8D2C2;
+.switchRegister {
+    -fx-underline: false;
+    -fx-text-fill: #3B3424;
+    -fx-font-family: 'Merriweather';
     -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #4A4947;
 }
 
-.no_account, .register {
-    -fx-font-size: 17px;
+.switchRegister:hover, .switchRegister:focused {
+    -fx-text-fill: #536A5C;
+    -fx-underline: true;
+    -fx-font-size: 20px;
 }
 
-.check, .forget_pass {
-    -fx-font-size: 15px;
+.buttonForgotPassword, .LoginText, .WelcomeText {
+    -fx-font-family: 'AntonSC';
 }
 
+.buttonForgotPassword:hover, .buttonForgotPassword:focused {
+    -fx-text-fill: #536A5C;
+    -fx-underline: true;
+}

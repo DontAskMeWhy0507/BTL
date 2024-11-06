@@ -1,6 +1,7 @@
 package org.example.demo6.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,12 +10,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.demo6.DBUltis;
+import com.jfoenix.controls.JFXTextField;
 
 
 public class LoginController {
+
+    @FXML
+    private JFXButton switchLogin;
+
+    @FXML
+    private JFXButton buttonSignUp;
+
+    @FXML
+    private Text LoginText;
+
+    @FXML
+    private Text WelcomeText;
 
     @FXML
     private TextField tf_username;
@@ -23,13 +38,13 @@ public class LoginController {
     private PasswordField tf_password;
 
     @FXML
-    private Button buttonLogin;
-
-    @FXML
-    private Button buttonSignUp;
+    private JFXCheckBox remember;
 
     @FXML
     private JFXButton buttonForgotPassword;
+
+    @FXML
+    private Button buttonLogin;
 
 
     public void loginToHome(ActionEvent event) {

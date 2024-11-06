@@ -5,11 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.demo6.Classes.Music;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+    private Music music;
+
     @Override
     public void start(@NotNull Stage stage) throws IOException {
         Parent root = FXMLLoader.load(HelloApplication.class.getResource("/View/LoginScene/Login.fxml"));
@@ -17,6 +20,9 @@ public class HelloApplication extends Application {
         stage.setTitle("Library management system");
         stage.setScene(scene);
         stage.show();
+
+        music = new Music("src/main/resources/Sound/jingle-bells.mp3");
+        music.loop();
     }
 
     public static void main(String[] args) {

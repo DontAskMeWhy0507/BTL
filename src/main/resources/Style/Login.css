@@ -1,43 +1,85 @@
 AnchorPane {
-    -fx-background-color: #C1AF9C;
-    -fx-border-radius: 10px;
-}
-
-@font-face {
-    font-family: Merriweather;
-    src: url(Font/Merriweather/Merriweather-Black.ttf);
-}
-
-@font-face {
-    font-family: AntonSC;
-    src: url(Font/AntonSC-Regular.ttf);
-}
-
-.switchLogin {
-    -fx-underline: true;
-    -fx-text-fill: #536A5C;
-    -fx-font-family: 'AntonSC';
-    -fx-font-size: 20px;
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
 }
 
 .switchRegister {
     -fx-underline: false;
     -fx-text-fill: #3B3424;
-    -fx-font-family: 'AntonSC';
-    -fx-font-size: 20px;
+    -fx-font-family: "Merriweather";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-text-alignment: center;
 }
 
 .switchRegister:hover, .switchRegister:focused {
     -fx-text-fill: #536A5C;
     -fx-underline: true;
+    -fx-font-size: 15px;
+}
+
+.WelcomeText {
+    -fx-font-family: "Dancing Script Semibold";
+    -fx-font-weight: bold;
+    -fx-font-size: 60px;
+    -fx-text-alignment: center;
+}
+
+.tf_username, .tf_password {
+    -fx-font-family: "Merriweather";
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color: #F7EED3;
+    -fx-padding: 20px;
+    -fx-border-color: black;
+    -fx-text-fill: #674636;
     -fx-font-size: 20px;
 }
 
-.buttonForgotPassword, .LoginText, .WelcomeText {
-    -fx-font-family: 'AntonSC';
+tf_username:hover, tf_username:focused {
+    -fx-background-color: white;
 }
+
+.tf_password:hover, .tf_password:focused {
+    -fx-background-color: white;
+}
+
+.remember {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
+}
+
+.buttonForgotPassword {
+    -fx-font-family: "Merriweather";
+    -fx-font-weight: bold italic;
+    -fx-font-size: 15px;
+    -fx-text-fill: #674636;
+}
+
 
 .buttonForgotPassword:hover, .buttonForgotPassword:focused {
     -fx-text-fill: #536A5C;
     -fx-underline: true;
+    -fx-font-size: 15px;
+}
+
+.buttonLogin {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 20px;
+    -fx-background-color: #F7EED3;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-border-color: black;
+}
+
+.buttonLogin:hover, .buttonLogin:focused {
+    -fx-background-color: white;
+}
+
+.normalText {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
 }

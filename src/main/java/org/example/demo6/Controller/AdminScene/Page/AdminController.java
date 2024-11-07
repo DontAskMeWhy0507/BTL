@@ -1,10 +1,14 @@
 package org.example.demo6.Controller.AdminScene.Page;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,6 +18,7 @@ import java.util.Date;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 import org.example.demo6.Classes.User;
 
 public class AdminController {
@@ -87,5 +92,40 @@ public class AdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void handleAddUser() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/AddUser.fxml"));
+            Parent parent = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Add User");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleDeleteUser() {
+        User selectedUser = tableView.getSelectionModel().getSelectedItem();
+        if (selectedUser != null) {
+            data.remove(selectedUser);
+            // Implement the logic to delete the user from the database
+            String url = "jdbc:sqlite:database//LibraryMain";
+            String query = "DELETE FROM USERS WHERE id = " + selectedUser.getId();
+
+            try (Connection conn = DriverManager.getConnection(url);
+                 Statement stmt = conn.createStatement()) {
+                stmt.executeUpdate(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    @FXML
+    public void loadDatabase() {
+        data.clear();
+        loadDataFromDatabase();
     }
 }

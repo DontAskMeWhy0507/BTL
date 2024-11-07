@@ -159,13 +159,8 @@ public class DBUltis {
                         // Check the role of the user
                         if (role.equals("Admin")) {
 
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Đăng Nhập");
-                            alert.setContentText("Logging in as Admin...");
-                            alert.show();
                             // Change to the admin scene
                             changescene(event, "/View/AdminScene/MainScene.fxml", "Home to Library");
-                            alert.close();
                         } else if (role.equals("User")) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Đăng Nhập");

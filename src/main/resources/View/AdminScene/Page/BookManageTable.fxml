@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="451.0" prefWidth="877.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.BookManageTableController">
+   <children>
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="122.0" prefHeight="207.0" prefWidth="802.0">
+        <columns>
+          <TableColumn fx:id="tf_ISBN" prefWidth="75.0" text="ISBN" />
+          <TableColumn fx:id="tf_Title" prefWidth="124.79998779296875" text="Title" />
+            <TableColumn fx:id="tf_author" prefWidth="127.20002746582031" text="Author" />
+            <TableColumn fx:id="tf_category" prefWidth="147.20001220703125" text="Category" />
+            <TableColumn fx:id="tf_language" prefWidth="104.80001831054688" text="Language" />
+            <TableColumn fx:id="tf_publisher" prefWidth="136.79998779296875" text="Publisher" />
+            <TableColumn fx:id="tf_quantity" prefWidth="84.800048828125" text="Quantity" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -12,6 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -20,8 +22,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.demo6.Classes.DBUltis;
 import com.jfoenix.controls.JFXTextField;
+import javafx.scene.input.KeyCode;
 
 import java.net.URL;
+import java.security.Key;
 import java.util.ResourceBundle;
 
 
@@ -107,6 +111,12 @@ public class LoginController implements Initializable {
             if (cause != null) {
                 cause.printStackTrace();
             }
+        }
+    }
+
+    public void Enter(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER) {
+            loginToHome(new ActionEvent(event.getSource(), event.getTarget()));
         }
     }
 

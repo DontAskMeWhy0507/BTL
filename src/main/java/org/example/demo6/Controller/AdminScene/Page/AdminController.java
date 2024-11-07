@@ -14,36 +14,46 @@ import java.util.Date;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.example.demo6.Classes.User;
 
 public class AdminController {
 
     @FXML
-    private TableColumn<BookUser, Integer> tf_ID;
+    private TableColumn<User, Integer> tf_ID;
 
     @FXML
-    private TableColumn<BookUser, String> tf_book;
+    private TableColumn<User, String> tf_name;
 
     @FXML
-    private TableColumn<BookUser, String> tf_day;
+    private TableColumn<User, String> tf_password;
 
     @FXML
-    private TableColumn<BookUser, String> tf_email;
+    private TableColumn<User, String> tf_role;
 
     @FXML
-    private TableColumn<BookUser, String> tf_name;
+    private TableColumn<User, String> tf_email;
 
     @FXML
-    private TableView<BookUser> tableView;
+    private TableColumn<User, String> tf_avatar;
 
-    private ObservableList<BookUser> data;
+    @FXML
+    private TableColumn<User, String> tf_date;
+
+    @FXML
+    private TableView<User> tableView;
+
+    private ObservableList<User> data;
 
     @FXML
     public void initialize() {
         tf_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tf_book.setCellValueFactory(new PropertyValueFactory<>("title"));
-        tf_day.setCellValueFactory(new PropertyValueFactory<>("date"));
+        tf_name.setCellValueFactory(new PropertyValueFactory<>("username"));
+        tf_password.setCellValueFactory(new PropertyValueFactory<>("password"));
+        tf_role.setCellValueFactory(new PropertyValueFactory<>("role"));
         tf_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        tf_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tf_date.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        tf_avatar.setCellValueFactory(new PropertyValueFactory<>("pathToProfilePicture"));
+
 
         data = FXCollections.observableArrayList();
         tableView.setItems(data);
@@ -53,7 +63,7 @@ public class AdminController {
 
     private void loadDataFromDatabase() {
         String url = "jdbc:sqlite:database//LibraryMain";
-        String query = "SELECT * FROM BooksUser";
+        String query = "SELECT * FROM USERS";
         SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -64,11 +74,13 @@ public class AdminController {
             while (rs.next()) {
                 String dateString = rs.getString("date");
                 Date parsedDate = inputFormatter.parse(dateString);
-                data.add(new BookUser(
+                data.add(new User(
                         rs.getInt("id"),
-                        rs.getString("name"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("role"),
                         rs.getString("email"),
-                        rs.getString("title"),
+                        rs.getString("avatar"),
                         outputFormatter.format(parsedDate)
                 ));
             }

@@ -63,6 +63,11 @@ tf_username:hover, tf_username:focused {
     -fx-font-size: 15px;
 }
 
+.loginRippler {
+    -fx-border-radius: 60px;
+    -fx-padding: 10;
+}
+
 .buttonLogin {
     -fx-font-family: "Merriweather";
     -fx-font-size: 20px;
@@ -73,6 +78,18 @@ tf_username:hover, tf_username:focused {
     -fx-text-alignment: center;
     -fx-text-fill: #674636;
     -fx-border-color: black;
+}
+
+/*.loginRippler > .buttonLogin {*/
+/*    -jfx-rippler-radius: 60px;*/
+/*    -jfx-rippler-fill: white;*/
+/*    -jfx-mask-type: circle;*/
+/*}*/
+
+.loginRippler > .button:hover {
+    -jfx-rippler-radius: 60px;
+    -jfx-rippler-fill: white;
+    -jfx-mask-type: circle;
 }
 
 .buttonLogin:hover, .buttonLogin:focused {

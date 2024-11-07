@@ -2,22 +2,33 @@ package org.example.demo6.Controller.LoginScene;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXRippler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.demo6.Classes.DBUltis;
 import com.jfoenix.controls.JFXTextField;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoginController {
+
+public class LoginController implements Initializable {
+
+    @FXML
+    private AnchorPane mainPane;
 
     @FXML
     private JFXButton buttonSignUp;
@@ -39,6 +50,24 @@ public class LoginController {
 
     @FXML
     private Button buttonLogin;
+
+    @FXML
+    private JFXRippler loginRippler;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Font font1 = Font.loadFont(getClass().getResourceAsStream("/Font/Merriweather/Merriweather-Regular.ttf"), 20);
+        Font font2 = Font.loadFont(getClass().getResourceAsStream("/Font/DancingScript/DancingScript-SemiBold.ttf"), 20);
+
+        loginRippler = new JFXRippler(buttonLogin);
+        loginRippler.getStyleClass().add("loginRippler");
+        loginRippler.setRipplerFill(Paint.valueOf("white"));
+        loginRippler.setRipplerRadius(60);
+        mainPane.getChildren().add(loginRippler);
+
+        AnchorPane.setTopAnchor(loginRippler, 475.0);
+        AnchorPane.setLeftAnchor(loginRippler, 185.0);
+    }
 
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo

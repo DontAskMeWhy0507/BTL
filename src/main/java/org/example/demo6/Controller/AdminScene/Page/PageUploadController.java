@@ -9,6 +9,7 @@ import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.Library;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Optional;
 
 public class PageUploadController {
@@ -149,5 +150,15 @@ public class PageUploadController {
 
     }
 
+    public void setBookData(Book book) {
+        ISBN.setText(book.getIsbn());
+        Tittle.setText(book.getTitle());
+        Authors.setText(book.getAuthor());
+        Categories.setText(book.getCategory());
+        Description.setText(book.getDescription());
+        Language.setText(book.getLanguage());
+        Publisher.setText(book.getPublisher());
+        PublishedDate.setValue(LocalDate.parse(book.getPublishedDate()));
+    }
 }
 

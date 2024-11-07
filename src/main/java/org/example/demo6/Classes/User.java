@@ -28,6 +28,7 @@ public class User {
         this.reviews = new ArrayList<>();
     }
 
+
     public User(String username, int id, String password, String email, String pathToProfilePicture) {
         this.username = username;
         this.id = id;

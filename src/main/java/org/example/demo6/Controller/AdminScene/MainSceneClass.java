@@ -91,7 +91,7 @@ public class MainSceneClass{
 
     public void showAll() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/All.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/BookManageTable.fxml"));
             Parent homeView = loader.load();
 
 

@@ -6,24 +6,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="522.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
+<AnchorPane prefHeight="617.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
 
    <children>
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="36.0" prefHeight="546.0" prefWidth="1000.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="55.2" prefHeight="546.0" prefWidth="1157.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
         <columns>
           <TableColumn fx:id="tf_ID" prefWidth="99.19994813203812" text="ID" />
-          <TableColumn fx:id="tf_name" minWidth="7.200042724609375" prefWidth="220.00001525878906" text="Name" />
-            <TableColumn fx:id="tf_email" prefWidth="257.5999755859375" text="Email" />
-            <TableColumn fx:id="tf_book" prefWidth="208.00006103515625" text="Book" />
-            <TableColumn fx:id="tf_day" prefWidth="211.9998779296875" text="Day" />
-            <TableColumn prefWidth="75.0" text="Column X" />
+          <TableColumn fx:id="tf_name" minWidth="7.200042724609375" prefWidth="162.3999786376953" text="Name" />
+            <TableColumn fx:id="tf_password" prefWidth="167.99993896484375" text="Password" />
+            <TableColumn fx:id="tf_role" prefWidth="175.2000732421875" text="Date" />
+            <TableColumn fx:id="tf_email" minWidth="0.0" prefWidth="136.7999267578125" text="Role" />
+            <TableColumn fx:id="tf_avatar" prefWidth="113.60003662109375" text="Avatar" />
+            <TableColumn fx:id="tf_date" prefWidth="139.99993896484375" text="Email" />
+            <TableColumn prefWidth="115.99993896484375" text="Column X" />
         </columns>
       </TableView>
-      <HBox layoutX="-15.0" layoutY="-30.0" prefHeight="100.0" prefWidth="200.0" />
       <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="593.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#addUser" prefHeight="26.0" prefWidth="144.0" text="Thêm người dùng" />
-            <Button mnemonicParsing="false" onAction="#deleteUser" prefHeight="26.0" prefWidth="154.0" text="Xóa người dùng" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="Thêm người dùng" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" text="Xóa người dùng" />
          </children>
       </HBox>
    </children>

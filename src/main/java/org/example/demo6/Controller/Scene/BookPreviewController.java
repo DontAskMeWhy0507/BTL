@@ -3,16 +3,23 @@ package org.example.demo6.Controller.Scene;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.UpDownFile;
 import org.example.demo6.Classes.Library;
 import org.example.demo6.Classes.UpDownFile;
+import org.example.demo6.Controller.AdminScene.Page.PageUploadController;
 
 import java.io.File;
+import java.io.IOException;
 
 
 public class BookPreviewController {
@@ -80,9 +87,21 @@ public class BookPreviewController {
     }
 
     public void switchToUpLoad(ActionEvent event) {
-        // Switch to the upload scene
-        // Use the same method as in the `MainSceneClass` to switch scenes
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
+            Parent uploadView = loader.load();
 
+            // Get the controller and pass the book data
+            PageUploadController uploadController = loader.getController();
+            uploadController.setBookData(currentBook);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(uploadView);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

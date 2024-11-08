@@ -9,11 +9,25 @@ public class User {
     private String email;
     private String dateOfBirth;
     private String pathToProfilePicture;
+    private String role;
 
     private List <Book> booksBorrowed;  // Danh sách các sách mà người dùng đã mượn trong All
     private List <Book> booksReturned;  // Danh sách các sách mà người dùng đã trả trong finished
     private List <Review> reviews;      // Danh sách các đánh giá của người dùng
  
+    public User(int id, String username, String password, String email, String dateOfBirth, String pathToProfilePicture, String role) {
+        this.username = username;
+        this.id = id;
+        this.password = password;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.pathToProfilePicture = pathToProfilePicture;
+        this.role = role;
+        this.booksBorrowed = new ArrayList<>();
+        this.booksReturned  = new ArrayList<>();
+        this.reviews = new ArrayList<>();
+    }
+
 
     public User(String username, int id, String password, String email, String pathToProfilePicture) {
         this.username = username;
@@ -37,6 +51,12 @@ public class User {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getDateOfBirth() { return dateOfBirth; }
+    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 
     public String getPathToProfilePicture() { return pathToProfilePicture; }
     public void setPathToProfilePicture(String pathToProfilePicture) { this.pathToProfilePicture = pathToProfilePicture; }

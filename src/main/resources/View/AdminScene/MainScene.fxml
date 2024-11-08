@@ -14,10 +14,10 @@
    <top>
       <Pane prefHeight="54.0" prefWidth="1312.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="SearchField" layoutX="503.0" layoutY="15.0" prefHeight="25.0" prefWidth="268.0" />
-            <Button layoutX="771.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchButton" text="Button">
+            <TextField fx:id="SearchField" layoutX="503.0" layoutY="11.0" onKeyPressed="#EnterToSearch" prefHeight="25.0" prefWidth="268.0" promptText="Thêm sách" style="-fx-background-color: transparent; -fx-border-radius: 50; -fx-border-color: black;" />
+            <Button layoutX="771.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchButton" style="-fx-background-color: transparent;">
                <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" onDragDetected="#searchButton" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="26.0" fitWidth="33.0" onDragDetected="#searchButton" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Image/Icon/search.png" />
                      </image>

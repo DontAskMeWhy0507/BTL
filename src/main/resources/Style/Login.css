@@ -80,12 +80,6 @@ tf_username:hover, tf_username:focused {
     -fx-border-color: black;
 }
 
-/*.loginRippler > .buttonLogin {*/
-/*    -jfx-rippler-radius: 60px;*/
-/*    -jfx-rippler-fill: white;*/
-/*    -jfx-mask-type: circle;*/
-/*}*/
-
 .loginRippler > .button:hover {
     -jfx-rippler-radius: 60px;
     -jfx-rippler-fill: white;

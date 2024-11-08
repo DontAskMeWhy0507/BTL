@@ -43,10 +43,17 @@
       <JFXCheckBox fx:id="remember" checkedColor="#aab396" layoutX="107.0" layoutY="424.0" styleClass="remember" stylesheets="@../../Style/Login.css" text="Remember me" />
       <JFXButton fx:id="buttonForgotPassword" layoutX="381.0" layoutY="419.0" onAction="#switchForgotPassword" styleClass="buttonForgotPassword" stylesheets="@../../Style/Login.css" text="Quên mật khẩu?" />
       <JFXRippler fx:id="loginRippler" layoutX="204.0" layoutY="480.0" prefHeight="52.0" prefWidth="206.0" styleClass="loginRippler" stylesheets="@../../Style/Login.css" />
+      <Button fx:id="buttonLogin" layoutX="205.0" layoutY="480.0" mnemonicParsing="false" onAction="#loginToHome" prefHeight="52.0" prefWidth="205.0" stylesheets="@../../Style/Login.css" text="Đăng nhập">
+         <styleClass>
+            <String fx:value="buttonLogin" />
+            <String fx:value="loginRippler" />
+         </styleClass>
+      </Button>
+      <Text layoutX="184.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="normalText" text="Chưa có tài khoản?" wrappingWidth="152.0" />
+
       <JFXButton fx:id="buttonSignUp" alignment="BOTTOM_CENTER" layoutX="336.0" layoutY="560.0" onAction="#signUp1" prefHeight="31.0" prefWidth="90.0" styleClass="switchRegister" stylesheets="@../../Style/Login.css" text="Đăng ký">
          <font>
             <Font size="20.0" />
          </font></JFXButton>
-      <Text layoutX="184.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="normalText" text="Chưa có tài khoản?" wrappingWidth="152.0" />
    </children>
 </AnchorPane>

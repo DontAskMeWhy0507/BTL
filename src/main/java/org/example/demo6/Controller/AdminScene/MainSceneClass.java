@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
 import org.example.demo6.Controller.AdminScene.Page.SearchPageController;
 import javafx.scene.image.Image;
+import org.example.demo6.Controller.AdminScene.Page.Settings;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +25,16 @@ import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class MainSceneClass{
 
+    // Singleton
+    private static MainSceneClass instance;
+
+    public static MainSceneClass getInstance() {
+        if (instance == null) {
+            instance = new MainSceneClass();
+        }
+        return instance;
+    }
+
     @FXML
     private TextField SearchField;
 
@@ -31,6 +42,8 @@ public class MainSceneClass{
     private VBox seeMoreProfile;
     @FXML
     private ScrollPane mainScrollPane;
+    @FXML
+    private Button avatarButton;
 
     private Stage stage;
     private Scene scene;
@@ -43,7 +56,6 @@ public class MainSceneClass{
     public void changeAvatar(String avatarPaths) {
         Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
         avatar.setImage(newAvatarImage);
-
     }
 
 
@@ -79,11 +91,19 @@ public class MainSceneClass{
        seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
     }
 
+//    public void resetView() {
+//        changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
+//        avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
+//    }
 
+    public void setUser() {
+        changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
+        avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
+    }
 
     @FXML
     public void initialize() {
-        changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
+        setUser();
         staticMainScrollPane = mainScrollPane;
         mainScrollPane.setFitToWidth(true);
         mainScrollPane.setFitToHeight(true);
@@ -176,12 +196,14 @@ public class MainSceneClass{
     @FXML
     void showSettings(ActionEvent event) {
         try {
-            System.out.println("Settings");
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Settings.fxml"));
-            Parent UploadView = loader1.load();
+            Parent SettingView = loader1.load();
+            Settings settingsController = loader1.getController();
 
+            // Truyền đối tượng MainSceneClass vào SettingsController
+            settingsController.setMainSceneController(this);  // this l
             // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(UploadView);
+            mainScrollPane.setContent(SettingView);
 
         } catch (IOException e) {
             e.printStackTrace();

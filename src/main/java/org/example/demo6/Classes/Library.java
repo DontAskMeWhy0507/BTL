@@ -18,16 +18,14 @@ public class Library {
     }
 
     // Current user (admin or user)
-    private User currentUser;
+    private static User currentUser;
 
-    // Non-static setCurrentUser method
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
+    public User getCurrentUser() {
+        return currentUser;
     }
 
-    // Getter for currentUser
-    public User getCurrentUser() {
-        return this.currentUser;
+    public void setCurrentUser(User user) {
+        currentUser = user;
     }
 
 

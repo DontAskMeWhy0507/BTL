@@ -6,12 +6,23 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.example.demo6.Classes.DBUltis;
+import org.example.demo6.Classes.Library;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
+
+import java.io.File;
 
 public class Settings {
+    Library lib = Library.getInstance();
+    private MainSceneClass mainSceneController;
+
+    public void setMainSceneController(MainSceneClass mainSceneController) {
+        this.mainSceneController = mainSceneController;
+    }
 
     @FXML
     private ImageView avatarImageView;
-
+    private File avatarFile;
     @FXML
     private TextField usernameField;
 
@@ -70,31 +81,47 @@ public class Settings {
         setAvatar("/Image/Avatar/Sage.png");
     }
 
+    public void confirmAvatarSelection() {
+        String avatarPath = avatarFile.getPath();
+
+        // Replace backslashes with forward slashes to standardize the path format
+        avatarPath = avatarPath.replace("\\", "/");
+
+        lib.getCurrentUser().setPathToProfilePicture(avatarPath);
+        System.out.println("Avatar updated to: " + lib.getCurrentUser().getPathToProfilePicture());
+        DBUltis.updateUserInDatabase(lib.getCurrentUser());
+        mainSceneController.setUser();
+
+    }
+
 
     private void setAvatar(String imagePath) {
-        Image image = new Image(getClass().getResourceAsStream(imagePath));
-        avatarImageView.setImage(image);
+        Image avatarImage = new Image(getClass().getResourceAsStream(imagePath));
+        avatarImageView.setImage(avatarImage);
+        avatarFile = new File(imagePath);
     }
 
     // Methods to handle updating username, email, and password
     @FXML
     private void handleChangeUsername() {
         String newUsername = usernameField.getText();
-        // Add logic to update the username
-        System.out.println("Username updated to: " + newUsername);
+        lib.getCurrentUser().setUsername(newUsername);
+        DBUltis.updateUserInDatabase(lib.getCurrentUser());
     }
 
     @FXML
     private void handleChangeEmail() {
         String newEmail = emailField.getText();
-        // Add logic to update the email
-        System.out.println("Email updated to: " + newEmail);
+
+        lib.getCurrentUser().setEmail(newEmail);
+        DBUltis.updateUserInDatabase(lib.getCurrentUser());
     }
 
     @FXML
     private void handleChangePassword() {
         String newPassword = passwordField.getText();
         // Add logic to update the password
-        System.out.println("Password updated.");
+        lib.getCurrentUser().setPassword(newPassword);
+        DBUltis.updateUserInDatabase(lib.getCurrentUser());
     }
 }

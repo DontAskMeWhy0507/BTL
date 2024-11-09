@@ -302,4 +302,27 @@ public class DBUltis {
         return books;
     }
 
+    public static void updateUserInDatabase(User user) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+
+        // Câu lệnh SQL không bao gồm book_id
+        String sql = "UPDATE USERS SET username = ?, password = ?, email = ?, avatar = ? WHERE ID = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, user.getUsername());              // Mã ISBN
+            pstmt.setString(2, user.getPassword());             // Tên sách
+            pstmt.setString(3, user.getEmail());            // Tác giả
+            pstmt.setString(4, user.getPathToProfilePicture());         // Nhà xuất bản
+            pstmt.setInt(5, user.getId());                // Ngày xuất bản
+
+            pstmt.executeUpdate();
+            System.out.println("User updated in database.");
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+            e.printStackTrace(); // Log the stack trace for better debugging
+        }
+    }
+
 }

@@ -10,6 +10,8 @@ import org.example.demo6.Classes.Library;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 public class PageUploadController {
@@ -158,7 +160,16 @@ public class PageUploadController {
         Description.setText(book.getDescription());
         Language.setText(book.getLanguage());
         Publisher.setText(book.getPublisher());
-        PublishedDate.setValue(LocalDate.parse(book.getPublishedDate()));
+
+        // Parse the date correctly
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            PublishedDate.setValue(LocalDate.parse(book.getPublishedDate(), formatter));
+        } catch (DateTimeParseException e) {
+            // Handle the case where the date is not in the expected format
+            System.err.println("Sai định dạng ngày: " + e.getMessage());
+            PublishedDate.setValue(null); // or handle it accordingly
+        }
     }
 }
 

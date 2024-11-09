@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
@@ -34,7 +36,7 @@ public class MainSceneClass{
 
     private static ScrollPane staticMainScrollPane;
     @FXML
-    void searchButton() throws IOException {
+    void searchButton(ActionEvent event) throws IOException {
         List<Book> searchResults = apiGoogleBooks.searchBooks1(SearchField.getText());
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/PageSearch.fxml"));
@@ -162,7 +164,12 @@ public class MainSceneClass{
     }
 
 
-
+    @FXML
+    public void EnterToSearch(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            searchButton(new ActionEvent(event.getSource(), event.getTarget()));
+        }
+    }
 
 
 

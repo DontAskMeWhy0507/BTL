@@ -17,6 +17,7 @@ import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.UpDownFile;
 import org.example.demo6.Classes.Library;
 import org.example.demo6.Classes.UpDownFile;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import org.example.demo6.Controller.AdminScene.Page.PageUploadController;
 
 import java.io.File;
@@ -105,20 +106,19 @@ public class BookPreviewController {
     public void switchToUpLoad(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
-            Parent uploadView = loader.load();
+            Parent root = loader.load();
 
             // Get the controller and pass the book data
             PageUploadController uploadController = loader.getController();
             uploadController.setBookData(currentBook);
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(uploadView);
-            stage.setScene(scene);
-            stage.show();
+            MainSceneClass.setMainContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 }
 
 

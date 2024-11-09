@@ -9,59 +9,72 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 
-<AnchorPane prefHeight="525.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.Settings">
+<AnchorPane prefHeight="678.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.Settings">
     <children>
         <!-- Avatar Selection Section -->
         <Label layoutX="50.0" layoutY="31.0" text="Select Avatar:" />
-        <TilePane hgap="10" layoutX="299.0" layoutY="56.0" vgap="10">
+        <TilePane hgap="10" layoutX="299.0" layoutY="56.0" prefHeight="232.0" prefWidth="548.0" vgap="10">
             <children>
-                <ImageView fx:id="avatar1" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectAvatar1">
-               <image>
-                  <Image url="@../../../Image/Avatar/Clove.png" />
-               </image></ImageView>
-                <ImageView fx:id="avatar2" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectAvatar2">
-               <image>
-                  <Image url="@../../../Image/Avatar/Gekko.png" />
-               </image></ImageView>
-                <ImageView fx:id="avatar3" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectAvatar3">
-               <image>
-                  <Image url="@../../../Image/Avatar/Iso.png" />
-               </image></ImageView>
-                <ImageView fx:id="avatar4" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectAvatar4">
-               <image>
-                  <Image url="@../../../Image/Avatar/Jett.png" />
-               </image></ImageView>
-                <ImageView fx:id="avatar5" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectAvatar5">
-               <image>
-                  <Image url="@../../../Image/Avatar/Neon.png" />
-               </image></ImageView>
-                <ImageView fx:id="avatar6" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectAvatar6">
-               <image>
-                  <Image url="@../../../Image/Avatar/Omen.png" />
-               </image></ImageView>
-                <ImageView fx:id="avatar7" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectAvatar7">
-               <image>
-                  <Image url="@../../../Image/Avatar/Reyna.png" />
-               </image></ImageView>
-                <ImageView fx:id="avatar8" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectAvatar8">
-               <image>
-                  <Image url="@../../../Image/Avatar/Sage.png" />
-               </image></ImageView>
+                <ImageView fx:id="avatar1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar1" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Clove.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar2" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Gekko.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar3" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar3" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Iso.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar4" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar4" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Jett.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar5" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar5" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Neon.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar6" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar6" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Omen.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar7" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar7" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Reyna.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar8" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar8" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Sage.png" />
+                    </image>
+                </ImageView>
             </children>
         </TilePane>
 
+        <!-- Confirm Avatar Selection Button -->
+        <Button layoutX="980.0" layoutY="119.0" onAction="#confirmAvatarSelection" text="Update" />
+
         <!-- Other Settings Fields (Username, Email, Password) -->
-        <Label layoutX="50.0" layoutY="250.0" text="Username:" />
-        <TextField fx:id="usernameField" layoutX="150.0" layoutY="250.0" promptText="Enter new username" />
-        <Button layoutX="350.0" layoutY="250.0" onAction="#handleChangeUsername" text="Update" />
+        <Label layoutX="50.0" layoutY="336.0" text="Username:" />
+        <TextField fx:id="usernameField" layoutX="150.0" layoutY="336.0" promptText="Enter new username" />
+        <Button layoutX="350.0" layoutY="336.0" onAction="#handleChangeUsername" text="Update" />
 
-        <Label layoutX="50.0" layoutY="300.0" text="Email:" />
-        <TextField fx:id="emailField" layoutX="150.0" layoutY="300.0" promptText="Enter new email" />
-        <Button layoutX="350.0" layoutY="300.0" onAction="#handleChangeEmail" text="Update" />
+        <Label layoutX="50.0" layoutY="386.0" text="Email:" />
+        <TextField fx:id="emailField" layoutX="150.0" layoutY="386.0" promptText="Enter new email" />
+        <Button layoutX="350.0" layoutY="386.0" onAction="#handleChangeEmail" text="Update" />
 
-        <Label layoutX="50.0" layoutY="350.0" text="Password:" />
-        <PasswordField fx:id="passwordField" layoutX="150.0" layoutY="350.0" promptText="Enter new password" />
-        <Button layoutX="350.0" layoutY="350.0" onAction="#handleChangePassword" text="Update" />
-      <ImageView fx:id="avatarImageView" fitHeight="130.0" fitWidth="138.0" layoutX="77.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+        <Label layoutX="50.0" layoutY="436.0" text="Password:" />
+        <PasswordField fx:id="passwordField" layoutX="150.0" layoutY="436.0" promptText="Enter new password" />
+        <Button layoutX="350.0" layoutY="436.0" onAction="#handleChangePassword" text="Update" />
+
+        <!-- Selected Avatar Display -->
+        <ImageView fx:id="avatarImageView" fitHeight="203.0" fitWidth="203.0" layoutX="49.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>

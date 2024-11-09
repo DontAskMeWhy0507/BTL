@@ -6,7 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.DBUltis;
-import org.example.demo6.Controller.Scene.BookUnitController;
+import org.example.demo6.Controller.AdminScene.Page.BookUnitController;
 
 import java.io.IOException;
 import java.util.List;
@@ -46,7 +46,7 @@ public class AllUser {
 
                 try {
                     // Load the FXML for the book pane
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Scene/Book.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Book.fxml"));
                     Pane bookPane = loader.load();
 
                     // Get the controller and set the data for the book

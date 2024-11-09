@@ -22,8 +22,6 @@ module org.example.demo6 {
     opens org.example.demo6.Controller.AdminScene.Page to javafx.fxml;
     exports org.example.demo6.Controller.LoginScene;
     opens org.example.demo6.Controller.LoginScene to javafx.fxml;
-    exports org.example.demo6.Controller.Scene;
-    opens org.example.demo6.Controller.Scene to javafx.fxml;
     exports org.example.demo6.Controller.UserScene;
     opens org.example.demo6.Controller.UserScene to javafx.fxml;
     exports org.example.demo6.Controller.UserScene.Page;

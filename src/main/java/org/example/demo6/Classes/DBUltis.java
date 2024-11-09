@@ -14,6 +14,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.example.demo6.Controller.GeneralController.changescene;
 
@@ -323,6 +324,50 @@ public class DBUltis {
             System.out.println("Database error: " + e.getMessage());
             e.printStackTrace(); // Log the stack trace for better debugging
         }
+    }
+
+    public static List<Book> searchBook (String search) {
+        List<Book> books = new ArrayList<>();
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String sql = "SELECT * FROM Books WHERE title LIKE ? OR author LIKE ? OR category LIKE ? OR language LIKE ? OR publisher LIKE ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%" + search + "%");
+            pstmt.setString(2, "%" + search + "%");
+            pstmt.setString(3, "%" + search + "%");
+            pstmt.setString(4, "%" + search + "%");
+            pstmt.setString(5, "%" + search + "%");
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // Extract data from each row in the ResultSet
+                String isbn = rs.getString("isbn");
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                String publishedDate = rs.getString("published_date"); // stored as String
+                String language = rs.getString("language");
+                String category = rs.getString("category");
+                String description = rs.getString("description");
+                int quantity = rs.getInt("quantity");
+
+                String bookPath = rs.getString("book_path");
+                String coverImagePath = rs.getString("cover_image_path");
+                String audioPath = rs.getString("audio_path");
+
+                // Create and add the Book object to the list
+                Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description,bookPath,coverImagePath, audioPath,quantity);
+                books.add(book);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving books from database: " + e.getMessage());
+        }
+
+        return books;
     }
 
 }

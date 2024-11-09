@@ -1,4 +1,4 @@
-package org.example.demo6.Controller.Scene;
+package org.example.demo6.Controller.AdminScene.Page;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Controller.AdminScene.MainSceneClass;
-import org.example.demo6.Controller.UserScene.MainSceneUser;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -68,7 +68,7 @@ public class BookUnitController extends Node {
     @FXML
     public void switchToBookDetails(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Scene/BookPreview.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/BookPreview.fxml"));
             Parent root = fxmlLoader.load();
             // Lấy controller của trang chi tiết
             BookPreviewController bookPreviewController = fxmlLoader.getController();

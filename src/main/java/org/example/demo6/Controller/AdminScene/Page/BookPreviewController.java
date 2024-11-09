@@ -1,24 +1,18 @@
 // src/main/java/org/example/demo6/Controller/BookPreviewController.java
-package org.example.demo6.Controller.Scene;
+package org.example.demo6.Controller.AdminScene.Page;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.UpDownFile;
 import org.example.demo6.Classes.Library;
-import org.example.demo6.Classes.UpDownFile;
 import org.example.demo6.Controller.AdminScene.MainSceneClass;
-import org.example.demo6.Controller.AdminScene.Page.PageUploadController;
 
 import java.io.File;
 import java.io.IOException;

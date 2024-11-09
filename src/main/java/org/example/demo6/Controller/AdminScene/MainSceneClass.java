@@ -164,7 +164,7 @@ public class MainSceneClass{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+                Library.getInstance().logOut(event);
             } catch (Exception e) {
                 e.printStackTrace();
                 Throwable cause = e.getCause();

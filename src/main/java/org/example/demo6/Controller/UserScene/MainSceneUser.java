@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import static org.example.demo6.Controller.GeneralController.changescene;
+
 public class MainSceneUser {
     private Stage stage;
     private Scene scene;
@@ -71,7 +73,7 @@ public class MainSceneUser {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                DBUltis.changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+                changescene(event, "/View/LoginScene/Login.fxml", "Login!");
             } catch (Exception e) {
                 e.printStackTrace();
                 Throwable cause = e.getCause();

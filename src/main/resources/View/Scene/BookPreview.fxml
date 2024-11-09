@@ -11,8 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.Scene.BookPreviewController">
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.Scene.BookPreviewController">
    <children>
+      <!-- Main book details -->
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="731.0" prefWidth="1001.0">
          <children>
             <ImageView fx:id="bookCoverImage" fitHeight="406.0" fitWidth="316.0" layoutX="61.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
@@ -26,7 +27,7 @@
                </font>
             </Label>
             <Button fx:id="buttonBorrow" layoutX="397.0" layoutY="181.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="82.0" text="Mượn" />
-            <Text fx:id="bookDescription" layoutX="384.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THE IMPERIALS CONTINUE THEIR INVASION OF ENDOR! With WICKET captured and forced to guide the IMPERIAL scouting party through Endor, the other Ewoks must form a party of their own to get him back! Warrior MEEDRO and the mysterious RED GHOST may be the only hope for the young Ewok. What horrors await both teams at the site of the Imperial weapons cache?" wrappingWidth="603.62109375">
+            <Text fx:id="bookDescription" layoutX="384.0" layoutY="460.0" wrappingWidth="603.62109375" text="THE IMPERIALS CONTINUE THEIR INVASION OF ENDOR! With WICKET captured and forced to guide the IMPERIAL scouting party through Endor, the other Ewoks must form a party of their own to get him back! Warrior MEEDRO and the mysterious RED GHOST may be the only hope for the young Ewok. What horrors await both teams at the site of the Imperial weapons cache?">
                <font>
                   <Font size="18.0" />
                </font>
@@ -37,20 +38,32 @@
                </image>
             </ImageView>
             <Text fx:id="bookPublishedDate" layoutX="494.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="December 18, 2024" wrappingWidth="116.107421875" />
-            <Text fx:id="bookAuthor" layoutX="397.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Released" wrappingWidth="82.0" />
+            <Text layoutX="397.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Released" wrappingWidth="82.0" />
             <Button layoutX="501.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="103.0" text="Add detail" />
             <Button layoutX="622.0" layoutY="181.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="128.0" text="Add to database" />
             <Text layoutX="397.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language" />
             <Text layoutX="403.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" wrappingWidth="74.591796875" />
             <Text layoutX="397.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categories" />
-            <Text layoutX="397.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher" wrappingWidth="56.419921875" />
+            <Text layoutX="398.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher" wrappingWidth="56.419921875" />
             <Text layoutX="397.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
+            <Text fx:id="bookPublisher" layoutX="518.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="unknown" />
+            <Text fx:id="bookLanguage" layoutX="518.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="unknown" />
+            <Text fx:id="bookAuthor" layoutX="518.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="unknown" />
+            <Text fx:id="bookCategoryLabel" layoutX="518.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="unknown" />
+            <Text layoutX="518.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+
+      <!-- Comment Section -->
+      <AnchorPane prefHeight="200.0" prefWidth="1001.0">
          <children>
-            <TextField layoutX="224.0" layoutY="33.0" promptText="Add your comments" />
-            <HBox layoutX="607.0" layoutY="33.0" prefHeight="100.0" prefWidth="200.0" />
+            <TextField fx:id="commentInputField" layoutX="224.0" layoutY="33.0" promptText="Add your comment" />
+            <Button fx:id="postCommentButton" layoutX="450.0" layoutY="33.0" text="Post Comment" onAction="#postComment" />
+
+            <!-- Container for comments -->
+            <VBox fx:id="commentsContainer" layoutX="224.0" layoutY="80.0" spacing="10.0">
+               <!-- Comments will be added here dynamically -->
+            </VBox>
          </children>
       </AnchorPane>
    </children>

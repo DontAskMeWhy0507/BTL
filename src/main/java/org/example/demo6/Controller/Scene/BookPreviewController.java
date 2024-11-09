@@ -96,7 +96,7 @@ public class BookPreviewController {
 
     public void addToDatabase() {
         String imageURL = currentBook.getCoverImagePath();
-        String localPath = "/Uploaded/BookCovers" + currentBook.getTitle() + ".jpg";
+        String localPath = "@../Uploaded/BookCovers/" + currentBook.getTitle() + ".jpg";
         File coverImageFile = UpDownFile.downloadFileImage(imageURL,localPath);
 
         // Pass the cover image file correctly to the `upLoadBook` method

@@ -33,5 +33,6 @@ module org.example.demo6 {
     requires json;
     requires java.net.http;
     requires javafx.media;
+    requires jdk.compiler;
 
 }

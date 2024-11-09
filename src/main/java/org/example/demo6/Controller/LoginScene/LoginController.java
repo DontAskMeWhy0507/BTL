@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.demo6.Classes.DBUltis;
+import org.example.demo6.Classes.Library;
 import org.example.demo6.Classes.Music;
 import com.jfoenix.controls.JFXTextField;
 import javafx.scene.input.KeyCode;
@@ -28,6 +29,8 @@ import javafx.scene.input.KeyCode;
 import java.net.URL;
 import java.security.Key;
 import java.util.ResourceBundle;
+
+import static org.example.demo6.Controller.GeneralController.changescene;
 
 
 public class LoginController implements Initializable {
@@ -83,7 +86,7 @@ public class LoginController implements Initializable {
 
         try {
             // Giả lập độ trễ khi đăng nhập (thay bằng logic thực tế)
-            DBUltis.logIn(event, tf_username.getText(), tf_password.getText());
+            Library.logIn(event, tf_username.getText(), tf_password.getText());
         } catch (Exception ex) {
             ex.printStackTrace();
             Throwable cause = ex.getCause();
@@ -95,7 +98,7 @@ public class LoginController implements Initializable {
 
     public void signUp1(ActionEvent event) {
         try {
-            DBUltis.changescene(event, "/View/LoginScene/SignUp.fxml", "Sign Up!");
+            changescene(event, "/View/LoginScene/SignUp.fxml", "Sign Up!");
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();
@@ -107,7 +110,7 @@ public class LoginController implements Initializable {
 
     public void switchForgotPassword(ActionEvent event) {
         try {
-            DBUltis.changescene(event, "/View/LoginScene/ForgotPassword.fxml", "ForgotPassword!");
+            changescene(event, "/View/LoginScene/ForgotPassword.fxml", "ForgotPassword!");
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();

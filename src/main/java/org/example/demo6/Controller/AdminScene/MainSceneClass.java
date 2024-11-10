@@ -63,14 +63,16 @@ public class MainSceneClass{
     private static ScrollPane staticMainScrollPane;
     @FXML
     void searchButton(ActionEvent event) throws IOException {
-        List<Book> searchResults = apiGoogleBooks.searchBooks1(SearchField.getText());
+        List<Book> ApiResult = apiGoogleBooks.searchBooks1(SearchField.getText());
+        List<Book> databaseResult = DBUltis.searchBook(SearchField.getText());
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/PageSearch.fxml"));
             Parent homeView = loader.load();
 
             // Get the controller instance
             SearchPageController searchPageController = loader.getController();
-            searchPageController.setSearchResults(searchResults);
+            searchPageController.setSearchResults(databaseResult, ApiResult);
 
             setMainContent(homeView);
             staticMainScrollPane.setFitToWidth(true);

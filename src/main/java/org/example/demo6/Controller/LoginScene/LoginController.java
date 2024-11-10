@@ -75,6 +75,7 @@ public class LoginController implements Initializable {
         AnchorPane.setLeftAnchor(loginRippler, 185.0);
     }
 
+
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo
 

@@ -15,6 +15,8 @@ import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import java.io.File;
 import java.io.IOException;
 
+import static org.example.demo6.Controller.AdminScene.MainSceneClass.staticMainScrollPane;
+
 public class BookUnitController extends Node {
 
     @FXML
@@ -75,6 +77,8 @@ public class BookUnitController extends Node {
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
             MainSceneClass.setMainContent(root);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
         }

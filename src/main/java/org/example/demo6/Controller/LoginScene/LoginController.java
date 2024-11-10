@@ -59,8 +59,6 @@ public class LoginController implements Initializable {
     private JFXRippler loginRippler;
 
 
-    @FXML
-    private Music music;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,9 +70,8 @@ public class LoginController implements Initializable {
 
         AnchorPane.setTopAnchor(loginRippler, 475.0);
         AnchorPane.setLeftAnchor(loginRippler, 185.0);
-        music = new Music("src/main/resources/Sound/jingle-bells.mp3");
-        music.loop();
     }
+
 
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo

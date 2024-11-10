@@ -60,7 +60,7 @@ public class MainSceneClass{
 
 
 
-    private static ScrollPane staticMainScrollPane;
+    public static ScrollPane staticMainScrollPane;
     @FXML
     void searchButton(ActionEvent event) throws IOException {
         List<Book> ApiResult = apiGoogleBooks.searchBooks1(SearchField.getText());

@@ -61,6 +61,8 @@ public class LoginController implements Initializable {
     @FXML
     private JFXRippler loginRippler;
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loginRippler = new JFXRippler(buttonLogin);
@@ -72,6 +74,7 @@ public class LoginController implements Initializable {
         AnchorPane.setTopAnchor(loginRippler, 475.0);
         AnchorPane.setLeftAnchor(loginRippler, 185.0);
     }
+
 
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo

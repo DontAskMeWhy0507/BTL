@@ -1,22 +1,18 @@
 // src/main/java/org/example/demo6/Controller/BookPreviewController.java
-package org.example.demo6.Controller.Scene;
+package org.example.demo6.Controller.AdminScene.Page;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.UpDownFile;
 import org.example.demo6.Classes.Library;
-import org.example.demo6.Classes.UpDownFile;
-import org.example.demo6.Controller.AdminScene.Page.PageUploadController;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,8 +21,6 @@ import java.io.IOException;
 public class BookPreviewController {
 
     private Book currentBook;
-
-
     @FXML
     private Label bookTitleLabel;
 
@@ -37,7 +31,13 @@ public class BookPreviewController {
     private Text bookPublishedDate;
 
     @FXML
-    private Label bookCategoryLabel;
+    private Text bookCategoryLabel;
+
+    @FXML
+    private Text bookPublisher;
+
+    @FXML
+    private Text bookLanguage;
 
     @FXML
     private Text bookDescription;
@@ -45,12 +45,23 @@ public class BookPreviewController {
     @FXML
     private ImageView bookCoverImage;
 
+
+    public void postComment() {
+        // Add the comment to the current book
+        // currentBook.addComment(commentTextArea.getText());
+        // Update the book in the database
+        // Library.updateBook(currentBook);
+    }
+
     public void setBookData(Book book) {
         currentBook = book;
         bookTitleLabel.setText(book.getTitle());
         bookDescription.setText(book.getDescription());
         bookAuthor.setText(book.getAuthor());
         bookPublishedDate.setText(book.getPublishedDate());
+        bookCategoryLabel.setText(book.getCategory());
+        bookPublisher.setText(book.getPublisher());
+        bookLanguage.setText(book.getLanguage());
 
         // Check if cover image path is available and valid
         if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {
@@ -79,7 +90,7 @@ public class BookPreviewController {
 
     public void addToDatabase() {
         String imageURL = currentBook.getCoverImagePath();
-        String localPath = "/Uploaded/BookCovers" + currentBook.getTitle() + ".jpg";
+        String localPath = "../Uploaded/BookCovers/" + currentBook.getTitle() + ".jpg";
         File coverImageFile = UpDownFile.downloadFileImage(imageURL,localPath);
 
         // Pass the cover image file correctly to the `upLoadBook` method
@@ -89,20 +100,19 @@ public class BookPreviewController {
     public void switchToUpLoad(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
-            Parent uploadView = loader.load();
+            Parent root = loader.load();
 
             // Get the controller and pass the book data
             PageUploadController uploadController = loader.getController();
             uploadController.setBookData(currentBook);
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(uploadView);
-            stage.setScene(scene);
-            stage.show();
+            MainSceneClass.setMainContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 }
 
 

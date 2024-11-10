@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.apiGoogleBooks;
-import org.example.demo6.Controller.Scene.BookUnitController;
+import org.example.demo6.Controller.AdminScene.Page.BookUnitController;
 
 import java.io.IOException;
 import java.util.List;
@@ -58,7 +58,7 @@ public class HomePageUser {
         try {
             for (int i = 0; i < 10; i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/View/Scene/Book.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/View/AdminScene/Page/Book.fxml"));
                 VBox cardBox = fxmlLoader.load();
                 BookUnitController bookUnitController = fxmlLoader.getController();
                 bookUnitController.setData(tieuThuyet.get(i));
@@ -72,7 +72,7 @@ public class HomePageUser {
         try {
             for (int i = 0; i < 10; i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/View/Scene/Book.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/View/AdminScene/Page/Book.fxml"));
                 VBox cardBox = fxmlLoader.load();
                 BookUnitController bookUnitController = fxmlLoader.getController();
                 bookUnitController.setData(anime.get(i));

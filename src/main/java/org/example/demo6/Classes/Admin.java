@@ -4,6 +4,10 @@ public class Admin extends User {
         super(username, id, password, email, pathToProfilePicture);
     }
 
+    public void searchBook() {
+
+    }
+
     public void viewUsers() {
 
     }

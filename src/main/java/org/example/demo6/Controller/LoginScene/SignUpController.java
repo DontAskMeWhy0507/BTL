@@ -1,5 +1,7 @@
 package org.example.demo6.Controller.LoginScene;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRippler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,6 +10,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Paint;
 import org.example.demo6.Classes.DBUltis;
 
 import java.net.URL;
@@ -17,26 +26,46 @@ import java.util.regex.Pattern;
 public class SignUpController implements Initializable {
 
     @FXML
-    private Button buttonSign_Up;
+    private AnchorPane mainPane;
+
     @FXML
-    private Button buttonLog_in;
+    private Button buttonSign_Up;
+
+    @FXML
+    private JFXButton buttonLog_in;
+
     @FXML
     private TextField tf_id;
+
     @FXML
     private TextField tf_username;
+
     @FXML
     private TextField tf_password;
+
     @FXML
     private TextField tf_repassword;
+
     @FXML
     private TextField tf_email;
+
     @FXML
     private Label password_check;
 
+    @FXML
+    private JFXRippler createAcc;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        createAcc = new JFXRippler(buttonSign_Up);
+        createAcc.getStyleClass().add("signUpRippler");
+        createAcc.setRipplerFill(Paint.valueOf("white"));
+        createAcc.setRipplerRadius(60);
+        mainPane.getChildren().add(createAcc);
 
+        AnchorPane.setTopAnchor(createAcc, 550.0);
+        AnchorPane.setLeftAnchor(createAcc, 290.0);
+        
         buttonSign_Up.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -97,4 +126,10 @@ public class SignUpController implements Initializable {
         String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return Pattern.matches(emailPattern, email);
     }
+
+//    public void Enter(KeyEvent event) {
+//        if(event.getCode() == KeyCode.ENTER) {
+//            handle(new ActionEvent(event.getSource(), event.getTarget()));
+//        }
+//    }
 }

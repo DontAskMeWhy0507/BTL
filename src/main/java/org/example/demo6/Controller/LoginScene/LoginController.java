@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Music;
-import com.jfoenix.controls.JFXTextField;
 import javafx.scene.input.KeyCode;
 
 import java.net.URL;
@@ -59,14 +58,11 @@ public class LoginController implements Initializable {
     @FXML
     private JFXRippler loginRippler;
 
-    @FXML
-    private Music music;
+//    @FXML
+//    private Music music;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Font font1 = Font.loadFont(getClass().getResourceAsStream("/Font/Merriweather/Merriweather-Regular.ttf"), 20);
-        Font font2 = Font.loadFont(getClass().getResourceAsStream("/Font/DancingScript/DancingScript-SemiBold.ttf"), 20);
-
         loginRippler = new JFXRippler(buttonLogin);
         loginRippler.getStyleClass().add("loginRippler");
         loginRippler.setRipplerFill(Paint.valueOf("white"));
@@ -76,8 +72,8 @@ public class LoginController implements Initializable {
         AnchorPane.setTopAnchor(loginRippler, 475.0);
         AnchorPane.setLeftAnchor(loginRippler, 185.0);
 
-        music = new Music("src/main/resources/Sound/jingle-bells.mp3");
-        music.loop();
+//        music = new Music("src/main/resources/Sound/jingle-bells.mp3");
+//        music.loop();
     }
 
     public void loginToHome(ActionEvent event) {

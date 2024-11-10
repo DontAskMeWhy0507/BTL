@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXRippler?>
-<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -13,39 +12,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1182.0" stylesheets="@../../Style/Login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginScene.LoginController">
+<AnchorPane fx:id="mainPane" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1182.0" stylesheets="@../../Style/LoginScene/Login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginScene.LoginController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="669.0" layoutX="605.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="727.0" fitWidth="580.0" layoutX="602.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Image/temp_lib.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="tf_username" layoutX="100.0" layoutY="218.0" onKeyPressed="#Enter" prefHeight="73.0" prefWidth="416.0" promptText="Tên đăng nhập" styleClass="tf_username" stylesheets="@../../Style/Login.css">
+      <TextField fx:id="tf_username" layoutX="100.0" layoutY="218.0" onKeyPressed="#Enter" prefHeight="73.0" prefWidth="416.0" promptText="Tên đăng nhập" styleClass="tf_username" stylesheets="@../../Style/LoginScene/Login.css">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="tf_password" layoutX="100.0" layoutY="324.0" onKeyPressed="#Enter" prefHeight="73.0" prefWidth="416.0" promptText="Mật khẩu" styleClass="tf_username" stylesheets="@../../Style/Login.css">
+      <PasswordField fx:id="tf_password" layoutX="100.0" layoutY="324.0" onKeyPressed="#Enter" prefHeight="73.0" prefWidth="416.0" promptText="Mật khẩu" styleClass="tf_username" stylesheets="@../../Style/LoginScene/Login.css">
          <font>
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <Button fx:id="buttonLogin" layoutX="205.0" layoutY="480.0" mnemonicParsing="false" onAction="#loginToHome" prefHeight="52.0" prefWidth="205.0" stylesheets="@../../Style/Login.css" text="Đăng nhập">
-         <styleClass>
-            <String fx:value="buttonLogin" />
-            <String fx:value="loginRippler" />
-         </styleClass>
-      </Button>
+      <Button fx:id="buttonLogin" layoutX="205.0" layoutY="480.0" mnemonicParsing="false" onAction="#loginToHome" prefHeight="52.0" prefWidth="205.0" styleClass="buttonLogin" stylesheets="@../../Style/LoginScene/Login.css" text="Đăng nhập" />
       <Text fx:id="WelcomeText" layoutX="53.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="WelcomeText" text="Welcome back!" wrappingWidth="509.9999999999999">
          <font>
             <Font size="35.0" />
          </font></Text>
-      <JFXCheckBox fx:id="remember" checkedColor="#aab396" layoutX="107.0" layoutY="424.0" styleClass="remember" stylesheets="@../../Style/Login.css" text="Remember me" />
-      <JFXButton fx:id="buttonForgotPassword" layoutX="381.0" layoutY="419.0" onAction="#switchForgotPassword" styleClass="buttonForgotPassword" stylesheets="@../../Style/Login.css" text="Quên mật khẩu?" />
-      <JFXRippler fx:id="loginRippler" layoutX="204.0" layoutY="480.0" prefHeight="52.0" prefWidth="206.0" styleClass="loginRippler" stylesheets="@../../Style/Login.css" />
+      <JFXCheckBox fx:id="remember" checkedColor="#aab396" layoutX="107.0" layoutY="424.0" styleClass="remember" stylesheets="@../../Style/LoginScene/Login.css" text="Remember me" />
+      <JFXButton fx:id="buttonForgotPassword" layoutX="381.0" layoutY="419.0" onAction="#switchForgotPassword" styleClass="buttonForgotPassword" stylesheets="@../../Style/LoginScene/Login.css" text="Quên mật khẩu?" />
+      <JFXRippler fx:id="loginRippler" layoutX="204.0" layoutY="480.0" prefHeight="52.0" prefWidth="206.0" styleClass="loginRippler" stylesheets="@../../Style/LoginScene/Login.css" />
       <Text layoutX="184.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="normalText" text="Chưa có tài khoản?" wrappingWidth="152.0" />
 
-      <JFXButton fx:id="buttonSignUp" alignment="BOTTOM_CENTER" layoutX="336.0" layoutY="560.0" onAction="#signUp1" prefHeight="31.0" prefWidth="90.0" styleClass="switchRegister" stylesheets="@../../Style/Login.css" text="Đăng ký">
+      <JFXButton fx:id="buttonSignUp" alignment="BOTTOM_CENTER" layoutX="336.0" layoutY="560.0" onAction="#signUp1" prefHeight="31.0" prefWidth="90.0" styleClass="switchRegister" stylesheets="@../../Style/LoginScene/Login.css" text="Đăng ký">
          <font>
             <Font size="20.0" />
          </font></JFXButton>

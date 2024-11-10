@@ -8,20 +8,20 @@ public class User {
     private String password;
     private String email;
     private String dateOfBirth;
-    private String pathToProfilePicture;
+    private String profilePicture;
     private String role;
 
     private List <Book> booksBorrowed;  // Danh sách các sách mà người dùng đã mượn trong All
     private List <Book> booksReturned;  // Danh sách các sách mà người dùng đã trả trong finished
     private List <Review> reviews;      // Danh sách các đánh giá của người dùng
  
-    public User(int id, String username, String password, String email, String dateOfBirth, String pathToProfilePicture, String role) {
+    public User(int id, String username, String password, String email, String dateOfBirth, String profilePicture, String role) {
         this.username = username;
         this.id = id;
         this.password = password;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
-        this.pathToProfilePicture = pathToProfilePicture;
+        this.profilePicture = profilePicture;
         this.role = role;
         this.booksBorrowed = new ArrayList<>();
         this.booksReturned  = new ArrayList<>();
@@ -34,7 +34,7 @@ public class User {
         this.id = id;
         this.password = password;
         this.email = email;
-        this.pathToProfilePicture = pathToProfilePicture;
+        this.profilePicture = pathToProfilePicture;
         this.booksBorrowed = new ArrayList<>();
         this.booksReturned  = new ArrayList<>();
         this.reviews = new ArrayList<>();
@@ -58,8 +58,8 @@ public class User {
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
 
-    public String getPathToProfilePicture() { return pathToProfilePicture; }
-    public void setPathToProfilePicture(String pathToProfilePicture) { this.pathToProfilePicture = pathToProfilePicture; }
+    public String getPathToProfilePicture() { return profilePicture; }
+    public void setPathToProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }
 
     public List<Book> getBooksBorrowed() { return booksBorrowed; }
     public void addBookBorrowed(Book book) { booksBorrowed.add(book); }

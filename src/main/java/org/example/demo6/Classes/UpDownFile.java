@@ -35,22 +35,21 @@ public class UpDownFile {
         }
     }
     public static File downloadFileImage(String imageUrl, String destinationPath) {
-        // Display URL and destination path for debugging purposes
         System.out.println("Downloading from URL: " + imageUrl);
         System.out.println("Saving to path: " + destinationPath);
 
-        Path destination = Paths.get(destinationPath);
+        Path destination = Paths.get(destinationPath).toAbsolutePath();
 
         try (InputStream in = new URL(imageUrl).openStream()) {
             // Create parent directories if they don’t exist
             Files.createDirectories(destination.getParent());
 
             // Download and save the image file
-            Files.copy(in, destination);
-            System.out.println("Image downloaded successfully to: " + destination.toAbsolutePath());
+            Files.copy(in, destination, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Image downloaded successfully to: " + destination.toString());
 
             // Verify that the file now exists
-            File downloadedFile = destination.toAbsolutePath().toFile();
+            File downloadedFile = destination.toFile();
             if (downloadedFile.exists()) {
                 System.out.println("File exists and is accessible: " + downloadedFile.getAbsolutePath());
                 return downloadedFile;
@@ -63,5 +62,6 @@ public class UpDownFile {
             return null;
         }
     }
+
 
 }

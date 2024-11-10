@@ -23,6 +23,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
+import static org.example.demo6.Controller.GeneralController.changescene;
+
 public class SignUpController implements Initializable {
 
     @FXML
@@ -104,7 +106,7 @@ public class SignUpController implements Initializable {
         buttonLog_in.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUltis.changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+                changescene(event, "/View/LoginScene/Login.fxml", "Login!");
             }
         });
     }

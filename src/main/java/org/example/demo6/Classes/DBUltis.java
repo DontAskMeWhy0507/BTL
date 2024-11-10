@@ -14,26 +14,11 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
+
+import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class DBUltis {
-    public static void changescene(ActionEvent event, String fxmlFile, String title) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(HelloApplication.class.getResource(fxmlFile));
-        } catch (IOException e) {
-            e.printStackTrace(); // Print the stack trace for debugging
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Loading Error");
-            alert.setContentText("Could not load the scene: " + fxmlFile);
-            alert.show();
-            return; // Exit the method if loading fails
-        }
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setScene(new Scene(root));
-        stage.centerOnScreen();
-        stage.show();
-    }
 
 
     public static void signUp(ActionEvent event, String id, String username, String password, String email) {
@@ -133,10 +118,11 @@ public class DBUltis {
         }
     }
 
-    public static void logIn(ActionEvent event, String username, String password) {
+    public static User logIn(ActionEvent event, String username, String password) {
         Connection connection = null;
         PreparedStatement psCheckUserExist = null;
         ResultSet rs = null;
+        User loggedInUser = null;  // Initialize the User object to return
 
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:database//LibraryMain");
@@ -158,17 +144,28 @@ public class DBUltis {
                     if (retrievedPassword.equals(password)) {
                         // Check the role of the user
                         if (role.equals("Admin")) {
-
-                            // Change to the admin scene
-                            changescene(event, "/View/AdminScene/MainScene.fxml", "Home to Library");
+                            // Get this user from database and return Admin object
+                            Admin admin = new Admin(rs.getString("USERNAME"),
+                                    rs.getInt("ID"),
+                                    rs.getString("PASSWORD"),
+                                    rs.getString("email"),
+                                    rs.getString("AVATAR"));
+                            loggedInUser = admin;  // Assign the Admin object to loggedInUser
                         } else if (role.equals("User")) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Đăng Nhập");
+                            alert.setTitle("Login");
                             alert.setContentText("Logging in as User...");
                             alert.show();
-                            // Change to the user scene (you would need to specify the correct scene)
+                            // Change to the user scene
                             changescene(event, "/View/UserScene/MainSceneUser.fxml", "User Home");
                             alert.close();
+
+                            // You could initialize the User object similarly to Admin if needed
+                            loggedInUser = new User(rs.getString("USERNAME"),
+                                    rs.getInt("ID"),
+                                    rs.getString("PASSWORD"),
+                                    rs.getString("email"),
+                                    rs.getString("AVATAR"));
                         }
                     } else {
                         System.out.println("Password is incorrect");
@@ -203,7 +200,10 @@ public class DBUltis {
                 }
             }
         }
+
+        return loggedInUser;  // Return the logged in user (Admin or User)
     }
+
 
     public static Date stringToDate(String dateStr) throws ParseException {
         // Check the length of the date string to determine the format
@@ -290,6 +290,73 @@ public class DBUltis {
                 String coverImagePath = rs.getString("cover_image_path");
                 String audioPath = rs.getString("audio_path");
 
+
+                // Create and add the Book object to the list
+                Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description,bookPath,coverImagePath, audioPath,quantity);
+                books.add(book);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving books from database: " + e.getMessage());
+        }
+
+        return books;
+    }
+
+    public static void updateUserInDatabase(User user) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+
+        // Câu lệnh SQL không bao gồm book_id
+        String sql = "UPDATE USERS SET username = ?, password = ?, email = ?, avatar = ? WHERE ID = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, user.getUsername());              // Mã ISBN
+            pstmt.setString(2, user.getPassword());             // Tên sách
+            pstmt.setString(3, user.getEmail());            // Tác giả
+            pstmt.setString(4, user.getPathToProfilePicture());         // Nhà xuất bản
+            pstmt.setInt(5, user.getId());                // Ngày xuất bản
+
+            pstmt.executeUpdate();
+            System.out.println("User updated in database.");
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+            e.printStackTrace(); // Log the stack trace for better debugging
+        }
+    }
+
+    public static List<Book> searchBook (String search) {
+        List<Book> books = new ArrayList<>();
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String sql = "SELECT * FROM Books WHERE title LIKE ? OR author LIKE ? OR category LIKE ? OR language LIKE ? OR publisher LIKE ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%" + search + "%");
+            pstmt.setString(2, "%" + search + "%");
+            pstmt.setString(3, "%" + search + "%");
+            pstmt.setString(4, "%" + search + "%");
+            pstmt.setString(5, "%" + search + "%");
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // Extract data from each row in the ResultSet
+                String isbn = rs.getString("isbn");
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                String publishedDate = rs.getString("published_date"); // stored as String
+                String language = rs.getString("language");
+                String category = rs.getString("category");
+                String description = rs.getString("description");
+                int quantity = rs.getInt("quantity");
+
+                String bookPath = rs.getString("book_path");
+                String coverImagePath = rs.getString("cover_image_path");
+                String audioPath = rs.getString("audio_path");
 
                 // Create and add the Book object to the list
                 Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description,bookPath,coverImagePath, audioPath,quantity);

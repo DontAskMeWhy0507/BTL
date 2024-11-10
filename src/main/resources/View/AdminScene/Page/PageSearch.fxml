@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.SearchPageController">
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.SearchPageController" spacing="20.0" prefWidth="1000.0">
+    <!-- Title for Database results section -->
+    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Database Search Results" />
 
-        <GridPane fx:id="bookContainer" prefHeight="373.0" prefWidth="537.0">
-            <!-- Book units will be added here dynamically -->
-        </GridPane>
+    <!-- Database results section -->
+    <GridPane fx:id="databaseResults" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+        <!-- Database search results will be added here dynamically -->
+    </GridPane>
 
-</AnchorPane>
+    <!-- Title for API results section -->
+    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="API Search Results" />
+
+    <!-- API results section -->
+    <GridPane fx:id="apiResults" prefWidth="537.0" VBox.vgrow="ALWAYS">
+        <!-- API search results will be added here dynamically -->
+    </GridPane>
+</VBox>

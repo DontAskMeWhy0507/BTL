@@ -40,21 +40,7 @@ public class MainSceneUser {
     private static ScrollPane staticMainScrollPane1;
     @FXML
     void searchButton() throws IOException {
-        List<Book> searchResults = apiGoogleBooks.searchBooks1(SearchField.getText());
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/PageSearch.fxml"));
-            Parent homeView = loader.load();
 
-            // Get the controller instance
-            SearchPageController searchPageController = loader.getController();
-            searchPageController.setSearchResults(searchResults);
-
-            setMainContent(homeView);
-            staticMainScrollPane1.setFitToWidth(true);
-            staticMainScrollPane1.setFitToHeight(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void setMainContent(Parent content) {

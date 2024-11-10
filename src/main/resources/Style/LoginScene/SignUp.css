@@ -1,0 +1,64 @@
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+.createAccount {
+    -fx-font-family: "Dancing Script Semibold";
+    -fx-font-weight: bold;
+    -fx-font-size: 60px;
+    -fx-text-alignment: center;
+}
+
+TextField {
+    -fx-font-family: "Merriweather";
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color: #F7EED3;
+    -fx-padding: 20px;
+    -fx-border-color: black;
+    -fx-text-fill: #674636;
+    -fx-font-size: 15px;
+}
+
+.signUpRippler {
+    -fx-border-radius: 60px;
+    -fx-padding: 10;
+}
+
+.buttonMakeAcc {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
+    -fx-background-color: #F7EED3;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-border-color: black;
+}
+
+.signUpRippler > .buttonMakeAcc:hover {
+    -jfx-rippler-radius: 60px;
+    -jfx-rippler-fill: white;
+    -jfx-mask-type: circle;
+}
+
+.buttonMakeAcc:hover, .buttonMakeAcc:focused {
+    -fx-background-color: white;
+}
+
+.alrdyAcc {
+    -fx-underline: false;
+    -fx-text-fill: #3B3424;
+    -fx-font-family: "Merriweather";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-text-alignment: center;
+}
+
+.alrdyAcc:hover, .alrdyAcc:focused {
+    -fx-text-fill: #536A5C;
+    -fx-underline: true;
+    -fx-font-size: 15px;
+}

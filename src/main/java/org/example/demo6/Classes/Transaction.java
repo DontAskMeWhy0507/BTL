@@ -1,32 +1,52 @@
 package org.example.demo6.Classes;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Transaction {
+    enum status {
+        Borrowed,
+        Returned,
+        Overdue
+    }
     private int id;
     private User user;
     private Book book;
-    private LocalDate  dateBorrowed;
-    private LocalDate  dueDate;
-    private LocalDate  dateReturned;
-    private boolean isReturned;
+    private LocalDateTime dateBorrowed;
+    private LocalDateTime  dueDate;
+    private LocalDateTime  dateReturned;
+    private status status;
 
-    public Transaction(User user, Book book, LocalDate  dateBorrowed, LocalDate  dueDate) {
+    public Transaction(User user, Book book, LocalDateTime  dateBorrowed, LocalDateTime  dueDate) {
         this.user = user;
         this.book = book;
         this.dateBorrowed = dateBorrowed;
         this.dueDate = dueDate;
         this.dateReturned = null;
-        this.isReturned = false;
+        this.status = status.Borrowed;
     }
 
-    public void returnBook(LocalDate dateReturned) {
+    public Transaction(int id, User user, Book book, LocalDateTime  dateBorrowed, LocalDateTime  dueDate, LocalDateTime  dateReturned, status status) {
+        this.id = id;
+        this.user = user;
+        this.book = book;
+        this.dateBorrowed = dateBorrowed;
+        this.dueDate = dueDate;
         this.dateReturned = dateReturned;
-        this.isReturned = true;
+        this.status = status;
+    }
+
+    public void returnBook(LocalDateTime dateReturned) {
+        this.dateReturned = dateReturned;
+        if (isOverdue()) {
+            this.status = status.Overdue;
+        } else {
+            this.status = status.Returned;
+        }
     }
 
     public boolean isOverdue() {
-        return Objects.requireNonNullElseGet(dateReturned, LocalDate::now).isAfter(dueDate);
+        return LocalDateTime.now().isAfter(dueDate);
     }
 
     // getter and setter
@@ -54,35 +74,36 @@ public class Transaction {
         this.book = book;
     }
 
-    public LocalDate getDateBorrowed() {
+    public LocalDateTime getDateBorrowed() {
         return dateBorrowed;
     }
 
-    public void setDateBorrowed(LocalDate dateBorrowed) {
+    public void setDateBorrowed(LocalDateTime dateBorrowed) {
         this.dateBorrowed = dateBorrowed;
     }
 
-    public LocalDate getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDate dueDate) {
+    public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
 
-    public LocalDate getDateReturned() {
+    public LocalDateTime getDateReturned() {
         return dateReturned;
     }
 
-    public void setDateReturned(LocalDate dateReturned) {
+    public void setDateReturned(LocalDateTime dateReturned) {
         this.dateReturned = dateReturned;
     }
 
-    public boolean isReturned() {
-        return isReturned;
+    public Transaction.status getStatus() {
+        return status;
     }
 
-    public void setReturned(boolean returned) {
-        isReturned = returned;
+    public void setStatus(Transaction.status status) {
+        this.status = status;
     }
+
 }

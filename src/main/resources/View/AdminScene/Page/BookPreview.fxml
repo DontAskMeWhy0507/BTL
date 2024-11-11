@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.BookPreviewController">
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.BookPreviewController">
    <content>
       <VBox prefHeight="931.0" prefWidth="965.0">
          <children>
@@ -28,7 +28,7 @@
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Button fx:id="buttonBorrow" layoutX="397.0" layoutY="181.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="82.0" text="Mượn" />
+                  <Button fx:id="buttonBorrow" layoutX="397.0" layoutY="181.0" mnemonicParsing="false" onAction="#borrowBook" prefHeight="43.0" prefWidth="82.0" text="Mượn" />
 
                   <ImageView fx:id="QRcode" fitHeight="150.0" fitWidth="200.0" layoutX="803.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
                      <image>

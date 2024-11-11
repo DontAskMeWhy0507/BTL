@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.example.demo6.Controller.GeneralController.changescene;
 
-public class DBUltis {
-
+public class DBUltis  {
 
     public static void signUp(ActionEvent event, String id, String username, String password, String email) {
         Connection connection = null;
@@ -370,5 +370,79 @@ public class DBUltis {
         return books;
     }
 
+    public static void BorrowBook(Transaction transaction) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
+        // Câu lệnh SQL không bao gồm book_id
+        String sql = "INSERT INTO BookTransaction(user_id, book_id, date_borrowed, due_date, status) " +
+                "VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, transaction.getUser().getId());              // Mã người dùng
+            pstmt.setString(2, transaction.getBook().getIsbn());         // Mã sách
+            pstmt.setDate(3, Date.valueOf(transaction.getDateBorrowed().toLocalDate()));  // Ngày mượn
+            pstmt.setDate(4, Date.valueOf(transaction.getDueDate().toLocalDate()));       // Hạn trả
+            pstmt.setString(5, transaction.getStatus().name());
+
+            pstmt.executeUpdate();
+            System.out.println("Transaction saved to database.");
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+            e.printStackTrace(); // Log the stack trace for better debugging
+        }
+    }
+
+    public static Transaction getTransaction(User user, Book book) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String sql = "SELECT * FROM BookTransaction WHERE user_id = ? AND book_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, user.getId());
+            pstmt.setString(2, book.getIsbn());
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                // Extract data from the ResultSet
+                int id = rs.getInt("id");
+                LocalDateTime dateBorrowed = rs.getTimestamp("date_borrowed").toLocalDateTime();
+                LocalDateTime dueDate = rs.getTimestamp("due_date").toLocalDateTime();
+                LocalDateTime dateReturned = rs.getTimestamp("date_returned") != null ? rs.getTimestamp("date_returned").toLocalDateTime() : null;
+                Transaction.status status = Transaction.status.valueOf(rs.getString("status"));
+
+                // Create and return the Transaction object
+                return new Transaction(id, user, book, dateBorrowed, dueDate, dateReturned, status);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving transaction from database: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    public static void returnBook(Transaction transaction) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+
+        // Câu lệnh SQL không bao gồm book_id
+        String sql = "UPDATE BookTransaction SET date_returned = ?, status = ? WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setTimestamp(1, Timestamp.valueOf(transaction.getDateReturned()));  // Ngày trả
+            pstmt.setString(2, transaction.getStatus().name());  // Trạng thái
+            pstmt.setInt(3, transaction.getId());  // ID của giao dịch
+
+            pstmt.executeUpdate();
+            System.out.println("Transaction updated in database.");
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+            e.printStackTrace(); // Log the stack trace for better debugging
+        }
+    }
 }

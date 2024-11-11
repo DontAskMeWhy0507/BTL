@@ -7,6 +7,7 @@ import org.example.demo6.Controller.GeneralController;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Library {
     private static Library instance = null;
@@ -52,10 +53,6 @@ public class Library {
     }
 
 
-
-
-
-
     public static void upLoadBook (Book book, File selectedFile, File selectedCover, File selectedAudio) {
         // Thư mục đích để lưu file
         String UPLOAD_DIRECTORY_BOOKS = "Uploaded/Books";
@@ -86,17 +83,32 @@ public class Library {
         }
     }
 
-    public void borrowBook (User user, Book book) {
-        Transaction transaction = new Transaction(user, book, LocalDate.now(), LocalDate.now().plusDays(7));
+    public void borrowBook(Book book) {
+        LocalDateTime dateBorrowed = LocalDateTime.now();
+        LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
+
+        // Tạo một giao dịch mới
+        Transaction transaction = new Transaction(currentUser, book, dateBorrowed, dueDate);
+        try {
+            DBUltis.BorrowBook(transaction);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 
-    public void returnBook (Transaction transaction) {
-        transaction.returnBook(LocalDate.now());
+    public void returnBook(Book Book) {
+        // Tìm giao dịch mà người dùng đã mượn
+        Transaction transaction = DBUltis.getTransaction(currentUser, Book);
+        if (transaction != null) {
+            transaction.returnBook(LocalDateTime.now());
+            try {
+                DBUltis.returnBook(transaction);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
-
-
-
-
 
 
 

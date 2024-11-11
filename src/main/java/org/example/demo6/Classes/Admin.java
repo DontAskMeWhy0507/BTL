@@ -24,13 +24,6 @@ public class Admin extends User {
 
     }
 
-    @Override
-    public void settings () {
-        //  view history books borrowed, books returned, comments, ratings.
-        //  change preferences
-        //  add admin
-        //  remove admin
-    }
 
 
 

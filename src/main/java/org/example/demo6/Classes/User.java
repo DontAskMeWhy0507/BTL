@@ -40,6 +40,8 @@ public class User {
         this.reviews = new ArrayList<>();
     }
 
+
+
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
@@ -73,16 +75,9 @@ public class User {
     // books
     
 
-    public void account() {
-        // change password
-        // change email
-        // change username
-        // change profile picture
+    public void borrowBook(Book book) {
+        booksBorrowed.add(book);
     }
 
-    public void settings () {
-        //  view history books borrowed, books returned, comments, ratings.
-        //  change preferences
-    }
 
 }

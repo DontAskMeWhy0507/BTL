@@ -30,4 +30,5 @@ public class GeneralController {
         stage.centerOnScreen();
         stage.show();
     }
+
 }

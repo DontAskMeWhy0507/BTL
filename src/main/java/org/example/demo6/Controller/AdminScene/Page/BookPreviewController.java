@@ -5,12 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.UpDownFile;
 import org.example.demo6.Classes.Library;
@@ -52,10 +54,12 @@ public class BookPreviewController {
     private Button viewMoreButton;
 
     private static final int descriptionLength = 200;
-    private boolean isExpanded = false;
-
+    @FXML
+    public Text fullDescription;
+    private String descriptionTemp;
     public void setDescriptionLength (String description) {
         if (description.length() > descriptionLength) {
+            descriptionTemp = description;
             bookDescription.setText(description.substring(0, descriptionLength) + "...");
             viewMoreButton.setVisible(true);
         } else {
@@ -65,16 +69,20 @@ public class BookPreviewController {
     }
 
     @FXML
-    private void toggleDescription() {
-        if (isExpanded) {
-            bookDescription.setText(currentBook.getDescription().substring(0, descriptionLength) + "...");
-            viewMoreButton.setText("View More");
-            isExpanded = false;
-        } else {
-            bookDescription.setText(currentBook.getDescription());
-            viewMoreButton.setText("View Less");
-            isExpanded = true;
-        }
+    private void toggleDescription() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Description.fxml"));
+        Parent parent = loader.load();
+        BookPreviewController controller = loader.getController();
+        controller.fullDescription.setText(descriptionTemp);
+        Stage stage = new Stage();
+        stage.setTitle("Description");
+        stage.setScene(new Scene(parent));
+        stage.show();
+    }
+
+    public void borrowBook() {
+        Library library = Library.getInstance();
+        library.borrowBook(currentBook);
     }
 
     public void postComment() {

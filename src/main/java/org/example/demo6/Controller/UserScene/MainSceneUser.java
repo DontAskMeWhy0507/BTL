@@ -37,6 +37,9 @@ public class MainSceneUser {
     @FXML
     private VBox seeMoreProfile;
 
+    @FXML
+    private Label userName;
+
     private static ScrollPane staticMainScrollPane1;
     @FXML
     void searchButton() throws IOException {
@@ -137,4 +140,6 @@ public class MainSceneUser {
             }
         }
     }
+
+
 }

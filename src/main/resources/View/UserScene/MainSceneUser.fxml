@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -60,13 +61,18 @@
    <bottom>
       <HBox prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#moreButton" prefHeight="117.0" prefWidth="201.0" text="Name of  user">
+            <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#moreButton" prefHeight="117.0" prefWidth="201.0">
                <graphic>
-                  <ImageView fitHeight="57.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                     <image>
-                        <Image url="@../../Image/avatar.png" />
-                     </image>
-                  </ImageView>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="57.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                           <image>
+                              <Image url="@../../Image/avatar.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="userName" />
+                     </children>
+                  </HBox>
                </graphic>
             </Button>
             <VBox fx:id="seeMoreProfile" prefHeight="95.0" prefWidth="151.0">

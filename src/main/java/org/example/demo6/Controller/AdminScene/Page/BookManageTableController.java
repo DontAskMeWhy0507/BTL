@@ -2,12 +2,18 @@ package org.example.demo6.Controller.AdminScene.Page;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -80,4 +86,42 @@ public class BookManageTableController {
             e.printStackTrace();
         }
     }
+
+    public void addBook(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
+            Parent uploadView = loader.load();
+
+            PageUploadController pageUploadController = loader.getController();
+
+            Stage stage = new Stage();
+            stage.setTitle("Upload");
+            stage.setScene(new Scene(uploadView));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteBook(ActionEvent event) {
+        Book selectedBook = tableView.getSelectionModel().getSelectedItem();
+        if (selectedBook != null) {
+            String url = "jdbc:sqlite:database//LibraryMain";
+            String query = "DELETE FROM BOOKS WHERE ISBN = '" + selectedBook.getIsbn() + "'";
+
+            try (Connection conn = DriverManager.getConnection(url);
+                 Statement stmt = conn.createStatement()) {
+                stmt.execute(query);
+                data.remove(selectedBook);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void loadData(ActionEvent event) {
+        data.clear();
+        loadDataFromDatabase();
+    }
+
 }

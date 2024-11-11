@@ -134,9 +134,10 @@ public class MainSceneClass{
             Parent homeView = loader.load();
 
 
-            setMainContent(homeView);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
+            mainScrollPane.setContent(homeView);
+            staticMainScrollPane = mainScrollPane;
+            mainScrollPane.setFitToWidth(true);
+            mainScrollPane.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
         }

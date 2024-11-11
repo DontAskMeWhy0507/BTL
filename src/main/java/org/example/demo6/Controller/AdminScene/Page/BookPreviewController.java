@@ -47,20 +47,34 @@ public class BookPreviewController {
     @FXML
     private ImageView bookCoverImage;
 
-    @FXML
-    private ScrollPane descriptionScrollPane;
-    @FXML
-    private Text fullBookDescription;
+
     @FXML
     private Button viewMoreButton;
 
+    private static final int descriptionLength = 200;
+    private boolean isExpanded = false;
+
+    public void setDescriptionLength (String description) {
+        if (description.length() > descriptionLength) {
+            bookDescription.setText(description.substring(0, descriptionLength) + "...");
+            viewMoreButton.setVisible(true);
+        } else {
+            bookDescription.setText(description);
+            viewMoreButton.setVisible(false);
+        }
+    }
 
     @FXML
     private void toggleDescription() {
-        boolean isExpanded = descriptionScrollPane.isVisible();
-        descriptionScrollPane.setVisible(!isExpanded);
-        bookDescription.setVisible(isExpanded);
-        viewMoreButton.setText(isExpanded ? "View More" : "View Less");
+        if (isExpanded) {
+            bookDescription.setText(currentBook.getDescription().substring(0, descriptionLength) + "...");
+            viewMoreButton.setText("View More");
+            isExpanded = false;
+        } else {
+            bookDescription.setText(currentBook.getDescription());
+            viewMoreButton.setText("View Less");
+            isExpanded = true;
+        }
     }
 
     public void postComment() {
@@ -73,7 +87,7 @@ public class BookPreviewController {
     public void setBookData(Book book) {
         currentBook = book;
         bookTitleLabel.setText(book.getTitle());
-        bookDescription.setText(book.getDescription());
+        setDescriptionLength(book.getDescription());
         bookAuthor.setText(book.getAuthor());
         bookPublishedDate.setText(book.getPublishedDate());
         bookCategoryLabel.setText(book.getCategory());

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Library {
+    DBUltis DBUltis = new DBUltis();
     private static Library instance = null;
 
     private Library() {}
@@ -33,7 +34,7 @@ public class Library {
     public static void logIn(ActionEvent event, String username, String password) {
         // Lấy đối tượng Library duy nhất
         Library library = Library.getInstance();
-
+        DBUltis DBUltis = new DBUltis();
         // Đăng nhập và thiết lập người dùng hiện tại
         User loggedInUser = DBUltis.logIn(event, username, password);
         if (loggedInUser != null) {
@@ -74,7 +75,7 @@ public class Library {
             UpDownFile.uploadFile(selectedAudio, UPLOAD_DIRECTORY_AUDIO);
             book.setAudioPath("Uploaded/AudioBooks/" + selectedAudio.getName());
         }
-
+        DBUltis DBUltis = new DBUltis();
         //
         try {
             DBUltis.saveBookToDatabase(book);

@@ -13,6 +13,7 @@ import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import java.io.File;
 
 public class Settings {
+    DBUltis DBUltis = new DBUltis();
     Library lib = Library.getInstance();
     private MainSceneClass mainSceneController;
 

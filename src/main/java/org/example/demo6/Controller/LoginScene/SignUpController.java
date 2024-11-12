@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class SignUpController implements Initializable {
+    DBUltis dbUltis = new DBUltis();
 
     @FXML
     private AnchorPane mainPane;
@@ -92,7 +93,7 @@ public class SignUpController implements Initializable {
                         password_check.setText("Email khong hop le");
                     }
                     else {
-                        DBUltis.signUp(event, tf_id.getText(), tf_username.getText(), tf_password.getText(), tf_email.getText());
+                        dbUltis.signUp(event, tf_id.getText(), tf_username.getText(), tf_password.getText(), tf_email.getText());
                     }
                 } else {
                     System.out.println("Please fill all the fields");

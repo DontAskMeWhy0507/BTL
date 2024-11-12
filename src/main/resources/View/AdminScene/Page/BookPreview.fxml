@@ -37,8 +37,8 @@
                   </ImageView>
                   <Text fx:id="bookPublishedDate" layoutX="494.0" layoutY="258.0" text="December 18, 2024" />
                   <Text layoutX="397.0" layoutY="258.0" text="Released" />
-                  <Button layoutX="501.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="103.0" text="Add detail" />
-                  <Button layoutX="622.0" layoutY="181.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="128.0" text="Add to database" />
+                  <Button layoutX="644.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="103.0" text="Add detail" />
+                  <Button layoutX="761.0" layoutY="181.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="128.0" text="Add to database" />
 
                   <!-- Book Metadata -->
                   <Text layoutX="397.0" layoutY="306.0" text="Language" />
@@ -57,6 +57,7 @@
                      </font>
                   </Text>
                   <Button fx:id="viewMoreButton" layoutX="841.0" layoutY="499.0" onAction="#toggleDescription" text="View More" />
+                  <Button layoutX="525.0" layoutY="179.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="47.0" prefWidth="83.0" text="Return" />
                </children>
             </AnchorPane>
 

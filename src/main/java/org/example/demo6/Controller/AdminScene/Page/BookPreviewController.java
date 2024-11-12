@@ -85,6 +85,11 @@ public class BookPreviewController {
         library.borrowBook(currentBook);
     }
 
+    public void returnBook() {
+        Library library = Library.getInstance();
+        library.returnBook(currentBook);
+    }
+
     public void postComment() {
         // Add the comment to the current book
         // currentBook.addComment(commentTextArea.getText());

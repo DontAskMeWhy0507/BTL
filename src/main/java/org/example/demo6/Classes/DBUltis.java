@@ -19,9 +19,9 @@ import java.util.List;
 
 import static org.example.demo6.Controller.GeneralController.changescene;
 
-public class DBUltis  {
+public class DBUltis implements Database{
 
-    public static void signUp(ActionEvent event, String id, String username, String password, String email) {
+    public void signUp(ActionEvent event, String id, String username, String password, String email) {
         Connection connection = null;
         PreparedStatement psInsert = null;
         PreparedStatement psCheckUserExist = null;
@@ -118,7 +118,7 @@ public class DBUltis  {
         }
     }
 
-    public static User logIn(ActionEvent event, String username, String password) {
+    public User logIn(ActionEvent event, String username, String password) {
         Connection connection = null;
         PreparedStatement psCheckUserExist = null;
         ResultSet rs = null;
@@ -205,7 +205,7 @@ public class DBUltis  {
     }
 
 
-    public static Date stringToDate(String dateStr) throws ParseException {
+    public Date stringToDate(String dateStr) throws ParseException {
         // Check the length of the date string to determine the format
         SimpleDateFormat formatter;
 
@@ -226,7 +226,7 @@ public class DBUltis  {
         }
     }
 
-    public static void saveBookToDatabase(Book book) {
+    public void saveBookToDatabase(Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id
@@ -264,7 +264,7 @@ public class DBUltis  {
     }
 
         // Method to fetch all books from the database
-    public static ArrayList<Book> getBooksFromDatabase() {
+    public ArrayList<Book> getBooksFromDatabase() {
         String url = "jdbc:sqlite:database/LibraryMain"; // Adjust the path to your SQLite file
         String sql = "SELECT * FROM Books"; // SQL query to fetch all books
 
@@ -303,7 +303,7 @@ public class DBUltis  {
         return books;
     }
 
-    public static void updateUserInDatabase(User user) {
+    public void updateUserInDatabase(User user) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id
@@ -326,7 +326,7 @@ public class DBUltis  {
         }
     }
 
-    public static List<Book> searchBook (String search) {
+    public List<Book> searchBook (String search) {
         List<Book> books = new ArrayList<>();
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
         String sql = "SELECT * FROM Books WHERE title LIKE ? OR author LIKE ? OR category LIKE ? OR language LIKE ? OR publisher LIKE ?";
@@ -370,7 +370,7 @@ public class DBUltis  {
         return books;
     }
 
-    public static void BorrowBook(Transaction transaction) {
+    public void BorrowBook(Transaction transaction) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id
@@ -394,7 +394,7 @@ public class DBUltis  {
         }
     }
 
-    public static Transaction getTransaction(User user, Book book) {
+    public Transaction getTransaction(User user, Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
         String sql = "SELECT * FROM BookTransaction WHERE user_id = ? AND book_id = ?";
 
@@ -425,7 +425,7 @@ public class DBUltis  {
         return null;
     }
 
-    public static void returnBook(Transaction transaction) {
+    public void returnBook(Transaction transaction) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id

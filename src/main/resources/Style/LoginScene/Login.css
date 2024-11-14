@@ -25,7 +25,7 @@ AnchorPane {
     -fx-text-alignment: center;
 }
 
-.tf_username, .tf_password {
+.tf_username, .tf_password, .showPassword {
     -fx-font-family: "Merriweather";
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
@@ -36,13 +36,13 @@ AnchorPane {
     -fx-font-size: 20px;
 }
 
-tf_username:hover, tf_username:focused {
-    -fx-background-color: white;
-}
+/*tf_username:hover, tf_username:focused {*/
+/*    -fx-background-color: white;*/
+/*}*/
 
-.tf_password:hover, .tf_password:focused {
-    -fx-background-color: white;
-}
+/*.tf_password:hover, .tf_password:focused {*/
+/*    -fx-background-color: white;*/
+/*}*/
 
 .remember {
     -fx-font-family: "Merriweather";
@@ -55,7 +55,6 @@ tf_username:hover, tf_username:focused {
     -fx-font-size: 15px;
     -fx-text-fill: #674636;
 }
-
 
 .buttonForgotPassword:hover, .buttonForgotPassword:focused {
     -fx-text-fill: #536A5C;

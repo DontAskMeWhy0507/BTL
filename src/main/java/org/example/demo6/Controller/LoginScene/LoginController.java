@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,14 +24,18 @@ import javafx.util.Duration;
 import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Music;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
+import javafx.application.Platform;
 
 import java.net.URL;
 import java.security.Key;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class LoginController implements Initializable {
-
     @FXML
     private AnchorPane mainPane;
 
@@ -47,6 +52,14 @@ public class LoginController implements Initializable {
     private PasswordField tf_password;
 
     @FXML
+    private TextField showPassword;
+
+    private boolean isPasswordVisible = false;
+
+    @FXML
+    private ImageView eye;
+
+    @FXML
     private JFXCheckBox remember;
 
     @FXML
@@ -58,7 +71,30 @@ public class LoginController implements Initializable {
     @FXML
     private JFXRippler loginRippler;
 
+    @FXML
+    private void initialize() {
+        showPassword.setVisible(false);
+        eye.setOnMouseClicked(this::setShowPassword);
+    }
 
+    @FXML
+    private void setShowPassword(MouseEvent event) {
+        isPasswordVisible = !isPasswordVisible;
+
+        if (isPasswordVisible) {
+            eye.setImage(new Image(Objects.requireNonNull(getClass().getResource("/Image/Icon/hidePassword.png")).toExternalForm()));
+            showPassword.setText(tf_password.getText());
+            showPassword.setDisable(false);
+            showPassword.setVisible(true);
+            tf_password.setVisible(false);
+        } else {
+            eye.setImage(new Image(Objects.requireNonNull(getClass().getResource("/Image/Icon/viewPassword.png")).toExternalForm()));
+            showPassword.setText(tf_password.getText());
+            showPassword.setDisable(true);
+            tf_password.setVisible(true);
+            showPassword.setVisible(false);
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -90,7 +126,7 @@ public class LoginController implements Initializable {
 
     public void signUp1(ActionEvent event) {
         try {
-            DBUltis.changescene(event, "/View/LoginScene/SignUp.fxml", "Sign Up!");
+            changescene(event, "/View/LoginScene/SignUp.fxml", "Sign Up!");
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();
@@ -102,7 +138,7 @@ public class LoginController implements Initializable {
 
     public void switchForgotPassword(ActionEvent event) {
         try {
-            DBUltis.changescene(event, "/View/LoginScene/ForgotPassword.fxml", "ForgotPassword!");
+            changescene(event, "/View/LoginScene/ForgotPassword.fxml", "ForgotPassword!");
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();
@@ -117,5 +153,4 @@ public class LoginController implements Initializable {
             loginToHome(new ActionEvent(event.getSource(), event.getTarget()));
         }
     }
-
 }

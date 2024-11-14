@@ -24,7 +24,7 @@ import java.util.Optional;
 import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class MainSceneClass{
-
+    DBUltis DBUltis = new DBUltis();
     // Singleton
     private static MainSceneClass instance;
 

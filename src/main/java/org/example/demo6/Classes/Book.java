@@ -46,6 +46,15 @@ public class Book {
         this.quantity = quantity;
     }
 
+    public void borrowBook() {
+        if (quantity > 0) {
+            quantity--;
+        }
+    }
+
+    public void returnBook() {
+        quantity++;
+    }
     // Getters và Setters
 
 

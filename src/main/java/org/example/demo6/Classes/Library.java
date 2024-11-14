@@ -2,6 +2,7 @@ package org.example.demo6.Classes;
 
 import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import org.example.demo6.Controller.GeneralController;
 
@@ -85,16 +86,22 @@ public class Library {
     }
 
     public void borrowBook(Book book) {
-        LocalDateTime dateBorrowed = LocalDateTime.now();
-        LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
+        if (book.getQuantity() <= 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not enough books in stock for you to borrow");
+            alert.show();
+        } else {
+            LocalDateTime dateBorrowed = LocalDateTime.now();
+            LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
 
-        // Tạo một giao dịch mới
-        Transaction transaction = new Transaction(currentUser, book, dateBorrowed, dueDate);
-        try {
-            DBUltis.BorrowBook(transaction);
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Tạo một giao dịch mới
+            Transaction transaction = new Transaction(currentUser, book, dateBorrowed, dueDate);
+            try {
+                DBUltis.BorrowBook(transaction);
+            } catch (Exception e) {
+                e.printStackTrace();
 
+            }
         }
     }
 

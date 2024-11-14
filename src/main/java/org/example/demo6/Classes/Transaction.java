@@ -24,6 +24,7 @@ public class Transaction {
         this.dueDate = dueDate;
         this.dateReturned = null;
         this.status = status.Borrowed;
+        book.borrowBook();
     }
 
     public Transaction(int id, User user, Book book, LocalDateTime  dateBorrowed, LocalDateTime  dueDate, LocalDateTime  dateReturned, status status) {
@@ -43,6 +44,7 @@ public class Transaction {
         } else {
             this.status = status.Returned;
         }
+        book.returnBook();
     }
 
     public boolean isOverdue() {

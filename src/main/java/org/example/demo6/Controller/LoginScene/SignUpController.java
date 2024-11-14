@@ -6,12 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -20,7 +20,6 @@ import javafx.scene.paint.Paint;
 import org.example.demo6.Classes.DBUltis;
 
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -45,24 +44,10 @@ public class SignUpController implements Initializable {
     private TextField tf_username;
 
     @FXML
-    private PasswordField tf_password;
+    private TextField tf_password;
 
     @FXML
-    private PasswordField tf_repassword;
-
-    @FXML
-    private ImageView eye1;
-
-    @FXML
-    private ImageView eye2;
-
-    @FXML
-    private TextField showPass;
-
-    @FXML
-    private TextField showRePass;
-
-    private boolean passVis1 = false;
+    private TextField tf_repassword;
 
     @FXML
     private TextField tf_email;
@@ -72,45 +57,6 @@ public class SignUpController implements Initializable {
 
     @FXML
     private JFXRippler createAcc;
-
-    @FXML
-    private void initialize() {
-        showPass.setVisible(false);
-        showRePass.setVisible(false);
-    }
-
-    @FXML
-    private void setShowPass(MouseEvent event, PasswordField passwordField, TextField textField, ImageView eyeIcon) {
-        boolean isPasswordVisible = passVis1;
-
-        isPasswordVisible = !isPasswordVisible;
-
-        passVis1 = isPasswordVisible;
-
-        if (isPasswordVisible) {
-            eyeIcon.setImage(new Image(Objects.requireNonNull(getClass().getResource("/Image/Icon/hidePassword.png")).toExternalForm()));
-            textField.setText(passwordField.getText());
-            textField.setDisable(false);
-            textField.setVisible(true);
-            passwordField.setVisible(false);
-        } else {
-            eyeIcon.setImage(new Image(Objects.requireNonNull(getClass().getResource("/Image/Icon/viewPassword.png")).toExternalForm()));
-            passwordField.setText(tf_password.getText());
-            textField.setDisable(true);
-            passwordField.setVisible(true);
-            textField.setVisible(false);
-        }
-    }
-
-    @FXML
-    private void clickEye1(MouseEvent event) {
-        setShowPass(event, tf_password, showPass, eye1);
-    }
-
-    @FXML
-    private void clickEye2(MouseEvent event) {
-        setShowPass(event, tf_repassword, showRePass, eye2);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

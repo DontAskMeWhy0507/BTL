@@ -10,7 +10,7 @@ AnchorPane {
     -fx-text-alignment: center;
 }
 
-TextField, PasswordField {
+TextField {
     -fx-font-family: "Merriweather";
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
@@ -20,14 +20,6 @@ TextField, PasswordField {
     -fx-text-fill: #674636;
     -fx-font-size: 15px;
 }
-
-/*TextField:focused, PasswordField:focused {*/
-/*    -fx-background-color: white;*/
-/*}*/
-
-/*TextField:hover, PasswordField:hover {*/
-/*    -fx-background-color: white;*/
-/*}*/
 
 .signUpRippler {
     -fx-border-radius: 60px;

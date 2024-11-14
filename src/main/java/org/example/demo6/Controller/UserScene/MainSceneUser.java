@@ -1,5 +1,6 @@
 package org.example.demo6.Controller.UserScene;
 
+import com.google.errorprone.annotations.FormatMethod;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,11 +8,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.demo6.Classes.Book;
-import org.example.demo6.Classes.DBUltis;
-import org.example.demo6.Classes.apiGoogleBooks;
+import org.example.demo6.Classes.*;
 import org.example.demo6.Controller.AdminScene.Page.SearchPageController;
 
 import java.io.IOException;
@@ -37,8 +38,9 @@ public class MainSceneUser {
     @FXML
     private VBox seeMoreProfile;
 
+
     @FXML
-    private Label userName;
+    private ImageView avatar;
 
     private static ScrollPane staticMainScrollPane1;
     @FXML
@@ -84,6 +86,16 @@ public class MainSceneUser {
 
     }
 
+    public void changeAvatar(String avatarPaths) {
+        Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
+        avatar.setImage(newAvatarImage);
+    }
+
+    public void setUser() {
+        changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
+        avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
+    }
+
     public void showAll() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/All.fxml"));
@@ -101,6 +113,7 @@ public class MainSceneUser {
 
     @FXML
     public void initialize() {
+        setUser();
         staticMainScrollPane1 = mainScrollPane;
         mainScrollPane.setFitToWidth(true);
         mainScrollPane.setFitToHeight(true);

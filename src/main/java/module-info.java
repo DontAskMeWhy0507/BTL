@@ -32,5 +32,6 @@ module org.example.demo6 {
     requires java.net.http;
     requires javafx.media;
     requires jdk.compiler;
+    requires com.google.errorprone.annotations;
 
 }

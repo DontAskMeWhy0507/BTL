@@ -5,13 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
-
-import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class ForgotPasswordController {
     private Stage stage;
@@ -27,35 +24,27 @@ public class ForgotPasswordController {
     private Button submit;
 
     @FXML
-    private PasswordField newPassword;
+    private TextField newPassword;
 
     @FXML
-    private PasswordField confirmPassword;
+    private TextField confirmPassword;
+    @FXML
+    private Text nhapMoi;
+    @FXML
+    private Text nhapLai;
+
 
     @FXML
-    private AnchorPane forgetPass;
+    private AnchorPane ap1;
 
     @FXML
-    private AnchorPane resetPass;
-
-    @FXML
-    private Button returnToLogin;
-
+    private AnchorPane ap;
     public void switchChangePassword(ActionEvent event) {
-        resetPass.setVisible(true);
-        forgetPass.setVisible(false);
+
+        ap.setVisible(true);
+        ap1.setVisible(false);
+
     }
 
-    public void signIn(ActionEvent event) {
-        try {
-            changescene(event, "/View/LoginScene/Login.fxml", "Log in");
-        } catch (Exception e) {
-            e.printStackTrace();
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                cause.printStackTrace();
-            }
-        }
-    }
 }
 

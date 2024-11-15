@@ -1,17 +1,18 @@
 package org.example.demo6.Controller.LoginScene;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRippler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -20,6 +21,7 @@ import javafx.scene.paint.Paint;
 import org.example.demo6.Classes.DBUltis;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -44,10 +46,18 @@ public class SignUpController implements Initializable {
     private TextField tf_username;
 
     @FXML
-    private TextField tf_password;
+    private PasswordField tf_password;
 
     @FXML
-    private TextField tf_repassword;
+    private PasswordField tf_repassword;
+
+    @FXML
+    private TextField showPass;
+
+    @FXML
+    private TextField showRePass;
+
+    private boolean passVis1 = false;
 
     @FXML
     private TextField tf_email;
@@ -58,6 +68,30 @@ public class SignUpController implements Initializable {
     @FXML
     private JFXRippler createAcc;
 
+    @FXML
+    private JFXCheckBox showPassword;
+
+    @FXML
+    void getPass (ActionEvent event) {
+        if (showPassword.isSelected()) {
+            showPass.setText(tf_password.getText());
+            showRePass.setText(tf_repassword.getText());
+
+            tf_password.setVisible(false);
+            tf_repassword.setVisible(false);
+            showPass.setVisible(true);
+            showRePass.setVisible(true);
+        } else {
+            tf_password.setText(showPass.getText());
+            tf_repassword.setText(showRePass.getText());
+
+            tf_password.setVisible(true);
+            tf_repassword.setVisible(true);
+            showPass.setVisible(false);
+            showRePass.setVisible(false);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createAcc = new JFXRippler(buttonSign_Up);
@@ -66,7 +100,7 @@ public class SignUpController implements Initializable {
         createAcc.setRipplerRadius(60);
         mainPane.getChildren().add(createAcc);
 
-        AnchorPane.setTopAnchor(createAcc, 550.0);
+        AnchorPane.setTopAnchor(createAcc, 600.0);
         AnchorPane.setLeftAnchor(createAcc, 290.0);
         
         buttonSign_Up.setOnAction(new EventHandler<ActionEvent>() {

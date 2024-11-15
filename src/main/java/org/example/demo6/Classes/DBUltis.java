@@ -445,4 +445,24 @@ public class DBUltis implements Database{
             e.printStackTrace(); // Log the stack trace for better debugging
         }
     }
+
+    public boolean findQuery(String query) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String sql = query;
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving books from database: " + e.getMessage());
+        }
+
+        return false;
+    }
 }

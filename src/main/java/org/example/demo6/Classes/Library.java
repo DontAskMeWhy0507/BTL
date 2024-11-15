@@ -2,6 +2,7 @@ package org.example.demo6.Classes;
 
 import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import org.example.demo6.Controller.GeneralController;
 
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Library {
-    DBUltis DBUltis = new DBUltis();
+    DBUltis dbUltis = new DBUltis();
     private static Library instance = null;
 
     private Library() {}
@@ -85,26 +86,53 @@ public class Library {
     }
 
     public void borrowBook(Book book) {
-        LocalDateTime dateBorrowed = LocalDateTime.now();
-        LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
+        boolean isInDataBase = dbUltis.findQuery("SELECT * FROM books WHERE isbn = '" + book.getIsbn() + "'");
+        if (book.getQuantity() <= 0) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+              alert.setTitle("Error");
+                alert.setHeaderText("Book is out of stock");
+                alert.setContentText("Sorry, this book is out of stock. Please come back later.");
+                alert.showAndWait();
+        } else if (!isInDataBase) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Book not found");
+            alert.setContentText("Sorry, this book is not in the database. Please contact the librarian.");
+            alert.showAndWait();
+        }
+         else {
+            LocalDateTime dateBorrowed = LocalDateTime.now();
+            LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
 
-        // Tạo một giao dịch mới
-        Transaction transaction = new Transaction(currentUser, book, dateBorrowed, dueDate);
-        try {
-            DBUltis.BorrowBook(transaction);
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Tạo một giao dịch mới
+            Transaction transaction = new Transaction(currentUser, book, dateBorrowed, dueDate);
+            try {
+                dbUltis.BorrowBook(transaction);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Book borrowed successfully");
+                alert.setContentText("You have successfully borrowed the book " + book.getTitle() + ". Please return it within 14 days.");
+                alert.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
 
+            }
         }
     }
 
     public void returnBook(Book Book) {
         // Tìm giao dịch mà người dùng đã mượn
-        Transaction transaction = DBUltis.getTransaction(currentUser, Book);
+        Transaction transaction = dbUltis.getTransaction(currentUser, Book);
+
         if (transaction != null) {
             transaction.returnBook(LocalDateTime.now());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Book returned successfully");
+            alert.setContentText("You have successfully returned the book " + Book.getTitle() + ". Thank you for using our library.");
+            alert.showAndWait();
             try {
-                DBUltis.returnBook(transaction);
+                dbUltis.returnBook(transaction);
             } catch (Exception e) {
                 e.printStackTrace();
             }

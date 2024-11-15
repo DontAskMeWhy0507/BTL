@@ -25,7 +25,7 @@ AnchorPane {
     -fx-text-alignment: center;
 }
 
-.tf_username, .tf_password {
+.tf_username, .tf_password, .showPassword {
     -fx-font-family: "Merriweather";
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;

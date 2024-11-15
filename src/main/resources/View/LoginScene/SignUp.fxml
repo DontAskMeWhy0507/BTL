@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXRippler?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,19 +13,22 @@
 
 <AnchorPane fx:id="mainPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1182.0" stylesheets="@../../Style/LoginScene/SignUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginScene.SignUpController">
    <children>
-      <ImageView fitHeight="727.0" fitWidth="582.0" layoutX="604.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Image/temp_lib.jpg" />
-         </image>
-      </ImageView>
       <Text layoutX="142.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="createAccount" text="Tạo tài khoản" />
       <TextField fx:id="tf_email" layoutX="65.0" layoutY="178.0" prefHeight="59.0" prefWidth="462.0" promptText="Email của bạn" stylesheets="@../../Style/LoginScene/SignUp.css" />
       <TextField fx:id="tf_id" layoutX="65.0" layoutY="267.0" prefHeight="63.0" prefWidth="217.0" promptText="MSSV của bạn" stylesheets="@../../Style/LoginScene/SignUp.css" />
       <TextField fx:id="tf_username" layoutX="310.0" layoutY="267.0" prefHeight="63.0" prefWidth="217.0" promptText="Tên tài khoản của bạn" stylesheets="@../../Style/LoginScene/SignUp.css" />
-      <TextField fx:id="tf_password" layoutX="65.0" layoutY="363.0" prefHeight="59.0" prefWidth="462.0" promptText="Mật khẩu tài khoản" stylesheets="@../../Style/LoginScene/SignUp.css" />
-      <TextField fx:id="tf_repassword" layoutX="65.0" layoutY="460.0" prefHeight="59.0" prefWidth="462.0" promptText="Nhập lại mật khẩu" stylesheets="@../../Style/LoginScene/SignUp.css" />
-      <JFXButton fx:id="buttonLog_in" layoutX="80.0" layoutY="579.0" styleClass="alrdyAcc" stylesheets="@../../Style/LoginScene/SignUp.css" text="Bạn đã có tài khoản? " textAlignment="CENTER" />
+      <PasswordField fx:id="tf_password" layoutX="60.0" layoutY="363.0" prefHeight="63.0" prefWidth="462.0" promptText="Mật khẩu tài khoản" />
+      <PasswordField fx:id="tf_repassword" layoutX="60.0" layoutY="463.0" prefHeight="63.0" prefWidth="462.0" promptText="Nhập lại mật khẩu" />
+      <TextField fx:id="showPass" disable="true" layoutX="60.0" layoutY="363.0" prefHeight="59.0" prefWidth="462.0" stylesheets="@../../Style/LoginScene/SignUp.css" />
+      <TextField fx:id="showRePass" disable="true" layoutX="60.0" layoutY="463.0" prefHeight="59.0" prefWidth="462.0" stylesheets="@../../Style/LoginScene/SignUp.css" />
+      <JFXButton fx:id="buttonLog_in" layoutX="76.0" layoutY="550.0" styleClass="alrdyAcc" stylesheets="@../../Style/LoginScene/SignUp.css" text="Bạn đã có tài khoản? " textAlignment="CENTER" />
       <Button fx:id="buttonSign_Up" layoutX="326.0" layoutY="565.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="185.0" styleClass="buttonMakeAcc" stylesheets="@../../Style/LoginScene/SignUp.css" text="Tạo tài khoản" />
-      <JFXRippler fx:id="createAcc" layoutX="326.0" layoutY="565.0" prefHeight="58.0" prefWidth="185.0" styleClass="signUpRippler" stylesheets="@../../Style/LoginScene/SignUp.css" />
+      <JFXRippler fx:id="createAcc" layoutX="326.0" layoutY="602.0" prefHeight="58.0" prefWidth="185.0" styleClass="signUpRippler" stylesheets="@../../Style/LoginScene/SignUp.css" />
+      <ImageView fitHeight="727.0" fitWidth="582.0" layoutX="612.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Image/temp_lib.jpg" />
+         </image>
+      </ImageView>
+      <JFXCheckBox fx:id="showPassword" layoutX="373.0" layoutY="556.0" onAction="#getPass" styleClass="showPass" stylesheets="@../../Style/LoginScene/SignUp.css" text="Hiển thị mật khẩu" />
    </children>
 </AnchorPane>

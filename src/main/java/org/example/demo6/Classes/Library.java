@@ -99,8 +99,7 @@ public class Library {
             alert.setHeaderText("Book not found");
             alert.setContentText("Sorry, this book is not in the database. Please contact the librarian.");
             alert.showAndWait();
-        }
-         else {
+        } else {
             LocalDateTime dateBorrowed = LocalDateTime.now();
             LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
 
@@ -123,16 +122,29 @@ public class Library {
     public void returnBook(Book Book) {
         // Tìm giao dịch mà người dùng đã mượn
         Transaction transaction = dbUltis.getTransaction(currentUser, Book);
-
+        if (transaction == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Book not found");
+            alert.setContentText("Sorry, you have not borrowed this book. Please check again.");
+            alert.showAndWait();
+        } else if (transaction.getStatus() == Transaction.status.Returned) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Book already returned");
+            alert.setContentText("Sorry, you have already returned this book. Please check again.");
+            alert.showAndWait();
+        } else
         if (transaction != null) {
             transaction.returnBook(LocalDateTime.now());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText("Book returned successfully");
-            alert.setContentText("You have successfully returned the book " + Book.getTitle() + ". Thank you for using our library.");
-            alert.showAndWait();
+
             try {
                 dbUltis.returnBook(transaction);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Book returned successfully");
+                alert.setContentText("You have successfully returned the book " + Book.getTitle() + ". Thank you for using our library.");
+                alert.showAndWait();
             } catch (Exception e) {
                 e.printStackTrace();
             }

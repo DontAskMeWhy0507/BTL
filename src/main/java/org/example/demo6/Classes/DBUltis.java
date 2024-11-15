@@ -374,20 +374,27 @@ public class DBUltis implements Database{
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id
-        String sql = "INSERT INTO BookTransaction(user_id, book_id, date_borrowed, due_date, status) " +
+        String sqlInsert = "INSERT INTO BookTransaction(user_id, book_id, date_borrowed, due_date, status) " +
                 "VALUES (?, ?, ?, ?, ?)";
+        String sqlUpdate = "UPDATE Books SET quantity = quantity - 1 WHERE isbn = ?";
 
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmtInsert = conn.prepareStatement(sqlInsert);
+             PreparedStatement pstmtUpdate = conn.prepareStatement(sqlUpdate)) {
 
-            pstmt.setInt(1, transaction.getUser().getId());              // Mã người dùng
-            pstmt.setString(2, transaction.getBook().getIsbn());         // Mã sách
-            pstmt.setDate(3, Date.valueOf(transaction.getDateBorrowed().toLocalDate()));  // Ngày mượn
-            pstmt.setDate(4, Date.valueOf(transaction.getDueDate().toLocalDate()));       // Hạn trả
-            pstmt.setString(5, transaction.getStatus().name());
+            // Insert the transaction
+            pstmtInsert.setInt(1, transaction.getUser().getId());              // Mã người dùng
+            pstmtInsert.setString(2, transaction.getBook().getIsbn());         // Mã sách
+            pstmtInsert.setDate(3, Date.valueOf(transaction.getDateBorrowed().toLocalDate()));  // Ngày mượn
+            pstmtInsert.setDate(4, Date.valueOf(transaction.getDueDate().toLocalDate()));       // Hạn trả
+            pstmtInsert.setString(5, transaction.getStatus().name());
+            pstmtInsert.executeUpdate();
 
-            pstmt.executeUpdate();
-            System.out.println("Transaction saved to database.");
+            // Update the book quantity
+            pstmtUpdate.setString(1, transaction.getBook().getIsbn());
+            pstmtUpdate.executeUpdate();
+
+            System.out.println("Transaction saved to database and book quantity updated.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
             e.printStackTrace(); // Log the stack trace for better debugging
@@ -426,20 +433,27 @@ public class DBUltis implements Database{
     }
 
     public void returnBook(Transaction transaction) {
-        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String url = "jdbc:sqlite:database//LibraryMain"; // Path to your SQLite file
 
-        // Câu lệnh SQL không bao gồm book_id
-        String sql = "UPDATE BookTransaction SET date_returned = ?, status = ? WHERE id = ?";
+        // SQL statements
+        String sqlUpdateTransaction = "UPDATE BookTransaction SET date_returned = ?, status = ? WHERE id = ?";
+        String sqlUpdateBook = "UPDATE Books SET quantity = quantity + 1 WHERE isbn = ?";
 
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmtUpdateTransaction = conn.prepareStatement(sqlUpdateTransaction);
+             PreparedStatement pstmtUpdateBook = conn.prepareStatement(sqlUpdateBook)) {
 
-            pstmt.setTimestamp(1, Timestamp.valueOf(transaction.getDateReturned()));  // Ngày trả
-            pstmt.setString(2, transaction.getStatus().name());  // Trạng thái
-            pstmt.setInt(3, transaction.getId());  // ID của giao dịch
+            // Update the transaction
+            pstmtUpdateTransaction.setTimestamp(1, Timestamp.valueOf(transaction.getDateReturned()));  // Return date
+            pstmtUpdateTransaction.setString(2, transaction.getStatus().name());  // Status
+            pstmtUpdateTransaction.setInt(3, transaction.getId());  // Transaction ID
+            pstmtUpdateTransaction.executeUpdate();
 
-            pstmt.executeUpdate();
-            System.out.println("Transaction updated in database.");
+            // Update the book quantity
+            pstmtUpdateBook.setString(1, transaction.getBook().getIsbn());
+            pstmtUpdateBook.executeUpdate();
+
+            System.out.println("Transaction updated in database and book quantity updated.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
             e.printStackTrace(); // Log the stack trace for better debugging

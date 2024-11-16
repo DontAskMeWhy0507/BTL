@@ -1,4 +1,5 @@
 package org.example.demo6.Classes;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,39 +8,33 @@ public class User {
     private int id;
     private String password;
     private String email;
-    private String dateOfBirth;
     private String profilePicture;
     private String role;
+    private LocalDate dateOfBirth;
+    private Streak streak;
 
-    private List <Book> booksBorrowed;  // Danh sách các sách mà người dùng đã mượn trong All
-    private List <Book> booksReturned;  // Danh sách các sách mà người dùng đã trả trong finished
-    private List <Review> reviews;      // Danh sách các đánh giá của người dùng
- 
-    public User(int id, String username, String password, String email, String dateOfBirth, String profilePicture, String role) {
+    private List<Book> booksBorrowed;  // List of books the user has borrowed
+    private List<Book> booksReturned;  // List of books the user has returned
+    private List<Review> reviews;      // List of reviews written by the user
+
+    // Constructor for initializing the User object
+    public User(int id, String username, String password, String email, LocalDate dateOfBirth ,String profilePicture, String role, Streak streak) {
         this.username = username;
         this.id = id;
         this.password = password;
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
         this.profilePicture = profilePicture;
         this.role = role;
+        this.dateOfBirth = dateOfBirth;
+
+        // Initialize lists to avoid NullPointerException
         this.booksBorrowed = new ArrayList<>();
-        this.booksReturned  = new ArrayList<>();
+        this.booksReturned = new ArrayList<>();
         this.reviews = new ArrayList<>();
+
+        // Initialize streak (can be null if not passed)
+        this.streak = streak;
     }
-
-
-    public User(String username, int id, String password, String email, String pathToProfilePicture) {
-        this.username = username;
-        this.id = id;
-        this.password = password;
-        this.email = email;
-        this.profilePicture = pathToProfilePicture;
-        this.booksBorrowed = new ArrayList<>();
-        this.booksReturned  = new ArrayList<>();
-        this.reviews = new ArrayList<>();
-    }
-
 
 
     public String getUsername() { return username; }
@@ -54,8 +49,7 @@ public class User {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public String getDateOfBirth() { return dateOfBirth; }
-    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
 
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
@@ -80,4 +74,21 @@ public class User {
     }
 
 
+
+
+    public Streak getStreak() {
+        return streak;
+    }
+
+    public void setStreak(Streak streak) {
+        this.streak = streak;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 }

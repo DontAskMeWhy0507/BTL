@@ -7,21 +7,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import org.example.demo6.Classes.Streak;
 import org.example.demo6.Classes.User;
 
+import java.io.IOException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class AdminController {
+
+    private static final Logger LOGGER = Logger.getLogger(AdminController.class.getName());
+    private static final String DATABASE_URL = "jdbc:sqlite:database//LibraryMain";
 
     @FXML
     private TableColumn<User, Integer> tf_ID;
@@ -42,7 +43,14 @@ public class AdminController {
     private TableColumn<User, String> tf_avatar;
 
     @FXML
-    private TableColumn<User, String> tf_date;
+    private TableColumn<User, LocalDate> tf_date;
+
+    // New columns for Streak and Last Access Date
+    @FXML
+    private TableColumn<User, Integer> tf_streak;
+
+    @FXML
+    private TableColumn<User, LocalDate> tf_lastLoginDate;
 
     @FXML
     private TableView<User> tableView;
@@ -51,6 +59,14 @@ public class AdminController {
 
     @FXML
     public void initialize() {
+        setupTableColumns();
+        data = FXCollections.observableArrayList();
+        tableView.setItems(data);
+        loadDataFromDatabase();
+    }
+
+    private void setupTableColumns() {
+        // Existing columns
         tf_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tf_name.setCellValueFactory(new PropertyValueFactory<>("username"));
         tf_password.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -59,40 +75,37 @@ public class AdminController {
         tf_date.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         tf_avatar.setCellValueFactory(new PropertyValueFactory<>("pathToProfilePicture"));
 
-
-        data = FXCollections.observableArrayList();
-        tableView.setItems(data);
-
-        loadDataFromDatabase();
+        // New columns for Streak and Last Access Date
+        tf_streak.setCellValueFactory(new PropertyValueFactory<>("streak"));
+        tf_lastLoginDate.setCellValueFactory(new PropertyValueFactory<>("lastLoginDate"));
     }
 
     private void loadDataFromDatabase() {
-        String url = "jdbc:sqlite:database//LibraryMain";
         String query = "SELECT * FROM USERS";
-        SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
-
-        try (Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
+        try (Connection conn = getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                String dateString = rs.getString("date");
-                Date parsedDate = inputFormatter.parse(dateString);
-                data.add(new User(
-                        rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("role"),
-                        rs.getString("email"),
-                        rs.getString("avatar"),
-                        outputFormatter.format(parsedDate)
-                ));
+                // New fields for Streak and Last Access Date
+                User user = new User(rs.getInt("ID"),
+                        rs.getString("USERNAME"),
+                        rs.getString("PASSWORD"),
+                        rs.getString("EMAIL"),
+                        LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
+                        rs.getString("AVATAR"),
+                        rs.getString("ROLE"),
+                        new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK")));
+
+                // Add the new user to the data list
+                data.add(user);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error loading data from database", e);
         }
     }
+
+    private Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(DATABASE_URL);
+    }
+
     @FXML
     private void handleAddUser() {
         try {
@@ -103,26 +116,32 @@ public class AdminController {
             stage.setScene(new Scene(parent));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error opening AddUser.fxml", e);
         }
     }
+
     @FXML
     private void handleDeleteUser() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            data.remove(selectedUser);
-            // Implement the logic to delete the user from the database
-            String url = "jdbc:sqlite:database//LibraryMain";
-            String query = "DELETE FROM USERS WHERE id = " + selectedUser.getId();
-
-            try (Connection conn = DriverManager.getConnection(url);
-                 Statement stmt = conn.createStatement()) {
-                stmt.executeUpdate(query);
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (deleteUserFromDatabase(selectedUser.getId())) {
+                data.remove(selectedUser);
             }
         }
     }
+
+    private boolean deleteUserFromDatabase(int userId) {
+        String query = "DELETE FROM USERS WHERE ID = ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error deleting user from database", e);
+            return false;
+        }
+    }
+
     @FXML
     public void loadDatabase() {
         data.clear();

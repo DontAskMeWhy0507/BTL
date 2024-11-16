@@ -40,7 +40,7 @@ public class Library {
         User loggedInUser = DBUltis.logIn(event, username, password);
         if (loggedInUser != null) {
             library.setCurrentUser(loggedInUser);  // Thiết lập người dùng hiện tại trong đối tượng Library duy nhất
-            System.out.println("Login successful. Welcome, " + loggedInUser.getUsername() + "!");
+            System.out.println(currentUser.getStreak());
             GeneralController.changescene(event, "/View/AdminScene/MainScene.fxml", "Home to Library");
         } else {
             // Xử lý nếu đăng nhập thất bại

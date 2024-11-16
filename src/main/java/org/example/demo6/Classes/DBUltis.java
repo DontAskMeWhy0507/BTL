@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -144,13 +145,14 @@ public class DBUltis implements Database{
                     if (retrievedPassword.equals(password)) {
                         // Check the role of the user
                         if (role.equals("Admin")) {
-                            // Get this user from database and return Admin object
-                            Admin admin = new Admin(rs.getString("USERNAME"),
-                                    rs.getInt("ID"),
+                            loggedInUser = new Admin(rs.getInt("ID"),
+                                    rs.getString("USERNAME"),
                                     rs.getString("PASSWORD"),
-                                    rs.getString("email"),
-                                    rs.getString("AVATAR"));
-                            loggedInUser = admin;  // Assign the Admin object to loggedInUser
+                                    rs.getString("EMAIL"),
+                                    LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
+                                    rs.getString("AVATAR"),
+                                    rs.getString("ROLE"),
+                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK")));
                         } else if (role.equals("User")) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Login");
@@ -161,11 +163,14 @@ public class DBUltis implements Database{
                             alert.close();
 
                             // You could initialize the User object similarly to Admin if needed
-                            loggedInUser = new User(rs.getString("USERNAME"),
-                                    rs.getInt("ID"),
+                            loggedInUser = new User(rs.getInt("ID"),
+                                    rs.getString("USERNAME"),
                                     rs.getString("PASSWORD"),
-                                    rs.getString("email"),
-                                    rs.getString("AVATAR"));
+                                    rs.getString("EMAIL"),
+                                    LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
+                                    rs.getString("AVATAR"),
+                                    rs.getString("ROLE"),
+                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK")));
                         }
                     } else {
                         System.out.println("Password is incorrect");
@@ -203,7 +208,6 @@ public class DBUltis implements Database{
 
         return loggedInUser;  // Return the logged in user (Admin or User)
     }
-
 
     public Date stringToDate(String dateStr) throws ParseException {
         // Check the length of the date string to determine the format
@@ -479,4 +483,6 @@ public class DBUltis implements Database{
 
         return false;
     }
+
+
 }

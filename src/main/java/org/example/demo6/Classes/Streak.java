@@ -14,7 +14,17 @@ public class Streak {
         this.today = LocalDate.now();
     }
 
-
+    public void updateStreak() {
+        if (lastAccess != null) {
+            long daysBetween = ChronoUnit.DAYS.between(lastAccess, today);
+            if (daysBetween == 1) {
+                streak++;
+            } else if (daysBetween > 1) {
+                streak = 1;
+            }
+        }
+        lastAccess = today;
+    }
     public int getStreak() {
         return streak;
     }

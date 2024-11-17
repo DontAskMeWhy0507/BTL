@@ -101,7 +101,7 @@ public class SignUpController implements Initializable {
         mainPane.getChildren().add(createAcc);
 
         AnchorPane.setTopAnchor(createAcc, 600.0);
-        AnchorPane.setLeftAnchor(createAcc, 290.0);
+        AnchorPane.setLeftAnchor(createAcc, 200.0);
         
         buttonSign_Up.setOnAction(new EventHandler<ActionEvent>() {
             @Override

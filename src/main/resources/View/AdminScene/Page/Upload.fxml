@@ -5,25 +5,34 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="558.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.PageUploadController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="712.0" prefWidth="1049.0" stylesheets="@../../../Style/AdminScene/Upload.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.PageUploadController">
 
    <children>
-      <Button fx:id="uploadButton" layoutX="39.0" layoutY="456.0" mnemonicParsing="false" text="Add text book" />
-      <TextField fx:id="Tittle" layoutX="305.0" layoutY="63.0" prefHeight="25.0" prefWidth="209.0" promptText="Tittle" />
-      <TextField fx:id="Authors" layoutX="305.0" layoutY="101.0" prefHeight="25.0" prefWidth="209.0" promptText="Authors" />
-      <TextField fx:id="Publisher" layoutX="304.0" layoutY="176.0" prefHeight="25.0" prefWidth="209.0" promptText="Publisher" />
-      <TextField fx:id="Categories" layoutX="304.0" layoutY="254.0" prefHeight="25.0" prefWidth="209.0" promptText="Categories" />
-      <TextField fx:id="Language" layoutX="305.0" layoutY="296.0" prefHeight="25.0" prefWidth="209.0" promptText="Language (Vietnamese, English, ..)" />
-      <TextField fx:id="Description" layoutX="305.0" layoutY="330.0" prefHeight="56.0" prefWidth="209.0" promptText="Description" />
-      <Button fx:id="AudioBook" layoutX="472.0" layoutY="426.0" mnemonicParsing="false" text="Add audio book (if have)" />
-      <Button fx:id="SelectCover" layoutX="292.0" layoutY="426.0" mnemonicParsing="false" text="Book cover" />
-      <DatePicker fx:id="PublishedDate" layoutX="304.0" layoutY="217.0" prefHeight="25.0" prefWidth="209.0" promptText="Published date" />
-      <ImageView fx:id="BookCover" fitHeight="257.0" fitWidth="203.0" layoutX="39.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="Confirm" layoutX="300.0" layoutY="507.0" mnemonicParsing="false" text="Confirm" />
-      <TextField fx:id="ISBN" layoutX="304.0" layoutY="24.0" prefHeight="25.0" prefWidth="209.0" promptText="ISBN" />
-      <TextField fx:id="quantity" layoutX="304.0" layoutY="141.0" prefHeight="25.0" prefWidth="209.0" promptText="Quantity" />
+      <Button fx:id="uploadButton" layoutX="116.0" layoutY="445.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="186.0" styleClass="addBook" stylesheets="@../../../Style/AdminScene/Upload.css" text="Thêm sách" />
+      <Button fx:id="SelectCover" layoutX="116.0" layoutY="504.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="186.0" styleClass="addBookCover" stylesheets="@../../../Style/AdminScene/Upload.css" text="Thêm bìa sách" />
+      <TextField fx:id="ISBN" layoutX="420.0" layoutY="70.0" prefHeight="32.0" prefWidth="463.0" promptText="Nhập mã ISBN" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Tittle" layoutX="423.0" layoutY="155.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên sách" />
+      <TextField fx:id="Authors" layoutX="674.0" layoutY="155.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="quantity" layoutX="420.0" layoutY="239.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập số lượng" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Publisher" layoutX="420.0" layoutY="324.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên NXB" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <DatePicker fx:id="PublishedDate" layoutX="672.0" layoutY="325.0" prefHeight="25.0" prefWidth="209.0" promptText="Published date" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Categories" layoutX="423.0" layoutY="421.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập (các) thể loại" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Language" layoutX="674.0" layoutY="421.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập ngôn ngữ" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Description" layoutX="423.0" layoutY="504.0" prefHeight="66.0" prefWidth="442.0" promptText="Miêu tả sơ lược về nội dung" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <Button fx:id="AudioBook" layoutX="116.0" layoutY="563.0" mnemonicParsing="false" styleClass="addAudioBook" stylesheets="@../../../Style/AdminScene/Upload.css" text="Thêm sách nói (nếu có)" />
+      <Button fx:id="Confirm" layoutX="377.0" layoutY="610.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="245.0" styleClass="confirm" stylesheets="@../../../Style/AdminScene/Upload.css" text="Xác nhận" />
+      <ImageView fx:id="BookCover" fitHeight="358.0" fitWidth="265.0" layoutX="76.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="420.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã ISBN" />
+      <Text layoutX="420.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên sách" />
+      <Text layoutX="684.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên (các) tác giả " />
+      <Text layoutX="419.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng" />
+      <Text layoutX="423.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhà xuất bản" />
+      <Text layoutX="679.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày xuất bản" />
+      <Text layoutX="423.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thể loại (giáo trình, trinh thám, ...)" wrappingWidth="233.591796875" />
+      <Text layoutX="679.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngôn ngữ" />
+      <Text layoutX="423.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miêu tả" />
 
    </children>
 </AnchorPane>

@@ -1,0 +1,59 @@
+TextField {
+    -fx-font-family: "Merriweather";
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #F7EED3;
+    -fx-padding: 10px;
+    -fx-border-color: black;
+    -fx-text-fill: #674636;
+    -fx-font-size: 13px;
+}
+
+/*DatePicker {*/
+/*    -fx-background-color: #F7EED3;*/
+/*    -fx-border-color: black;*/
+/*    -fx-border-radius: 10px;*/
+/*    -fx-padding: 10px;*/
+/*}*/
+
+DatePicker .text-field {
+    -fx-background-color: #F7EED3;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+}
+
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+Text {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 13px;
+}
+
+.addBook, .addBookCover, .addAudioBook {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
+    -fx-background-color: #F7EED3;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-border-color: black;
+}
+
+.confirm {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 20px;
+    -fx-background-color: #F7EED3;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-border-color: black;
+}
+

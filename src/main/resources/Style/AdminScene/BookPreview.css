@@ -1,0 +1,49 @@
+Label {
+    -fx-font-family: "Merrriweather";
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+Text {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
+}
+
+Button {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
+    -fx-background-color: #F7EED3;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-border-color: black;
+}
+
+.viewMore {
+    -fx-font-family: "Merriweather";
+    -fx-font-weight: bold italic;
+    -fx-font-size: 13px;
+    -fx-text-fill: #674636;
+}
+
+.viewMore:hover, .viewMore:focused {
+    -fx-text-fill: #536A5C;
+    -fx-underline: true;
+    -fx-font-size: 15px;
+}
+
+TextField {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
+    -fx-background-color: #F7EED3;
+    -fx-border-color: black;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}

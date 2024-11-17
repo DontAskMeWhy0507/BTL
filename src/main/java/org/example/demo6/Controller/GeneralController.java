@@ -25,10 +25,13 @@ public class GeneralController {
             return; // Exit the method if loading fails
         }
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setScene(new Scene(root));
-        stage.centerOnScreen();
-        stage.show();
-    }
+        Node sourceNode = (Node) event.getSource();
 
+        if (stage != null) {
+            stage.setTitle(title);
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+            stage.show();
+        }
+    }
 }

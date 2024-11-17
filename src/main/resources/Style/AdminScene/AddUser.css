@@ -1,0 +1,51 @@
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+Label {
+    -fx-text-alignment: left;
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.grid {
+    -fx-vgap: 20px;
+    -fx-hgap: 20px;
+    -fx-alignment: left;
+}
+
+TextField {
+    -fx-font-family: "Merriweather";
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #F7EED3;
+    -fx-padding: 10px;
+    -fx-border-color: black;
+    -fx-text-fill: #674636;
+    -fx-font-size: 13px;
+}
+
+DatePicker .text-field, ChoiceBox {
+    -fx-font-family: "Merriweather";
+    -fx-background-color: #F7EED3;
+    -fx-font-size: 13px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+
+
+Button {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 20px;
+    -fx-background-color: #F7EED3;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-border-color: black;
+}

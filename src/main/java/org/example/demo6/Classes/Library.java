@@ -40,7 +40,7 @@ public class Library {
         User loggedInUser = DBUltis.logIn(event, username, password);
         if (loggedInUser != null) {
             library.setCurrentUser(loggedInUser);  // Thiết lập người dùng hiện tại trong đối tượng Library duy nhất
-            System.out.println(currentUser.getStreak());
+            currentUser.getStreak().updateStreak();
             GeneralController.changescene(event, "/View/AdminScene/MainScene.fxml", "Home to Library");
         } else {
             // Xử lý nếu đăng nhập thất bại
@@ -50,7 +50,15 @@ public class Library {
 
     public static void logOut(ActionEvent event) {
         Library library = Library.getInstance();
+        DBUltis dbUltis = new DBUltis();
+        dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
+                + "', streak = " + library.getCurrentUser().getStreak().getStreak()
+                + " WHERE id = " + library.getCurrentUser().getId());
+
         library.setCurrentUser(null);
+        if (event == null) {
+            return;
+        }
         GeneralController.changescene(event, "/View/LoginScene/Login.fxml", "Login");
     }
 

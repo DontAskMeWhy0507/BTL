@@ -152,7 +152,7 @@ public class DBUltis implements Database{
                                     LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
                                     rs.getString("AVATAR"),
                                     rs.getString("ROLE"),
-                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK")));
+                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK"), rs.getInt("LONGEST_STREAK")));
                         } else if (role.equals("User")) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Login");
@@ -170,7 +170,7 @@ public class DBUltis implements Database{
                                     LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
                                     rs.getString("AVATAR"),
                                     rs.getString("ROLE"),
-                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK")));
+                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK"),rs.getInt("LONGEST_STREAK")));
                         }
                     } else {
                         System.out.println("Password is incorrect");
@@ -484,5 +484,16 @@ public class DBUltis implements Database{
         return false;
     }
 
+    public void loadQuery(String query) {
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String sql = query;
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error executing query: " + e.getMessage());
+        }
+    }
 
 }

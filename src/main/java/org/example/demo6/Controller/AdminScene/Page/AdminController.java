@@ -92,7 +92,7 @@ public class AdminController {
                         LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
                         rs.getString("AVATAR"),
                         rs.getString("ROLE"),
-                        new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK")));
+                        new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK"), rs.getInt("LONGEST_STREAK")));
 
                 // Add the new user to the data list
                 data.add(user);

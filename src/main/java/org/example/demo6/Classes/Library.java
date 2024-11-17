@@ -54,8 +54,7 @@ public class Library {
         dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
                 + "', streak = " + library.getCurrentUser().getStreak().getStreak()
                 + " WHERE id = " + library.getCurrentUser().getId());
-        System.out.println("Logged out successfully.");
-        System.out.println("Logged out successfully.");
+
         library.setCurrentUser(null);
         if (event == null) {
             return;

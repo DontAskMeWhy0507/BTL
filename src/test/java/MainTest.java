@@ -8,16 +8,17 @@ public class MainTest {
 
     @Test
     public void testStreak1() {
-        Streak streak = new Streak(LocalDate.parse("2024-11-15"), 10);
+        Streak streak = new Streak(LocalDate.parse("2024-11-15"), 10, 10);
         streak.updateStreak();
         assert streak.getStreak() == 11;
     }
 
     @Test
     public void testStreak2() {
-        Streak streak = new Streak(LocalDate.parse("2024-11-16"), 10);
+        Streak streak = new Streak(LocalDate.parse("2024-11-16"), 19, 19);
         streak.updateStreak();
-        assert streak.getStreak() == 10;
+        assert streak.getStreak() == 20;
+        assert streak.getLongestStreak() == 20;
     }
 
 

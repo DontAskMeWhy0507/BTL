@@ -152,7 +152,7 @@ public class DBUltis implements Database{
                                     LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
                                     rs.getString("AVATAR"),
                                     rs.getString("ROLE"),
-                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK")));
+                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK"), rs.getInt("LONGEST_STREAK")));
                         } else if (role.equals("User")) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Login");
@@ -170,7 +170,7 @@ public class DBUltis implements Database{
                                     LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
                                     rs.getString("AVATAR"),
                                     rs.getString("ROLE"),
-                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK")));
+                                    new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK"),rs.getInt("LONGEST_STREAK")));
                         }
                     } else {
                         System.out.println("Password is incorrect");

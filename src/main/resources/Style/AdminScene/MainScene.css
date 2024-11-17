@@ -1,0 +1,32 @@
+BorderPane {
+    -fx-background-color: #FFF8E8;
+    -fx-border-radius: 20px;
+}
+
+.userManage, .booksManage, .upload, .switchToUser, .logout, .openSettings {
+    -fx-text-alignment: center;
+    -fx-font-family: "Merriweather";
+    -fx-background-color: #F7EED3;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-text-color: #674636;
+    -fx-font-size: 13px;
+}
+
+.homeImage . userManage {
+    -fx-fit-to-width: 20px;
+    -fx-fit-to-height: 20px;
+}
+
+ScrollPane {
+    -fx-background-color: #F7EED3;
+}
+
+.user {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
+    -fx-background-color: #F7EED3;
+}
+

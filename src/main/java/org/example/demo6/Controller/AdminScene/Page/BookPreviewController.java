@@ -1,6 +1,7 @@
 // src/main/java/org/example/demo6/Controller/BookPreviewController.java
 package org.example.demo6.Controller.AdminScene.Page;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +24,8 @@ import java.io.IOException;
 
 
 public class BookPreviewController {
-
     private Book currentBook;
+
     @FXML
     private Label bookTitleLabel;
 
@@ -49,14 +50,16 @@ public class BookPreviewController {
     @FXML
     private ImageView bookCoverImage;
 
-
     @FXML
-    private Button viewMoreButton;
+    private JFXButton viewMoreButton;
 
     private static final int descriptionLength = 200;
+
     @FXML
     public Text fullDescription;
+
     private String descriptionTemp;
+
     public void setDescriptionLength (String description) {
         if (description.length() > descriptionLength) {
             descriptionTemp = description;
@@ -155,8 +158,6 @@ public class BookPreviewController {
             e.printStackTrace();
         }
     }
-
-
 }
 
 

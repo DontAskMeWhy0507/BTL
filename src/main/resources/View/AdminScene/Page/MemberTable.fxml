@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="617.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
     <children>
-        <TableView fx:id="tableView" layoutX="14.0" layoutY="55.2" prefHeight="546.0" prefWidth="1157.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+        <TableView fx:id="tableView" layoutY="55.0" prefHeight="567.0" prefWidth="1116.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
             <columns>
                 <TableColumn fx:id="tf_ID" prefWidth="99.19994813203812" text="ID" />
                 <TableColumn fx:id="tf_name" minWidth="7.200042724609375" prefWidth="162.3999786376953" text="Name" />
@@ -21,11 +21,11 @@
                 <TableColumn fx:id="tf_date" prefWidth="205.60009765625" text="Date" />
             </columns>
         </TableView>
-        <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="14.0" spacing="10.0">
+        <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="306.0" spacing="10.0">
             <children>
                 <Button fx:id="btnAddUser" mnemonicParsing="false" onAction="#handleAddUser" text="Thêm người dùng" />
                 <Button fx:id="btnDeleteUser" mnemonicParsing="false" onAction="#handleDeleteUser" text="Xóa người dùng" />
-            <Button mnemonicParsing="false" onAction="#loadDatabase" text="Load" />
+            <Button mnemonicParsing="false" onAction="#loadDatabase" prefWidth="67.0" text="Load" />
             </children>
         </HBox>
       <TextField layoutX="952.0" layoutY="14.0" />

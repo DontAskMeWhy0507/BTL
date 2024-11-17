@@ -18,6 +18,7 @@ public class HelloApplication extends Application {
 
     private Library library = Library.getInstance();    // Singleton instance of Library
     private Music music;
+
     @Override
     public void start(@NotNull Stage stage) throws IOException {
         Font font1 = Font.loadFont(getClass().getResourceAsStream("/Font/Merriweather/Merriweather-Regular.ttf"), 20);
@@ -28,8 +29,8 @@ public class HelloApplication extends Application {
         stage.setTitle("Library management system");
         stage.setScene(scene);
         stage.show();
-        music = new Music("src/main/resources/Sound/jingle-bells.mp3");
-        music.loop();
+//        music = new Music("src/main/resources/Sound/jingle-bells.mp3");
+//        music.loop();
     }
 
     public static void main(String[] args) {

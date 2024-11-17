@@ -10,25 +10,33 @@
 
 <AnchorPane prefHeight="617.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
     <children>
-        <TableView fx:id="tableView" layoutY="55.0" prefHeight="567.0" prefWidth="1116.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+        <TableView fx:id="tableView" layoutX="14.0" layoutY="40.0" prefHeight="537.0" prefWidth="1099.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="40.0">
             <columns>
-                <TableColumn fx:id="tf_ID" prefWidth="99.19994813203812" text="ID" />
-                <TableColumn fx:id="tf_name" minWidth="7.200042724609375" prefWidth="162.3999786376953" text="Name" />
-                <TableColumn fx:id="tf_password" prefWidth="167.99993896484375" text="Password" />
-                <TableColumn fx:id="tf_role" prefWidth="175.2000732421875" text="Role" />
-                <TableColumn fx:id="tf_email" minWidth="0.0" prefWidth="136.7999267578125" text="Email" />
-                <TableColumn fx:id="tf_avatar" prefWidth="165.59991455078125" text="Avatar" />
-                <TableColumn fx:id="tf_date" prefWidth="205.60009765625" text="Date" />
+                <TableColumn fx:id="tf_ID" prefWidth="96.0" text="ID" />
+                <TableColumn fx:id="tf_name" minWidth="7.2" prefWidth="135.0" text="Name" />
+                <TableColumn fx:id="tf_password" prefWidth="127.0" text="Password" />
+                <TableColumn fx:id="tf_role" prefWidth="102.0" text="Role" />
+                <TableColumn fx:id="tf_email" minWidth="0.0" prefWidth="154.0" text="Email" />
+                <TableColumn fx:id="tf_avatar" prefWidth="144.0" text="Avatar" />
+                <TableColumn fx:id="tf_date" prefWidth="114.0" text="Date of birth" />
+
+                <!-- New columns for Streak and Last Access Date -->
+                <TableColumn fx:id="tf_streak" prefWidth="57.0" text="Streak" />
+                <TableColumn fx:id="tf_lastLoginDate" prefWidth="162.0" text="Last Access Date" />
             </columns>
         </TableView>
-        <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="306.0" spacing="10.0">
+
+        <!-- Button controls for actions -->
+        <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="14.0" spacing="10.0">
             <children>
                 <Button fx:id="btnAddUser" mnemonicParsing="false" onAction="#handleAddUser" text="Thêm người dùng" />
                 <Button fx:id="btnDeleteUser" mnemonicParsing="false" onAction="#handleDeleteUser" text="Xóa người dùng" />
-            <Button mnemonicParsing="false" onAction="#loadDatabase" prefWidth="67.0" text="Load" />
+                <Button mnemonicParsing="false" onAction="#loadDatabase" text="Load" />
             </children>
         </HBox>
-      <TextField layoutX="952.0" layoutY="14.0" />
-      <Label layoutX="859.0" layoutY="18.0" text="Tìm người dùng" />
+
+        <!-- Search TextField and Label -->
+        <TextField layoutX="952.0" layoutY="14.0" />
+        <Label layoutX="859.0" layoutY="18.0" text="Tìm người dùng" />
     </children>
 </AnchorPane>

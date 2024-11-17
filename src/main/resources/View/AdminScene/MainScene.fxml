@@ -6,61 +6,82 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1312.0" stylesheets="@../../Style/AdminScene/MainScene.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.MainSceneClass">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1312.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.MainSceneClass">
    <top>
       <Pane prefHeight="54.0" prefWidth="1312.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="SearchField" layoutX="467.0" layoutY="11.0" onKeyPressed="#EnterToSearch" prefHeight="37.0" prefWidth="288.0" promptText="Thêm sách" style="-fx-background-color: transparent; -fx-border-radius: 50; -fx-border-color: black;" />
-            <Button layoutX="771.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchButton" style="-fx-background-color: transparent;" />
-            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="779.0" layoutY="17.0" onDragDetected="#searchButton" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Image/Icon/search.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
+            <TextField fx:id="SearchField" layoutX="503.0" layoutY="11.0" onKeyPressed="#EnterToSearch" prefHeight="25.0" prefWidth="268.0" promptText="Thêm sách" style="-fx-background-color: transparent; -fx-border-radius: 50; -fx-border-color: black;" />
+            <Button layoutX="771.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchButton" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="33.0" onDragDetected="#searchButton" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Image/Icon/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children></Pane>
    </top>
    <left>
-      <Pane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="221.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#showHome" prefHeight="62.0" prefWidth="197.0" styleClass="userManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý người dùng" textAlignment="CENTER">
+            <Button layoutX="31.0" layoutY="67.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Quản lý user">
                <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="homeImage">
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@../../Image/Icon/home.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" onAction="#showAll" prefHeight="62.0" prefWidth="197.0" styleClass="booksManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý tài liệu" textAlignment="RIGHT">
+            <Button layoutX="31.0" layoutY="177.0" mnemonicParsing="false" onAction="#showAll" prefHeight="25.0" prefWidth="139.0" text="Quản lý tài liệu">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@../../Image/Icon/Library.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" onAction="#showUpload" prefHeight="62.0" prefWidth="197.0" styleClass="upload" stylesheets="@../../Style/AdminScene/MainScene.css" text="Đăng tải">
+               </graphic>
+            </Button>
+            <Button layoutX="31.0" layoutY="289.0" mnemonicParsing="false" onAction="#showUpload" prefHeight="25.0" prefWidth="139.0" text="Upload ">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@../../Image/Icon/Upload.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button layoutX="14.0" layoutY="272.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeToUserView" prefHeight="62.0" prefWidth="197.0" styleClass="switchToUser" stylesheets="@../../Style/AdminScene/MainScene.css" text="Giao diện người dùng">
+               </graphic>
+            </Button>
+            <Button layoutX="19.0" layoutY="431.0" mnemonicParsing="false" onAction="#changeToUserView" prefHeight="37.0" prefWidth="163.0" text="Change to user view">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@../../Image/Icon/Finished.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <VBox fx:id="seeMoreProfile" layoutY="547.0" prefHeight="74.0" prefWidth="221.0" visible="false">
+               </graphic>
+            </Button>
+            <Button layoutX="74.0" layoutY="365.0" mnemonicParsing="false" onAction="#changeToStreak" text="Streak" />
+         </children></Pane>
+   </left>
+   <bottom>
+      <HBox prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#moreButton" prefHeight="98.0" prefWidth="203.0" text="User Name">
+               <graphic>
+                  <ImageView fx:id="avatar" fitHeight="90.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../../Image/Avatar/Sage.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox fx:id="seeMoreProfile" prefHeight="95.0" prefWidth="151.0" visible="false">
                <children>
-                  <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="37.0" prefWidth="221.0" styleClass="openSettings" stylesheets="@../../Style/AdminScene/MainScene.css" text="Settings">
+                  <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="37.0" prefWidth="155.0" text="Settings">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
@@ -69,7 +90,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#logOut" prefHeight="37.0" prefWidth="221.0" styleClass="logout" stylesheets="@../../Style/AdminScene/MainScene.css" text="Logout">
+                  <Button mnemonicParsing="false" onAction="#logOut" prefHeight="37.0" prefWidth="161.0" text="Logout">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
@@ -80,18 +101,10 @@
                   </Button>
                </children>
             </VBox>
-            <Button fx:id="avatarButton" layoutY="625.0" mnemonicParsing="false" onAction="#moreButton" prefHeight="115.0" prefWidth="221.0" styleClass="user" stylesheets="@../../Style/AdminScene/MainScene.css" text="User Name">
-               <graphic>
-                  <ImageView fx:id="avatar" fitHeight="80.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                     <image>
-                        <Image url="@../../Image/Avatar/Sage.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children></Pane>
-   </left>
+         </children>
+      </HBox>
+   </bottom>
    <center>
-      <ScrollPane fx:id="mainScrollPane" prefHeight="712.0" prefWidth="1049.0" stylesheets="@../../Style/AdminScene/MainScene.css" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="mainScrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

@@ -1,5 +1,7 @@
 package org.example.demo6.Controller.AdminScene.Page;
 
+import com.jfoenix.controls.JFXCheckBox;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -24,6 +26,7 @@ public class Settings {
     @FXML
     private ImageView avatarImageView;
     private File avatarFile;
+
     @FXML
     private TextField usernameField;
 
@@ -41,6 +44,12 @@ public class Settings {
 
     @FXML
     private Button updatePasswordButton;
+
+    @FXML
+    private TextField showPassword;
+
+    @FXML
+    private JFXCheckBox showPass;
 
     // Methods for avatar selection
     @FXML
@@ -67,6 +76,7 @@ public class Settings {
     private void selectAvatar5() {
         setAvatar("/Image/Avatar/Neon.png");
     }
+
     @FXML
     private void selectAvatar6() {
         setAvatar("/Image/Avatar/Omen.png");
@@ -121,6 +131,20 @@ public class Settings {
     }
 
     @FXML
+    void getPassword(ActionEvent event) {
+        if (showPass.isSelected()) {
+            showPassword.setText(passwordField.getText());
+            passwordField.setVisible(false);
+            showPassword.setVisible(true);
+        } else {
+            showPassword.setText(passwordField.getText());
+            showPassword.setText(showPassword.getText());
+            showPassword.setVisible(true);
+            showPassword.setVisible(false);
+        }
+    }
+
+    @FXML
     private void handleChangePassword() {
         String newPassword = passwordField.getText();
         // Add logic to update the password
@@ -128,4 +152,12 @@ public class Settings {
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
     }
+
+     public void confirmChange() {
+        confirmAvatarSelection();
+        setAvatar(avatarFile.getPath());
+        handleChangeUsername();
+        handleChangeEmail();
+        handleChangePassword();
+     }
 }

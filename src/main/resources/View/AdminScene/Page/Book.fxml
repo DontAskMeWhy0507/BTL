@@ -17,11 +17,11 @@
                </image></ImageView>
          </graphic>
       </Button>
-      <Label fx:id="nameBook" prefHeight="30.0" prefWidth="260.0" text="NOT FOUND" />
-      <Label fx:id="authorBook" prefHeight="18.0" prefWidth="313.0" text="NOT FOUND AUTHOR" />
+      <Label fx:id="nameBook" prefHeight="30.0" prefWidth="260.0" stylesheets="@../../../Style/AdminScene/Book.css" text="NOT FOUND" />
+      <Label fx:id="authorBook" prefHeight="18.0" prefWidth="313.0" stylesheets="@../../../Style/AdminScene/Book.css" text="NOT FOUND AUTHOR" />
       <AnchorPane>
          <children>
-            <Button layoutX="125.0" layoutY="3.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="40.0" style="-fx-background-color: transparent;">
+            <Button layoutX="118.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="42.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

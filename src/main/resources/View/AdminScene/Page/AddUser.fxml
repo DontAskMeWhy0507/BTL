@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AddUser">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="701.0" stylesheets="@../../../Style/AdminScene/AddUser.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AddUser">
     <children>
-        <GridPane alignment="CENTER" layoutX="26.0" layoutY="38.0" prefHeight="311.0" prefWidth="486.0">
+        <GridPane alignment="CENTER" layoutX="94.0" layoutY="49.0" prefHeight="301.0" prefWidth="515.0" styleClass="grid" stylesheets="@../../../Style/AdminScene/AddUser.css">
             <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="173.60001220703126" minWidth="10.0" prefWidth="97.39998779296874" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.8000122070313" minWidth="10.0" prefWidth="388.8000122070313" />
@@ -24,17 +24,15 @@
                 <RowConstraints maxHeight="58.600012207031256" minHeight="10.0" prefHeight="49.79999389648438" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="58.600012207031256" minHeight="10.0" prefHeight="49.79999389648438" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="58.600012207031256" minHeight="10.0" prefHeight="49.79999389648438" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <TextField fx:id="tf_id" promptText="Ma sinh vien" GridPane.columnIndex="1" />
-                <TextField fx:id="tf_username" promptText="Nhap ten tai khoan" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="tf_password" promptText="Nhap mat khau" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="tf_username" promptText="Nhap ten tai khoan" stylesheets="@../../../Style/AdminScene/AddUser.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="tf_password" prefHeight="25.0" prefWidth="362.0" promptText="Nhap mat khau" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label text="ID" />
                 <Label text="Tên tài khoản" GridPane.rowIndex="1" />
                 <Label text="Nhập mật khẩu" GridPane.rowIndex="2" />
                 <Label text="Quyền" GridPane.rowIndex="3" />
-                <Button fx:id="buttonConfirm" mnemonicParsing="false" onAction="#buttonOK" text="OK" GridPane.rowIndex="6" />
                 <Label text="Email" GridPane.rowIndex="4" />
                 <TextField fx:id="tf_email" prefHeight="26.0" prefWidth="278.0" promptText="\@gmail.com" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="choiceRole" prefHeight="26.0" prefWidth="392.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -43,5 +41,6 @@
             </children>
         </GridPane>
       <Label fx:id="sucessLabel" layoutX="169.0" layoutY="341.0" prefHeight="18.0" prefWidth="261.0" />
+          <Button fx:id="buttonConfirm" layoutX="246.0" layoutY="374.0" mnemonicParsing="false" onAction="#buttonOK" prefHeight="46.0" prefWidth="211.0" stylesheets="@../../../Style/AdminScene/AddUser.css" text="Xác nhận" />
     </children>
 </AnchorPane>

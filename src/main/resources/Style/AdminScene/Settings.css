@@ -1,0 +1,37 @@
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+TextField, PasswordField {
+    -fx-font-family: "Merriweather";
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color: #F7EED3;
+    -fx-padding: 20px;
+    -fx-border-color: black;
+    -fx-text-fill: #674636;
+    -fx-font-size: 15px;
+}
+
+Label {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 20px;
+}
+
+.confirmButton {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 20px;
+    -fx-background-color: #F7EED3;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-border-color: black;
+}
+
+JFXCheckBox {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 15px;
+}

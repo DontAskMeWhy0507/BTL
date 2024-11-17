@@ -20,6 +20,7 @@ public class PageUploadController {
 
     @FXML
     private TextField quantity;
+
     @FXML
     private TextField Categories;
 

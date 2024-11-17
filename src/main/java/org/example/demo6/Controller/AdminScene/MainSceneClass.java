@@ -40,8 +40,10 @@ public class MainSceneClass{
 
     @FXML
     private VBox seeMoreProfile;
+
     @FXML
     private ScrollPane mainScrollPane;
+
     @FXML
     private Button avatarButton;
 
@@ -61,9 +63,8 @@ public class MainSceneClass{
         avatar.setImage(newAvatarImage);
     }
 
-
-
     public static ScrollPane staticMainScrollPane;
+
     @FXML
     void searchButton(ActionEvent event) throws IOException {
         List<Book> ApiResult = apiGoogleBooks.searchBooks1(SearchField.getText());
@@ -88,8 +89,6 @@ public class MainSceneClass{
     public static void setMainContent(Parent content) {
         staticMainScrollPane.setContent(content);
     }
-
-
 
     @FXML
     void moreButton() {
@@ -146,7 +145,19 @@ public class MainSceneClass{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void changeToStreak() {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Streak.fxml"));
+            Parent StreakView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(StreakView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showUpload() {

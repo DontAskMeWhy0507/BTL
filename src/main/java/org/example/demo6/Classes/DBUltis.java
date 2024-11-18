@@ -119,7 +119,7 @@ public class DBUltis implements Database{
         }
     }
 
-    public User logIn(ActionEvent event, String username, String password) {
+    public User logIn(String username, String password) {
         Connection connection = null;
         PreparedStatement psCheckUserExist = null;
         ResultSet rs = null;
@@ -159,7 +159,7 @@ public class DBUltis implements Database{
                             alert.setContentText("Logging in as User...");
                             alert.show();
                             // Change to the user scene
-                            changescene(event, "/View/UserScene/MainSceneUser.fxml", "User Home");
+                           // changescene(event, "/View/UserScene/MainSceneUser.fxml", "User Home");
                             alert.close();
 
                             // You could initialize the User object similarly to Admin if needed
@@ -311,19 +311,24 @@ public class DBUltis implements Database{
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id
-        String sql = "UPDATE USERS SET username = ?, password = ?, email = ?, avatar = ? WHERE ID = ?";
+        String sql = "UPDATE users SET username = ?, password = ?, email = ?, " +
+                "avatar = ?, last_access = ?, date_of_birth = ?, streak = ?, longest_streak = ? WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, user.getUsername());              // Mã ISBN
-            pstmt.setString(2, user.getPassword());             // Tên sách
-            pstmt.setString(3, user.getEmail());            // Tác giả
-            pstmt.setString(4, user.getPathToProfilePicture());         // Nhà xuất bản
-            pstmt.setInt(5, user.getId());                // Ngày xuất bản
+            pstmt.setString(1, user.getUsername());  // Tên người dùng
+            pstmt.setString(2, user.getPassword());  // Mật khẩu
+            pstmt.setString(3, user.getEmail());     // Email
+            pstmt.setString(4, user.getPathToProfilePicture());    // Đường dẫn đến ảnh đại diện
+            pstmt.setString(5, user.getStreak().getLastAccess().toString()); // Last access
+            pstmt.setString(6, user.getDateOfBirth().toString()); // Ngày sinh
+            pstmt.setInt(7, user.getStreak().getStreak()); // Streak
+            pstmt.setInt(8, user.getStreak().getLongestStreak()); // Longest streak
+            pstmt.setInt(9, user.getId()); // ID người dùng
 
             pstmt.executeUpdate();
-            System.out.println("User updated in database.");
+           // System.out.println("User updated in database.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
             e.printStackTrace(); // Log the stack trace for better debugging

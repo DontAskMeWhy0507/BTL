@@ -37,7 +37,7 @@ public class Library {
         Library library = Library.getInstance();
         DBUltis DBUltis = new DBUltis();
         // Đăng nhập và thiết lập người dùng hiện tại
-        User loggedInUser = DBUltis.logIn(event, username, password);
+        User loggedInUser = DBUltis.logIn(username, password);
         if (loggedInUser != null) {
             library.setCurrentUser(loggedInUser);  // Thiết lập người dùng hiện tại trong đối tượng Library duy nhất
             currentUser.getStreak().updateStreak();

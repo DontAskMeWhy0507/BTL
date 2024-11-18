@@ -116,6 +116,9 @@ public class Settings {
     @FXML
     private void handleChangeUsername() {
         String newUsername = usernameField.getText();
+        if (newUsername.equals("")) {
+            return;
+        }
         lib.getCurrentUser().setUsername(newUsername);
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
@@ -124,7 +127,9 @@ public class Settings {
     @FXML
     private void handleChangeEmail() {
         String newEmail = emailField.getText();
-
+        if (newEmail.equals("")) {
+            return;
+        }
         lib.getCurrentUser().setEmail(newEmail);
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
@@ -147,6 +152,9 @@ public class Settings {
     @FXML
     private void handleChangePassword() {
         String newPassword = passwordField.getText();
+        if (newPassword.equals("")) {
+            return;
+        }
         // Add logic to update the password
         lib.getCurrentUser().setPassword(newPassword);
         DBUltis.updateUserInDatabase(lib.getCurrentUser());

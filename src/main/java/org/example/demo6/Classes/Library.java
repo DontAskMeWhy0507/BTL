@@ -50,6 +50,10 @@ public class Library {
 
     public static void logOut(ActionEvent event) {
         Library library = Library.getInstance();
+        if (library.getCurrentUser() == null) {
+            return;
+        }
+
         DBUltis dbUltis = new DBUltis();
         dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
                 + "', streak = " + library.getCurrentUser().getStreak().getStreak()

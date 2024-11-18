@@ -29,9 +29,9 @@ public class HelloApplication extends Application {
         stage.setTitle("Library management system");
         stage.setScene(scene);
         stage.show();
-//        stage.setOnCloseRequest(e -> {
-//            library.logOut(null);
-//        });
+        stage.setOnCloseRequest(e -> {
+            library.logOut(null);
+        });
 //        music = new Music("src/main/resources/Sound/jingle-bells.mp3");
 //        music.loop();
     }

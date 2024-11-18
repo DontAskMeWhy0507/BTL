@@ -328,7 +328,7 @@ public class DBUltis implements Database{
             pstmt.setInt(9, user.getId()); // ID người dùng
 
             pstmt.executeUpdate();
-            System.out.println("User updated in database.");
+           // System.out.println("User updated in database.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
             e.printStackTrace(); // Log the stack trace for better debugging

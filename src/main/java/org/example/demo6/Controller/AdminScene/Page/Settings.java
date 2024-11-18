@@ -164,7 +164,6 @@ public class Settings {
 
      public void confirmChange() {
         confirmAvatarSelection();
-        setAvatar(avatarFile.getPath());
         handleChangeUsername();
         handleChangeEmail();
         handleChangePassword();

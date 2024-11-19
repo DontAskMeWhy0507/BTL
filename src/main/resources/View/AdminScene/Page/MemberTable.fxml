@@ -36,7 +36,7 @@
         </HBox>
 
         <!-- Search TextField and Label -->
-        <TextField layoutX="952.0" layoutY="14.0" />
+        <TextField fx:id="tf_findName" layoutX="952.0" layoutY="14.0" onAction="#searchName" onKeyPressed="#entertoSeachName" />
         <Label layoutX="859.0" layoutY="18.0" text="Tìm người dùng" />
     </children>
 </AnchorPane>

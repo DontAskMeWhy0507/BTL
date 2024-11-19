@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,6 +55,9 @@ public class AdminController {
 
     @FXML
     private TableView<User> tableView;
+
+    @FXML
+    private TextField tf_findName;
 
     private ObservableList<User> data;
 
@@ -146,5 +150,32 @@ public class AdminController {
     public void loadDatabase() {
         data.clear();
         loadDataFromDatabase();
+    }
+
+    @FXML
+    public void searchName() {
+        data.clear();
+        String query = "SELECT * FROM USERS WHERE USERNAME LIKE ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, "%" + tf_findName.getText() + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                User user = new User(rs.getInt("ID"),
+                        rs.getString("USERNAME"),
+                        rs.getString("PASSWORD"),
+                        rs.getString("EMAIL"),
+                        LocalDate.parse(rs.getString("DATE_OF_BIRTH")),
+                        rs.getString("AVATAR"),
+                        rs.getString("ROLE"),
+                        new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK"), rs.getInt("LONGEST_STREAK")));
+                data.add(user);
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error searching for user in database", e);
+        }
+    }
+
+    public void entertoSeachName() {
+        tf_findName.setOnAction(e -> searchName());
     }
 }

@@ -12,12 +12,12 @@ public class Transaction {
     private int id;
     private User user;
     private Book book;
-    private LocalDateTime dateBorrowed;
-    private LocalDateTime  dueDate;
-    private LocalDateTime  dateReturned;
+    private LocalDate dateBorrowed;
+    private LocalDate  dueDate;
+    private LocalDate  dateReturned;
     private status status;
 
-    public Transaction(User user, Book book, LocalDateTime  dateBorrowed, LocalDateTime  dueDate) {
+    public Transaction(User user, Book book, LocalDate  dateBorrowed, LocalDate  dueDate) {
         this.user = user;
         this.book = book;
         this.dateBorrowed = dateBorrowed;
@@ -26,7 +26,7 @@ public class Transaction {
         this.status = status.Borrowed;
     }
 
-    public Transaction(int id, User user, Book book, LocalDateTime  dateBorrowed, LocalDateTime  dueDate, LocalDateTime  dateReturned, status status) {
+    public Transaction(int id, User user, Book book, LocalDate  dateBorrowed, LocalDate  dueDate, LocalDate  dateReturned, status status) {
         this.id = id;
         this.user = user;
         this.book = book;
@@ -36,7 +36,7 @@ public class Transaction {
         this.status = status;
     }
 
-    public void returnBook(LocalDateTime dateReturned) {
+    public void returnBook(LocalDate dateReturned) {
         this.dateReturned = dateReturned;
         if (isOverdue()) {
             this.status = status.Overdue;
@@ -46,7 +46,7 @@ public class Transaction {
     }
 
     public boolean isOverdue() {
-        return LocalDateTime.now().isAfter(dueDate);
+        return LocalDate.now().isAfter(dueDate);
     }
 
     // getter and setter
@@ -74,27 +74,27 @@ public class Transaction {
         this.book = book;
     }
 
-    public LocalDateTime getDateBorrowed() {
+    public LocalDate getDateBorrowed() {
         return dateBorrowed;
     }
 
-    public void setDateBorrowed(LocalDateTime dateBorrowed) {
+    public void setDateBorrowed(LocalDate dateBorrowed) {
         this.dateBorrowed = dateBorrowed;
     }
 
-    public LocalDateTime getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
-    public LocalDateTime getDateReturned() {
+    public LocalDate getDateReturned() {
         return dateReturned;
     }
 
-    public void setDateReturned(LocalDateTime dateReturned) {
+    public void setDateReturned(LocalDate dateReturned) {
         this.dateReturned = dateReturned;
     }
 

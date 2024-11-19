@@ -289,9 +289,9 @@ public class DBUltis implements Database{
     }
 
     public void BorrowBook(Transaction transaction) {
-        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String url = "jdbc:sqlite:database//LibraryMain"; // Path to your SQLite database file
 
-        // Câu lệnh SQL không bao gồm book_id
+        // SQL statements
         String sqlInsert = "INSERT INTO BookTransaction(user_id, book_id, date_borrowed, due_date, status) " +
                 "VALUES (?, ?, ?, ?, ?)";
         String sqlUpdate = "UPDATE Books SET quantity = quantity - 1 WHERE isbn = ?";
@@ -300,24 +300,28 @@ public class DBUltis implements Database{
              PreparedStatement pstmtInsert = conn.prepareStatement(sqlInsert);
              PreparedStatement pstmtUpdate = conn.prepareStatement(sqlUpdate)) {
 
-            // Insert the transaction
-            pstmtInsert.setInt(1, transaction.getUser().getId());              // Mã người dùng
-            pstmtInsert.setString(2, transaction.getBook().getIsbn());         // Mã sách
-            pstmtInsert.setDate(3, Date.valueOf(transaction.getDateBorrowed().toLocalDate()));  // Ngày mượn
-            pstmtInsert.setDate(4, Date.valueOf(transaction.getDueDate().toLocalDate()));       // Hạn trả
-            pstmtInsert.setString(5, transaction.getStatus().name());
+            // Set parameters for the INSERT statement
+            pstmtInsert.setInt(1, transaction.getUser().getId()); // Assuming `User` has a method `getId()`
+            pstmtInsert.setString(2, transaction.getBook().getIsbn()); // Assuming `Book` has a method `getId()`
+            pstmtInsert.setString(3, transaction.getDateBorrowed().toString()); // Convert LocalDate to String
+            pstmtInsert.setString(4, transaction.getDueDate().toString()); // Convert LocalDate to String
+            pstmtInsert.setString(5, transaction.getStatus().name()); // Enum status as String
+
+            // Execute the INSERT statement
             pstmtInsert.executeUpdate();
 
-            // Update the book quantity
-            pstmtUpdate.setString(1, transaction.getBook().getIsbn());
+            // Set parameters for the UPDATE statement
+            pstmtUpdate.setString(1, transaction.getBook().getIsbn()); // Assuming `Book` has a method `getIsbn()`
+
+            // Execute the UPDATE statement
             pstmtUpdate.executeUpdate();
 
             System.out.println("Transaction saved to database and book quantity updated.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
-            e.printStackTrace(); // Log the stack trace for better debugging
         }
     }
+
 
     public Transaction getTransaction(User user, Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
@@ -332,15 +336,13 @@ public class DBUltis implements Database{
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                // Extract data from the ResultSet
-                int id = rs.getInt("id");
-                LocalDateTime dateBorrowed = rs.getTimestamp("date_borrowed").toLocalDateTime();
-                LocalDateTime dueDate = rs.getTimestamp("due_date").toLocalDateTime();
-                LocalDateTime dateReturned = rs.getTimestamp("date_returned") != null ? rs.getTimestamp("date_returned").toLocalDateTime() : null;
-                Transaction.status status = Transaction.status.valueOf(rs.getString("status"));
-
-                // Create and return the Transaction object
-                return new Transaction(id, user, book, dateBorrowed, dueDate, dateReturned, status);
+                return new Transaction(rs.getInt("id"),
+                        user,
+                        book,
+                        LocalDate.parse(rs.getString("date_borrowed")),
+                        LocalDate.parse(rs.getString("due_date")),
+                        LocalDate.parse(rs.getString("date_returned")),
+                        Transaction.status.valueOf(rs.getString("status")));
             }
 
         } catch (SQLException e) {
@@ -362,10 +364,9 @@ public class DBUltis implements Database{
              PreparedStatement pstmtUpdateBook = conn.prepareStatement(sqlUpdateBook)) {
 
             // Update the transaction
-            pstmtUpdateTransaction.setTimestamp(1, Timestamp.valueOf(transaction.getDateReturned()));  // Return date
-            pstmtUpdateTransaction.setString(2, transaction.getStatus().name());  // Status
-            pstmtUpdateTransaction.setInt(3, transaction.getId());  // Transaction ID
-            pstmtUpdateTransaction.executeUpdate();
+            pstmtUpdateTransaction.setString(1, transaction.getDateReturned().toString());
+            pstmtUpdateTransaction.setString(2, transaction.getStatus().name());
+            pstmtUpdateTransaction.setInt(3, transaction.getId());
 
             // Update the book quantity
             pstmtUpdateBook.setString(1, transaction.getBook().getIsbn());

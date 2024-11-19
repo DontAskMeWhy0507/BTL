@@ -124,8 +124,8 @@ public class Library {
             alert.setContentText("Sorry, this book is not in the database. Please contact the librarian.");
             alert.showAndWait();
         } else {
-            LocalDateTime dateBorrowed = LocalDateTime.now();
-            LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
+            LocalDate dateBorrowed = LocalDate.now();
+            LocalDate dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
 
             // Tạo một giao dịch mới
             Transaction transaction = new Transaction(currentUser, book, dateBorrowed, dueDate);
@@ -160,7 +160,7 @@ public class Library {
             alert.showAndWait();
         } else
         if (transaction != null) {
-            transaction.returnBook(LocalDateTime.now());
+            transaction.returnBook(LocalDate.now());
 
             try {
                 dbUltis.returnBook(transaction);

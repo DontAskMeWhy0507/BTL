@@ -17,5 +17,4 @@ public interface Database {
     void BorrowBook (Transaction transaction); // Phương thức này cần được triển khai
     Transaction getTransaction(User user, Book book);
     void returnBook(Transaction transaction);
-    Date stringToDate(String dateStr) throws ParseException;
 }

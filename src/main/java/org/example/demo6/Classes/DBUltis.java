@@ -155,27 +155,6 @@ public class DBUltis implements Database{
         return loggedInUser;  // Return the logged in user (Admin or User)
     }
 
-    public Date stringToDate(String dateStr) throws ParseException {
-        // Check the length of the date string to determine the format
-        SimpleDateFormat formatter;
-
-        if (dateStr.matches("\\d{4}")) { // Only year, format: yyyy
-            formatter = new SimpleDateFormat("yyyy");
-            return new Date(formatter.parse(dateStr).getTime());
-
-        } else if (dateStr.matches("\\d{4}-\\d{2}")) { // Year and month, format: yyyy-MM
-            formatter = new SimpleDateFormat("yyyy-MM");
-            return new Date(formatter.parse(dateStr).getTime());
-
-        } else if (dateStr.matches("\\d{4}-\\d{2}-\\d{2}")) { // Full date, format: yyyy-MM-dd
-            formatter = new SimpleDateFormat("yyyy-MM-dd");
-            return new Date(formatter.parse(dateStr).getTime());
-
-        } else {
-            throw new ParseException("Unrecognized date format: " + dateStr, 0);
-        }
-    }
-
     public void saveBookToDatabase(Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
@@ -190,11 +169,7 @@ public class DBUltis implements Database{
             pstmt.setString(2, book.getTitle());             // Tên sách
             pstmt.setString(3, book.getAuthor());            // Tác giả
             pstmt.setString(4, book.getPublisher());         // Nhà xuất bản
-
-            // Convert and set the published date
-            Date publishedDate = stringToDate(book.getPublishedDate());
-            pstmt.setDate(5, publishedDate);                // Ngày xuất bản
-
+            pstmt.setString(5, book.getPublishedDate().toString());
             pstmt.setString(6, book.getLanguage());          // Ngôn ngữ
             pstmt.setString(7, book.getCategory());          // Thể loại
             pstmt.setString(8, book.getDescription());       // Mô tả
@@ -206,9 +181,6 @@ public class DBUltis implements Database{
             System.out.println("Book saved to database.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
-            e.printStackTrace(); // Log the stack trace for better debugging
-        } catch (ParseException e) {
-            System.out.println("Date parsing error: " + e.getMessage());
             e.printStackTrace(); // Log the stack trace for better debugging
         }
     }
@@ -225,24 +197,19 @@ public class DBUltis implements Database{
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                // Extract data from each row in the ResultSet
-                String isbn = rs.getString("isbn");
-                String title = rs.getString("title");
-                String author = rs.getString("author");
-                String publisher = rs.getString("publisher");
-                String publishedDate = rs.getString("published_date"); // stored as String
-                String language = rs.getString("language");
-                String category = rs.getString("category");
-                String description = rs.getString("description");
-                int quantity = rs.getInt("quantity");
-
-                String bookPath = rs.getString("book_path");
-                String coverImagePath = rs.getString("cover_image_path");
-                String audioPath = rs.getString("audio_path");
-
-
+                Book book = new Book(rs.getString("isbn"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("category"),
+                        rs.getString("description"),
+                        rs.getString("language"),
+                        rs.getString("publisher"),
+                        LocalDate.parse(rs.getString("published_date")),
+                        rs.getString("book_path"),
+                        rs.getString("cover_image_path"),
+                        rs.getString("audio_path"),
+                        rs.getInt("quantity"));
                 // Create and add the Book object to the list
-                Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description,bookPath,coverImagePath, audioPath,quantity);
                 books.add(book);
             }
 
@@ -298,23 +265,19 @@ public class DBUltis implements Database{
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // Extract data from each row in the ResultSet
-                String isbn = rs.getString("isbn");
-                String title = rs.getString("title");
-                String author = rs.getString("author");
-                String publisher = rs.getString("publisher");
-                String publishedDate = rs.getString("published_date"); // stored as String
-                String language = rs.getString("language");
-                String category = rs.getString("category");
-                String description = rs.getString("description");
-                int quantity = rs.getInt("quantity");
-
-                String bookPath = rs.getString("book_path");
-                String coverImagePath = rs.getString("cover_image_path");
-                String audioPath = rs.getString("audio_path");
-
+                Book book = new Book(rs.getString("isbn"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("category"),
+                        rs.getString("description"),
+                        rs.getString("language"),
+                        rs.getString("publisher"),
+                        LocalDate.parse(rs.getString("published_date")),
+                        rs.getString("book_path"),
+                        rs.getString("cover_image_path"),
+                        rs.getString("audio_path"),
+                        rs.getInt("quantity"));
                 // Create and add the Book object to the list
-                Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description,bookPath,coverImagePath, audioPath,quantity);
                 books.add(book);
             }
 

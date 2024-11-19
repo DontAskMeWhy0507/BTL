@@ -7,6 +7,7 @@ import com.google.api.services.books.model.Volumes;
 import com.google.api.services.books.model.Volume;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class apiGoogleBooks {
                 String description = volumeInfo.getDescription() != null ? volumeInfo.getDescription() : "No description available";
                 String language = volumeInfo.getLanguage();
                 String publisher = volumeInfo.getPublisher() != null ? volumeInfo.getPublisher() : "Unknown";
-                String publishedDate = volumeInfo.getPublishedDate() != null ? volumeInfo.getPublishedDate() : "Unknown";
+                LocalDate publishedDate = volumeInfo.getPublishedDate() != null ? LocalDate.parse(volumeInfo.getPublishedDate()) : LocalDate.now();
 
                 String bookPath  = null;
                 String coverImagePath = volumeInfo.getImageLinks() != null ? volumeInfo.getImageLinks().getThumbnail() : null;

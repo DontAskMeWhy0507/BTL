@@ -22,104 +22,58 @@ import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class DBUltis implements Database{
 
-    public void signUp(ActionEvent event, String id, String username, String password, String email) {
-        Connection connection = null;
-        PreparedStatement psInsert = null;
-        PreparedStatement psCheckUserExist = null;
-        PreparedStatement psCheckIDExist = null;
-        PreparedStatement psCheckEmailExist = null;
-        ResultSet rsUsername = null;
-        ResultSet rsID = null;
-        ResultSet rsEmail = null;
+    public void signUp(String id, String username, String password, String email) {
+        String url = "jdbc:sqlite:database/LibraryMain";
 
-        try {
-            connection = DriverManager.getConnection("jdbc:sqlite:database//LibraryMain");
-
-            psCheckUserExist = connection.prepareStatement("SELECT * FROM USERS WHERE username = ?");
-            psCheckUserExist.setString(1, username);
-            rsUsername = psCheckUserExist.executeQuery();
-
-            psCheckIDExist = connection.prepareStatement("SELECT * FROM USERS WHERE ID = ?");
-            psCheckIDExist.setString(1, id);
-            rsID = psCheckIDExist.executeQuery();
-
-            psCheckEmailExist = connection.prepareStatement("SELECT * FROM USERS WHERE EMAIL = ?");
-            psCheckEmailExist.setString(1, email);
-            rsEmail = psCheckEmailExist.executeQuery();
-            if (rsUsername.isBeforeFirst()) {
-                System.out.println("User already exists");
+        try (Connection conn = DriverManager.getConnection(url)) {
+            // check if the username already exists
+            if (findQuery("SELECT * FROM Users WHERE username = '" + username + "'")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("User already exists");
+                alert.setContentText("Username already exists");
                 alert.show();
-            } else if (rsID.isBeforeFirst()) {
-                System.out.println("ID already exists");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You cannot use this ID");
-                alert.show();
-            } else if (rsEmail.isBeforeFirst()) {
-                System.out.println("Email already exists");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You cannot use this email");
-                alert.show();
-            } else {
-                psInsert = connection.prepareStatement("INSERT INTO USERS (ID, USERNAME, PASSWORD, EMAIL) VALUES (?, ?, ?, ?)");
-                psInsert.setString(1, id);
-                psInsert.setString(2, username);
-                psInsert.setString(3, password);
-                psInsert.setString(4, email);
-                psInsert.executeUpdate();
-                System.out.println("User created");
-                changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+                return;
             }
+            // check if the email already exists
+            if (findQuery("SELECT * FROM Users WHERE email = '" + email + "'")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Email already exists");
+                alert.show();
+                return;
+            }
+            // check if the id already exists
+            if (findQuery("SELECT * FROM Users WHERE id = '" + id + "'")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("ID already exists");
+                alert.show();
+                return;
+            }
+
+            String sql = "INSERT INTO Users(id, username, password, email, date_of_birth, avatar, role, last_access, streak, longest_streak) " +
+                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, username);
+            pstmt.setString(3, password);
+            pstmt.setString(4, email);
+            pstmt.setString(5, LocalDate.now().toString());
+            pstmt.setString(6, "/Image/Avatar/Gekko.png");
+            pstmt.setString(7, "User");
+            pstmt.setString(8, LocalDate.now().toString());
+            pstmt.setInt(9, 0);
+            pstmt.setInt(10, 0);
+
+            pstmt.executeUpdate();
+            System.out.println("User signed up successfully.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (rsID != null) {
-                try {
-                    rsID.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (rsUsername != null) {
-                try {
-                    rsUsername.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (psCheckIDExist != null) {
-                try {
-                    psCheckIDExist.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (psCheckUserExist != null) {
-                try {
-                    psCheckUserExist.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (psInsert != null) {
-                try {
-                    psInsert.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            System.out.println("Error signing up: " + e.getMessage());
         }
+
     }
 
-    public User logIn(ActionEvent event, String username, String password) {
+
+    public User logIn(String username, String password) {
         Connection connection = null;
         PreparedStatement psCheckUserExist = null;
         ResultSet rs = null;
@@ -154,15 +108,6 @@ public class DBUltis implements Database{
                                     rs.getString("ROLE"),
                                     new Streak(LocalDate.parse(rs.getString("LAST_ACCESS")), rs.getInt("STREAK"), rs.getInt("LONGEST_STREAK")));
                         } else if (role.equals("User")) {
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Login");
-                            alert.setContentText("Logging in as User...");
-                            alert.show();
-                            // Change to the user scene
-                            changescene(event, "/View/UserScene/MainSceneUser.fxml", "User Home");
-                            alert.close();
-
-                            // You could initialize the User object similarly to Admin if needed
                             loggedInUser = new User(rs.getInt("ID"),
                                     rs.getString("USERNAME"),
                                     rs.getString("PASSWORD"),
@@ -311,19 +256,24 @@ public class DBUltis implements Database{
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
         // Câu lệnh SQL không bao gồm book_id
-        String sql = "UPDATE USERS SET username = ?, password = ?, email = ?, avatar = ? WHERE ID = ?";
+        String sql = "UPDATE users SET username = ?, password = ?, email = ?, " +
+                "avatar = ?, last_access = ?, date_of_birth = ?, streak = ?, longest_streak = ? WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, user.getUsername());              // Mã ISBN
-            pstmt.setString(2, user.getPassword());             // Tên sách
-            pstmt.setString(3, user.getEmail());            // Tác giả
-            pstmt.setString(4, user.getPathToProfilePicture());         // Nhà xuất bản
-            pstmt.setInt(5, user.getId());                // Ngày xuất bản
+            pstmt.setString(1, user.getUsername());  // Tên người dùng
+            pstmt.setString(2, user.getPassword());  // Mật khẩu
+            pstmt.setString(3, user.getEmail());     // Email
+            pstmt.setString(4, user.getPathToProfilePicture());    // Đường dẫn đến ảnh đại diện
+            pstmt.setString(5, user.getStreak().getLastAccess().toString()); // Last access
+            pstmt.setString(6, user.getDateOfBirth().toString()); // Ngày sinh
+            pstmt.setInt(7, user.getStreak().getStreak()); // Streak
+            pstmt.setInt(8, user.getStreak().getLongestStreak()); // Longest streak
+            pstmt.setInt(9, user.getId()); // ID người dùng
 
             pstmt.executeUpdate();
-            System.out.println("User updated in database.");
+           // System.out.println("User updated in database.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
             e.printStackTrace(); // Log the stack trace for better debugging

@@ -10,6 +10,8 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static org.example.demo6.Controller.GeneralController.changescene;
+
 public class Library {
     DBUltis dbUltis = new DBUltis();
     private static Library instance = null;
@@ -31,17 +33,25 @@ public class Library {
         currentUser = user;
     }
 
+    public void signUp(ActionEvent event, String id, String username, String password, String email) {
+        dbUltis.signUp(id, username, password, email);
+        changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+    }
 
     public static void logIn(ActionEvent event, String username, String password) {
         // Lấy đối tượng Library duy nhất
         Library library = Library.getInstance();
         DBUltis DBUltis = new DBUltis();
         // Đăng nhập và thiết lập người dùng hiện tại
-        User loggedInUser = DBUltis.logIn(event, username, password);
+        User loggedInUser = DBUltis.logIn(username, password);
         if (loggedInUser != null) {
             library.setCurrentUser(loggedInUser);  // Thiết lập người dùng hiện tại trong đối tượng Library duy nhất
             currentUser.getStreak().updateStreak();
-            GeneralController.changescene(event, "/View/AdminScene/MainScene.fxml", "Home to Library");
+            if (currentUser.getRole().equals("Admin")) {
+                GeneralController.changescene(event, "/View/AdminScene/MainScene.fxml", "Home to Library");
+            } else {
+                GeneralController.changescene(event, "/View/UserScene/MainSceneUser.fxml", "Home to Library");
+            }
         } else {
             // Xử lý nếu đăng nhập thất bại
             System.out.println("Login failed. Please try again.");
@@ -50,6 +60,10 @@ public class Library {
 
     public static void logOut(ActionEvent event) {
         Library library = Library.getInstance();
+        if (library.getCurrentUser() == null) {
+            return;
+        }
+
         DBUltis dbUltis = new DBUltis();
         dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
                 + "', streak = " + library.getCurrentUser().getStreak().getStreak()

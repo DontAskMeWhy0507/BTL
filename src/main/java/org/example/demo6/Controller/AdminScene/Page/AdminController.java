@@ -76,8 +76,8 @@ public class AdminController {
         tf_avatar.setCellValueFactory(new PropertyValueFactory<>("pathToProfilePicture"));
 
         // New columns for Streak and Last Access Date
-        tf_streak.setCellValueFactory(new PropertyValueFactory<>("streak"));
-        tf_lastLoginDate.setCellValueFactory(new PropertyValueFactory<>("lastLoginDate"));
+        tf_streak.setCellValueFactory(new PropertyValueFactory<>("IntStreak"));
+        tf_lastLoginDate.setCellValueFactory(new PropertyValueFactory<>("LastLoginDate"));
     }
 
     private void loadDataFromDatabase() {

@@ -66,6 +66,14 @@ public class User {
     public List<Review> getReviews() { return reviews; }
     public void addReview(Review review) { reviews.add(review); }
 
+    public int getIntStreak() {
+        return streak.getStreak();
+    }
+
+    public LocalDate getLastLoginDate() {
+        return streak.getLastAccess();
+    }
+
     // books
     
 

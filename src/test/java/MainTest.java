@@ -21,6 +21,36 @@ public class MainTest {
         assert streak.getLongestStreak() == 20;
     }
 
+    @Test
+    public void testUpdateUserInDataBase() {
+        DBUltis dbUltis = new DBUltis();
+        User user = dbUltis.logIn("admin", "123");
+        user.setEmail("trung0705@gmail.com");
+        user.setDateOfBirth(LocalDate.parse("2000-07-05"));
+        user.getStreak().setLastAccess(LocalDate.parse("2024-11-15"));
+        dbUltis.updateUserInDatabase(user);
+        assert user.getDateOfBirth().equals(LocalDate.parse("2000-07-05"));
+        assert user.getUsername().equals("admin");
+        assert user.getPassword().equals("123");
+    }
+
+    @Test
+    public void testLoadQuery() {
+        DBUltis dbUltis = new DBUltis();
+        User user = dbUltis.logIn("admin", "123");
+        dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
+                + "', streak = " + user.getStreak().getStreak()
+                + " WHERE id = " + user.getId());
+        assert user.getStreak().getStreak() == 1;
+
+    }
+
+    @Test
+    public void testSignUp() {
+
+    }
+
+
 
 
 }

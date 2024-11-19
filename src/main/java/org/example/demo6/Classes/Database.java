@@ -8,8 +8,8 @@ import java.util.List;
 
 
 public interface Database {
-    void signUp(ActionEvent event, String id, String username, String password, String email);
-    User logIn(ActionEvent event, String username, String password);
+    void signUp(String id, String username, String password, String email);
+    User logIn(String username, String password);
     void saveBookToDatabase(Book book);
     List<Book> getBooksFromDatabase();
     void updateUserInDatabase(User user);

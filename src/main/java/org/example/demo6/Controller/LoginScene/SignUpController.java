@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Paint;
 import org.example.demo6.Classes.DBUltis;
+import org.example.demo6.Classes.Library;
 
 import java.net.URL;
 import java.util.Objects;
@@ -29,6 +30,7 @@ import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class SignUpController implements Initializable {
     DBUltis dbUltis = new DBUltis();
+    Library lib = Library.getInstance();
 
     @FXML
     private AnchorPane mainPane;
@@ -102,38 +104,24 @@ public class SignUpController implements Initializable {
 
         AnchorPane.setTopAnchor(createAcc, 600.0);
         AnchorPane.setLeftAnchor(createAcc, 200.0);
-        
+
         buttonSign_Up.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (!tf_id.getText().isEmpty() && !tf_username.getText().isEmpty()
                         && !tf_password.getText().isEmpty() && !tf_repassword.getText().isEmpty()) {
-                    if (!tf_password.getText().equals(tf_repassword.getText())) {
-//                        System.out.println("Password not match");
-//                        Alert alert = new Alert(Alert.AlertType.ERROR);
-//                        alert.setContentText("Password not match");
-//                        alert.show();
-                        password_check.setText("Mat khau khong trung khop!");
-                    } else if (!isPasswordStrong(tf_password.getText())) {
-//                        System.out.println("Password is not strong enough");
-//                        Alert alert = new Alert(Alert.AlertType.ERROR);
-//                        alert.setContentText("Password must be at least 8 characters long and include a mix of uppercase letters, lowercase letters, numbers, and special characters.");
-//                        alert.show();
-                        password_check.setText("Mat khau phai co 8 ki tu, in hoa, in thuong va ki tu dac biet");
-                    } else if (!isEmailValid(tf_email.getText())) {
-//                        Alert alert = new Alert(Alert.AlertType.ERROR);
-//                        alert.setContentText("Email khong hop le");
-//                        alert.show();
-                        password_check.setText("Email khong hop le");
-                    }
-                    else {
-                        dbUltis.signUp(event, tf_id.getText(), tf_username.getText(), tf_password.getText(), tf_email.getText());
-                    }
+
+                        lib.signUp(event, tf_id.getText(), tf_username.getText(), tf_password.getText(), tf_email.getText());
+
                 } else {
-                    System.out.println("Please fill all the fields");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Please fill all the fields");
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Missing Information");
+                    alert.setContentText("Please fill all the fields.");
+                    alert.getDialogPane().getStylesheets().add(getClass().getResource("/Style/Alert/Alert.css").toExternalForm());
                     alert.show();
+
+
                 }
             }
         });
@@ -150,18 +138,20 @@ public class SignUpController implements Initializable {
         if (password.length() < 8) {
             return false;
         }
-        String upperCaseChars = "(.*[A-Z].*)";
-        String lowerCaseChars = "(.*[a-z].*)";
-        String numbers = "(.*[0-9].*)";
-        String specialChars = "(.*[!@#$%^&*(),.?\":{}|<>].*)";
-        return Pattern.matches(upperCaseChars, password) &&
-                Pattern.matches(lowerCaseChars, password) &&
-                Pattern.matches(numbers, password) &&
-                Pattern.matches(specialChars, password);
+//        String upperCaseChars = "(.*[A-Z].*)";
+//        String lowerCaseChars = "(.*[a-z].*)";
+//        String numbers = "(.*[0-9].*)";
+//        String specialChars = "(.*[!@#$%^&*(),.?\":{}|<>].*)";
+//        return Pattern.matches(upperCaseChars, password) &&
+//                Pattern.matches(lowerCaseChars, password) &&
+//                Pattern.matches(numbers, password) &&
+//                Pattern.matches(specialChars, password);
+        return true;
     }
     private boolean isEmailValid(String email) {
-        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return Pattern.matches(emailPattern, email);
+//        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+//        return Pattern.matches(emailPattern, email);
+        return true;
     }
 
 //    public void Enter(KeyEvent event) {

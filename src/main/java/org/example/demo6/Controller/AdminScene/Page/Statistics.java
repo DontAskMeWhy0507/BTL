@@ -43,7 +43,7 @@ public class Statistics {
 
         // Giả sử bạn có danh sách người dùng và mỗi người có số ngày streak
         for (User user : library.getUsers()) {
-            streakSeries.getData().add(new XYChart.Data<>(user.getUsername(), user.getStreakDays()));
+            streakSeries.getData().add(new XYChart.Data<>(user.getUsername(), user.getIntStreak()));
         }
 
         // Add data series to the BarChart

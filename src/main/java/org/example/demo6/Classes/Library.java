@@ -158,10 +158,10 @@ public class Library {
             alert.setHeaderText("Book already returned");
             alert.setContentText("Sorry, you have already returned this book. Please check again.");
             alert.showAndWait();
-        } else
-        if (transaction != null) {
+        } else {
+            System.out.println(transaction.getId());
             transaction.returnBook(LocalDate.now());
-
+            transaction.setStatus(Transaction.status.Returned);
             try {
                 dbUltis.returnBook(transaction);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

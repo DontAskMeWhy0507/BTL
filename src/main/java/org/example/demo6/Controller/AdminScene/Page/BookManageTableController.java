@@ -9,15 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 
 public class BookManageTableController {
@@ -45,6 +43,9 @@ public class BookManageTableController {
 
     @FXML
     private TableColumn<Book, Integer> tf_quantity;
+
+    @FXML
+    private TextField tf_findBook;
 
     private ObservableList<Book> data;
 
@@ -129,4 +130,37 @@ public class BookManageTableController {
         loadDataFromDatabase();
     }
 
+    private void searchBookDatabase(String query) {
+        String url = "jdbc:sqlite:database//LibraryMain";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, "%" + tf_findBook.getText() + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                data.add(new Book(
+                        rs.getString("isbn"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("category"),
+                        rs.getString("language"),
+                        rs.getString("publisher"),
+                        rs.getInt("quantity")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void searchBookDatabase1() {
+        data.clear();
+        String query = "SELECT * FROM BOOKS WHERE TITLE LIKE ?";
+
+        searchBookDatabase(query);
+    }
+
+
+    public void enterToSeachBookData() {
+        tf_findBook.setOnAction(event -> searchBookDatabase1());
+    }
 }

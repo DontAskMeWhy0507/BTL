@@ -37,6 +37,18 @@ public class Book {
         this.audioPath = audioPath;      // Có thể là null nếu không có
     }
 
+    public Book(String isbn, String title, String author, String category, String language, String publisher, int quantity) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.language = language;
+        this.publisher = publisher;
+        this.quantity = quantity;
+
+    }
+
+
     // Getters và Setters
 
 

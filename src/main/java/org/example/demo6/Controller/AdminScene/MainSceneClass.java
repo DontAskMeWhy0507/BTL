@@ -47,6 +47,9 @@ public class MainSceneClass{
     @FXML
     private Button avatarButton;
 
+    @FXML
+    private Label userName;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -101,6 +104,8 @@ public class MainSceneClass{
         changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
         avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
     }
+
+
 
     @FXML
     public void initialize() {

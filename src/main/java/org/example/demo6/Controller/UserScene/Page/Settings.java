@@ -1,17 +1,15 @@
-package org.example.demo6.Controller.AdminScene.Page;
+package org.example.demo6.Controller.UserScene.Page;
 
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Library;
-import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import org.example.demo6.Controller.UserScene.MainSceneUser;
 
 import java.io.File;
@@ -19,9 +17,9 @@ import java.io.File;
 public class Settings {
     DBUltis DBUltis = new DBUltis();
     Library lib = Library.getInstance();
-    private MainSceneClass mainSceneController;
+    private MainSceneUser mainSceneController;
 
-    public void setMainSceneController(MainSceneClass mainSceneController) {
+    public void setMainSceneController(MainSceneUser mainSceneController) {
         this.mainSceneController = mainSceneController;
     }
 
@@ -101,9 +99,7 @@ public class Settings {
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
         changeAvatar = true;
-
     }
-
 
     private void setAvatar(String imagePath) {
         Image avatarImage = new Image(getClass().getResourceAsStream(imagePath));
@@ -157,28 +153,25 @@ public class Settings {
             return;
         }
         changePassword = true;
-        // Add logic to update the password
         lib.getCurrentUser().setPassword(newPassword);
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
     }
 
-     public void confirmChange() {
+    public void confirmChange() {
         confirmAvatarSelection();
         handleChangeUsername();
         handleChangeEmail();
         handleChangePassword();
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText("Changes saved");
-            alert.setContentText("You have successfully changed" +
-                    (changeAvatar ? " your avatar" : "") +
-                    (changeUsername ? ", your username" : "") +
-                    (changeEmail ? ", your email" : "") +
-                    (changePassword ? ", your password" : "") +
-                    ".");
-            alert.showAndWait();
-     }
-
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Changes saved");
+        alert.setContentText("You have successfully changed" +
+                (changeAvatar ? " your avatar" : "") +
+                (changeUsername ? ", your username" : "") +
+                (changeEmail ? ", your email" : "") +
+                (changePassword ? ", your password" : "") +
+                ".");
+        alert.showAndWait();
+    }
 }

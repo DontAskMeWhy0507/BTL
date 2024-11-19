@@ -1,5 +1,6 @@
 package org.example.demo6.Classes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 public class Book {
@@ -7,7 +8,7 @@ public class Book {
     private String title;              // Tên sách
     private String author;             // Tác giả
     private String publisher;          // Nhà xuất bản
-    private String publishedDate;      // Ngày xuất bản
+    private LocalDate publishedDate;      // Ngày xuất bản
     private String language;           // Ngôn ngữ
     private String category;           // Thể loại
     private String description;        // Mô tả
@@ -19,7 +20,7 @@ public class Book {
 
     // Constructor
     public Book(String isbn, String title, String author, String category, String description,
-                String language, String publisher, String publishedDate, String bookPath,
+                String language, String publisher, LocalDate publishedDate, String bookPath,
                 String coverImagePath, String audioPath, int quantity) {
         this.isbn = isbn;
         this.title = title;
@@ -47,6 +48,7 @@ public class Book {
 
     }
 
+
     // Getters và Setters
 
 
@@ -71,8 +73,8 @@ public class Book {
     public String getPublisher() { return publisher; }
     public void setPublisher(String publisher) { this.publisher = publisher; }
 
-    public String getPublishedDate() { return publishedDate; }
-    public void setPublishedDate(String publishedDate) { this.publishedDate = publishedDate; }
+    public LocalDate getPublishedDate() { return publishedDate; }
+    public void setPublishedDate(LocalDate publishedDate) { this.publishedDate = publishedDate; }
 
     public String getCoverImagePath() { return coverImagePath; }
     public void setCoverImagePath(String coverImagePath) { this.coverImagePath = coverImagePath; }

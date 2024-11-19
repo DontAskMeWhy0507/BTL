@@ -7,6 +7,8 @@ import com.google.api.services.books.model.Volumes;
 import com.google.api.services.books.model.Volume;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +68,7 @@ public class apiGoogleBooks {
                 String description = volumeInfo.getDescription() != null ? volumeInfo.getDescription() : "No description available";
                 String language = volumeInfo.getLanguage();
                 String publisher = volumeInfo.getPublisher() != null ? volumeInfo.getPublisher() : "Unknown";
-                String publishedDate = volumeInfo.getPublishedDate() != null ? volumeInfo.getPublishedDate() : "Unknown";
+                LocalDate publishedDate = parsePublishedDate(volumeInfo.getPublishedDate());
 
                 String bookPath  = null;
                 String coverImagePath = volumeInfo.getImageLinks() != null ? volumeInfo.getImageLinks().getThumbnail() : null;
@@ -78,5 +80,25 @@ public class apiGoogleBooks {
         }
         return books;
     }
+
+    private static LocalDate parsePublishedDate(String publishedDate) {
+        if (publishedDate == null || publishedDate.isBlank()) {
+            return LocalDate.now(); // Default to current date if null or empty
+        }
+
+        try {
+            if (publishedDate.matches("\\d{4}")) { // Year only (e.g., "1875")
+                return LocalDate.parse(publishedDate + "-01-01"); // Assume January 1
+            } else if (publishedDate.matches("\\d{4}-\\d{2}")) { // Year and month only (e.g., "2024-11")
+                return LocalDate.parse(publishedDate + "-01"); // Assume the first day of the month
+            } else { // Full date (e.g., "2024-11-19")
+                return LocalDate.parse(publishedDate);
+            }
+        } catch (DateTimeParseException e) {
+            System.err.println("Failed to parse publishedDate: " + publishedDate);
+            return LocalDate.now(); // Default to current date on failure
+        }
+    }
+
 }
 

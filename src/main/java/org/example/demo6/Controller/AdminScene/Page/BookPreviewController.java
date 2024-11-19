@@ -106,7 +106,7 @@ public class BookPreviewController {
         bookTitleLabel.setText(book.getTitle());
         setDescriptionLength(book.getDescription());
         bookAuthor.setText(book.getAuthor());
-        bookPublishedDate.setText(book.getPublishedDate());
+        bookPublishedDate.setText(book.getPublishedDate().toString());
         bookCategoryLabel.setText(book.getCategory());
         bookPublisher.setText(book.getPublisher());
         bookLanguage.setText(book.getLanguage());

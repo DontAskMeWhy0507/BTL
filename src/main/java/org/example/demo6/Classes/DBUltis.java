@@ -22,7 +22,7 @@ import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class DBUltis implements Database{
 
-    public void signUp(String id, String username, String password, String email) {
+    public boolean signUp(String id, String username, String password, String email) {
         String url = "jdbc:sqlite:database/LibraryMain";
 
         try (Connection conn = DriverManager.getConnection(url)) {
@@ -31,21 +31,21 @@ public class DBUltis implements Database{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Username already exists");
                 alert.show();
-                return;
+                return false;
             }
             // check if the email already exists
             if (findQuery("SELECT * FROM Users WHERE email = '" + email + "'")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Email already exists");
                 alert.show();
-                return;
+                return false;
             }
             // check if the id already exists
             if (findQuery("SELECT * FROM Users WHERE id = '" + id + "'")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("ID already exists");
                 alert.show();
-                return;
+                return false;
             }
 
             String sql = "INSERT INTO Users(id, username, password, email, date_of_birth, avatar, role, last_access, streak, longest_streak) " +
@@ -69,6 +69,7 @@ public class DBUltis implements Database{
         } catch (SQLException e) {
             System.out.println("Error signing up: " + e.getMessage());
         }
+        return true;
 
     }
 
@@ -154,27 +155,6 @@ public class DBUltis implements Database{
         return loggedInUser;  // Return the logged in user (Admin or User)
     }
 
-    public Date stringToDate(String dateStr) throws ParseException {
-        // Check the length of the date string to determine the format
-        SimpleDateFormat formatter;
-
-        if (dateStr.matches("\\d{4}")) { // Only year, format: yyyy
-            formatter = new SimpleDateFormat("yyyy");
-            return new Date(formatter.parse(dateStr).getTime());
-
-        } else if (dateStr.matches("\\d{4}-\\d{2}")) { // Year and month, format: yyyy-MM
-            formatter = new SimpleDateFormat("yyyy-MM");
-            return new Date(formatter.parse(dateStr).getTime());
-
-        } else if (dateStr.matches("\\d{4}-\\d{2}-\\d{2}")) { // Full date, format: yyyy-MM-dd
-            formatter = new SimpleDateFormat("yyyy-MM-dd");
-            return new Date(formatter.parse(dateStr).getTime());
-
-        } else {
-            throw new ParseException("Unrecognized date format: " + dateStr, 0);
-        }
-    }
-
     public void saveBookToDatabase(Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
@@ -189,11 +169,7 @@ public class DBUltis implements Database{
             pstmt.setString(2, book.getTitle());             // Tên sách
             pstmt.setString(3, book.getAuthor());            // Tác giả
             pstmt.setString(4, book.getPublisher());         // Nhà xuất bản
-
-            // Convert and set the published date
-            Date publishedDate = stringToDate(book.getPublishedDate());
-            pstmt.setDate(5, publishedDate);                // Ngày xuất bản
-
+            pstmt.setString(5, book.getPublishedDate().toString());
             pstmt.setString(6, book.getLanguage());          // Ngôn ngữ
             pstmt.setString(7, book.getCategory());          // Thể loại
             pstmt.setString(8, book.getDescription());       // Mô tả
@@ -205,9 +181,6 @@ public class DBUltis implements Database{
             System.out.println("Book saved to database.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
-            e.printStackTrace(); // Log the stack trace for better debugging
-        } catch (ParseException e) {
-            System.out.println("Date parsing error: " + e.getMessage());
             e.printStackTrace(); // Log the stack trace for better debugging
         }
     }
@@ -224,24 +197,19 @@ public class DBUltis implements Database{
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                // Extract data from each row in the ResultSet
-                String isbn = rs.getString("isbn");
-                String title = rs.getString("title");
-                String author = rs.getString("author");
-                String publisher = rs.getString("publisher");
-                String publishedDate = rs.getString("published_date"); // stored as String
-                String language = rs.getString("language");
-                String category = rs.getString("category");
-                String description = rs.getString("description");
-                int quantity = rs.getInt("quantity");
-
-                String bookPath = rs.getString("book_path");
-                String coverImagePath = rs.getString("cover_image_path");
-                String audioPath = rs.getString("audio_path");
-
-
+                Book book = new Book(rs.getString("isbn"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("category"),
+                        rs.getString("description"),
+                        rs.getString("language"),
+                        rs.getString("publisher"),
+                        LocalDate.parse(rs.getString("published_date")),
+                        rs.getString("book_path"),
+                        rs.getString("cover_image_path"),
+                        rs.getString("audio_path"),
+                        rs.getInt("quantity"));
                 // Create and add the Book object to the list
-                Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description,bookPath,coverImagePath, audioPath,quantity);
                 books.add(book);
             }
 
@@ -297,23 +265,19 @@ public class DBUltis implements Database{
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // Extract data from each row in the ResultSet
-                String isbn = rs.getString("isbn");
-                String title = rs.getString("title");
-                String author = rs.getString("author");
-                String publisher = rs.getString("publisher");
-                String publishedDate = rs.getString("published_date"); // stored as String
-                String language = rs.getString("language");
-                String category = rs.getString("category");
-                String description = rs.getString("description");
-                int quantity = rs.getInt("quantity");
-
-                String bookPath = rs.getString("book_path");
-                String coverImagePath = rs.getString("cover_image_path");
-                String audioPath = rs.getString("audio_path");
-
+                Book book = new Book(rs.getString("isbn"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("category"),
+                        rs.getString("description"),
+                        rs.getString("language"),
+                        rs.getString("publisher"),
+                        LocalDate.parse(rs.getString("published_date")),
+                        rs.getString("book_path"),
+                        rs.getString("cover_image_path"),
+                        rs.getString("audio_path"),
+                        rs.getInt("quantity"));
                 // Create and add the Book object to the list
-                Book book = new Book(isbn, title, author, publisher, publishedDate, language, category, description,bookPath,coverImagePath, audioPath,quantity);
                 books.add(book);
             }
 
@@ -325,9 +289,9 @@ public class DBUltis implements Database{
     }
 
     public void BorrowBook(Transaction transaction) {
-        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String url = "jdbc:sqlite:database//LibraryMain"; // Path to your SQLite database file
 
-        // Câu lệnh SQL không bao gồm book_id
+        // SQL statements
         String sqlInsert = "INSERT INTO BookTransaction(user_id, book_id, date_borrowed, due_date, status) " +
                 "VALUES (?, ?, ?, ?, ?)";
         String sqlUpdate = "UPDATE Books SET quantity = quantity - 1 WHERE isbn = ?";
@@ -336,28 +300,32 @@ public class DBUltis implements Database{
              PreparedStatement pstmtInsert = conn.prepareStatement(sqlInsert);
              PreparedStatement pstmtUpdate = conn.prepareStatement(sqlUpdate)) {
 
-            // Insert the transaction
-            pstmtInsert.setInt(1, transaction.getUser().getId());              // Mã người dùng
-            pstmtInsert.setString(2, transaction.getBook().getIsbn());         // Mã sách
-            pstmtInsert.setDate(3, Date.valueOf(transaction.getDateBorrowed().toLocalDate()));  // Ngày mượn
-            pstmtInsert.setDate(4, Date.valueOf(transaction.getDueDate().toLocalDate()));       // Hạn trả
-            pstmtInsert.setString(5, transaction.getStatus().name());
+            // Set parameters for the INSERT statement
+            pstmtInsert.setInt(1, transaction.getUser().getId()); // Assuming `User` has a method `getId()`
+            pstmtInsert.setString(2, transaction.getBook().getIsbn()); // Assuming `Book` has a method `getId()`
+            pstmtInsert.setString(3, transaction.getDateBorrowed().toString()); // Convert LocalDate to String
+            pstmtInsert.setString(4, transaction.getDueDate().toString()); // Convert LocalDate to String
+            pstmtInsert.setString(5, transaction.getStatus().name()); // Enum status as String
+
+            // Execute the INSERT statement
             pstmtInsert.executeUpdate();
 
-            // Update the book quantity
-            pstmtUpdate.setString(1, transaction.getBook().getIsbn());
+            // Set parameters for the UPDATE statement
+            pstmtUpdate.setString(1, transaction.getBook().getIsbn()); // Assuming `Book` has a method `getIsbn()`
+
+            // Execute the UPDATE statement
             pstmtUpdate.executeUpdate();
 
             System.out.println("Transaction saved to database and book quantity updated.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
-            e.printStackTrace(); // Log the stack trace for better debugging
         }
     }
 
+
     public Transaction getTransaction(User user, Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
-        String sql = "SELECT * FROM BookTransaction WHERE user_id = ? AND book_id = ?";
+        String sql = "SELECT * FROM BookTransaction WHERE user_id = ? AND book_id = ? AND status = 'Borrowed'";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -368,15 +336,18 @@ public class DBUltis implements Database{
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                // Extract data from the ResultSet
-                int id = rs.getInt("id");
-                LocalDateTime dateBorrowed = rs.getTimestamp("date_borrowed").toLocalDateTime();
-                LocalDateTime dueDate = rs.getTimestamp("due_date").toLocalDateTime();
-                LocalDateTime dateReturned = rs.getTimestamp("date_returned") != null ? rs.getTimestamp("date_returned").toLocalDateTime() : null;
-                Transaction.status status = Transaction.status.valueOf(rs.getString("status"));
-
-                // Create and return the Transaction object
-                return new Transaction(id, user, book, dateBorrowed, dueDate, dateReturned, status);
+                LocalDate dateReturned = null;
+                String dateReturnedStr = rs.getString("date_returned");
+                if (dateReturnedStr != null) {
+                    dateReturned = LocalDate.parse(dateReturnedStr);
+                }
+                return new Transaction(rs.getInt("id"),
+                        user,
+                        book,
+                        LocalDate.parse(rs.getString("date_borrowed")),
+                        LocalDate.parse(rs.getString("due_date")),
+                        dateReturned,
+                        Transaction.status.valueOf(rs.getString("status")));
             }
 
         } catch (SQLException e) {
@@ -398,9 +369,9 @@ public class DBUltis implements Database{
              PreparedStatement pstmtUpdateBook = conn.prepareStatement(sqlUpdateBook)) {
 
             // Update the transaction
-            pstmtUpdateTransaction.setTimestamp(1, Timestamp.valueOf(transaction.getDateReturned()));  // Return date
-            pstmtUpdateTransaction.setString(2, transaction.getStatus().name());  // Status
-            pstmtUpdateTransaction.setInt(3, transaction.getId());  // Transaction ID
+            pstmtUpdateTransaction.setString(1, transaction.getDateReturned().toString());
+            pstmtUpdateTransaction.setString(2, transaction.getStatus().name());
+            pstmtUpdateTransaction.setInt(3, transaction.getId());
             pstmtUpdateTransaction.executeUpdate();
 
             // Update the book quantity

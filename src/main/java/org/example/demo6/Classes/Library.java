@@ -34,8 +34,9 @@ public class Library {
     }
 
     public void signUp(ActionEvent event, String id, String username, String password, String email) {
-        dbUltis.signUp(id, username, password, email);
-        changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+        if (dbUltis.signUp(id, username, password, email)) {
+            changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+        }
     }
 
     public static void logIn(ActionEvent event, String username, String password) {
@@ -63,6 +64,7 @@ public class Library {
         if (library.getCurrentUser() == null) {
             return;
         }
+        currentUser.getStreak().updateStreak();
 
         DBUltis dbUltis = new DBUltis();
         dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
@@ -109,6 +111,7 @@ public class Library {
 
     public void borrowBook(Book book) {
         boolean isInDataBase = dbUltis.findQuery("SELECT * FROM books WHERE isbn = '" + book.getIsbn() + "'");
+        boolean isBorrowed = dbUltis.findQuery("SELECT * FROM BookTransaction WHERE book_id = '" + book.getIsbn() + "' AND user_id = " + currentUser.getId() + " AND status = 'Borrowed'");
         if (book.getQuantity() <= 0) {
            Alert alert = new Alert(Alert.AlertType.ERROR);
               alert.setTitle("Error");
@@ -121,9 +124,15 @@ public class Library {
             alert.setHeaderText("Book not found");
             alert.setContentText("Sorry, this book is not in the database. Please contact the librarian.");
             alert.showAndWait();
+        } else if (isBorrowed) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Book already borrowed");
+            alert.setContentText("Sorry, you have already borrowed this book. Please check again.");
+            alert.showAndWait();
         } else {
-            LocalDateTime dateBorrowed = LocalDateTime.now();
-            LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
+            LocalDate dateBorrowed = LocalDate.now();
+            LocalDate dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
 
             // Tạo một giao dịch mới
             Transaction transaction = new Transaction(currentUser, book, dateBorrowed, dueDate);
@@ -156,10 +165,10 @@ public class Library {
             alert.setHeaderText("Book already returned");
             alert.setContentText("Sorry, you have already returned this book. Please check again.");
             alert.showAndWait();
-        } else
-        if (transaction != null) {
-            transaction.returnBook(LocalDateTime.now());
-
+        } else {
+            System.out.println(transaction.getId());
+            transaction.returnBook(LocalDate.now());
+            transaction.setStatus(Transaction.status.Returned);
             try {
                 dbUltis.returnBook(transaction);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

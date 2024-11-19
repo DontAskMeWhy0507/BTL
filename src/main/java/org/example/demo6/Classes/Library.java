@@ -111,6 +111,7 @@ public class Library {
 
     public void borrowBook(Book book) {
         boolean isInDataBase = dbUltis.findQuery("SELECT * FROM books WHERE isbn = '" + book.getIsbn() + "'");
+        boolean isBorrowed = dbUltis.findQuery("SELECT * FROM BookTransaction WHERE book_id = '" + book.getIsbn() + "' AND user_id = " + currentUser.getId() + " AND status = 'Borrowed'");
         if (book.getQuantity() <= 0) {
            Alert alert = new Alert(Alert.AlertType.ERROR);
               alert.setTitle("Error");
@@ -122,6 +123,12 @@ public class Library {
             alert.setTitle("Error");
             alert.setHeaderText("Book not found");
             alert.setContentText("Sorry, this book is not in the database. Please contact the librarian.");
+            alert.showAndWait();
+        } else if (isBorrowed) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Book already borrowed");
+            alert.setContentText("Sorry, you have already borrowed this book. Please check again.");
             alert.showAndWait();
         } else {
             LocalDate dateBorrowed = LocalDate.now();

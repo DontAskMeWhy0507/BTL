@@ -133,7 +133,7 @@ public class PageUploadController {
                     String description = Description.getText();
                     String language = Language.getText();
                     String publisher = Publisher.getText();
-                    String publishedDate = (PublishedDate.getValue() != null) ? PublishedDate.getValue().toString() : null;
+                    LocalDate publishedDate = PublishedDate.getValue();
                     int quantity = Integer.parseInt(this.quantity.getText());
 
                     String bookPath = "/Uploaded/Books/" + selectedFile.getName();
@@ -161,16 +161,7 @@ public class PageUploadController {
         Description.setText(book.getDescription());
         Language.setText(book.getLanguage());
         Publisher.setText(book.getPublisher());
-
-        // Parse the date correctly
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            PublishedDate.setValue(LocalDate.parse(book.getPublishedDate(), formatter));
-        } catch (DateTimeParseException e) {
-            // Handle the case where the date is not in the expected format
-            System.err.println("Sai định dạng ngày: " + e.getMessage());
-            PublishedDate.setValue(null); // or handle it accordingly
-        }
+        PublishedDate.setValue(book.getPublishedDate());
     }
 }
 

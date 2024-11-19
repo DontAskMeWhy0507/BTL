@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface Database {
-    void signUp(String id, String username, String password, String email);
+    boolean signUp(String id, String username, String password, String email);
     User logIn(String username, String password);
     void saveBookToDatabase(Book book);
     List<Book> getBooksFromDatabase();
@@ -17,5 +17,4 @@ public interface Database {
     void BorrowBook (Transaction transaction); // Phương thức này cần được triển khai
     Transaction getTransaction(User user, Book book);
     void returnBook(Transaction transaction);
-    Date stringToDate(String dateStr) throws ParseException;
 }

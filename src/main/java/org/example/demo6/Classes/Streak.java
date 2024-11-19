@@ -26,11 +26,11 @@ public class Streak {
             long daysBetween = ChronoUnit.DAYS.between(lastAccess, today);
             if (daysBetween == 1) {
                 streak++;
-                if (streak > longestStreak) {
-                    longestStreak = streak; // Cập nhật longestStreak
-                }
             } else if (daysBetween > 1) {
                 streak = 1; // Reset streak
+            }
+            if (streak > longestStreak) {
+                longestStreak = streak; // Cập nhật longestStreak
             }
         } else {
             streak = 1; // Nếu đây là lần truy cập đầu tiên

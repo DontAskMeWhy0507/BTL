@@ -64,6 +64,7 @@ public class Library {
         if (library.getCurrentUser() == null) {
             return;
         }
+        currentUser.getStreak().updateStreak();
 
         DBUltis dbUltis = new DBUltis();
         dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()

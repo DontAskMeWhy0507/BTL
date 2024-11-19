@@ -12,6 +12,6 @@ import java.util.List;
 
 public class PathCheck {
     public static void main(String[] args) {
-        System.out.println(LocalDate.now());
+
     }
 }

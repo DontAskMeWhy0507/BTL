@@ -5,13 +5,14 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import org.example.demo6.Classes.Library;
+import org.example.demo6.Classes.User;  // Giả sử bạn có class User để lấy thông tin về người dùng
 
 public class Statistics {
     @FXML
     private PieChart bookCategoryChart;
 
     @FXML
-    private BarChart<String, Number> userBookBarChart;
+    private BarChart<String, Number> userStreakBarChart;
 
     @FXML
     public void initialize() {
@@ -20,6 +21,7 @@ public class Statistics {
         loadBarChartData();
     }
 
+    // Load data for PieChart (book categories borrowed)
     private void loadPieChartData() {
         // Example data for book categories
         bookCategoryChart.getData().addAll(
@@ -30,15 +32,21 @@ public class Statistics {
         );
     }
 
+    // Load data for BarChart (top user streaks)
     private void loadBarChartData() {
-        // Example data for the bar chart
-        XYChart.Series<String, Number> dataSeries = new XYChart.Series<>();
-        dataSeries.setName("Library Data");
+        // Create a data series for the bar chart
+        XYChart.Series<String, Number> streakSeries = new XYChart.Series<>();
+        streakSeries.setName("Top User Streak");
 
+        // Get the users from the library
         Library library = Library.getInstance();
-        //dataSeries.getData().add(new XYChart.Data<>("Books", library.getBooks().size()));
-        //dataSeries.getData().add(new XYChart.Data<>("Users", library.getUsers().size()));
 
-        userBookBarChart.getData().add(dataSeries);
+        // Giả sử bạn có danh sách người dùng và mỗi người có số ngày streak
+        for (User user : library.getUsers()) {
+            streakSeries.getData().add(new XYChart.Data<>(user.getUsername(), user.getStreakDays()));
+        }
+
+        // Add data series to the BarChart
+        userStreakBarChart.getData().add(streakSeries);
     }
 }

@@ -9,14 +9,17 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.demo6.Controller.AdminScene.Page.Statistics">
-    <VBox spacing="20" layoutX="10" layoutY="10">
+    <VBox spacing="20" layoutX="10" layoutY="10" style="-fx-padding: 10px;">
+        <!-- Title for Library Statistics -->
         <Label text="Library Statistics" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-        <!-- Pie Chart for Book Categories -->
-        <PieChart fx:id="bookCategoryChart" prefHeight="250" prefWidth="400" />
+        <!-- Pie Chart for Book Categories (Borrowed) -->
+        <PieChart fx:id="bookCategoryChart" prefHeight="250" prefWidth="400">
+            <!-- You can add data for PieChart in controller -->
+        </PieChart>
 
-        <!-- Bar Chart for Number of Users and Books -->
-        <BarChart fx:id="userBookBarChart" prefHeight="300" prefWidth="400">
+        <!-- Bar Chart for Top User Streaks -->
+        <BarChart fx:id="userStreakBarChart" prefHeight="300" prefWidth="400">
             <xAxis>
                 <CategoryAxis fx:id="xAxis" />
             </xAxis>

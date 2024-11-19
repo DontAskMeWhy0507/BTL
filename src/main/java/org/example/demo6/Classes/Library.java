@@ -9,6 +9,7 @@ import org.example.demo6.Controller.GeneralController;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.example.demo6.Controller.GeneralController.changescene;
 
@@ -182,6 +183,9 @@ public class Library {
         }
     }
 
+    public List<User> getUsers() {
+        return dbUltis.getUsers();
+    }
 
 
 

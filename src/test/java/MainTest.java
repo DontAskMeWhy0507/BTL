@@ -46,8 +46,13 @@ public class MainTest {
     }
 
     @Test
-    public void testSignUp() {
+    public void savebookTodatabase() {
+        DBUltis dbUltis = new DBUltis();
+        Book book = new Book("123", "Harry Potter", "J.K.Rowling", "Fantasy", "A book about magic",
+                "English", "Bloomsbury", LocalDate.parse("1997-06-26"), "path", "path", "path", 10);
 
+        dbUltis.saveBookToDatabase(book);
+        assert dbUltis.getBooksFromDatabase().size() == 1;
     }
 
 

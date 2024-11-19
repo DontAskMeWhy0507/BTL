@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 public class BookManageTableController {
 
@@ -72,13 +73,17 @@ public class BookManageTableController {
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                data.add(new Book(
-                        rs.getString("isbn"),
+                data.add(new Book(rs.getString("isbn"),
                         rs.getString("title"),
                         rs.getString("author"),
                         rs.getString("category"),
+                        rs.getString("description"),
                         rs.getString("language"),
                         rs.getString("publisher"),
+                        LocalDate.parse(rs.getString("published_date")),
+                        rs.getString("book_path"),
+                        rs.getString("cover_image_path"),
+                        rs.getString("audio_path"),
                         rs.getInt("quantity")
                 ));
             }

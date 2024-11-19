@@ -34,8 +34,9 @@ public class Library {
     }
 
     public void signUp(ActionEvent event, String id, String username, String password, String email) {
-        dbUltis.signUp(id, username, password, email);
-        changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+        if (dbUltis.signUp(id, username, password, email)) {
+            changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+        }
     }
 
     public static void logIn(ActionEvent event, String username, String password) {
@@ -63,6 +64,7 @@ public class Library {
         if (library.getCurrentUser() == null) {
             return;
         }
+        currentUser.getStreak().updateStreak();
 
         DBUltis dbUltis = new DBUltis();
         dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
@@ -122,8 +124,8 @@ public class Library {
             alert.setContentText("Sorry, this book is not in the database. Please contact the librarian.");
             alert.showAndWait();
         } else {
-            LocalDateTime dateBorrowed = LocalDateTime.now();
-            LocalDateTime dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
+            LocalDate dateBorrowed = LocalDate.now();
+            LocalDate dueDate = dateBorrowed.plusDays(14);  // Mượn sách trong 14 ngày
 
             // Tạo một giao dịch mới
             Transaction transaction = new Transaction(currentUser, book, dateBorrowed, dueDate);
@@ -158,7 +160,7 @@ public class Library {
             alert.showAndWait();
         } else
         if (transaction != null) {
-            transaction.returnBook(LocalDateTime.now());
+            transaction.returnBook(LocalDate.now());
 
             try {
                 dbUltis.returnBook(transaction);

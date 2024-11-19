@@ -22,7 +22,7 @@ import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class DBUltis implements Database{
 
-    public void signUp(String id, String username, String password, String email) {
+    public boolean signUp(String id, String username, String password, String email) {
         String url = "jdbc:sqlite:database/LibraryMain";
 
         try (Connection conn = DriverManager.getConnection(url)) {
@@ -31,21 +31,21 @@ public class DBUltis implements Database{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Username already exists");
                 alert.show();
-                return;
+                return false;
             }
             // check if the email already exists
             if (findQuery("SELECT * FROM Users WHERE email = '" + email + "'")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Email already exists");
                 alert.show();
-                return;
+                return false;
             }
             // check if the id already exists
             if (findQuery("SELECT * FROM Users WHERE id = '" + id + "'")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("ID already exists");
                 alert.show();
-                return;
+                return false;
             }
 
             String sql = "INSERT INTO Users(id, username, password, email, date_of_birth, avatar, role, last_access, streak, longest_streak) " +
@@ -69,6 +69,7 @@ public class DBUltis implements Database{
         } catch (SQLException e) {
             System.out.println("Error signing up: " + e.getMessage());
         }
+        return true;
 
     }
 

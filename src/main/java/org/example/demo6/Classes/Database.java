@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface Database {
-    void signUp(String id, String username, String password, String email);
+    boolean signUp(String id, String username, String password, String email);
     User logIn(String username, String password);
     void saveBookToDatabase(Book book);
     List<Book> getBooksFromDatabase();

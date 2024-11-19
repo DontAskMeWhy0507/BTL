@@ -34,8 +34,9 @@ public class Library {
     }
 
     public void signUp(ActionEvent event, String id, String username, String password, String email) {
-        dbUltis.signUp(id, username, password, email);
-        changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+        if (dbUltis.signUp(id, username, password, email)) {
+            changescene(event, "/View/LoginScene/Login.fxml", "Login!");
+        }
     }
 
     public static void logIn(ActionEvent event, String username, String password) {

@@ -55,6 +55,11 @@ public class MainTest {
         assert dbUltis.getBooksFromDatabase().size() == 1;
     }
 
+    @Test
+    public void testGetTransaction() {
+
+    }
+
 
 
 

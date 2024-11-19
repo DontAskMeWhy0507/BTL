@@ -325,7 +325,7 @@ public class DBUltis implements Database{
 
     public Transaction getTransaction(User user, Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
-        String sql = "SELECT * FROM BookTransaction WHERE user_id = ? AND book_id = ?";
+        String sql = "SELECT * FROM BookTransaction WHERE user_id = ? AND book_id = ? AND status = 'Borrowed'";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -336,12 +336,17 @@ public class DBUltis implements Database{
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
+                LocalDate dateReturned = null;
+                String dateReturnedStr = rs.getString("date_returned");
+                if (dateReturnedStr != null) {
+                    dateReturned = LocalDate.parse(dateReturnedStr);
+                }
                 return new Transaction(rs.getInt("id"),
                         user,
                         book,
                         LocalDate.parse(rs.getString("date_borrowed")),
                         LocalDate.parse(rs.getString("due_date")),
-                        LocalDate.parse(rs.getString("date_returned")),
+                        dateReturned,
                         Transaction.status.valueOf(rs.getString("status")));
             }
 
@@ -367,6 +372,7 @@ public class DBUltis implements Database{
             pstmtUpdateTransaction.setString(1, transaction.getDateReturned().toString());
             pstmtUpdateTransaction.setString(2, transaction.getStatus().name());
             pstmtUpdateTransaction.setInt(3, transaction.getId());
+            pstmtUpdateTransaction.executeUpdate();
 
             // Update the book quantity
             pstmtUpdateBook.setString(1, transaction.getBook().getIsbn());

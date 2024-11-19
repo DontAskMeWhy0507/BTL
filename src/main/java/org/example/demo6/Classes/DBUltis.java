@@ -417,4 +417,34 @@ public class DBUltis implements Database{
         }
     }
 
+    public List<User> getUsers() {
+        List<User> users = new ArrayList<>();
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+        String sql = "SELECT * FROM Users";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        LocalDate.parse(rs.getString("date_of_birth")),
+                        rs.getString("avatar"),
+                        rs.getString("role"),
+                        new Streak(LocalDate.parse(rs.getString("last_access")), rs.getInt("streak"), rs.getInt("longest_streak")));
+                // Create and add the User object to the list
+                users.add(user);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving users from database: " + e.getMessage());
+        }
+
+        return users;
+    }
+
 }

@@ -13,12 +13,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import org.example.demo6.Controller.AdminScene.Page.SearchPageController;
+import org.example.demo6.Controller.AdminScene.Page.Settings;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import static org.example.demo6.Controller.AdminScene.MainSceneClass.staticMainScrollPane;
 import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class MainSceneUser {
@@ -43,10 +46,6 @@ public class MainSceneUser {
     private ImageView avatar;
 
     private static ScrollPane staticMainScrollPane1;
-    @FXML
-    void searchButton() throws IOException {
-
-    }
 
     public static void setMainContent(Parent content) {
         staticMainScrollPane1.setContent(content);
@@ -82,8 +81,25 @@ public class MainSceneUser {
     }
 
     @FXML
-    void searchButton(ActionEvent event) {
+    public void searchButton(ActionEvent event) throws IOException {
+        List<Book> ApiResult = apiGoogleBooks.searchBooks1(SearchField.getText());
+        DBUltis dbUltis = new DBUltis();
+        List<Book> databaseResult = dbUltis.searchBook(SearchField.getText());
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/PageSearch.fxml"));
+            Parent homeView = loader.load();
+
+            // Get the controller instance
+            SearchPageController searchPageController = loader.getController();
+            searchPageController.setSearchResults(databaseResult, ApiResult);
+
+            setMainContent(homeView);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void changeAvatar(String avatarPaths) {
@@ -134,9 +150,24 @@ public class MainSceneUser {
     }
     @FXML
     void showSettings(ActionEvent event) {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Settings.fxml"));
+            Parent SettingView = loader1.load();
+            org.example.demo6.Controller.UserScene.Page.Settings settingsController = loader1.getController();
 
+            // Create or get an instance of MainSceneUser
+            MainSceneUser mainSceneUserInstance = this;
+
+            // Pass the instance to the setMainSceneController method
+            settingsController.setMainSceneController(mainSceneUserInstance);
+
+            // Set the new content in the ScrollPane
+            mainScrollPane.setContent(SettingView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
     @FXML
     public void changeAdminView(ActionEvent event) {
         try {

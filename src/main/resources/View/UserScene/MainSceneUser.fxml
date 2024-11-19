@@ -29,7 +29,7 @@
    <left>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="31.0" layoutY="67.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Quản lý user">
+            <Button layoutX="31.0" layoutY="67.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" text="Home">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -37,7 +37,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="31.0" layoutY="177.0" mnemonicParsing="false" onAction="#showAll" prefHeight="25.0" prefWidth="139.0" text="Quản lý tài liệu">
+            <Button layoutX="31.0" layoutY="177.0" mnemonicParsing="false" onAction="#showAll" prefHeight="25.0" prefWidth="139.0" text="Sách đang mượn">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>

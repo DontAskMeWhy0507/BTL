@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="1082.0" stylesheets="@../../../Style/AdminScene/Settings.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.Settings">
+    <children>
+        <!-- Avatar Selection Section -->
+        <Label layoutX="87.0" layoutY="58.0" text="Thay đổi avatar:" />
+        <TilePane hgap="10" layoutX="87.0" layoutY="279.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="330.0" vgap="10">
+            <children>
+                <ImageView fx:id="avatar1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar1" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Clove.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar2" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Gekko.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar4" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar4" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Jett.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar7" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar7" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Reyna.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar8" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar8" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Sage.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar6" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar6" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Omen.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar3" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar3" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Iso.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="avatar5" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#selectAvatar5" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../Image/Avatar/Neon.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </TilePane>
+
+        <!-- Confirm Avatar Selection Button -->
+        <Button layoutX="658.0" layoutY="539.0" onAction="#confirmChange" styleClass="confirmButton" stylesheets="@../../../Style/AdminScene/Settings.css" text="Cập nhật thông tin" />
+
+        <!-- Other Settings Fields (Username, Email, Password) -->
+        <Label layoutX="544.0" layoutY="58.0" stylesheets="@../../../Style/AdminScene/Settings.css" text="Cập nhật tên người dùng:" />
+        <TextField fx:id="usernameField" layoutX="544.0" layoutY="100.0" prefHeight="44.0" prefWidth="414.0" promptText="Nhập tên người dùng mới" stylesheets="@../../../Style/AdminScene/Settings.css" />
+
+        <Label layoutX="541.0" layoutY="199.0" text="Cập nhật email:" />
+        <TextField fx:id="emailField" layoutX="544.0" layoutY="247.0" prefHeight="44.0" prefWidth="414.0" promptText="Nhập email mới" />
+
+        <Label layoutX="544.0" layoutY="353.0" text="Cập nhật mật khẩu:" />
+        <PasswordField fx:id="passwordField" layoutX="544.0" layoutY="396.0" prefHeight="45.0" prefWidth="414.0" promptText="Nhập mật khẩu mới" stylesheets="@../../../Style/AdminScene/Settings.css" />
+
+        <!-- Selected Avatar Display -->
+        <ImageView fx:id="avatarImageView" fitHeight="100.0" fitWidth="100.0" layoutX="202.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" />
+        <TextField fx:id="showPassword" layoutX="509.0" layoutY="396.0" prefHeight="63.0" prefWidth="421.0" visible="false" />
+        <JFXCheckBox fx:id="showPass" layoutX="545.0" layoutY="484.0" onAction="#getPassword" text="Hiển thị mật khẩu" />
+    </children>
+</AnchorPane>

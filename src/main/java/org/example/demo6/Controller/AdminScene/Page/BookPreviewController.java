@@ -21,6 +21,7 @@ import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 
 public class BookPreviewController {
@@ -123,15 +124,19 @@ public class BookPreviewController {
                     Image coverImage = new Image(coverImageFile.toURI().toString());
                     bookCoverImage.setImage(coverImage);
                 }
-
             } catch (Exception e) {
                 // Log or handle error and set a default image in case of an invalid URL
                 System.err.println("Error loading image: " + e.getMessage());
-                bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/UET.jpg")));
+                bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/heart.jpg")));
             }
         } else {
             // Set a default image if the cover path is null or empty
-            bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/UET.jpg")));
+            InputStream defaultImageStream = getClass().getResourceAsStream("/Image/heart.jpg");
+            if (defaultImageStream != null) {
+                bookCoverImage.setImage(new Image(defaultImageStream));
+            } else {
+                System.err.println("Default image not found");
+            }
         }
     }
 

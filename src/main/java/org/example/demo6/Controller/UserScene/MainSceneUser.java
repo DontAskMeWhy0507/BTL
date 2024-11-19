@@ -13,9 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
-import org.example.demo6.Controller.AdminScene.MainSceneClass;
-import org.example.demo6.Controller.AdminScene.Page.SearchPageController;
-import org.example.demo6.Controller.AdminScene.Page.Settings;
+import org.example.demo6.Controller.UserScene.Page.SearchPageController;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -87,7 +86,7 @@ public class MainSceneUser {
         List<Book> databaseResult = dbUltis.searchBook(SearchField.getText());
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/PageSearch.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/PageSearch.fxml"));
             Parent homeView = loader.load();
 
             // Get the controller instance

@@ -124,6 +124,8 @@ public class BookPreviewController {
                     Image coverImage = new Image(coverImageFile.toURI().toString());
                     bookCoverImage.setImage(coverImage);
                 }
+
+
             } catch (Exception e) {
                 // Log or handle error and set a default image in case of an invalid URL
                 System.err.println("Error loading image: " + e.getMessage());

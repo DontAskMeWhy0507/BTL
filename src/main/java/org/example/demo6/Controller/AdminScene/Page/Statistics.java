@@ -4,10 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import org.example.demo6.Classes.Book;
+import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Library;
 import org.example.demo6.Classes.User;  // Giả sử bạn có class User để lấy thông tin về người dùng
 
+import java.util.ArrayList;
+
 public class Statistics {
+    DBUltis dbUltis = new DBUltis();
     @FXML
     private PieChart bookCategoryChart;
 
@@ -23,13 +28,19 @@ public class Statistics {
 
     // Load data for PieChart (book categories borrowed)
     private void loadPieChartData() {
-        // Example data for book categories
-        bookCategoryChart.getData().addAll(
-                new PieChart.Data("Fiction", 150),
-                new PieChart.Data("Non-fiction", 80),
-                new PieChart.Data("Science", 70),
-                new PieChart.Data("History", 50)
-        );
+        ArrayList<Book> books = dbUltis.getBooksFromDatabase();
+        while (books.size() > 0) {
+            Book book = books.get(0);
+            int count = 0;
+            for (int i = 0; i < books.size(); i++) {
+                if (books.get(i).getCategory().equals(book.getCategory())) {
+                    count++;
+                    books.remove(i);
+                    i--;
+                }
+            }
+            bookCategoryChart.getData().add(new PieChart.Data(book.getCategory(), count));
+        }
     }
 
     // Load data for BarChart (top user streaks)
@@ -43,7 +54,7 @@ public class Statistics {
 
         // Giả sử bạn có danh sách người dùng và mỗi người có số ngày streak
         for (User user : library.getUsers()) {
-            streakSeries.getData().add(new XYChart.Data<>(user.getUsername(), user.getStreakDays()));
+            streakSeries.getData().add(new XYChart.Data<>(user.getUsername(), user.getIntStreak()));
         }
 
         // Add data series to the BarChart

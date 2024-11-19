@@ -162,7 +162,6 @@ public class MainSceneClass{
 
     public void showUpload() {
         try {
-            System.out.println("Upload");
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
             Parent UploadView = loader1.load();
 
@@ -198,17 +197,14 @@ public class MainSceneClass{
     @FXML
     void changeToUserView(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/View/UserScene/MainSceneUser.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/StatisticsView.fxml"));
+            Parent UserView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(UserView);
+
+        } catch (IOException e) {
             e.printStackTrace();
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                cause.printStackTrace();
-            }
         }
     }
 

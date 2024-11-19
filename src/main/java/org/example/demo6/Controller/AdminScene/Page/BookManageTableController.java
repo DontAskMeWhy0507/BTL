@@ -15,10 +15,8 @@ import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 
 public class BookManageTableController {
 

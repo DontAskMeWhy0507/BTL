@@ -3,6 +3,7 @@ package org.example.demo6.Controller.AdminScene.Page;
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -37,19 +38,15 @@ public class Settings {
     private PasswordField passwordField;
 
     @FXML
-    private Button updateUsernameButton;
-
-    @FXML
-    private Button updateEmailButton;
-
-    @FXML
-    private Button updatePasswordButton;
-
-    @FXML
     private TextField showPassword;
 
     @FXML
     private JFXCheckBox showPass;
+
+    boolean changeAvatar = false;
+    boolean changeUsername = false;
+    boolean changeEmail = false;
+    boolean changePassword = false;
 
     // Methods for avatar selection
     @FXML
@@ -102,6 +99,7 @@ public class Settings {
         System.out.println("Avatar updated to: " + lib.getCurrentUser().getPathToProfilePicture());
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
+        changeAvatar = true;
 
     }
 
@@ -119,6 +117,7 @@ public class Settings {
         if (newUsername.equals("")) {
             return;
         }
+        changeUsername = true;
         lib.getCurrentUser().setUsername(newUsername);
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
@@ -130,6 +129,7 @@ public class Settings {
         if (newEmail.equals("")) {
             return;
         }
+        changeEmail = true;
         lib.getCurrentUser().setEmail(newEmail);
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
@@ -155,6 +155,7 @@ public class Settings {
         if (newPassword.equals("")) {
             return;
         }
+        changePassword = true;
         // Add logic to update the password
         lib.getCurrentUser().setPassword(newPassword);
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
@@ -163,9 +164,18 @@ public class Settings {
 
      public void confirmChange() {
         confirmAvatarSelection();
-        setAvatar(avatarFile.getPath());
         handleChangeUsername();
         handleChangeEmail();
         handleChangePassword();
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Changes saved");
+            alert.setContentText("You have successfully changed" +
+                    (changeAvatar ? " your avatar" : "") +
+                    (changeUsername ? ", your username" : "") +
+                    (changeEmail ? ", your email" : "") +
+                    (changePassword ? ", your password" : "") +
+                    ".");
+            alert.showAndWait();
      }
 }

@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
@@ -20,6 +23,7 @@ import org.example.demo6.Controller.UserScene.MainSceneUser;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class BookPreview {
     private Book currentBook;
@@ -56,6 +60,9 @@ public class BookPreview {
 
     @FXML
     private TextField commentInputField;
+
+    @FXML
+    private VBox commentsContainer;
 
     private static final int descriptionLength = 200;
 
@@ -97,12 +104,7 @@ public class BookPreview {
         library.returnBook(currentBook);
     }
 
-    public void postComment() {
-        // Add the comment to the current book
-        // currentBook.addComment(commentTextArea.getText());
-        // Update the book in the database
-        // Library.updateBook(currentBook);
-    }
+
 
     public void setBookData(Book book) {
         currentBook = book;
@@ -165,8 +167,26 @@ public class BookPreview {
 
         // Save the review to the database
         DBUltis dbUltis = new DBUltis();
-        dbUltis.saveReviewToDatabase(review);
+        dbUltis.saveReviewToDatabase(review, currentBook);
 
         System.out.println("Rating: " + ratingValue);
+    }
+
+    public void loadComment() {
+        DBUltis dbUltis = new DBUltis();
+        List<Review> reviews = dbUltis.getReviewsForBook(currentBook);
+
+        commentsContainer.getChildren().clear();
+        for (Review review : reviews) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Comment.fxml"));
+                AnchorPane commentBox = loader.load();
+                CommentController controller = loader.getController();
+                controller.setCommentData(review);
+                commentsContainer.getChildren().add(commentBox);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

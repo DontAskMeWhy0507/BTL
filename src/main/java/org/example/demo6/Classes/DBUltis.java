@@ -447,18 +447,71 @@ public class DBUltis implements Database{
         return users;
     }
 
-    public void saveReviewToDatabase(Review review) {
+    public void saveReviewToDatabase(Review review, Book currentBook) {
         String url = "jdbc:sqlite:database/LibraryMain";
-        String query = "INSERT INTO Reviews (comment, rating, userId) VALUES (?, ?, ?)";
+        String query = "INSERT INTO Reviews (comment, rating, userId, isbn) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, review.getComment());
             stmt.setInt(2, review.getRating());
             stmt.setInt(3, review.getUser().getId()); // Assuming User has a getId() method
+            stmt.setString(4, currentBook.getIsbn()); // Assuming Book has a getIsbn() method
             stmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Review> getReviewsForBook(Book book) {
+        List<Review> reviews = new ArrayList<>();
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String query = "SELECT * FROM Reviews WHERE isbn = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, book.getIsbn());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                User user = getUserById(rs.getInt("userId")); // Assuming you have a method to get User by ID
+                Review review = new Review(
+                        rs.getString("comment"),
+                        rs.getInt("rating"),
+                        user,
+                        book
+                );
+                reviews.add(review);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reviews;
+    }
+    private User getUserById(int userId) {
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String query = "SELECT * FROM Users WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        LocalDate.parse(rs.getString("date_of_birth")),
+                        rs.getString("avatar"),
+                        rs.getString("role"),
+                        new Streak(LocalDate.parse(rs.getString("last_access")), rs.getInt("streak"), rs.getInt("longest_streak"))
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

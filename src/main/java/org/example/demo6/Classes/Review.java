@@ -4,12 +4,20 @@ public class Review {
     private String comment;
     private int rating;
     private User user;
+    private Book currentbook;
 
     // Constructor
     public Review(String comment, int rating, User user) {
         this.comment = comment;
         this.rating = rating;
         this.user = user;
+    }
+
+    public Review(String comment, int rating, User user, Book currentbook) {
+        this.comment = comment;
+        this.rating = rating;
+        this.user = user;
+        this.currentbook = currentbook;
     }
 
     // Getters and Setters
@@ -35,5 +43,13 @@ public class Review {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Book getBook() {
+        return currentbook;
+    }
+
+    public void setBook(Book book) {
+        this.currentbook = book;
     }
 }

@@ -447,6 +447,18 @@ public class DBUltis implements Database{
         return users;
     }
 
+    public void saveReviewToDatabase(Review review) {
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String query = "INSERT INTO Reviews (comment, rating, userId) VALUES (?, ?, ?)";
 
-
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, review.getComment());
+            stmt.setInt(2, review.getRating());
+            stmt.setInt(3, review.getUser().getId()); // Assuming User has a getId() method
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -15,7 +15,8 @@ import org.example.demo6.Controller.UserScene.Page.BookPreview;
 import java.io.File;
 import java.io.IOException;
 
-import static org.example.demo6.Controller.AdminScene.MainSceneClass.staticMainScrollPane;
+import static org.example.demo6.Controller.UserScene.MainSceneUser.staticMainScrollPane1;
+
 
 public class BookUnit {
     @FXML
@@ -76,8 +77,8 @@ public class BookUnit {
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
             MainSceneUser.setMainContent(root);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
+            staticMainScrollPane1.setFitToWidth(true);
+            staticMainScrollPane1.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
         }

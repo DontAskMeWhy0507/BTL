@@ -44,7 +44,7 @@ public class MainSceneUser {
     @FXML
     private ImageView avatar;
 
-    private static ScrollPane staticMainScrollPane1;
+    public static ScrollPane staticMainScrollPane1;
 
     public static void setMainContent(Parent content) {
         staticMainScrollPane1.setContent(content);

@@ -7,13 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.demo6.Classes.Book;
-import org.example.demo6.Classes.Library;
-import org.example.demo6.Classes.UpDownFile;
+import org.controlsfx.control.Rating;
+import org.example.demo6.Classes.*;
 import org.example.demo6.Controller.UserScene.MainSceneUser;
 
 
@@ -50,6 +50,12 @@ public class BookPreview {
 
     @FXML
     private JFXButton viewMoreButton;
+
+    @FXML
+    private Rating ratingBook;
+
+    @FXML
+    private TextField commentInputField;
 
     private static final int descriptionLength = 200;
 
@@ -149,4 +155,18 @@ public class BookPreview {
     }
 
 
+    public void postComment(ActionEvent event) {
+        User user = Library.getInstance().getCurrentUser();
+        double ratingValue = ratingBook.getRating();
+        String comment = commentInputField.getText(); // Replace with actual comment input
+
+        // Create a new Review object
+        Review review = new Review(comment, (int) ratingValue, user);
+
+        // Save the review to the database
+        DBUltis dbUltis = new DBUltis();
+        dbUltis.saveReviewToDatabase(review);
+
+        System.out.println("Rating: " + ratingValue);
+    }
 }

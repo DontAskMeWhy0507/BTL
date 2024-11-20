@@ -449,15 +449,35 @@ public class DBUltis implements Database{
 
     public void saveReviewToDatabase(Review review, Book currentBook) {
         String url = "jdbc:sqlite:database/LibraryMain";
-        String query = "INSERT INTO Reviews (comment, rating, userId, isbn) VALUES (?, ?, ?, ?)";
+        String selectQuery = "SELECT id FROM Reviews WHERE userId = ? AND isbn = ?";
+        String insertQuery = "INSERT INTO Reviews (comment, rating, userId, isbn) VALUES (?, ?, ?, ?)";
+        String updateQuery = "UPDATE Reviews SET comment = ?, rating = ? WHERE userId = ? AND isbn = ?";
 
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, review.getComment());
-            stmt.setInt(2, review.getRating());
-            stmt.setInt(3, review.getUser().getId()); // Assuming User has a getId() method
-            stmt.setString(4, currentBook.getIsbn()); // Assuming Book has a getIsbn() method
-            stmt.executeUpdate();
+             PreparedStatement selectStmt = conn.prepareStatement(selectQuery);
+             PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
+             PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
+
+            // Check if a review by the same user for the same book already exists
+            selectStmt.setInt(1, review.getUser().getId());
+            selectStmt.setString(2, currentBook.getIsbn());
+            ResultSet rs = selectStmt.executeQuery();
+
+            if (rs.next()) {
+                // Update the existing review
+                updateStmt.setString(1, review.getComment());
+                updateStmt.setInt(2, review.getRating());
+                updateStmt.setInt(3, review.getUser().getId());
+                updateStmt.setString(4, currentBook.getIsbn());
+                updateStmt.executeUpdate();
+            } else {
+                // Insert a new review
+                insertStmt.setString(1, review.getComment());
+                insertStmt.setInt(2, review.getRating());
+                insertStmt.setInt(3, review.getUser().getId());
+                insertStmt.setString(4, currentBook.getIsbn());
+                insertStmt.executeUpdate();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -513,5 +533,24 @@ public class DBUltis implements Database{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public double getAverageRatingForBook(Book book) {
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String query = "SELECT AVG(rating) AS avg_rating FROM Reviews WHERE isbn = ?";
+        double avgRating = 0.0;
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, book.getIsbn());
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                avgRating = rs.getDouble("avg_rating");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return avgRating;
     }
 }

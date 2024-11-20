@@ -60,6 +60,7 @@
                         <Text layoutX="374.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="63.39501953125" />
                         <JFXButton fx:id="viewMoreButton" layoutX="365.0" layoutY="489.0" onAction="#toggleDescription" styleClass="viewMore" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Xem thêm" />
                   <Rating fx:id="ratingBook" layoutX="82.0" layoutY="649.0" />
+                  <Text fx:id="rateAvg" layoutX="271.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                     </children>
                 </AnchorPane>
 

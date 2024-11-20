@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
+import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.UpDownFile;
 import org.example.demo6.Classes.Library;
 import org.example.demo6.Controller.AdminScene.MainSceneClass;
@@ -58,6 +59,9 @@ public class BookPreviewController {
 
     @FXML
     public Text fullDescription;
+
+    @FXML
+    private Text rateAvg;
 
     private String descriptionTemp;
 
@@ -110,6 +114,10 @@ public class BookPreviewController {
         bookCategoryLabel.setText(book.getCategory());
         bookPublisher.setText(book.getPublisher());
         bookLanguage.setText(book.getLanguage());
+
+        DBUltis dbUltis = new DBUltis();
+        double avgRating = dbUltis.getAverageRatingForBook(book);
+        rateAvg.setText(String.format("%.2f", avgRating));
 
         // Check if cover image path is available and valid
         if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {

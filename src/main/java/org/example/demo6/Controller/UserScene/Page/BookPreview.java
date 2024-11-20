@@ -69,6 +69,9 @@ public class BookPreview {
     @FXML
     public Text fullDescription;
 
+    @FXML
+    private Text rateAvg;
+
     private String descriptionTemp;
 
     public void setDescriptionLength (String description) {
@@ -115,6 +118,10 @@ public class BookPreview {
         bookCategoryLabel.setText(book.getCategory());
         bookPublisher.setText(book.getPublisher());
         bookLanguage.setText(book.getLanguage());
+
+        DBUltis dbUltis = new DBUltis();
+        double avgRating = dbUltis.getAverageRatingForBook(book);
+        rateAvg.setText(String.format("%.1f", avgRating));
 
         // Check if cover image path is available and valid
         if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {

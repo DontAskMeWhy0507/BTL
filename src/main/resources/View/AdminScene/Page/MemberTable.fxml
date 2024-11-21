@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="617.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1112.0" stylesheets="@../../../Style/AdminScene/BookTable.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
     <children>
-        <TableView fx:id="tableView" layoutX="14.0" layoutY="40.0" prefHeight="537.0" prefWidth="1099.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="40.0">
+        <TableView fx:id="tableView" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="1112.0" styleClass="table" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="73.0">
             <columns>
-                <TableColumn fx:id="tf_ID" prefWidth="96.0" text="ID" />
-                <TableColumn fx:id="tf_name" minWidth="7.2" prefWidth="135.0" text="Name" />
-                <TableColumn fx:id="tf_password" prefWidth="127.0" text="Password" />
-                <TableColumn fx:id="tf_role" prefWidth="102.0" text="Role" />
-                <TableColumn fx:id="tf_email" minWidth="0.0" prefWidth="154.0" text="Email" />
-                <TableColumn fx:id="tf_avatar" prefWidth="144.0" text="Avatar" />
-                <TableColumn fx:id="tf_date" prefWidth="114.0" text="Date of birth" />
+                <TableColumn fx:id="tf_ID" prefWidth="108.0" text="ID" />
+                <TableColumn fx:id="tf_name" minWidth="7.2" prefWidth="159.19993591308594" text="Name" />
+                <TableColumn fx:id="tf_password" prefWidth="152.79998779296875" text="Password" />
+                <TableColumn fx:id="tf_role" prefWidth="88.800048828125" text="Role" />
+                <TableColumn fx:id="tf_email" minWidth="0.0" prefWidth="160.0" text="Email" />
+                <TableColumn fx:id="tf_avatar" prefWidth="108.79998779296875" text="Avatar" />
+                <TableColumn fx:id="tf_date" prefWidth="114.4000244140625" text="Date of birth" />
 
                 <!-- New columns for Streak and Last Access Date -->
-                <TableColumn fx:id="tf_streak" prefWidth="57.0" text="Streak" />
-                <TableColumn fx:id="tf_lastLoginDate" prefWidth="162.0" text="Last Access Date" />
+                <TableColumn fx:id="tf_streak" minWidth="0.0" prefWidth="64.7999267578125" text="Streak" />
+                <TableColumn fx:id="tf_lastLoginDate" prefWidth="185.0" text="Last Access Date" />
             </columns>
         </TableView>
 
         <!-- Button controls for actions -->
-        <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="14.0" spacing="10.0">
+        <HBox alignment="CENTER_LEFT" layoutX="41.0" layoutY="8.0" prefHeight="52.0" prefWidth="446.0" spacing="10.0" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="625.0" AnchorPane.topAnchor="8.0">
             <children>
-                <Button fx:id="btnAddUser" mnemonicParsing="false" onAction="#handleAddUser" text="Thêm người dùng" />
-                <Button fx:id="btnDeleteUser" mnemonicParsing="false" onAction="#handleDeleteUser" text="Xóa người dùng" />
-                <Button mnemonicParsing="false" onAction="#loadDatabase" text="Load" />
+                <Button fx:id="btnAddUser" mnemonicParsing="false" onAction="#handleAddUser" text="Add User" />
+                <Button fx:id="btnDeleteUser" mnemonicParsing="false" onAction="#handleDeleteUser" prefHeight="42.0" prefWidth="176.0" text="Remove User" />
+                <Button mnemonicParsing="false" onAction="#loadDatabase" stylesheets="@../../../Style/AdminScene/BookTable.css" text="Load" />
             </children>
         </HBox>
 
         <!-- Search TextField and Label -->
-        <TextField fx:id="tf_findName" layoutX="952.0" layoutY="14.0" onAction="#searchName" onKeyPressed="#entertoSeachName" />
-        <Label layoutX="859.0" layoutY="18.0" text="Tìm người dùng" />
+        <TextField fx:id="tf_findName" layoutX="814.0" layoutY="13.0" onAction="#searchName" onKeyPressed="#entertoSeachName" prefHeight="42.0" prefWidth="257.0" promptText="Tìm người dùng" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="593.0" AnchorPane.leftAnchor="810.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="13.0" />
     </children>
 </AnchorPane>

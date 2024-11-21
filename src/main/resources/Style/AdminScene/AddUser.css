@@ -13,10 +13,9 @@ Label {
 .grid {
     -fx-vgap: 20px;
     -fx-hgap: 20px;
-    -fx-alignment: left;
 }
 
-TextField {
+TextField, PasswordField {
     -fx-font-family: "Merriweather";
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
@@ -36,8 +35,6 @@ DatePicker .text-field, ChoiceBox {
     -fx-background-radius: 10px;
 }
 
-
-
 Button {
     -fx-font-family: "Merriweather";
     -fx-font-size: 20px;
@@ -48,4 +45,11 @@ Button {
     -fx-text-alignment: center;
     -fx-text-fill: #674636;
     -fx-border-color: black;
+}
+
+.success {
+    -fx-font-family: "Dancing Script Semibold";
+    -fx-font-size: 30px;
+    -fx-text-alignment: center;
+    -fx-text-color: green;
 }

@@ -37,11 +37,6 @@ public class BookUnitController extends Node {
 
     private boolean isFavorite = false;
 
-
-
-
-
-
     public void setData(Book book) {
         this.currentBook = book;
         nameBook.setText(book.getTitle());

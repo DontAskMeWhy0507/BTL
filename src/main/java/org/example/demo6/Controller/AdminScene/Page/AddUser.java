@@ -1,6 +1,7 @@
 package org.example.demo6.Controller.AdminScene.Page;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.demo6.Classes.DBUltis;
@@ -34,6 +35,26 @@ public class AddUser {
 
     @FXML
     private TextField tf_username;
+
+    @FXML
+    private CheckBox showPass;
+
+    @FXML
+    private TextField showPassword;
+
+    @FXML
+    void getPassword(ActionEvent event) {
+        if (showPass.isSelected()) {
+            showPassword.setText(tf_password.getText());
+            tf_password.setVisible(false);
+            showPassword.setVisible(true);
+        } else {
+            showPassword.setText(tf_password.getText());
+            tf_password.setText(showPassword.getText());
+            tf_password.setVisible(true);
+            showPassword.setVisible(false);
+        }
+    }
 
     @FXML
     public void initialize() {

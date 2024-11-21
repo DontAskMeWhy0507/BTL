@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import org.controlsfx.control.Rating?>
 
 <ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.BookPreview">
     <content>
@@ -47,29 +46,27 @@
                         <Text layoutX="376.0" layoutY="317.0" text="Thể loại" />
                         <Text layoutX="376.0" layoutY="227.0" text="NXB" />
                         <Text layoutX="376.0" layoutY="347.0" text="Số lượng" />
-                        <Text fx:id="bookPublisher" layoutX="506.0" layoutY="317.0" text="unknown" />
-                        <Text fx:id="bookLanguage" layoutX="506.0" layoutY="227.0" text="unknown" />
-                        <Text fx:id="bookAuthor" layoutX="506.0" layoutY="257.0" text="unknown" />
-                        <Text fx:id="bookCategoryLabel" layoutX="506.0" layoutY="287.0" text="unknown" />
+                        <Text fx:id="bookCategoryLabel" layoutX="506.0" layoutY="317.0" text="unknown" />
+                        <Text fx:id="bookPublisher" layoutX="506.0" layoutY="227.0" text="unknown" />
+                        <Text fx:id="bookLanguage" layoutX="506.0" layoutY="257.0" text="unknown" />
+                        <Text fx:id="bookAuthor" layoutX="506.0" layoutY="287.0" text="unknown" />
                         <Text fx:id="bookQuantity" layoutX="506.0" layoutY="347.0" text="0" />
                         <Text fx:id="bookDescription" layoutX="374.0" layoutY="453.0" text="THE IMPERIALS CONTINUE THEIR INVASION OF ENDOR! With WICKET captured and forced to guide the IMPERIAL scouting party..." wrappingWidth="559.0">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Text>
-                        <Text layoutX="374.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="63.39501953125" />
+                        <Text layoutX="374.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="111.39501953125" />
                         <JFXButton fx:id="viewMoreButton" layoutX="365.0" layoutY="489.0" onAction="#toggleDescription" styleClass="viewMore" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Xem thêm" />
-                  <Rating fx:id="ratingBook" layoutX="82.0" layoutY="649.0" />
-                  <Text fx:id="rateAvg" layoutX="271.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                     </children>
                 </AnchorPane>
 
                 <!-- Comment Section -->
                 <AnchorPane prefHeight="244.0" prefWidth="965.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                     <children>
-                        <TextField fx:id="commentInputField" layoutX="64.0" prefHeight="97.0" prefWidth="471.0" promptText="Thêm bình luận" />
-                        <Button fx:id="postCommentButton" layoutX="383.0" layoutY="111.0" onAction="#postComment" text="Đăng tải bình luận" />
-                        <VBox fx:id="commentsContainer" layoutX="64.0" layoutY="155.0" onDragDetected="#loadComment" prefHeight="46.0" prefWidth="846.0" spacing="10.0">
+                        <TextField fx:id="commentInputField" layoutX="74.0" prefHeight="66.0" prefWidth="471.0" promptText="Thêm bình luận" />
+                        <Button fx:id="postCommentButton" layoutX="74.0" layoutY="80.0" onAction="#postComment" text="Đăng tải bình luận" />
+                        <VBox fx:id="commentsContainer" layoutX="224.0" layoutY="80.0" prefWidth="85.0" spacing="10.0">
                             <!-- Comments will be added here dynamically -->
                         </VBox>
                     </children>

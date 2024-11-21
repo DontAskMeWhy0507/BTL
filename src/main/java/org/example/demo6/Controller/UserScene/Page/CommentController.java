@@ -4,27 +4,43 @@ package org.example.demo6.Controller.UserScene.Page;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import org.controlsfx.control.Rating;
+import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.Review;
 
 public class CommentController {
     @FXML
-    private Button likeButton;
+    private Label usernameText;
 
     @FXML
-    private HBox reactionBox;
-
-    @FXML
-    private HBox selectedIconBox;
+    private Label commentText;
 
     @FXML
     private ImageView selectedIcon;
 
     @FXML
+    private HBox selectedIconBox;
+
+    @FXML
+    private HBox reactionBox;
+
+    @FXML
+    private ImageView likeIcon, loveIcon, hahaIcon, wowIcon, sadIcon, angryIcon;
+
+    @FXML
+    private Label datePost;
+
+    @FXML
+    private Button likeButton;
+
+    @FXML
     private void initialize() {
+        
+
         // Khi di chuột vào nút "Thích", hiển thị HBox chứa các biểu tượng
         likeButton.setOnMouseEntered(event -> reactionBox.setVisible(true));
 
@@ -48,9 +64,20 @@ public class CommentController {
         reactionBox.setVisible(false);
     }
 
+    public void setCommentData(int id, int userId, String content, Integer replyToCommentId, String timestamp) {
+        this.usernameText.setText("User " + userId); // Thay bằng tên người dùng từ database nếu cần
+        this.commentText.setText(content);
+        this.datePost.setText(timestamp);
+    }
+
     public void setCommentData(Review review) {
-        // Set dữ liệu cho các thành phần giao diện
-        // Ở đây chỉ là ví dụ, bạn có thể thay đổi tùy ý
+        this.usernameText.setText("User " + review.getUser().getId()); // Replace with username if available
+        this.commentText.setText(review.getComment());
+    }
+
+    public void setCommentData(Book book) {
+        this.usernameText.setText("User " + book.getIsbn()); // Replace with username if available
+        this.commentText.setText(book.getTitle());
     }
 }
 

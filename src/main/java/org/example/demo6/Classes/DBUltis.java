@@ -553,4 +553,82 @@ public class DBUltis implements Database{
         }
         return avgRating;
     }
+
+    public static List<Comment> getCommentsByPostId(int postId) {
+        List<Comment> comments = new ArrayList<>();
+        String query = "SELECT * FROM Comments WHERE post_id = ? ORDER BY timestamp ASC";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database/LibraryMain");
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, postId);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                comments.add(new Comment(
+                        rs.getInt("id"),
+                        rs.getInt("post_id"),
+                        rs.getInt("user_id"),
+                        rs.getString("comment"),
+                        rs.getObject("reply_to_comment_id", Integer.class), // Có thể null
+                        rs.getString("isbn"),
+                        rs.getString("timestamp")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return comments;
+    }
+
+    public static List<Comment> getRepliesByCommentId(int commentId) {
+        List<Comment> replies = new ArrayList<>();
+        String query = "SELECT * FROM Comments WHERE reply_to_comment_id = ? ORDER BY timestamp ASC";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database/LibraryMain");
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, commentId);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                replies.add(new Comment(
+                        rs.getInt("id"),
+                        rs.getInt("post_id"),
+                        rs.getInt("user_id"),
+                        rs.getString("comment"),
+                        rs.getObject("reply_to_comment_id", Integer.class),
+                        rs.getString("isbn"),
+                        rs.getString("timestamp")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return replies;
+    }
+
+    public List<Review> getAllReviews() {
+        List<Review> reviews = new ArrayList<>();
+        String query = "SELECT * FROM Reviews";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:your_database.db");
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                String comment = rs.getString("comment");
+                int rating = rs.getInt("rating");
+                int userId = rs.getInt("userId");
+                String isbn = rs.getString("isbn");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+
+                Review review = new Review(comment, rating, userId, isbn, timestamp);
+                reviews.add(review);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reviews;
+    }
 }

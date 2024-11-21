@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane prefHeight="573.0" prefWidth="814.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.example.demo6.Controller.UserScene.Page.CommentController">
+    <VBox>
+        <!-- Your FXML content here -->
+    </VBox>
+</ScrollPane>

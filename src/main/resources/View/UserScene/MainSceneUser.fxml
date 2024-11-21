@@ -55,6 +55,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button layoutX="74.0" layoutY="312.0" mnemonicParsing="false" onAction="#changeToStreak" text="Streak" />
          </children></Pane>
    </left>
    <bottom>

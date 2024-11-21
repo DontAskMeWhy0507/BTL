@@ -44,7 +44,7 @@ public class MainSceneUser {
     @FXML
     private ImageView avatar;
 
-    private static ScrollPane staticMainScrollPane1;
+    public static ScrollPane staticMainScrollPane1;
 
     public static void setMainContent(Parent content) {
         staticMainScrollPane1.setContent(content);
@@ -180,6 +180,20 @@ public class MainSceneUser {
             if (cause != null) {
                 cause.printStackTrace();
             }
+        }
+    }
+
+
+    public void changeToStreak() {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Streak.fxml"));
+            Parent StreakView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(StreakView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -447,6 +447,110 @@ public class DBUltis implements Database{
         return users;
     }
 
+    public void saveReviewToDatabase(Review review, Book currentBook) {
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String selectQuery = "SELECT id FROM Reviews WHERE userId = ? AND isbn = ?";
+        String insertQuery = "INSERT INTO Reviews (comment, rating, userId, isbn) VALUES (?, ?, ?, ?)";
+        String updateQuery = "UPDATE Reviews SET comment = ?, rating = ? WHERE userId = ? AND isbn = ?";
 
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement selectStmt = conn.prepareStatement(selectQuery);
+             PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
+             PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
 
+            // Check if a review by the same user for the same book already exists
+            selectStmt.setInt(1, review.getUser().getId());
+            selectStmt.setString(2, currentBook.getIsbn());
+            ResultSet rs = selectStmt.executeQuery();
+
+            if (rs.next()) {
+                // Update the existing review
+                updateStmt.setString(1, review.getComment());
+                updateStmt.setInt(2, review.getRating());
+                updateStmt.setInt(3, review.getUser().getId());
+                updateStmt.setString(4, currentBook.getIsbn());
+                updateStmt.executeUpdate();
+            } else {
+                // Insert a new review
+                insertStmt.setString(1, review.getComment());
+                insertStmt.setInt(2, review.getRating());
+                insertStmt.setInt(3, review.getUser().getId());
+                insertStmt.setString(4, currentBook.getIsbn());
+                insertStmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Review> getReviewsForBook(Book book) {
+        List<Review> reviews = new ArrayList<>();
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String query = "SELECT * FROM Reviews WHERE isbn = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, book.getIsbn());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                User user = getUserById(rs.getInt("userId")); // Assuming you have a method to get User by ID
+                Review review = new Review(
+                        rs.getString("comment"),
+                        rs.getInt("rating"),
+                        user,
+                        book
+                );
+                reviews.add(review);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reviews;
+    }
+    private User getUserById(int userId) {
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String query = "SELECT * FROM Users WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        LocalDate.parse(rs.getString("date_of_birth")),
+                        rs.getString("avatar"),
+                        rs.getString("role"),
+                        new Streak(LocalDate.parse(rs.getString("last_access")), rs.getInt("streak"), rs.getInt("longest_streak"))
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public double getAverageRatingForBook(Book book) {
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String query = "SELECT AVG(rating) AS avg_rating FROM Reviews WHERE isbn = ?";
+        double avgRating = 0.0;
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, book.getIsbn());
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                avgRating = rs.getDouble("avg_rating");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return avgRating;
+    }
 }

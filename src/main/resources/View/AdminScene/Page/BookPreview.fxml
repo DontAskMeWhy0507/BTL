@@ -17,49 +17,49 @@
       <VBox prefHeight="931.0" prefWidth="965.0">
          <children>
             <!-- Main book details section -->
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="731.0" prefWidth="1001.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
+            <AnchorPane prefHeight="731.0" prefWidth="1112.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                <children>
-                  <ImageView fx:id="bookCoverImage" fitHeight="332.0" fitWidth="292.0" layoutX="32.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookCoverImage" fitHeight="332.0" fitWidth="292.0" layoutX="45.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Image/Logo_HUET.svg.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="bookTitleLabel" layoutX="374.0" layoutY="96.0" prefHeight="37.0" prefWidth="370.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="UET History">
+                  <Label fx:id="bookTitleLabel" layoutX="409.0" layoutY="96.0" prefHeight="37.0" prefWidth="370.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="UET History">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Button fx:id="buttonBorrow" layoutX="100.0" layoutY="495.0" mnemonicParsing="false" onAction="#borrowBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Mượn sách" />
+                  <Button fx:id="buttonBorrow" layoutX="113.0" layoutY="516.0" mnemonicParsing="false" onAction="#borrowBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Mượn sách" />
 
-                  <ImageView fx:id="QRcode" fitHeight="150.0" fitWidth="200.0" layoutX="758.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="QRcode" fitHeight="150.0" fitWidth="200.0" layoutX="793.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Image/QR.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="bookPublishedDate" layoutX="506.0" layoutY="197.0" text="December 18, 2024" />
-                  <Text layoutX="376.0" layoutY="197.0" text="Ngày phát hành" />
-                  <Button layoutX="100.0" layoutY="560.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Trả sách" />
-                  <Button layoutX="376.0" layoutY="560.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm thông tin" />
-                  <Button layoutX="601.0" layoutY="560.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm vào CSDL" />
+                  <Text fx:id="bookPublishedDate" layoutX="541.0" layoutY="197.0" text="December 18, 2024" />
+                  <Text layoutX="411.0" layoutY="197.0" text="Ngày phát hành" />
+                  <Button layoutX="113.0" layoutY="581.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Trả sách" />
+                  <Button layoutX="381.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm thông tin" />
+                  <Button layoutX="606.0" layoutY="581.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm vào CSDL" />
 
                   <!-- Book Metadata -->
-                  <Text layoutX="376.0" layoutY="257.0" text="Ngôn ngữ" />
-                  <Text layoutX="376.0" layoutY="287.0" text="Tác giả" />
-                  <Text layoutX="376.0" layoutY="317.0" text="Thể loại" />
-                  <Text layoutX="376.0" layoutY="227.0" text="NXB" />
-                  <Text layoutX="376.0" layoutY="347.0" text="Số lượng" />
-                  <Text fx:id="bookPublisher" layoutX="506.0" layoutY="317.0" text="unknown" />
-                  <Text fx:id="bookLanguage" layoutX="506.0" layoutY="227.0" text="unknown" />
-                  <Text fx:id="bookAuthor" layoutX="506.0" layoutY="257.0" text="unknown" />
-                  <Text fx:id="bookCategoryLabel" layoutX="506.0" layoutY="287.0" text="unknown" />
-                  <Text fx:id="bookQuantity" layoutX="506.0" layoutY="347.0" text="0" />
-                  <Text fx:id="bookDescription" layoutX="374.0" layoutY="453.0" text="THE IMPERIALS CONTINUE THEIR INVASION OF ENDOR! With WICKET captured and forced to guide the IMPERIAL scouting party..." wrappingWidth="559.0">
+                  <Text layoutX="411.0" layoutY="257.0" text="Ngôn ngữ" />
+                  <Text layoutX="411.0" layoutY="287.0" text="Tác giả" />
+                  <Text layoutX="411.0" layoutY="317.0" text="Thể loại" />
+                  <Text layoutX="411.0" layoutY="227.0" text="NXB" />
+                  <Text layoutX="411.0" layoutY="347.0" text="Số lượng" />
+                  <Text fx:id="bookCategoryLabel" layoutX="541.0" layoutY="317.0" text="unknown" />
+                  <Text fx:id="bookPublisher" layoutX="541.0" layoutY="227.0" text="unknown" />
+                  <Text fx:id="bookLanguage" layoutX="541.0" layoutY="257.0" text="unknown" />
+                  <Text fx:id="bookAuthor" layoutX="541.0" layoutY="287.0" text="unknown" />
+                  <Text fx:id="bookQuantity" layoutX="541.0" layoutY="347.0" text="0" />
+                  <Text fx:id="bookDescription" layoutX="409.0" layoutY="440.0" lineSpacing="1.15" text="THE IMPERIALS CONTINUE THEIR INVASION OF ENDOR! With WICKET captured and forced to guide the IMPERIAL scouting party..." wrappingWidth="507.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="374.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="63.39501953125" />
-                  <JFXButton fx:id="viewMoreButton" layoutX="365.0" layoutY="489.0" onAction="#toggleDescription" styleClass="viewMore" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Xem thêm" />
+                  <Text layoutX="408.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="147.39501953125" />
+                  <JFXButton fx:id="viewMoreButton" layoutX="404.0" layoutY="502.0" onAction="#toggleDescription" styleClass="viewMore" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Xem thêm" />
                </children>
             </AnchorPane>
 

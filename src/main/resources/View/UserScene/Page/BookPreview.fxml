@@ -46,17 +46,17 @@
                         <Text layoutX="376.0" layoutY="317.0" text="Thể loại" />
                         <Text layoutX="376.0" layoutY="227.0" text="NXB" />
                         <Text layoutX="376.0" layoutY="347.0" text="Số lượng" />
-                        <Text fx:id="bookPublisher" layoutX="506.0" layoutY="317.0" text="unknown" />
-                        <Text fx:id="bookLanguage" layoutX="506.0" layoutY="227.0" text="unknown" />
-                        <Text fx:id="bookAuthor" layoutX="506.0" layoutY="257.0" text="unknown" />
-                        <Text fx:id="bookCategoryLabel" layoutX="506.0" layoutY="287.0" text="unknown" />
+                        <Text fx:id="bookCategoryLabel" layoutX="506.0" layoutY="317.0" text="unknown" />
+                        <Text fx:id="bookPublisher" layoutX="506.0" layoutY="227.0" text="unknown" />
+                        <Text fx:id="bookLanguage" layoutX="506.0" layoutY="257.0" text="unknown" />
+                        <Text fx:id="bookAuthor" layoutX="506.0" layoutY="287.0" text="unknown" />
                         <Text fx:id="bookQuantity" layoutX="506.0" layoutY="347.0" text="0" />
                         <Text fx:id="bookDescription" layoutX="374.0" layoutY="453.0" text="THE IMPERIALS CONTINUE THEIR INVASION OF ENDOR! With WICKET captured and forced to guide the IMPERIAL scouting party..." wrappingWidth="559.0">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Text>
-                        <Text layoutX="374.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="63.39501953125" />
+                        <Text layoutX="374.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="111.39501953125" />
                         <JFXButton fx:id="viewMoreButton" layoutX="365.0" layoutY="489.0" onAction="#toggleDescription" styleClass="viewMore" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Xem thêm" />
                     </children>
                 </AnchorPane>
@@ -64,8 +64,8 @@
                 <!-- Comment Section -->
                 <AnchorPane prefHeight="244.0" prefWidth="965.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                     <children>
-                        <TextField fx:id="commentInputField" layoutX="65.0" prefHeight="97.0" prefWidth="471.0" promptText="Thêm bình luận" />
-                        <Button fx:id="postCommentButton" layoutX="383.0" layoutY="111.0" onAction="#postComment" text="Đăng tải bình luận" />
+                        <TextField fx:id="commentInputField" layoutX="74.0" prefHeight="66.0" prefWidth="471.0" promptText="Thêm bình luận" />
+                        <Button fx:id="postCommentButton" layoutX="74.0" layoutY="80.0" onAction="#postComment" text="Đăng tải bình luận" />
                         <VBox fx:id="commentsContainer" layoutX="224.0" layoutY="80.0" prefWidth="85.0" spacing="10.0">
                             <!-- Comments will be added here dynamically -->
                         </VBox>

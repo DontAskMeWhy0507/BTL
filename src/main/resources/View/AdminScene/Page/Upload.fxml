@@ -7,32 +7,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="712.0" prefWidth="1049.0" stylesheets="@../../../Style/AdminScene/Upload.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.PageUploadController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1112.0" stylesheets="@../../../Style/AdminScene/Upload.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.PageUploadController">
 
    <children>
       <Button fx:id="uploadButton" layoutX="116.0" layoutY="445.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="186.0" styleClass="addBook" stylesheets="@../../../Style/AdminScene/Upload.css" text="Thêm sách" />
       <Button fx:id="SelectCover" layoutX="116.0" layoutY="504.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="186.0" styleClass="addBookCover" stylesheets="@../../../Style/AdminScene/Upload.css" text="Thêm bìa sách" />
-      <TextField fx:id="ISBN" layoutX="420.0" layoutY="70.0" prefHeight="32.0" prefWidth="463.0" promptText="Nhập mã ISBN" stylesheets="@../../../Style/AdminScene/Upload.css" />
-      <TextField fx:id="Tittle" layoutX="423.0" layoutY="155.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên sách" />
-      <TextField fx:id="Authors" layoutX="674.0" layoutY="155.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên" stylesheets="@../../../Style/AdminScene/Upload.css" />
-      <TextField fx:id="quantity" layoutX="420.0" layoutY="239.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập số lượng" stylesheets="@../../../Style/AdminScene/Upload.css" />
-      <TextField fx:id="Publisher" layoutX="420.0" layoutY="324.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên NXB" stylesheets="@../../../Style/AdminScene/Upload.css" />
-      <DatePicker fx:id="PublishedDate" layoutX="672.0" layoutY="325.0" prefHeight="25.0" prefWidth="209.0" promptText="Published date" stylesheets="@../../../Style/AdminScene/Upload.css" />
-      <TextField fx:id="Categories" layoutX="423.0" layoutY="421.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập (các) thể loại" stylesheets="@../../../Style/AdminScene/Upload.css" />
-      <TextField fx:id="Language" layoutX="674.0" layoutY="421.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập ngôn ngữ" stylesheets="@../../../Style/AdminScene/Upload.css" />
-      <TextField fx:id="Description" layoutX="423.0" layoutY="504.0" prefHeight="66.0" prefWidth="442.0" promptText="Miêu tả sơ lược về nội dung" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="ISBN" layoutX="518.0" layoutY="52.0" prefHeight="32.0" prefWidth="463.0" promptText="Nhập mã ISBN" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Tittle" layoutX="517.0" layoutY="137.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên sách" />
+      <TextField fx:id="Authors" layoutX="772.0" layoutY="137.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="quantity" layoutX="518.0" layoutY="221.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập số lượng" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Publisher" layoutX="518.0" layoutY="306.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập tên NXB" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <DatePicker fx:id="PublishedDate" layoutX="770.0" layoutY="307.0" prefHeight="25.0" prefWidth="209.0" promptText="Published date" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Categories" layoutX="521.0" layoutY="403.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập (các) thể loại" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Language" layoutX="772.0" layoutY="403.0" prefHeight="25.0" prefWidth="209.0" promptText="Nhập ngôn ngữ" stylesheets="@../../../Style/AdminScene/Upload.css" />
+      <TextField fx:id="Description" layoutX="521.0" layoutY="486.0" prefHeight="66.0" prefWidth="463.0" promptText="Miêu tả sơ lược về nội dung" stylesheets="@../../../Style/AdminScene/Upload.css" />
       <Button fx:id="AudioBook" layoutX="116.0" layoutY="563.0" mnemonicParsing="false" styleClass="addAudioBook" stylesheets="@../../../Style/AdminScene/Upload.css" text="Thêm sách nói (nếu có)" />
-      <Button fx:id="Confirm" layoutX="377.0" layoutY="610.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="245.0" styleClass="confirm" stylesheets="@../../../Style/AdminScene/Upload.css" text="Xác nhận" />
+      <Button fx:id="Confirm" layoutX="632.0" layoutY="577.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="245.0" styleClass="confirm" stylesheets="@../../../Style/AdminScene/Upload.css" text="Xác nhận" />
       <ImageView fx:id="BookCover" fitHeight="358.0" fitWidth="265.0" layoutX="76.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="420.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã ISBN" />
-      <Text layoutX="420.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên sách" />
-      <Text layoutX="684.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên (các) tác giả " />
-      <Text layoutX="419.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng" />
-      <Text layoutX="423.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhà xuất bản" />
-      <Text layoutX="679.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày xuất bản" />
-      <Text layoutX="423.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thể loại (giáo trình, trinh thám, ...)" wrappingWidth="233.591796875" />
-      <Text layoutX="679.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngôn ngữ" />
-      <Text layoutX="423.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miêu tả" />
+      <Text layoutX="518.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã ISBN" />
+      <Text layoutX="518.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên sách" />
+      <Text layoutX="782.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên (các) tác giả " />
+      <Text layoutX="517.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng" />
+      <Text layoutX="521.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhà xuất bản" />
+      <Text layoutX="777.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày xuất bản" />
+      <Text layoutX="521.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thể loại (giáo trình, trinh thám, ...)" wrappingWidth="233.591796875" />
+      <Text layoutX="777.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngôn ngữ" />
+      <Text layoutX="521.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miêu tả" />
 
    </children>
 </AnchorPane>

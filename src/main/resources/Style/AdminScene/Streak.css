@@ -1,0 +1,32 @@
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+.yourStreak {
+    -fx-font-family: "Dancing Script SemiBold";
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-text-alignment: center;
+    -fx-text-color: #674636;
+}
+
+Label {
+    -fx-font-family: "Merriweather";
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-text-alignment: center;
+    -fx-text-color: #674636;
+}
+
+ProgressBar {
+    -fx-background-color: white;
+    -fx-accent: #536A5C;
+}
+
+.congrats {
+    -fx-font-family: "Dancing Script Semibold";
+    -fx-font-size: 40px;
+    -fx-text-alignment: center;
+    -fx-text-color: green;
+}

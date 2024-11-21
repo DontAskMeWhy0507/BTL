@@ -1,5 +1,6 @@
 AnchorPane {
-
+    -fx-background-color: #FFF8E8;
+    -fx-border-radius: 20px;
 }
 
 Button {

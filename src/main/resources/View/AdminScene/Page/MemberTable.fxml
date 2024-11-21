@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="617.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
+<AnchorPane prefHeight="648.0" prefWidth="1112.0" stylesheets="@../../../Style/AdminScene/MemberTable.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.AdminController">
     <children>
-        <TableView fx:id="tableView" layoutX="14.0" layoutY="40.0" prefHeight="537.0" prefWidth="1099.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="40.0">
+        <TableView fx:id="tableView" layoutX="-3.0" layoutY="58.0" prefHeight="590.0" prefWidth="1112.0" stylesheets="@../../../Style/AdminScene/MemberTable.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
             <columns>
-                <TableColumn fx:id="tf_ID" prefWidth="96.0" text="ID" />
-                <TableColumn fx:id="tf_name" minWidth="7.2" prefWidth="135.0" text="Name" />
-                <TableColumn fx:id="tf_password" prefWidth="127.0" text="Password" />
-                <TableColumn fx:id="tf_role" prefWidth="102.0" text="Role" />
-                <TableColumn fx:id="tf_email" minWidth="0.0" prefWidth="154.0" text="Email" />
-                <TableColumn fx:id="tf_avatar" prefWidth="144.0" text="Avatar" />
-                <TableColumn fx:id="tf_date" prefWidth="114.0" text="Date of birth" />
+                <TableColumn fx:id="tf_ID" prefWidth="108.0" text="ID" />
+                <TableColumn fx:id="tf_name" minWidth="7.2" prefWidth="147.0" text="Name" />
+                <TableColumn fx:id="tf_password" prefWidth="142.0" text="Password" />
+                <TableColumn fx:id="tf_role" prefWidth="97.0" text="Role" />
+                <TableColumn fx:id="tf_email" minWidth="0.0" prefWidth="174.0" text="Email" />
+                <TableColumn fx:id="tf_avatar" prefWidth="120.0" text="Avatar" />
+                <TableColumn fx:id="tf_date" prefWidth="108.0" text="Date of birth" />
 
                 <!-- New columns for Streak and Last Access Date -->
-                <TableColumn fx:id="tf_streak" prefWidth="57.0" text="Streak" />
-                <TableColumn fx:id="tf_lastLoginDate" prefWidth="162.0" text="Last Access Date" />
+                <TableColumn fx:id="tf_streak" prefWidth="81.0" text="Streak" />
+                <TableColumn fx:id="tf_lastLoginDate" prefWidth="136.0" text="Last Access Date" />
             </columns>
         </TableView>
 
@@ -36,7 +36,7 @@
         </HBox>
 
         <!-- Search TextField and Label -->
-        <TextField fx:id="tf_findName" layoutX="952.0" layoutY="14.0" onAction="#searchName" onKeyPressed="#entertoSeachName" />
-        <Label layoutX="859.0" layoutY="18.0" text="Tìm người dùng" />
+        <TextField fx:id="tf_findName" layoutX="941.0" layoutY="14.0" onAction="#searchName" onKeyPressed="#entertoSeachName" />
+        <Label layoutX="848.0" layoutY="18.0" text="Tìm người dùng" />
     </children>
 </AnchorPane>

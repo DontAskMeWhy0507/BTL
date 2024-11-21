@@ -1,0 +1,32 @@
+AnchorPane {
+    -fx-background-color: #FFF8E8;
+    -fx-border-radius: 20px;
+}
+
+TableView {
+    -fx-background-color: #FFF8E8;
+    -fx-border-color: #674636;
+}
+
+TableView .table-header {
+    -fx-background-color: #F7EED3;
+    -fx-text-fill: black;
+    -fx-font-family: "Merriweather";
+    -fx-text-size: 13px;
+}
+.table-view .table-row:nth-child(odd) {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-view .table-row:nth-child(odd):selected {
+    -fx-background-color: #0056b3;
+}
+
+
+.table-view .table-row:nth-child(even) {
+    -fx-background-color: white;
+}
+
+.table-view .table-row:nth-child(even):selected {
+    -fx-background-color: #0056b3;
+}

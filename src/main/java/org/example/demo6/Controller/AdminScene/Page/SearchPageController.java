@@ -17,15 +17,16 @@ public class SearchPageController {
     @FXML
     private GridPane apiResults;  // GridPane for API results
 
-    private List<Book> databaseSearchResults;
-    private List<Book> apiSearchResults;
+    protected List<Book> databaseSearchResults;
+    protected List<Book> apiSearchResults;
 
     // Set the search results for both database and API
     public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
         this.databaseSearchResults = databaseResults;
         this.apiSearchResults = apiResults;
-        displayDatabaseResults();
+
         displayApiResults();
+        displayDatabaseResults();
     }
 
     // Display the database results in the first GridPane

@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
@@ -22,6 +23,7 @@ import org.example.demo6.Controller.AdminScene.MainSceneClass;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 
 public class BookPreviewController {
@@ -124,12 +126,10 @@ public class BookPreviewController {
                     Image coverImage = new Image(coverImageFile.toURI().toString());
                     bookCoverImage.setImage(coverImage);
                 }
-
-
             } catch (Exception e) {
                 // Log or handle error and set a default image in case of an invalid URL
                 System.err.println("Error loading image: " + e.getMessage());
-                bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/heart.jpg")));
+                bookCoverImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/heart.jpg"))));
             }
         } else {
             // Set a default image if the cover path is null or empty
@@ -166,6 +166,3 @@ public class BookPreviewController {
         }
     }
 }
-
-
-

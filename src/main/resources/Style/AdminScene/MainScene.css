@@ -3,7 +3,7 @@ BorderPane {
     -fx-border-radius: 20px;
 }
 
-.userManage, .booksManage, .upload, .switchToUser, .logout, .openSettings {
+.userManage, .booksManage, .upload, .switchToUser, .logout, .openSettings, .streak {
     -fx-text-alignment: center;
     -fx-font-family: "Merriweather";
     -fx-background-color: #F7EED3;
@@ -13,6 +13,8 @@ BorderPane {
     -fx-background-radius: 20px;
     -fx-text-color: #674636;
     -fx-font-size: 13px;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 160px;
 }
 
 .homeImage . userManage {
@@ -30,3 +32,27 @@ ScrollPane {
     -fx-background-color: #F7EED3;
 }
 
+ImageView {
+    -fx-opacity: 0.8;
+}
+
+TextField {
+    -fx-font-family: "Merriweather";
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #F7EED3;
+    -fx-padding: 10px;
+    -fx-border-color: black;
+    -fx-text-fill: #674636;
+    -fx-font-size: 13px;
+}
+
+.username {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 13px;
+    -fx-background-color: #FFF8E8;
+}
+
+.username:hover, .username:focused {
+    -fx-background-color: white;
+}

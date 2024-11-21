@@ -12,6 +12,7 @@ AnchorPane {
 Text {
     -fx-font-family: "Merriweather";
     -fx-font-size: 15px;
+    -fx-line-spacing: 1.15;
 }
 
 Button {
@@ -36,7 +37,7 @@ Button {
 .viewMore:hover, .viewMore:focused {
     -fx-text-fill: #536A5C;
     -fx-underline: true;
-    -fx-font-size: 15px;
+    -fx-font-size: 13px;
 }
 
 TextField {

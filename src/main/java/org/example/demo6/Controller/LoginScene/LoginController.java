@@ -81,6 +81,9 @@ public class LoginController implements Initializable {
     private JFXRippler loginRippler;
 
     @FXML
+    private ImageView img;
+
+    @FXML
     void getPassword(ActionEvent event) {
         if (showPass.isSelected()) {
             showPassword.setText(tf_password.getText());
@@ -158,6 +161,11 @@ public class LoginController implements Initializable {
         AnchorPane.setLeftAnchor(loginRippler, 185.0);
     }
 
+
+    public void setStage(Stage stage) {
+        img.fitWidthProperty().bind(stage.widthProperty());
+        img.fitHeightProperty().bind(stage.heightProperty());
+    }
 
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo

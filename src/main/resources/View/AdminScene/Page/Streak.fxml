@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -10,14 +11,17 @@
     <Label layoutX="476.0" layoutY="58.0" styleClass="yourStreak" text="Chuỗi của bạn" textAlignment="JUSTIFY" />
 
     <!-- Progress bar to show streak progress -->
-    <ProgressBar fx:id="streakProgressBar" layoutX="356.0" layoutY="137.0" prefWidth="400.0" stylesheets="@../../../Style/AdminScene/Streak.css" />
+    <ProgressBar fx:id="streakProgressBar" layoutX="356.0" layoutY="137.0" prefWidth="400.0" />
 
     <!-- Streak information -->
-    <Label fx:id="streakLabel" layoutX="356.0" layoutY="187.0" prefHeight="25.0" prefWidth="0.0" />
-    <Label fx:id="longestStreakLabel" layoutX="356.0" layoutY="237.0" prefHeight="25.0" prefWidth="0.0" />
-    <Label fx:id="milestoneLabel" layoutX="356.0" layoutY="287.0" />
+    <Label fx:id="streakLabel" layoutX="356.0" layoutY="187.0" prefHeight="25.0" prefWidth="400.0" />
+    <Label fx:id="longestStreakLabel" layoutX="356.0" layoutY="237.0" prefHeight="25.0" prefWidth="400.0" />
+    <Label fx:id="milestoneLabel" layoutX="356.0" layoutY="287.0" prefHeight="25.0" prefWidth="400.0" />
 
     <!-- Reward message -->
-    <Label fx:id="rewardLabel" layoutX="356.0" layoutY="400.0" prefHeight="30.0" prefWidth="0.0" styleClass="congrats" stylesheets="@../../../Style/AdminScene/Streak.css" />
+    <Label fx:id="rewardLabel" layoutX="356.0" layoutY="400.0" prefHeight="30.0" prefWidth="400.0" styleClass="congrats" />
+
+    <Label layoutX="39.0" layoutY="237.0" styleClass="rewardsHeader" text="Phần thưởng đã đạt:" />
+    <ListView fx:id="achievedRewardsList" layoutX="52.0" layoutY="287.0" prefHeight="251.0" prefWidth="169.0" />
 
 </AnchorPane>

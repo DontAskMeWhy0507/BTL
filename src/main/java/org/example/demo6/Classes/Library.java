@@ -69,7 +69,8 @@ public class Library {
 
         DBUltis dbUltis = new DBUltis();
         dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
-                + "', streak = " + library.getCurrentUser().getStreak().getStreak()
+                + "', STREAK = " + library.getCurrentUser().getStreak().getStreak()
+                + ", LONGEST_STREAK = " + library.getCurrentUser().getStreak().getLongestStreak()
                 + " WHERE id = " + library.getCurrentUser().getId());
 
         library.setCurrentUser(null);

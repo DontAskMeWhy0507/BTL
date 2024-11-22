@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
+import org.example.demo6.Controller.AdminScene.Page.ChatAIController;
 import org.example.demo6.Controller.AdminScene.Page.SearchPageController;
 import javafx.scene.image.Image;
 import org.example.demo6.Controller.AdminScene.Page.Settings;
@@ -23,7 +24,7 @@ import java.util.Optional;
 
 import static org.example.demo6.Controller.GeneralController.changescene;
 
-public class MainSceneClass{
+public class MainSceneClass {
     DBUltis DBUltis = new DBUltis();
     // Singleton
     private static MainSceneClass instance;
@@ -92,7 +93,7 @@ public class MainSceneClass{
 
     @FXML
     void moreButton() {
-       seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
+        seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
     }
 
 //    public void resetView() {
@@ -104,7 +105,6 @@ public class MainSceneClass{
         changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
         avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
     }
-
 
 
     @FXML
@@ -233,4 +233,21 @@ public class MainSceneClass{
         }
     }
 
+    @FXML
+    public void ChatAI() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/ChatAI.fxml"));
+            Parent homeView = loader.load();
+
+            // Get the controller instance
+            ChatAIController chatAIController = loader.getController();
+
+            setMainContent(homeView);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
 }

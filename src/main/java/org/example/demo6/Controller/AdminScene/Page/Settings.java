@@ -44,6 +44,13 @@ public class Settings {
     @FXML
     private JFXCheckBox showPass;
 
+    @FXML
+            private ImageView avatarAdd1;
+    @FXML
+            private ImageView avatarAdd2;
+    @FXML
+            private ImageView avatarAdd3;
+
     boolean changeAvatar = false;
     boolean changeUsername = false;
     boolean changeEmail = false;
@@ -89,6 +96,30 @@ public class Settings {
     private void selectAvatar8() {
         setAvatar("/Image/Avatar/Sage.png");
     }
+
+    @FXML
+    private void selectAvatarAdd1(){
+        setAvatar("/Image/Avatar/Skye1.png");
+    }
+
+    @FXML
+    private void selectAvatarAdd2(){
+        setAvatar("/Image/Avatar/Raze2.png");
+    }
+
+    @FXML
+    private void selectAvatarAdd3(){
+        setAvatar("/Image/Avatar/Killjoy3.png");
+    }
+
+    public void initialize() {
+        // Set the current user's information
+       avatarAdd1.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 7"));
+       avatarAdd2.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 10"));
+       avatarAdd3.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 30"));
+    }
+
+
 
     public void confirmAvatarSelection() {
         String avatarPath = avatarFile.getPath();

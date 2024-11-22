@@ -36,6 +36,10 @@ public class User {
         this.streak = streak;
     }
 
+    public User(int userId) {
+        this.id = userId;
+    }
+
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -164,7 +165,7 @@ public class BookPreview {
     }
 
 
-    public void postComment(ActionEvent event) {
+    public void postComment() {
         User user = Library.getInstance().getCurrentUser();
         double ratingValue = ratingBook.getRating();
         String comment = commentInputField.getText(); // Replace with actual comment input
@@ -179,21 +180,21 @@ public class BookPreview {
         System.out.println("Rating: " + ratingValue);
     }
 
-    public void loadComment() {
-        DBUltis dbUltis = new DBUltis();
-        List<Review> reviews = dbUltis.getReviewsForBook(currentBook);
 
-        commentsContainer.getChildren().clear();
-        for (Review review : reviews) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Comment.fxml"));
-                AnchorPane commentBox = loader.load();
-                CommentController controller = loader.getController();
-                controller.setCommentData(review);
-                commentsContainer.getChildren().add(commentBox);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public void changeToSeenComments() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/CommentSeenPage.fxml"));
+            Parent parent = loader.load();
+            CommentController controller = loader.getController();
+            controller.setCommentData(currentBook);
+            Stage stage = new Stage();
+            stage.setTitle("Comments");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+
 }

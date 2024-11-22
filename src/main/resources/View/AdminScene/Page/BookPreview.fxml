@@ -68,9 +68,12 @@
                <children>
                   <TextField fx:id="commentInputField" layoutX="65.0" prefHeight="97.0" prefWidth="471.0" promptText="Thêm bình luận" />
                   <Button fx:id="postCommentButton" layoutX="383.0" layoutY="111.0" onAction="#postComment" text="Đăng tải bình luận" />
+
+
                   <VBox fx:id="commentsContainer" layoutX="224.0" layoutY="80.0" prefWidth="85.0" spacing="10.0">
                      <!-- Comments will be added here dynamically -->
                   </VBox>
+
                </children>
             </AnchorPane>
          </children>

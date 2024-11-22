@@ -48,6 +48,10 @@ public class Book {
 
     }
 
+    public Book(String isbn) {
+        this.isbn = isbn;
+    }
+
 
     // Getters và Setters
 

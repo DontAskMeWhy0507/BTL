@@ -1,5 +1,7 @@
 package org.example.demo6.Classes;
 
+import java.sql.Timestamp;
+
 public class Review {
     private String comment;
     private int rating;
@@ -18,6 +20,13 @@ public class Review {
         this.rating = rating;
         this.user = user;
         this.currentbook = currentbook;
+    }
+
+    public Review(String comment, int rating, int userId, String isbn, Timestamp timestamp) {
+        this.comment = comment;
+        this.rating = rating;
+        this.user = new User(userId);
+        this.currentbook = new Book(isbn);
     }
 
     // Getters and Setters
@@ -52,4 +61,7 @@ public class Review {
     public void setBook(Book book) {
         this.currentbook = book;
     }
+
+
+
 }

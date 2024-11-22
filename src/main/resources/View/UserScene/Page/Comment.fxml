@@ -6,59 +6,56 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.CommentController">
-    <VBox alignment="TOP_LEFT" prefHeight="294.0" prefWidth="353.0" spacing="10" style="-fx-padding: 10;">
-        <!-- Phần comment chính -->
-        <HBox prefHeight="67.0" prefWidth="338.0" spacing="10">
-            <!-- Avatar -->
-            <ImageView fitHeight="40" fitWidth="40">
-                <Image url="@../../../Image/avatar.png" />
-            </ImageView>
-         <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-               <Label layoutY="-8.0" text="Username" />
-               <Label layoutY="14.0" prefHeight="54.0" prefWidth="288.0" text="Comment" />
-            </children>
-         </AnchorPane>
+     <!-- Phần comment chính -->
+     <HBox layoutX="10.399999618530273" layoutY="10.399999618530273" prefHeight="67.0" prefWidth="338.0" spacing="10">
+         <!-- Avatar -->
+         <ImageView fitHeight="40" fitWidth="40">
+             <Image url="@../../../Image/avatar.png" />
+         </ImageView>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="usernameText" layoutY="-8.0" text="Username" />
+            <Label fx:id="commentText" layoutY="14.0" prefHeight="54.0" prefWidth="611.0" text="Comment" />
+            <Label fx:id="datePost" layoutX="126.0" layoutY="-7.0" text="Label" />
+         </children>
+      </AnchorPane>
 
-            <!-- Nội dung bình luận -->
+         <!-- Nội dung bình luận -->
 
-        </HBox>
+     </HBox>
 
-        <!-- Tương tác -->
-        <HBox spacing="10">
-            <Button fx:id="likeButton" style="-fx-background-color: transparent; -fx-text-fill: #3b5998;" text="Thích" />
-            <Button style="-fx-background-color: transparent; -fx-text-fill: #3b5998;" text="Phản hồi" />
-        </HBox>
+     <!-- Tương tác -->
+     <HBox layoutX="10.399999618530273" layoutY="89.5999984741211" spacing="10">
+         <Button fx:id="likeButton" style="-fx-background-color: transparent; -fx-text-fill: #3b5998;" text="Thích" />
+         <Button fx:id="repButton" style="-fx-background-color: transparent; -fx-text-fill: #3b5998;" text="Phản hồi" />
+     </HBox>
 
-        <!-- Khu vực hiển thị biểu tượng đã chọn -->
-        <HBox fx:id="selectedIconBox" prefHeight="31.0" prefWidth="224.0" spacing="5" visible="false">
-            <ImageView fx:id="selectedIcon" fitHeight="20" fitWidth="20" />
-        </HBox>
+     <!-- Khu vực hiển thị biểu tượng đã chọn -->
+     <HBox fx:id="selectedIconBox" layoutX="10.399999618530273" layoutY="125.5999984741211" prefHeight="31.0" prefWidth="224.0" spacing="5" visible="false">
+         <ImageView fx:id="selectedIcon" fitHeight="20" fitWidth="20" />
+     </HBox>
 
-        <!-- HBox chứa các icon cảm xúc (ẩn mặc định) -->
-        <HBox fx:id="reactionBox" spacing="5" style="-fx-background-color: #ffffff; -fx-padding: 5; -fx-border-color: lightgray; -fx-border-radius: 5;" visible="false">
-            <ImageView fx:id="likeIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#selectReaction">
-                <Image url="@../../../Image/Icon/like.png" />
-            </ImageView>
-            <ImageView fx:id="loveIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
-                <Image url="@../../../Image/Icon/love.png" />
-            </ImageView>
-            <ImageView fx:id="hahaIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
-                <Image url="@../../../Image/Icon/haha.png" />
-            </ImageView>
-            <ImageView fx:id="wowIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
-                <Image url="@../../../Image/Icon/wow.png" />
-            </ImageView>
-            <ImageView fx:id="sadIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
-                <Image url="@../../../Image/Icon/sad.png" />
-            </ImageView>
-            <ImageView fx:id="angryIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
-                <Image url="@../../../Image/Icon/angry.png" />
-            </ImageView>
-        </HBox>
-    </VBox>
+     <!-- HBox chứa các icon cảm xúc (ẩn mặc định) -->
+     <HBox fx:id="reactionBox" layoutX="19.0" layoutY="68.0" spacing="5" style="-fx-background-color: #ffffff; -fx-padding: 5; -fx-border-color: lightgray; -fx-border-radius: 5;" visible="false">
+         <ImageView fx:id="likeIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#selectReaction">
+             <Image url="@../../../Image/Icon/like.png" />
+         </ImageView>
+         <ImageView fx:id="loveIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
+             <Image url="@../../../Image/Icon/love.png" />
+         </ImageView>
+         <ImageView fx:id="hahaIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
+             <Image url="@../../../Image/Icon/haha.png" />
+         </ImageView>
+         <ImageView fx:id="wowIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
+             <Image url="@../../../Image/Icon/wow.png" />
+         </ImageView>
+         <ImageView fx:id="sadIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
+             <Image url="@../../../Image/Icon/sad.png" />
+         </ImageView>
+         <ImageView fx:id="angryIcon" fitHeight="30" fitWidth="30" onMouseClicked="#selectReaction">
+             <Image url="@../../../Image/Icon/angry.png" />
+         </ImageView>
+     </HBox>
 </AnchorPane>

@@ -12,6 +12,8 @@ import java.util.List;
 
 public class PathCheck {
     public static void main(String[] args) {
+        ApiGoogleGemini apiGoogleGemini = new ApiGoogleGemini();
+        System.out.println(apiGoogleGemini.sendPostRequest("Hello, how are you?"));
 
     }
 }

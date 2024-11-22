@@ -1,5 +1,6 @@
 package org.example.demo6.Controller.AdminScene;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.image.Image;
 import org.example.demo6.Controller.AdminScene.Page.Settings;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +51,10 @@ public class MainSceneClass {
     private Button avatarButton;
 
     @FXML
+    private Slider volumeSlider;
+
+
+    @FXML
     private Label userName;
 
     private Stage stage;
@@ -58,6 +64,8 @@ public class MainSceneClass {
     @FXML
     private ImageView avatar;
 
+    @FXML
+    private ProgressIndicator loadingIndicator;
     // Method to update the avatar
     public void changeAvatar(String avatarPaths) {
         Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
@@ -67,25 +75,66 @@ public class MainSceneClass {
     public static ScrollPane staticMainScrollPane;
 
     @FXML
-    void searchButton(ActionEvent event) throws IOException {
-        List<Book> ApiResult = apiGoogleBooks.searchBooks1(SearchField.getText());
-        List<Book> databaseResult = DBUltis.searchBook(SearchField.getText());
+    void searchButton(ActionEvent event) {
+        String searchQuery = SearchField.getText();
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/PageSearch.fxml"));
-            Parent homeView = loader.load();
+        // Hiển thị trạng thái tải trong khi tìm kiếm
+        loadingIndicator.setVisible(true);
+        loadingIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
 
-            // Get the controller instance
-            SearchPageController searchPageController = loader.getController();
-            searchPageController.setSearchResults(databaseResult, ApiResult);
+        // Tạo task cho việc tìm kiếm sách (API và Database)
+        Task<List<List<Book>>> task = new Task<>() {
+            @Override
+            protected List<List<Book>> call() throws IOException {
+                // Gọi API và tìm kiếm từ cơ sở dữ liệu
+                List<Book> apiResult = apiGoogleBooks.searchBooks1(searchQuery);
+                List<Book> databaseResult = DBUltis.searchBook(searchQuery);
 
-            setMainContent(homeView);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                // Trả về kết quả dưới dạng một danh sách chứa cả hai kết quả
+                List<List<Book>> result = new ArrayList<>();
+                result.add(databaseResult);
+                result.add(apiResult);
+                return result;
+            }
+        };
+
+        // Xử lý khi task hoàn thành
+        task.setOnSucceeded(event1 -> {
+            loadingIndicator.setVisible(false); // Ẩn progress indicator khi hoàn thành
+
+            // Lấy kết quả từ task
+            List<Book> databaseResult = task.getValue().get(0);
+            List<Book> apiResult = task.getValue().get(1);
+
+            try {
+                // Tải và hiển thị trang kết quả tìm kiếm
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/PageSearch.fxml"));
+                Parent homeView = loader.load();
+
+                // Lấy controller và truyền kết quả tìm kiếm
+                SearchPageController searchPageController = loader.getController();
+                searchPageController.setSearchResults(databaseResult, apiResult);
+
+                setMainContent(homeView);
+                staticMainScrollPane.setFitToWidth(true);
+                staticMainScrollPane.setFitToHeight(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Xử lý nếu task thất bại
+        task.setOnFailed(event1 -> {
+            loadingIndicator.setVisible(false); // Ẩn progress indicator nếu có lỗi
+            Throwable error = task.getException();
+            System.err.println("Error while searching: " + error.getMessage());
+        });
+
+        // Chạy task trong một thread mới
+        new Thread(task).start();
     }
+
+
 
     public static void setMainContent(Parent content) {
         staticMainScrollPane.setContent(content);
@@ -100,15 +149,28 @@ public class MainSceneClass {
 //        changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
 //        avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
 //    }
+    private Music music;
+
 
     public void setUser() {
         changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
         avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
     }
 
+    // Phương thức điều chỉnh âm lượng
+    private void setVolume(double volume) {
+        music.setVolume(volume / 100);
+    }
 
     @FXML
     public void initialize() {
+        music = Music.getInstance();
+        volumeSlider.setValue(50);
+        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            setVolume(newValue.doubleValue());
+        });
+
+
         setUser();
         staticMainScrollPane = mainScrollPane;
         mainScrollPane.setFitToWidth(true);
@@ -250,4 +312,8 @@ public class MainSceneClass {
 
         }
     }
+
+
+
+
 }

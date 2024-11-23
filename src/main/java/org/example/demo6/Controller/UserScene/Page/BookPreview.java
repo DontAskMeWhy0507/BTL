@@ -1,30 +1,24 @@
 package org.example.demo6.Controller.UserScene.Page;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 import org.example.demo6.Classes.*;
-import org.example.demo6.Controller.UserScene.MainSceneUser;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 public class BookPreview {
     private Book currentBook;
@@ -183,10 +177,10 @@ public class BookPreview {
 
     public void changeToSeenComments() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/CommentSeenPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Comment.fxml"));
             Parent parent = loader.load();
             CommentController controller = loader.getController();
-            controller.setCommentData(currentBook);
+            //controller.setCommentData(currentBook);
             Stage stage = new Stage();
             stage.setTitle("Comments");
             stage.setScene(new Scene(parent));

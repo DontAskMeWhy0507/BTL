@@ -56,6 +56,7 @@
                         <Image url="@../../../Image/Avatar/Neon.png" />
                     </image>
                 </ImageView>
+            <Button mnemonicParsing="false" onAction="#uploadAvatar" text="Thêm" />
             </children>
         </TilePane>
 

@@ -1,0 +1,10 @@
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+Text {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 13pt;
+    -fx-line-spacing: 1.15;
+}

@@ -51,7 +51,6 @@ public class MainSceneUser {
     }
 
 
-
     @FXML
     void logOut(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

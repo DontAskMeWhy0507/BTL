@@ -42,15 +42,15 @@ public class Streak {
 
     private void updateStreakDetails() {
         // Update labels
-        streakLabel.setText("Current Streak: " + currentStreak + " days");
-        longestStreakLabel.setText("Longest Streak: " + longestStreak + " days");
+        streakLabel.setText("Chuỗi hiện tại: " + currentStreak + " ngày");
+        longestStreakLabel.setText("Chuỗi dài nhất: " + longestStreak + " ngày");
 
         // Calculate progress to the next milestone
         int nextMilestone = Library.getInstance().getCurrentUser().getStreak().getNextMilestone();
         if (nextMilestone != -1) {
             double progress = (double) currentStreak / nextMilestone;
             streakProgressBar.setProgress(Math.min(1.0, progress));
-            milestoneLabel.setText("Next Milestone: " + nextMilestone + " days");
+            milestoneLabel.setText("Next Milestone: " + nextMilestone + " ngày");
         } else {
             // If no milestone is left, show maxed-out progress
             streakProgressBar.setProgress(1.0);

@@ -1,0 +1,39 @@
+AnchorPane {
+    -fx-background-color: #FFF8E8;
+    -fx-border-radius: 20px;
+}
+
+VBox {
+    -fx-padding: 10px;
+}
+
+.bookStats, .streakStats {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 25px;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+PieChart {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 10px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-pref-height: 400px;
+    -fx-pref-width: 500px;
+    -fx-background-color: transparent;
+}
+
+BarChart {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #674636;
+    -fx-pref-height: 400px;
+    -fx-pref-width: 1500px;
+}
+
+BarChart .axis {
+
+}

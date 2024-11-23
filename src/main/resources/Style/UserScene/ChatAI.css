@@ -1,0 +1,21 @@
+AnchorPane {
+    -fx-background-color: #FFF8E8;
+    -fx-border-radius: 20px;
+}
+
+VBox {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-spacing: 50px;
+    -fx-alignment: top-left;
+}
+
+.chatBox {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 13px;
+    -fx-line-spacing: 1.15;
+    /*-fx-border-radius: 10px;*/
+    /*-fx-background-radius: 10px;*/
+}

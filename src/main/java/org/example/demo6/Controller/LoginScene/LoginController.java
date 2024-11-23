@@ -187,5 +187,4 @@ public class LoginController implements Initializable {
             loginToHome(new ActionEvent(event.getSource(), event.getTarget()));
         }
     }
-
 }

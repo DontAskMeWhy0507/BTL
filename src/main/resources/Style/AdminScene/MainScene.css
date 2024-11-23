@@ -3,8 +3,9 @@ BorderPane {
     -fx-border-radius: 20px;
 }
 
-ScrollPane {
+.mainPane {
     -fx-border-color: #674636;
+    -fx-background-color: #F7EED3;
 }
 
 .userManage, .booksManage, .upload, .statistics, .logout, .openSettings, .streak {
@@ -36,10 +37,6 @@ Button:hover, Button:focused {
 .homeImage . userManage {
     -fx-fit-to-width: 20px;
     -fx-fit-to-height: 20px;
-}
-
-ScrollPane {
-    -fx-background-color: #F7EED3;
 }
 
 .user {

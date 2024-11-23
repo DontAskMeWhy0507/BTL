@@ -29,15 +29,15 @@ public class Streak {
             } else if (daysBetween > 1) {
                 streak = 1; // Reset streak
             }
-            if (streak > longestStreak) {
-                longestStreak = streak; // Cập nhật longestStreak
-            }
         } else {
-            streak = 1; // Nếu đây là lần truy cập đầu tiên
+            streak = 1; // First access
         }
-        lastAccess = today; // Cập nhật ngày truy cập cuối
+        if (streak > longestStreak) {
+            longestStreak = streak; // Update longestStreak
+        }
+        lastAccess = today; // Update last access date
 
-        // Kiểm tra milestone
+        // Check milestone
         checkMilestone();
     }
 

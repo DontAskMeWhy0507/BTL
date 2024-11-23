@@ -9,35 +9,60 @@ import org.example.demo6.Classes.Book;
 import java.io.IOException;
 import java.util.List;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class SearchPageController {
 
     @FXML
-    private GridPane databaseResults;  // GridPane for database results
+    private GridPane databaseResults;
 
     @FXML
-    private GridPane apiResults;  // GridPane for API results
+    private GridPane apiResults;
 
     protected List<Book> databaseSearchResults;
     protected List<Book> apiSearchResults;
 
-    // Set the search results for both database and API
+    private final ExecutorService executor = Executors.newFixedThreadPool(2); // Tạo thread pool với 2 luồng
+
+    // Set search results and display them concurrently
     public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
         this.databaseSearchResults = databaseResults;
         this.apiSearchResults = apiResults;
 
-        displayApiResults();
-        displayDatabaseResults();
+        // Task for displaying database results
+        Task<Void> displayDatabaseTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                displayDatabaseResults();
+                return null;
+            }
+        };
+
+        // Task for displaying API results
+        Task<Void> displayApiTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                displayApiResults();
+                return null;
+            }
+        };
+
+        // Submit tasks to executor
+        executor.submit(displayDatabaseTask);
+        executor.submit(displayApiTask);
     }
 
-    // Display the database results in the first GridPane
     private void displayDatabaseResults() {
-        databaseResults.getChildren().clear();
+        Platform.runLater(() -> databaseResults.getChildren().clear());
         int columns = 6;
         int rows = 6;
         int bookCount = 0;
 
         if (databaseSearchResults == null || databaseSearchResults.isEmpty()) {
-            System.out.println("No books available to display.");
+            Platform.runLater(() -> System.out.println("No books available in the database."));
             return;
         }
 
@@ -50,9 +75,11 @@ public class SearchPageController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Book.fxml"));
                     Pane bookPane = loader.load();
                     BookUnitController controller = loader.getController();
-                    // setDataAll is a method for book from database
                     controller.setDataAll(databaseSearchResults.get(bookCount));
-                    databaseResults.add(bookPane, col, row);
+
+                    int finalCol = col;
+                    int finalRow = row;
+                    Platform.runLater(() -> databaseResults.add(bookPane, finalCol, finalRow));
                     bookCount++;
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -61,12 +88,16 @@ public class SearchPageController {
         }
     }
 
-    // Display the API results in the second GridPane
     private void displayApiResults() {
-        apiResults.getChildren().clear();
+        Platform.runLater(() -> apiResults.getChildren().clear());
         int columns = 6;
         int rows = 6;
         int bookCount = 0;
+
+        if (apiSearchResults == null || apiSearchResults.isEmpty()) {
+            Platform.runLater(() -> System.out.println("No books available from the API."));
+            return;
+        }
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
@@ -78,12 +109,19 @@ public class SearchPageController {
                     Pane bookPane = loader.load();
                     BookUnitController controller = loader.getController();
                     controller.setData(apiSearchResults.get(bookCount));
-                    apiResults.add(bookPane, col, row);
+
+                    int finalCol = col;
+                    int finalRow = row;
+                    Platform.runLater(() -> apiResults.add(bookPane, finalCol, finalRow));
                     bookCount++;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+    }
+
+    public void shutdownExecutor() {
+        executor.shutdown();
     }
 }

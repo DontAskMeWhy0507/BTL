@@ -33,6 +33,7 @@ module org.example.demo6 {
     requires javafx.media;
     requires jdk.compiler;
     requires com.google.errorprone.annotations;
+    requires com.fasterxml.jackson.databind;
 
 
 }

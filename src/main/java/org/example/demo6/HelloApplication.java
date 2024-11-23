@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import org.example.demo6.Classes.Library;
 
+import org.example.demo6.Classes.Music;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     private Library library = Library.getInstance();    // Singleton instance of Library
-    //private Music music;
+    private Music music = Music.getInstance();          // Singleton instance of Music
     @Override
     public void start(@NotNull Stage stage) throws IOException {
         Font font1 = Font.loadFont(getClass().getResourceAsStream("/Font/Merriweather/Merriweather-Regular.ttf"), 20);
@@ -30,8 +31,7 @@ public class HelloApplication extends Application {
         stage.setOnCloseRequest(e -> {
             library.logOut(null);
         });
-//        music = new Music("src/main/resources/Sound/jingle-bells.mp3");
-//        music.loop();
+        music.loop();
     }
 
     public static void main(String[] args) {

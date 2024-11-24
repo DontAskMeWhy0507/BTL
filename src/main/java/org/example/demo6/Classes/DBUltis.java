@@ -547,30 +547,22 @@ public class DBUltis implements Database{
         }
         return avgRating;
     }
-    public List<Review> getAllReviews() {
+    public List<Review> getReviewsByISBN(String isbn) {
         List<Review> reviews = new ArrayList<>();
-        String query = "SELECT r.id, r.comment, r.rating, r.userid, r.isbn, r.timestamp, u.avatar, r.reaction_count, r.comment_type, r.image_url "
-                + "FROM Reviews r "
-                + "JOIN Users u ON r.userid = u.id "
-                + "ORDER BY r.timestamp DESC";
-
+        String query = "SELECT * FROM reviews WHERE isbn = ?";
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database/LibraryMain");
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
 
-            while (rs.next()) {
-                Review review = new Review(
-                        rs.getInt("id"),
-                        rs.getString("comment"),
-                        rs.getInt("rating"),
-                        rs.getInt("userid"),
-                        rs.getString("isbn"),
-                        rs.getTimestamp("timestamp"),
-                        rs.getString("avatar"),
-                        rs.getInt("reaction_count"),
-                        rs.getString("comment_type"),
-                        rs.getString("image_url")
-                );
+             PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, isbn);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Review review = new Review();
+                review.setId(resultSet.getInt("id"));
+                review.setUserid(resultSet.getInt("userid"));
+                review.setComment(resultSet.getString("comment"));
+                review.setRating(resultSet.getInt("rating"));
+                review.setTimestamp(resultSet.getTimestamp("timestamp"));
+                review.setIsbn(resultSet.getString("isbn"));
                 reviews.add(review);
             }
         } catch (SQLException e) {
@@ -578,6 +570,7 @@ public class DBUltis implements Database{
         }
         return reviews;
     }
+
 
 
 }

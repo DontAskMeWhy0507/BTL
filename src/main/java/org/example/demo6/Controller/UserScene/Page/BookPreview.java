@@ -180,7 +180,7 @@ public class BookPreview {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Comment.fxml"));
             Parent parent = loader.load();
             CommentController controller = loader.getController();
-            //controller.setCommentData(currentBook);
+            controller.setCommentData(currentBook);
             Stage stage = new Stage();
             stage.setTitle("Comments");
             stage.setScene(new Scene(parent));

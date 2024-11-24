@@ -322,6 +322,38 @@ public class DBUltis implements Database{
         }
     }
 
+    public List<Book> searchBookByTransaction(String query) {
+        List<Book> books = new ArrayList<>();
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Book book = new Book(rs.getString("isbn"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("category"),
+                        rs.getString("description"),
+                        rs.getString("language"),
+                        rs.getString("publisher"),
+                        LocalDate.parse(rs.getString("published_date")),
+                        rs.getString("book_path"),
+                        rs.getString("cover_image_path"),
+                        rs.getString("audio_path"),
+                        rs.getInt("quantity"));
+                // Create and add the Book object to the list
+                books.add(book);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving books from database: " + e.getMessage());
+        }
+
+        return books;
+    }
 
     public Transaction getTransaction(User user, Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
@@ -449,91 +481,85 @@ public class DBUltis implements Database{
 
     public void saveReviewToDatabase(Review review, Book currentBook) {
         String url = "jdbc:sqlite:database/LibraryMain";
-        String selectQuery = "SELECT id FROM Reviews WHERE userId = ? AND isbn = ?";
-        String insertQuery = "INSERT INTO Reviews (comment, rating, userId, isbn) VALUES (?, ?, ?, ?)";
-        String updateQuery = "UPDATE Reviews SET comment = ?, rating = ? WHERE userId = ? AND isbn = ?";
+        String selectQuery = "SELECT * FROM Reviews WHERE isbn = ?";
+        String insertQuery = "INSERT INTO Reviews (comment, rating, userId, isbn, user_avatar) VALUES (?, ?, ?, ?, ?)";
+        String updateQuery = "UPDATE Reviews SET comment = ?, rating = ?, user_avatar = ? WHERE userId = ? AND isbn = ?";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement selectStmt = conn.prepareStatement(selectQuery);
              PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
              PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
 
-            // Check if a review by the same user for the same book already exists
-            selectStmt.setInt(1, review.getUser().getId());
-            selectStmt.setString(2, currentBook.getIsbn());
+            // Kiểm tra nếu bình luận với userId và isbn đã tồn tại trong cơ sở dữ liệu
+            selectStmt.setString(1, currentBook.getIsbn());
             ResultSet rs = selectStmt.executeQuery();
 
-            if (rs.next()) {
-                // Update the existing review
-                updateStmt.setString(1, review.getComment());
-                updateStmt.setInt(2, review.getRating());
-                updateStmt.setInt(3, review.getUser().getId());
-                updateStmt.setString(4, currentBook.getIsbn());
-                updateStmt.executeUpdate();
-            } else {
-                // Insert a new review
+            boolean reviewFound = false;
+
+            while (rs.next()) {
+                int userId = rs.getInt("userId");
+                User user = getUserById(userId);  // Lấy người dùng từ userId
+
+                if (user != null && user.getId() == review.getUser().getId()) {
+                    // Cập nhật bình luận nếu userId và isbn trùng khớp
+                    reviewFound = true;
+
+                    // Lấy đường dẫn hình ảnh từ người dùng (giả sử có phương thức getPathToProfilePicture trong User)
+                    String profilePicturePath = user.getPathToProfilePicture();
+
+                    updateStmt.setString(1, review.getComment());
+                    updateStmt.setInt(2, review.getRating());
+                    updateStmt.setString(3, profilePicturePath);  // Cập nhật đường dẫn hình ảnh
+                    updateStmt.setInt(4, review.getUser().getId());
+                    updateStmt.setString(5, currentBook.getIsbn());
+                    updateStmt.executeUpdate();
+                    break;
+                }
+            }
+
+            if (!reviewFound) {
+                // Nếu không tìm thấy bình luận, thêm bình luận mới vào cơ sở dữ liệu
+                String profilePicturePath = review.getUser().getPathToProfilePicture();  // Lấy đường dẫn hình ảnh từ người dùng
+
                 insertStmt.setString(1, review.getComment());
                 insertStmt.setInt(2, review.getRating());
                 insertStmt.setInt(3, review.getUser().getId());
                 insertStmt.setString(4, currentBook.getIsbn());
+                insertStmt.setString(5, profilePicturePath);  // Thêm đường dẫn hình ảnh
                 insertStmt.executeUpdate();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public List<Review> getReviewsForBook(Book book) {
-        List<Review> reviews = new ArrayList<>();
-        String url = "jdbc:sqlite:database/LibraryMain";
-        String query = "SELECT * FROM Reviews WHERE isbn = ?";
 
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, book.getIsbn());
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                User user = getUserById(rs.getInt("userId")); // Assuming you have a method to get User by ID
-                Review review = new Review(
-                        rs.getString("comment"),
-                        rs.getInt("rating"),
-                        user,
-                        book
-                );
-                reviews.add(review);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return reviews;
-    }
-    private User getUserById(int userId) {
-        String url = "jdbc:sqlite:database/LibraryMain";
+    // Phương thức giả sử để lấy người dùng từ userId
+    public static User getUserById(int userId) {
+        // Đảm bảo bạn có phương thức này để truy vấn cơ sở dữ liệu và trả về đối tượng User
+        // Ví dụ:
         String query = "SELECT * FROM Users WHERE id = ?";
-
-        try (Connection conn = DriverManager.getConnection(url);
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database/LibraryMain");
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new User(
-                        rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("email"),
-                        LocalDate.parse(rs.getString("date_of_birth")),
-                        rs.getString("avatar"),
-                        rs.getString("role"),
-                        new Streak(LocalDate.parse(rs.getString("last_access")), rs.getInt("streak"), rs.getInt("longest_streak"))
-                );
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("username"));
+                user.setPathToProfilePicture(rs.getString("avatar"));
+                // Set các thuộc tính khác của User nếu cần
+                return user;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return null;  // Trả về null nếu không tìm thấy user
     }
+
+
 
     public double getAverageRatingForBook(Book book) {
         String url = "jdbc:sqlite:database/LibraryMain";
@@ -553,77 +579,30 @@ public class DBUltis implements Database{
         }
         return avgRating;
     }
-
-    public static List<Comment> getCommentsByPostId(int postId) {
-        List<Comment> comments = new ArrayList<>();
-        String query = "SELECT * FROM Comments WHERE post_id = ? ORDER BY timestamp ASC";
-
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database/LibraryMain");
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, postId);
-
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                comments.add(new Comment(
-                        rs.getInt("id"),
-                        rs.getInt("post_id"),
-                        rs.getInt("user_id"),
-                        rs.getString("comment"),
-                        rs.getObject("reply_to_comment_id", Integer.class), // Có thể null
-                        rs.getString("isbn"),
-                        rs.getString("timestamp")
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return comments;
-    }
-
-    public static List<Comment> getRepliesByCommentId(int commentId) {
-        List<Comment> replies = new ArrayList<>();
-        String query = "SELECT * FROM Comments WHERE reply_to_comment_id = ? ORDER BY timestamp ASC";
-
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database/LibraryMain");
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, commentId);
-
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                replies.add(new Comment(
-                        rs.getInt("id"),
-                        rs.getInt("post_id"),
-                        rs.getInt("user_id"),
-                        rs.getString("comment"),
-                        rs.getObject("reply_to_comment_id", Integer.class),
-                        rs.getString("isbn"),
-                        rs.getString("timestamp")
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return replies;
-    }
-
     public List<Review> getAllReviews() {
         List<Review> reviews = new ArrayList<>();
-        String query = "SELECT * FROM Reviews";
+        String query = "SELECT r.id, r.comment, r.rating, r.userid, r.isbn, r.timestamp, u.avatar, r.reaction_count, r.comment_type, r.image_url "
+                + "FROM Reviews r "
+                + "JOIN Users u ON r.userid = u.id "
+                + "ORDER BY r.timestamp DESC";
 
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:your_database.db");
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database/LibraryMain");
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                String comment = rs.getString("comment");
-                int rating = rs.getInt("rating");
-                int userId = rs.getInt("userId");
-                String isbn = rs.getString("isbn");
-                Timestamp timestamp = rs.getTimestamp("timestamp");
-
-                Review review = new Review(comment, rating, userId, isbn, timestamp);
+                Review review = new Review(
+                        rs.getInt("id"),
+                        rs.getString("comment"),
+                        rs.getInt("rating"),
+                        rs.getInt("userid"),
+                        rs.getString("isbn"),
+                        rs.getTimestamp("timestamp"),
+                        rs.getString("avatar"),
+                        rs.getInt("reaction_count"),
+                        rs.getString("comment_type"),
+                        rs.getString("image_url")
+                );
                 reviews.add(review);
             }
         } catch (SQLException e) {
@@ -631,4 +610,6 @@ public class DBUltis implements Database{
         }
         return reviews;
     }
+
+
 }

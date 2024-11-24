@@ -8,13 +8,17 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Library;
 import org.example.demo6.Controller.UserScene.MainSceneUser;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
-public class Settings {
+public class Settings extends org.example.demo6.Controller.AdminScene.Page.Settings {
     DBUltis DBUltis = new DBUltis();
     Library lib = Library.getInstance();
     private MainSceneUser mainSceneController;
@@ -174,4 +178,58 @@ public class Settings {
                 ".");
         alert.showAndWait();
     }
+    @FXML
+    public void uploadAvatar() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Avatar");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            try {
+                // Đường dẫn thư mục đích trong thư mục resources
+                String destinationDir = "src/main/resources/Image/Avatar/";
+                File destinationFolder = new File(destinationDir);
+
+                // Kiểm tra nếu thư mục không tồn tại thì tạo mới
+                if (!destinationFolder.exists()) {
+                    destinationFolder.mkdirs();
+                }
+
+                // Tạo tệp đích trong thư mục Avatar
+                File destinationFile = new File(destinationDir + selectedFile.getName());
+
+                // Copy ảnh vào thư mục Avatar
+                Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // Cập nhật đường dẫn trong Library
+                String relativePath = "/Image/Avatar/" + selectedFile.getName(); // Đường dẫn tương đối
+                lib.getCurrentUser().setPathToProfilePicture(relativePath);
+                DBUltis.updateUserInDatabase(lib.getCurrentUser());
+
+                // Cập nhật hiển thị ảnh
+                setAvatar(destinationFile.toURI().toString()); // Sử dụng URI của tệp đích
+
+                // Hiển thị thông báo thành công
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Avatar Uploaded");
+                alert.setContentText("Your avatar has been updated successfully.");
+                alert.showAndWait();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Upload Failed");
+                alert.setContentText("Failed to upload avatar. Please try again.");
+                alert.showAndWait();
+            }
+        }
+    }
+
+
 }

@@ -13,8 +13,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="switchScene" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1182.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginScene.LoginController">
-   <AnchorPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1182.0" stylesheets="@../../Style/LoginScene/Login.css">
+<StackPane fx:id="switchScene" prefHeight="720.0" prefWidth="1182.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginScene.LoginController">
+   <AnchorPane fx:id="mainPane" prefHeight="720.0" prefWidth="1182.0" stylesheets="@../../Style/LoginScene/Login.css">
       <children>
          <TextField fx:id="tf_username" layoutX="100.0" layoutY="218.0" onKeyPressed="#Enter" prefHeight="73.0" prefWidth="416.0" promptText="Tên đăng nhập" styleClass="tf_username" stylesheets="@../../Style/LoginScene/Login.css">
             <font>
@@ -41,7 +41,7 @@
                <Font size="20.0" />
             </font></JFXButton>
          <TextField fx:id="showPassword" disable="true" layoutX="100.0" layoutY="323.0" prefHeight="74.0" prefWidth="416.0" styleClass="showPassword" stylesheets="@../../Style/LoginScene/Login.css" visible="false" />
-         <ImageView fitHeight="727.0" fitWidth="580.0" layoutX="602.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="img" fitHeight="727.0" fitWidth="580.0" layoutX="602.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../Image/temp_lib.jpg" />
             </image>

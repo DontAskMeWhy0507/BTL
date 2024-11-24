@@ -13,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.Book;
@@ -62,8 +63,11 @@ public class BookPreviewController {
     @FXML
     public Text fullDescription;
 
-    @FXML
-    private Text rateAvg;
+//    @FXML
+//    private Text rateAvg;
+//
+//    @FXML
+//    private VBox commentsContainer;
 
     private String descriptionTemp;
 
@@ -118,8 +122,8 @@ public class BookPreviewController {
         bookLanguage.setText(book.getLanguage());
 
         DBUltis dbUltis = new DBUltis();
-        double avgRating = dbUltis.getAverageRatingForBook(book);
-        rateAvg.setText(String.format("%.2f", avgRating));
+//        double avgRating = dbUltis.getAverageRatingForBook(book);
+//        rateAvg.setText(String.format("%.2f", avgRating));
 
         // Check if cover image path is available and valid
         if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {

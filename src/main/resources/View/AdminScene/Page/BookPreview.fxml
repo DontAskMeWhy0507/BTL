@@ -19,7 +19,7 @@
             <!-- Main book details section -->
             <AnchorPane prefHeight="731.0" prefWidth="1112.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                <children>
-                  <ImageView fx:id="bookCoverImage" fitHeight="332.0" fitWidth="292.0" layoutX="45.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookCoverImage" fitHeight="331.0" fitWidth="296.0" layoutX="45.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Image/Logo_HUET.svg.png" />
                      </image>
@@ -31,7 +31,7 @@
                   </Label>
                   <Button fx:id="buttonBorrow" layoutX="113.0" layoutY="516.0" mnemonicParsing="false" onAction="#borrowBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Mượn sách" />
 
-                  <ImageView fx:id="QRcode" fitHeight="150.0" fitWidth="200.0" layoutX="793.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="QRcode" fitHeight="150.0" fitWidth="200.0" layoutX="743.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Image/QR.png" />
                      </image>
@@ -67,7 +67,7 @@
             <AnchorPane prefHeight="244.0" prefWidth="965.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                <children>
                   <TextField fx:id="commentInputField" layoutX="65.0" prefHeight="97.0" prefWidth="471.0" promptText="Thêm bình luận" />
-                  <Button fx:id="postCommentButton" layoutX="383.0" layoutY="111.0" onAction="#postComment" text="Đăng tải bình luận" />
+                  <Button fx:id="postCommentButton" layoutX="65.0" layoutY="111.0" onAction="#postComment" text="Đăng tải bình luận" />
 
 
                   <VBox fx:id="commentsContainer" layoutX="224.0" layoutY="80.0" prefWidth="85.0" spacing="10.0">

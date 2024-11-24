@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.ScrollPane?>
@@ -16,22 +18,23 @@
    <top>
       <Pane prefHeight="54.0" prefWidth="1312.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="SearchField" layoutX="426.0" layoutY="7.0" onKeyPressed="#EnterToSearch" prefHeight="23.0" prefWidth="379.0" promptText="Thêm sách" style="-fx-background-color: transparent; -fx-border-radius: 50; -fx-border-color: black;" />
-            <Button layoutX="789.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchButton" style="-fx-background-color: transparent;" />
-            <ImageView fitHeight="39.0" fitWidth="42.0" layoutX="827.0" layoutY="8.0" onDragDetected="#searchButton" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Image/Icon/search.png" />
-               </image>
-            </ImageView>
-            <ProgressIndicator fx:id="loadingIndicator" layoutX="884.0" layoutY="14.0" prefHeight="28.0" prefWidth="24.0" progress="0.0" visible="false" />
-            <JFXSlider fx:id="volumeSlider" layoutX="95.0" layoutY="35.0" max="100.0" min="0.0" value="50.0" />
+            <TextField fx:id="SearchField" layoutX="444.0" layoutY="8.0" onKeyPressed="#EnterToSearch" prefHeight="23.0" prefWidth="379.0" promptText="Thêm sách" style="-fx-background-color: transparent; -fx-border-radius: 50; -fx-border-color: black;" />
+            <Button layoutX="831.0" layoutY="9.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="25.0" prefWidth="7.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="31.0" onDragDetected="#searchButton" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Image/Icon/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <ProgressIndicator fx:id="loadingIndicator" layoutX="776.0" layoutY="13.0" prefHeight="31.0" prefWidth="37.0" progress="0.0" visible="false" />
          </children>
       </Pane>
    </top>
    <left>
       <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../Style/AdminScene/MainScene.css" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="20.0" layoutY="45.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" styleClass="userManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý user">
+            <Button layoutX="20.0" layoutY="104.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" styleClass="userManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý user">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="homeImage">
                      <image>
@@ -39,7 +42,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="20.0" layoutY="125.0" mnemonicParsing="false" onAction="#showAll" prefHeight="25.0" prefWidth="139.0" styleClass="booksManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý tài liệu">
+            <Button layoutX="20.0" layoutY="184.0" mnemonicParsing="false" onAction="#showAll" prefHeight="25.0" prefWidth="139.0" styleClass="booksManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý tài liệu">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -48,7 +51,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="20.0" layoutY="205.0" mnemonicParsing="false" onAction="#showUpload" prefHeight="25.0" prefWidth="139.0" styleClass="upload" stylesheets="@../../Style/AdminScene/MainScene.css" text="Thêm tài liệu">
+            <Button layoutX="20.0" layoutY="264.0" mnemonicParsing="false" onAction="#showUpload" prefHeight="25.0" prefWidth="139.0" styleClass="upload" stylesheets="@../../Style/AdminScene/MainScene.css" text="Thêm tài liệu">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -57,7 +60,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="20.0" layoutY="365.0" mnemonicParsing="false" onAction="#changeToUserView" prefHeight="37.0" prefWidth="163.0" styleClass="statistics" stylesheets="@../../Style/AdminScene/MainScene.css" text="Thống kê">
+            <Button layoutX="20.0" layoutY="424.0" mnemonicParsing="false" onAction="#changeToUserView" prefHeight="37.0" prefWidth="163.0" styleClass="statistics" stylesheets="@../../Style/AdminScene/MainScene.css" text="Thống kê">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -66,7 +69,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="20.0" layoutY="285.0" mnemonicParsing="false" onAction="#changeToStreak" prefHeight="48.0" prefWidth="144.0" styleClass="streak" stylesheets="@../../Style/AdminScene/MainScene.css" text="Streak">
+            <Button layoutX="20.0" layoutY="344.0" mnemonicParsing="false" onAction="#changeToStreak" prefHeight="48.0" prefWidth="144.0" styleClass="streak" stylesheets="@../../Style/AdminScene/MainScene.css" text="Streak">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -74,21 +77,12 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="20.0" layoutY="444.0" mnemonicParsing="false" onAction="#ChatAI" prefHeight="37.0" prefWidth="163.0" styleClass="statistics" stylesheets="@../../Style/AdminScene/MainScene.css" text="ChatAI">
-               <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                     <image>
-                        <Image url="@../../Image/Icon/pie-chart.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
          </children></Pane>
    </left>
    <bottom>
-      <HBox prefHeight="92.0" prefWidth="1315.0" stylesheets="@../../Style/AdminScene/MainScene.css" BorderPane.alignment="CENTER">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="1315.0" stylesheets="@../../Style/AdminScene/MainScene.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#moreButton" prefHeight="92.0" prefWidth="197.0" styleClass="username" text="User Name">
+            <Button fx:id="avatarButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moreButton" prefHeight="92.0" prefWidth="200.0" styleClass="username" text="User Name">
                <graphic>
                   <ImageView fx:id="avatar" fitHeight="78.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -119,6 +113,26 @@
                   </Button>
                </children>
             </VBox>
+            <Button mnemonicParsing="false" onAction="#muteSound" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fx:id="sound" fitHeight="82.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Image/Icon/volume.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="700.0" top="20.0" />
+               </HBox.margin>
+            </Button>
+            <JFXSlider fx:id="volumeSlider" max="100.0" maxHeight="-Infinity" maxWidth="-Infinity" min="0.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="156.0" value="50.0">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="25.0" right="50.0" top="25.0" />
+               </HBox.margin>
+            </JFXSlider>
          </children>
       </HBox>
    </bottom>

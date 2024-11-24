@@ -1,0 +1,20 @@
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+Label {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 13px;
+}
+
+Button {
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 13px;
+    -fx-background-color: transparent
+}
+
+Button:hover, Button:focused {
+    -fx-underline: true;
+    -fx-text-fill: #80C4E9;
+}

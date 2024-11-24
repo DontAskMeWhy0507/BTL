@@ -14,7 +14,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
-import org.example.demo6.Controller.AdminScene.Page.ChatAIController;
 import org.example.demo6.Controller.AdminScene.Page.SearchPageController;
 import javafx.scene.image.Image;
 import org.example.demo6.Controller.AdminScene.Page.Settings;
@@ -53,26 +52,43 @@ public class MainSceneClass {
     @FXML
     private Slider volumeSlider;
 
-
-    @FXML
-    private Label userName;
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
     @FXML
     private ImageView avatar;
 
     @FXML
     private ProgressIndicator loadingIndicator;
-    // Method to update the avatar
-    public void changeAvatar(String avatarPaths) {
-        Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
-        avatar.setImage(newAvatarImage);
-    }
+
+    @FXML
+    private Label userName;
+
+    @FXML
+    private ImageView sound;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    private boolean isMuted = false;
+
+    private Music music;
 
     public static ScrollPane staticMainScrollPane;
+
+    @FXML
+    public void initialize() {
+        sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/volume.png"))));
+        music = Music.getInstance();
+        volumeSlider.setValue(50);
+        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            setVolume(newValue.doubleValue());
+        });
+
+        setUser();
+        staticMainScrollPane = mainScrollPane;
+        mainScrollPane.setFitToWidth(true);
+        mainScrollPane.setFitToHeight(true);
+        showHome();
+    }
 
     @FXML
     void searchButton(ActionEvent event) {
@@ -134,7 +150,11 @@ public class MainSceneClass {
         new Thread(task).start();
     }
 
-
+    // Method to update the avatar
+    public void changeAvatar(String avatarPaths) {
+        Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
+        avatar.setImage(newAvatarImage);
+    }
 
     public static void setMainContent(Parent content) {
         staticMainScrollPane.setContent(content);
@@ -149,8 +169,6 @@ public class MainSceneClass {
 //        changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
 //        avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
 //    }
-    private Music music;
-
 
     public void setUser() {
         changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
@@ -158,24 +176,8 @@ public class MainSceneClass {
     }
 
     // Phương thức điều chỉnh âm lượng
-    private void setVolume(double volume) {
+    public void setVolume(double volume) {
         music.setVolume(volume / 100);
-    }
-
-    @FXML
-    public void initialize() {
-        music = Music.getInstance();
-        volumeSlider.setValue(50);
-        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            setVolume(newValue.doubleValue());
-        });
-
-
-        setUser();
-        staticMainScrollPane = mainScrollPane;
-        mainScrollPane.setFitToWidth(true);
-        mainScrollPane.setFitToHeight(true);
-        showHome();
     }
 
     public void showHome() {
@@ -295,25 +297,15 @@ public class MainSceneClass {
         }
     }
 
-    @FXML
-    public void ChatAI() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/ChatAI.fxml"));
-            Parent homeView = loader.load();
+    public void muteSound(ActionEvent event) {
+        isMuted = !isMuted;
 
-            // Get the controller instance
-            ChatAIController chatAIController = loader.getController();
-
-            setMainContent(homeView);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-
+        if (isMuted) {
+            volumeSlider.setValue(0);
+            sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/mute.png"))));
+        } else {
+            volumeSlider.setValue(50);
+            sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/volume.png"))));
         }
     }
-
-
-
-
 }

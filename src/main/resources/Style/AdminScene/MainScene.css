@@ -3,8 +3,9 @@ BorderPane {
     -fx-border-radius: 20px;
 }
 
-ScrollPane {
+.mainPane {
     -fx-border-color: #674636;
+    -fx-background-color: #F7EED3;
 }
 
 .userManage, .booksManage, .upload, .statistics, .logout, .openSettings, .streak {
@@ -38,10 +39,6 @@ Button:hover, Button:focused {
     -fx-fit-to-height: 20px;
 }
 
-ScrollPane {
-    -fx-background-color: #F7EED3;
-}
-
 .user {
     -fx-font-family: "Merriweather";
     -fx-font-size: 15px;
@@ -54,9 +51,9 @@ ImageView {
 
 TextField {
     -fx-font-family: "Merriweather";
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-    -fx-background-color: #F7EED3;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color: transparent;
     -fx-padding: 10px;
     -fx-border-color: black;
     -fx-text-fill: #674636;
@@ -71,4 +68,12 @@ TextField {
 
 .username:hover, .username:focused {
     -fx-background-color: white;
+}
+
+JFXSlider .thumb, JFXSlider .track {
+    -fx-background-color: green;
+}
+
+JFXSlider .tick-mark {
+    -fx-background-color: #536A5C;
 }

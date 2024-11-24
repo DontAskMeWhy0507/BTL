@@ -40,7 +40,6 @@ public class CommentController {
     @FXML
     private void initialize() {
 
-
         // Khi di chuột vào nút "Thích", hiển thị HBox chứa các biểu tượng
         likeButton.setOnMouseEntered(event -> reactionBox.setVisible(true));
 
@@ -79,5 +78,7 @@ public class CommentController {
         this.usernameText.setText("User " + book.getIsbn()); // Replace with username if available
         this.commentText.setText(book.getTitle());
     }
+
+
 }
 

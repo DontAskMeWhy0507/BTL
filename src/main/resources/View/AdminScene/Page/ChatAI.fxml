@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="648.0" prefWidth="1112.0" stylesheets="@../../../Style/UserScene/ChatAI.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.ChatAIController">
 
     <!-- Main Layout -->
-    <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="648.0" prefWidth="1112.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+    <VBox alignment="TOP_CENTER" layoutX="10.0" prefHeight="648.0" prefWidth="1112.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
 
         <!-- Chat Display -->
-        <ScrollPane prefHeight="382.0" prefWidth="1012.0">
-            <TextArea fx:id="chatDisplay" editable="false" prefHeight="613.0" prefWidth="1059.0" styleClass="chatBox" stylesheets="@../../../Style/UserScene/ChatAI.css" wrapText="true" />
+        <ScrollPane prefHeight="350.0" prefWidth="1072.0">
+            <TextArea fx:id="chatDisplay" editable="false" prefHeight="502.0" prefWidth="836.0" styleClass="chatBox" stylesheets="@../../../Style/UserScene/ChatAI.css" wrapText="true" />
         </ScrollPane>
-         <TextField fx:id="userInput" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#Enter" prefHeight="60.0" prefWidth="1055.0" promptText="Enter your message...">
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </TextField>
+      <TextArea fx:id="userInput" onKeyPressed="#keyPressed" prefHeight="128.0" prefWidth="1072.0" promptText="Nhập câu hỏi của bạn" styleClass="input" stylesheets="@../../../Style/UserScene/ChatAI.css" />
     </VBox>
 </AnchorPane>

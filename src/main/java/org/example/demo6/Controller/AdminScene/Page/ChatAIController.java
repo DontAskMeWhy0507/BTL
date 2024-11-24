@@ -23,7 +23,7 @@ public class ChatAIController implements Initializable {
     private TextArea chatDisplay;
 
     @FXML
-    private TextField userInput;
+    private TextArea userInput;
 
     private final ApiGoogleGemini apiGoogleGemini = new ApiGoogleGemini();
 
@@ -37,33 +37,36 @@ public class ChatAIController implements Initializable {
         }
 
         // Append user message to chat display
-        chatDisplay.appendText("You: " + userMessage + "\n");
+        chatDisplay.appendText("Bạn: " + userMessage + "\n");
 
         // Clear the input field
         userInput.clear();
+        userInput.appendText("Nhập câu hỏi của bạn");
 
         // Send the message to the API and get the response
         String aiResponse = apiGoogleGemini.sendPostRequest(userMessage);
 
         // Append AI response to chat display
-        chatDisplay.appendText("AI: " + aiResponse + "\n");
+        chatDisplay.appendText("AI: " + aiResponse + "\n" + "\n");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userInput.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Calculate width based on text length
-            int textLength = newValue.length();
-            double newWidth = Math.max(50, textLength * 10); // Ensure minimum width of 50
-            userInput.setPrefWidth(newWidth); // Set the new preferred width
-        });
+        chatDisplay.setWrapText(true);
+        chatDisplay.setEditable(false);
+        userInput.setWrapText(true);
+
+        chatDisplay.appendText("Xin chào! Hôm nay tôi có thể giúp gì cho bạn?");
     }
 
-    public void Enter(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER) {
-            handleSendMessage();
+    public void keyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            if (event.isShiftDown()) {
+                userInput.appendText("\n");
+            } else {
+                handleSendMessage();
+                event.consume();
+            }
         }
     }
-
-
 }

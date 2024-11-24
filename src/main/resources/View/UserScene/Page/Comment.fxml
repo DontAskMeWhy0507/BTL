@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.CommentController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="700.0" stylesheets="@../../../Style/UserScene/Comment.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.CommentController">
      <!-- Phần comment chính -->
-     <HBox layoutX="10.399999618530273" layoutY="10.399999618530273" prefHeight="67.0" prefWidth="338.0" spacing="10">
+     <HBox layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="693.0" spacing="10">
          <!-- Avatar -->
-         <ImageView fitHeight="40" fitWidth="40">
+         <ImageView fitHeight="63.0" fitWidth="66.0">
              <Image url="@../../../Image/avatar.png" />
          </ImageView>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="68.0" prefWidth="640.0">
          <children>
             <Label fx:id="usernameText" layoutY="-8.0" text="Username" />
-            <Label fx:id="commentText" layoutY="14.0" prefHeight="54.0" prefWidth="611.0" text="Comment" />
+            <Label fx:id="commentText" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="611.0" text="Comment" />
             <Label fx:id="datePost" layoutX="126.0" layoutY="-7.0" text="Label" />
          </children>
       </AnchorPane>
@@ -28,8 +28,8 @@
 
      <!-- Tương tác -->
      <HBox layoutX="10.399999618530273" layoutY="89.5999984741211" spacing="10">
-         <Button fx:id="likeButton" style="-fx-background-color: transparent; -fx-text-fill: #3b5998;" text="Thích" />
-         <Button fx:id="repButton" style="-fx-background-color: transparent; -fx-text-fill: #3b5998;" text="Phản hồi" />
+         <Button fx:id="likeButton" text="Thích" />
+         <Button fx:id="repButton" text="Phản hồi" />
      </HBox>
 
      <!-- Khu vực hiển thị biểu tượng đã chọn -->

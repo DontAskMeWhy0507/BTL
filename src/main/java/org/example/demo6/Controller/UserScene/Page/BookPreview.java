@@ -52,7 +52,7 @@ public class BookPreview {
     private JFXButton viewMoreButton;
 
     @FXML
-    private Rating ratingBook;
+    private final Rating ratingBook = new Rating();
 
     @FXML
     private TextField commentInputField;

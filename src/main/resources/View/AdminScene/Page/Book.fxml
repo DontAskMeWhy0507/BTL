@@ -23,7 +23,7 @@
          <children>
             <Button layoutX="118.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="42.0" style="-fx-background-color: transparent;">
                <graphic>
-                  <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="33.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Image/Icon/plus.png" />
                      </image>

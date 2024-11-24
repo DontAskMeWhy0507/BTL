@@ -34,7 +34,7 @@
    <left>
       <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../Style/AdminScene/MainScene.css" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="20.0" layoutY="104.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" styleClass="userManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý user">
+            <Button layoutX="20.0" layoutY="84.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" styleClass="userManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý user">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="homeImage">
                      <image>
@@ -42,7 +42,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="20.0" layoutY="184.0" mnemonicParsing="false" onAction="#showAll" prefHeight="25.0" prefWidth="139.0" styleClass="booksManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý tài liệu">
+            <Button layoutX="20.0" layoutY="164.0" mnemonicParsing="false" onAction="#showAll" prefHeight="25.0" prefWidth="139.0" styleClass="booksManage" stylesheets="@../../Style/AdminScene/MainScene.css" text="Quản lý tài liệu">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -51,7 +51,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="20.0" layoutY="264.0" mnemonicParsing="false" onAction="#showUpload" prefHeight="25.0" prefWidth="139.0" styleClass="upload" stylesheets="@../../Style/AdminScene/MainScene.css" text="Thêm tài liệu">
+            <Button layoutX="20.0" layoutY="244.0" mnemonicParsing="false" onAction="#showUpload" prefHeight="25.0" prefWidth="139.0" styleClass="upload" stylesheets="@../../Style/AdminScene/MainScene.css" text="Thêm tài liệu">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -60,7 +60,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="20.0" layoutY="424.0" mnemonicParsing="false" onAction="#changeToUserView" prefHeight="37.0" prefWidth="163.0" styleClass="statistics" stylesheets="@../../Style/AdminScene/MainScene.css" text="Thống kê">
+            <Button layoutX="20.0" layoutY="404.0" mnemonicParsing="false" onAction="#changeToUserView" prefHeight="37.0" prefWidth="163.0" styleClass="statistics" stylesheets="@../../Style/AdminScene/MainScene.css" text="Thống kê">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -69,7 +69,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="20.0" layoutY="344.0" mnemonicParsing="false" onAction="#changeToStreak" prefHeight="48.0" prefWidth="144.0" styleClass="streak" stylesheets="@../../Style/AdminScene/MainScene.css" text="Streak">
+            <Button layoutX="20.0" layoutY="324.0" mnemonicParsing="false" onAction="#changeToStreak" prefHeight="48.0" prefWidth="144.0" styleClass="streak" stylesheets="@../../Style/AdminScene/MainScene.css" text="Streak">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -77,6 +77,15 @@
                      </image>
                   </ImageView>
                </graphic></Button>
+            <Button layoutX="20.0" layoutY="484.0" mnemonicParsing="false" onAction="#ChatAI" prefHeight="37.0" prefWidth="163.0" styleClass="booksManage" text="ChatAI">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Image/Icon/messenger.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children></Pane>
    </left>
    <bottom>

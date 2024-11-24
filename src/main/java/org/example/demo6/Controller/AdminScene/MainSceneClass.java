@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
+import org.example.demo6.Controller.AdminScene.Page.ChatAIController;
 import org.example.demo6.Controller.AdminScene.Page.SearchPageController;
 import javafx.scene.image.Image;
 import org.example.demo6.Controller.AdminScene.Page.Settings;
@@ -170,14 +171,66 @@ public class MainSceneClass {
 //        avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
 //    }
 
+
+    @FXML
+    void changeToUserView(ActionEvent event) {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/StatisticsView.fxml"));
+            Parent UserView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(UserView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void showSettings(ActionEvent event) {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Settings.fxml"));
+            Parent SettingView = loader1.load();
+            Settings settingsController = loader1.getController();
+
+            // Truyền đối tượng MainSceneClass vào SettingsController
+            settingsController.setMainSceneController(this);  // this l
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(SettingView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    public void EnterToSearch(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            searchButton(new ActionEvent(event.getSource(), event.getTarget()));
+        }
+    }
+
+    @FXML
+    public void ChatAI() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/ChatAI.fxml"));
+            Parent homeView = loader.load();
+
+            // Get the controller instance
+            ChatAIController chatAIController = loader.getController();
+
+            setMainContent(homeView);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setUser() {
         changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
         avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
-    }
-
-    // Phương thức điều chỉnh âm lượng
-    public void setVolume(double volume) {
-        music.setVolume(volume / 100);
     }
 
     public void showHome() {
@@ -257,44 +310,9 @@ public class MainSceneClass {
         }
     }
 
-
-    @FXML
-    void changeToUserView(ActionEvent event) {
-        try {
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/StatisticsView.fxml"));
-            Parent UserView = loader1.load();
-
-            // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(UserView);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void showSettings(ActionEvent event) {
-        try {
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Settings.fxml"));
-            Parent SettingView = loader1.load();
-            Settings settingsController = loader1.getController();
-
-            // Truyền đối tượng MainSceneClass vào SettingsController
-            settingsController.setMainSceneController(this);  // this l
-            // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(SettingView);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
-    public void EnterToSearch(KeyEvent event) throws IOException {
-        if (event.getCode() == KeyCode.ENTER) {
-            searchButton(new ActionEvent(event.getSource(), event.getTarget()));
-        }
+    // Phương thức điều chỉnh âm lượng
+    public void setVolume(double volume) {
+        music.setVolume(volume / 100);
     }
 
     public void muteSound(ActionEvent event) {

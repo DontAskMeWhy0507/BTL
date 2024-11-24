@@ -14,8 +14,6 @@ import org.example.demo6.Classes.User;
 
 public class CommentItemController {
 
-
-
     @FXML
     private ImageView avatar;
 
@@ -28,12 +26,8 @@ public class CommentItemController {
     @FXML
     private Label datePost;
 
-
-
     @FXML
     private HBox reactionBox;
-
-
 
     @FXML
     private Label rating;

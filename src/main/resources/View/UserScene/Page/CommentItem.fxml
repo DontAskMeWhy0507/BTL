@@ -11,7 +11,7 @@
     <HBox layoutX="10.399999618530273" layoutY="10.399999618530273" prefHeight="67.0" prefWidth="338.0" spacing="10">
         <!-- Avatar -->
         <ImageView fx:id="avatar" fitHeight="40" fitWidth="40">
-            <Image url="@../../../Image/avatar.png" />
+            <Image url="@../../../Image/Avatar/avatar.png" />
         </ImageView>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
@@ -32,9 +32,9 @@
         <ImageView fx:id="selectedIcon" fitHeight="20" fitWidth="20" />
         <Label fx:id="selectedReactionText" style="-fx-text-fill: gray;" text="" />
     </HBox>
-   <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="32.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="67.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../../../Image/Icon/star.png" />
+         <Image url="@../../../Image/Icon/Star.png" />
       </image>
    </ImageView>
 </AnchorPane>

@@ -42,10 +42,10 @@ public class Streak {
 
     @FXML
     private void initialize() {
-
         updateStreakDetails();
     }
 
+    // them phan thuong
     private void addRewardImage(String imagePath) {
         HBox hBox = new HBox();
         ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
@@ -55,6 +55,7 @@ public class Streak {
         achievedRewardsList.getItems().add(hBox);
     }
 
+    // chinh streak
     private void updateStreakDetails() {
         // Update labels
         streakLabel.setText("Chuỗi hiện tại: " + currentStreak + " ngày");
@@ -84,6 +85,4 @@ public class Streak {
             addRewardImage("/Image/Avatar/Killjoy3.png");
         }
     }
-
-
 }

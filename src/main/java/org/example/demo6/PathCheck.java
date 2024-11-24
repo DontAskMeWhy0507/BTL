@@ -33,6 +33,5 @@ public class PathCheck  {
             System.out.println("Book: " + books.get(0).getTitle());
         }
     }
-
 }
 

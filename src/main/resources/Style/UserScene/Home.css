@@ -1,0 +1,20 @@
+VBox {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+    -fx-padding: 10px;
+}
+
+Label {
+    -fx-font-family: "Merrriweather";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+ScrollPane {
+    -fx-background-color: transparent;
+}
+
+HBox {
+    -fx-padding: 10px;
+}
+

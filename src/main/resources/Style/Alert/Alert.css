@@ -1,12 +1,13 @@
 /* Alert Background */
 .dialog-pane {
-    -fx-background-color: #f4f4f9; /* Light gray background for the alert */
+    -fx-background-color: #FFF2D8; /* Light gray background for the alert */
     -fx-border-radius: 15px; /* Rounded corners */
     -fx-effect: dropshadow(gaussian, #888888, 10, 0.5, 0, 0); /* Drop shadow effect */
 }
 
 /* Title and Header Text */
 .dialog-pane .header {
+    -fx-font-family: "Merriweather";
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333; /* Dark text color */
@@ -15,6 +16,7 @@
 
 /* Content Text */
 .dialog-pane .content {
+    -fx-font-family: "Merriweather";
     -fx-font-size: 14px;
     -fx-text-fill: #555555; /* Slightly lighter text color */
     -fx-padding: 10px 20px;
@@ -22,8 +24,9 @@
 
 /* Buttons Style */
 .button {
-    -fx-background-color: #007bff; /* Blue button color */
-    -fx-text-fill: white;
+    -fx-font-family: "Merriweather";
+    -fx-background-color: #F7EED3; /* Blue button color */
+    -fx-text-fill: black;
     -fx-font-size: 14px;
     -fx-border-radius: 10px; /* Rounded corners for buttons */
     -fx-padding: 10px 20px;
@@ -31,7 +34,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #0056b3; /* Darker blue when hovered */
+    -fx-background-color: white; /* Darker blue when hovered */
 }
 
 /* Button Container */

@@ -160,9 +160,6 @@ public class MainSceneUser {
 
     }
 
-
-
-    @FXML
     public void ChatAI() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/ChatAI.fxml"));
@@ -176,7 +173,6 @@ public class MainSceneUser {
             staticMainScrollPane.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 

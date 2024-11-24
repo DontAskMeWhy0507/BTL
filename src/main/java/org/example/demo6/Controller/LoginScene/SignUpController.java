@@ -94,6 +94,11 @@ public class SignUpController implements Initializable {
         }
     }
 
+    private boolean isTransitionLogin = false;
+
+    @FXML
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createAcc = new JFXRippler(buttonSign_Up);
@@ -120,8 +125,6 @@ public class SignUpController implements Initializable {
                     alert.setContentText("Please fill all the fields.");
                     alert.getDialogPane().getStylesheets().add(getClass().getResource("/Style/Alert/Alert.css").toExternalForm());
                     alert.show();
-
-
                 }
             }
         });

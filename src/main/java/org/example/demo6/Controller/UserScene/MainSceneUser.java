@@ -74,6 +74,20 @@ public class MainSceneUser {
     }
 
     @FXML
+    void changeToChatAI() {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/UserScene/Page/ChatAI.fxml"));
+            Parent ChatAIView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(ChatAIView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void moreButton() {
         seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
     }

@@ -1,38 +1,74 @@
 package org.example.demo6.Controller;
 
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.effect.GaussianBlur;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.demo6.HelloApplication;
 
 import java.io.IOException;
 
 public class GeneralController {
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
-        Parent root = null;
         try {
-            root = FXMLLoader.load(HelloApplication.class.getResource(fxmlFile));
-        } catch (IOException e) {
-            e.printStackTrace(); // Print the stack trace for debugging
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Loading Error");
-            alert.setContentText("Could not load the scene: " + fxmlFile);
-            alert.show();
-            return; // Exit the method if loading fails
-        }
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Node sourceNode = (Node) event.getSource();
+            // Load the new scene's root node
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+            Parent newRoot = loader.load();
 
-        if (stage != null) {
-            stage.setTitle(title);
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
+            // Get the current stage and scene
+            Node sourceNode = (Node) event.getSource();
+            Stage stage = (Stage) sourceNode.getScene().getWindow();
+            Scene currentScene = stage.getScene();
+
+            // Save the current scene root for blur effect
+            Parent currentRoot = currentScene.getRoot();
+
+            // Apply blur effect to the current scene
+            GaussianBlur blur = new GaussianBlur(0);
+            currentRoot.setEffect(blur);
+
+            // Timeline for increasing blur
+            Timeline blurTimeline = new Timeline(
+                    new KeyFrame(Duration.seconds(0.5), new KeyValue(blur.radiusProperty(), 15))
+            );
+
+            // Fade in the new scene
+            Scene newScene = new Scene(newRoot);
+            newRoot.setOpacity(0); // Start fully transparent
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), newRoot);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+
+            // Adjust the stage size to fit the new scene before the fade-in
+            blurTimeline.setOnFinished(e -> {
+                // Apply the new scene to the stage
+                stage.setScene(newScene);
+                stage.sizeToScene(); // Resize stage to fit the new scene
+                stage.setTitle(title);
+
+                // Play fade-in transition for the new scene
+                fadeIn.play();
+            });
+
+            // Start the blur transition
+            blurTimeline.play();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Scene Load Error");
+            alert.setContentText("Failed to load " + fxmlFile);
+            alert.showAndWait();
         }
     }
+
+
+
 }

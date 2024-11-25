@@ -16,7 +16,7 @@
          <graphic>
             <ImageView fx:id="heartImage" fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Image/heartnone.png" />
+                  <Image url="@../Image/Icon/heartnone.png" />
                </image>
             </ImageView>
          </graphic>

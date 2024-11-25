@@ -1,23 +1,29 @@
 package org.example.demo6.Controller.LoginScene;
 
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import javafx.util.Duration;
 import javafx.scene.text.Text;
+
 import org.example.demo6.Classes.DBUltis;
 
-import java.util.Objects;
+import java.io.IOException;
 
 import static org.example.demo6.Controller.GeneralController.changescene;
 
@@ -26,7 +32,10 @@ public class ForgotPasswordController {
     private Scene scene;
     private Parent root;
 
+
+
     DBUltis dbUltis = new DBUltis();
+
 
     @FXML
     private TextField email;
@@ -63,6 +72,8 @@ public class ForgotPasswordController {
 
 
 
+
+
     @FXML
     void showPassword(ActionEvent event) {
         if (confirmPass.isSelected()) {
@@ -84,12 +95,29 @@ public class ForgotPasswordController {
         }
     }
 
-
     public void switchChangePassword(ActionEvent event) {
         boolean check = dbUltis.findQuery("SELECT * FROM users WHERE email = '" + email.getText() + "' AND id = '" + maSv.getText() + "'");
         if (check) {
+
+        FadeTransition fade = new FadeTransition(Duration.seconds(0.5), forgetPass);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
+
+        FadeTransition fade1 = new FadeTransition(Duration.seconds(0.5), resetPass);
+        fade1.setFromValue(0.0);
+        fade1.setToValue(1.0);
+
+        fade.setOnFinished(e -> {
+            forgetPass.setVisible(false);
+            resetPass.setVisible(true);
+            fade1.play();
+        });
+
+        fade.play();
+
             resetPass.setVisible(true);
             forgetPass.setVisible(false);
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -122,6 +150,6 @@ public class ForgotPasswordController {
             alert.showAndWait();
         }
     }
-
 }
+
 

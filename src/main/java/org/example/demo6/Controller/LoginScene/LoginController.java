@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,7 +36,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     @FXML
-    private StackPane switchScene;
+    public StackPane switchScene;
 
     @FXML
     private AnchorPane mainPane;
@@ -73,6 +74,10 @@ public class LoginController implements Initializable {
     @FXML
     private ImageView img;
 
+    private boolean isTransitioning = false;
+
+    private boolean isTransitionPass = false;
+
     @FXML
     void getPassword(ActionEvent event) {
         if (showPass.isSelected()) {
@@ -87,7 +92,13 @@ public class LoginController implements Initializable {
         }
     }
 
-    private boolean isTransitioning = false;
+    public StackPane getSwitchScene() {
+        return switchScene;
+    }
+
+    public Pane getMainPane() {
+        return mainPane;
+    }
 
     @FXML
     private void loadSignUp(ActionEvent event) throws IOException {
@@ -135,11 +146,8 @@ public class LoginController implements Initializable {
                 cause.printStackTrace();
             }
             isTransitioning = false;
-//            buttonSignUp.setDisable(false); // Re-enable the button
         }
     }
-
-    private boolean isTransitionPass = false; // Flag to prevent multiple transitions
 
     @FXML
     private void loadForgotPassword(ActionEvent event) throws IOException {

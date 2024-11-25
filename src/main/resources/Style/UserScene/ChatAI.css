@@ -29,7 +29,7 @@ TextArea {
 .input {
     -fx-border-color: black;
     -fx-background-color: #F7EED3 !important;
-    -fx-pref-height: 10em !important;
+    -fx-pref-height: 5em !important;
     -fx-pref-width: 80em !important;
 }
 

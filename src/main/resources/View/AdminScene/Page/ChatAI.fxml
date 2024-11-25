@@ -11,9 +11,9 @@
     <VBox alignment="TOP_CENTER" layoutX="10.0" prefHeight="648.0" prefWidth="1112.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
 
         <!-- Chat Display -->
-        <ScrollPane prefHeight="350.0" prefWidth="1072.0">
+        <ScrollPane prefHeight="426.0" prefWidth="969.0">
             <TextArea fx:id="chatDisplay" editable="false" prefHeight="502.0" prefWidth="836.0" styleClass="chatBox" stylesheets="@../../../Style/UserScene/ChatAI.css" wrapText="true" />
         </ScrollPane>
-      <TextArea fx:id="userInput" onKeyPressed="#keyPressed" prefHeight="128.0" prefWidth="1072.0" promptText="Nhập câu hỏi của bạn" styleClass="input" stylesheets="@../../../Style/UserScene/ChatAI.css" />
+      <TextArea fx:id="userInput" onKeyPressed="#keyPressed" prefHeight="69.0" prefWidth="1070.0" promptText="Nhập câu hỏi của bạn" styleClass="input" stylesheets="@../../../Style/UserScene/ChatAI.css" />
     </VBox>
 </AnchorPane>

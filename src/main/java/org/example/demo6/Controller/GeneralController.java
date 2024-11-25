@@ -24,12 +24,13 @@ public class GeneralController {
             alert.show();
             return; // Exit the method if loading fails
         }
+        Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Node sourceNode = (Node) event.getSource();
 
         if (stage != null) {
             stage.setTitle(title);
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();
         }

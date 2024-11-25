@@ -63,7 +63,7 @@
                   <Text fx:id="rateAvg" layoutX="271.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                         <TextField fx:id="commentInputField" layoutX="88.0" layoutY="696.0" prefHeight="97.0" prefWidth="471.0" promptText="Thêm bình luận" />
                         <Button fx:id="postCommentButton" layoutX="367.0" layoutY="826.0" onAction="#postComment" text="Đăng tải bình luận" />
-                  <Button layoutX="360.0" layoutY="565.0" mnemonicParsing="false" onAction="#changeToSeenComments" prefHeight="41.0" prefWidth="159.0" text="Xem bình luận" />
+                  <Button layoutX="370.0" layoutY="560.0" mnemonicParsing="false" onAction="#changeToSeenComments" prefHeight="43.0" prefWidth="157.0" text="Xem bình luận" />
                     </children>
                 </AnchorPane>
             </children>

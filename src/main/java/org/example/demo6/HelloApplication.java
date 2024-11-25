@@ -4,9 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import org.example.demo6.Classes.Library;
+import org.example.demo6.Classes.SnowEffect;
 
 import org.example.demo6.Classes.Music;
 import org.jetbrains.annotations.NotNull;
@@ -28,6 +31,13 @@ public class HelloApplication extends Application {
         stage.setTitle("Library management system");
         stage.setScene(scene);
         stage.show();
+
+        StackPane mainPane = new StackPane();
+        Pane snowPane = new Pane();
+        mainPane.getChildren().addAll(root, snowPane);
+        SnowEffect snowEffect = new SnowEffect(snowPane);
+        snowEffect.startSnowing(100);
+
         stage.setOnCloseRequest(e -> {
             library.logOut(null);
         });

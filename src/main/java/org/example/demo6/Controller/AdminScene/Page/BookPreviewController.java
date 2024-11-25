@@ -10,16 +10,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.demo6.Classes.Book;
-import org.example.demo6.Classes.DBUltis;
-import org.example.demo6.Classes.UpDownFile;
-import org.example.demo6.Classes.Library;
+import org.controlsfx.control.Rating;
+import org.example.demo6.Classes.*;
 import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.io.File;
@@ -63,11 +62,17 @@ public class BookPreviewController {
     @FXML
     public Text fullDescription;
 
-//    @FXML
-//    private Text rateAvg;
-//
-//    @FXML
-//    private VBox commentsContainer;
+    @FXML
+    private Label rateAvg;
+
+    @FXML
+    private Rating ratingBook;
+
+    @FXML
+    private TextField commentInputField;
+
+    @FXML
+    private VBox commentsContainer;
 
     private String descriptionTemp;
 
@@ -105,10 +110,18 @@ public class BookPreviewController {
     }
 
     public void postComment() {
-        // Add the comment to the current book
-        // currentBook.addComment(commentTextArea.getText());
-        // Update the book in the database
-        // Library.updateBook(currentBook);
+        User user = Library.getInstance().getCurrentUser();
+        double ratingValue = ratingBook.getRating();
+        String comment = commentInputField.getText(); // Replace with actual comment input
+
+        // Create a new Review object
+        Review review = new Review(comment, (int) ratingValue, user);
+
+        // Save the review to the database
+        DBUltis dbUltis = new DBUltis();
+        dbUltis.saveReviewToDatabase(review, currentBook);
+
+        System.out.println("Rating: " + ratingValue);
     }
 
     public void setBookData(Book book) {
@@ -122,8 +135,8 @@ public class BookPreviewController {
         bookLanguage.setText(book.getLanguage());
 
         DBUltis dbUltis = new DBUltis();
-//        double avgRating = dbUltis.getAverageRatingForBook(book);
-//        rateAvg.setText(String.format("%.2f", avgRating));
+        double avgRating = dbUltis.getAverageRatingForBook(book);
+        rateAvg.setText(String.format("%.2f", avgRating));
 
         // Check if cover image path is available and valid
         if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {
@@ -173,6 +186,21 @@ public class BookPreviewController {
             uploadController.setBookData(currentBook);
 
             MainSceneClass.setMainContent(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeToSeenComments() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/CommentSeenPage.fxml"));
+            Parent parent = loader.load();
+            CommentController controller = loader.getController();
+            controller.setCommentData(currentBook);
+            Stage stage = new Stage();
+            stage.setTitle("Comments");
+            stage.setScene(new Scene(parent));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

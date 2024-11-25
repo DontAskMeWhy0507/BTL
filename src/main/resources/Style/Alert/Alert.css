@@ -1,44 +1,47 @@
 .dialog-pane {
     -fx-background-color: #FFF2D8;
+    -fx-font-family: "Merriweather";
     -fx-border-radius: 15px;
     -fx-effect: dropshadow(gaussian, #888888, 10, 0.5, 0, 0);
 }
 
-/* Title and Header Text */
-.dialog-pane .header {
+.dialog-pane .header-panel {
+    -fx-background-color: #FFF2D8;
+    -fx-padding: 10px;
+    -fx-background-radius: 15px 15px 0 0;
+}
+
+.dialog-pane .header-panel .label {
     -fx-font-family: "Merriweather";
-    -fx-background-color: #F7EED3;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: black;
-    -fx-padding: 10px;
 }
 
-/* Content Text */
-.dialog-pane .content {
+.dialog-pane .content.label {
+    -fx-background-color: #F7EED3;
     -fx-font-family: "Merriweather";
     -fx-font-size: 14px;
     -fx-text-fill: black;
     -fx-padding: 10px 20px;
 }
 
-/* Buttons Style */
-.button {
+.dialog-pane .button {
     -fx-font-family: "Merriweather";
-    -fx-background-color: #F7EED3; /* Blue button color */
+    -fx-background-color: #F7EED3;
     -fx-text-fill: black;
     -fx-font-size: 14px;
-    -fx-border-radius: 10px; /* Rounded corners for buttons */
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
     -fx-padding: 10px 20px;
     -fx-font-weight: bold;
-    -fx-border-color: black;
 }
 
-.button:hover {
-    -fx-background-color: white; /* Darker blue when hovered */
+.dialog-pane .button:hover {
+    -fx-background-color: white;
 }
 
-/* Button Container */
-.button-bar {
+.dialog-pane .button-bar {
+    -fx-background-color: #F7EED3;
     -fx-padding: 10px;
 }

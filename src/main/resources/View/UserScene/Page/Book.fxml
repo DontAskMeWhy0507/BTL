@@ -13,7 +13,7 @@
             <graphic>
                 <ImageView fx:id="imageBook" fitHeight="175.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../../heart.png" />
+                        <Image url="@../../../Image/Logo_HUET.svg.png" />
                     </image></ImageView>
             </graphic>
         </Button>

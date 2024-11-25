@@ -3,17 +3,9 @@ package org.example.demo6.Controller.LoginScene;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRippler;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -21,20 +13,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import org.example.demo6.Classes.Library;
-import org.example.demo6.Controller.GeneralController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static org.example.demo6.Controller.GeneralController.loadSceneWithAnimation;
+import static org.example.demo6.Controller.GeneralController.changescene;
+
 
 public class LoginController implements Initializable {
     @FXML
@@ -97,13 +87,13 @@ public class LoginController implements Initializable {
     // chuyển qua đăng ký
     @FXML
     private void loadSignUp(ActionEvent event) throws IOException {
-        loadSceneWithAnimation(event, "/View/LoginScene/SignUp.fxml", Duration.seconds(1), "DOWN", switchScene, isTransitioning);
+        changescene(event, "/View/LoginScene/SignUp.fxml", "Sign up!");
     }
 
     // chuyển qua quên mật khẩu
     @FXML
     private void loadForgotPassword(ActionEvent event) throws IOException {
-        loadSceneWithAnimation(event, "/View/LoginScene/ForgotPassword.fxml", Duration.seconds(1), "UP", switchScene, isTransitionPass);
+        changescene(event, "/View/LoginScene/ForgotPassword.fxml", "Forgot Password");
     }
 
     @Override

@@ -19,12 +19,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CommentController implements Initializable {
+public class CommentController {
 
     @FXML
     private VBox commentList;
-
-    private Book currentBook; // Biến lưu trữ sách hiện tại
 
     /**
      * Hàm để hiển thị tất cả các bình luận cho một cuốn sách.
@@ -95,12 +93,8 @@ public class CommentController implements Initializable {
      * @param book Đối tượng Book cần hiển thị bình luận.
      */
     public void setCommentData(Book book) {
-        this.currentBook = book;
+        // Biến lưu trữ sách hiện tại
         displayComments(book);
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Không làm gì tại đây vì dữ liệu sẽ được thiết lập thông qua setCommentData.
-    }
+    
 }

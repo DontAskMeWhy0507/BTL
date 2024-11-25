@@ -7,18 +7,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.example.demo6.Classes.Admin;
 import org.example.demo6.Classes.Book;
+import org.example.demo6.Classes.Library;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 
 public class BookManageTableController {
+    Library library = Library.getInstance();
 
     @FXML
     private TableView<Book> tableView;
@@ -112,15 +116,17 @@ public class BookManageTableController {
     public void deleteBook(ActionEvent event) {
         Book selectedBook = tableView.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
-            String url = "jdbc:sqlite:database//LibraryMain";
-            String query = "DELETE FROM BOOKS WHERE ISBN = '" + selectedBook.getIsbn() + "'";
-
-            try (Connection conn = DriverManager.getConnection(url);
-                 Statement stmt = conn.createStatement()) {
-                stmt.execute(query);
-                data.remove(selectedBook);
-            } catch (Exception e) {
-                e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Book");
+            alert.setHeaderText("Are you sure you want to delete this book?");
+            alert.setContentText("This action cannot be undone.");
+            alert.showAndWait();
+            if (alert.getResult().getText().equals("OK")) {
+                if (library.getCurrentUser() instanceof Admin) {
+                    Admin admin = (Admin) library.getCurrentUser();
+                    admin.deleteBook(selectedBook);
+                    data.remove(selectedBook);
+                }
             }
         }
     }

@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import org.example.demo6.Classes.Book;
-import org.example.demo6.Classes.DBUltis;
-import org.example.demo6.Classes.Library;
-import org.example.demo6.Classes.User;  // Giả sử bạn có class User để lấy thông tin về người dùng
+import org.example.demo6.Classes.*;
 
 import java.util.ArrayList;
 
@@ -51,10 +48,13 @@ public class Statistics {
 
         // Get the users from the library
         Library library = Library.getInstance();
-
-        // Giả sử bạn có danh sách người dùng và mỗi người có số ngày streak
-        for (User user : library.getUsers()) {
-            streakSeries.getData().add(new XYChart.Data<>(user.getUsername(), user.getIntStreak()));
+        if (library.getCurrentUser() instanceof Admin) {
+            Admin admin = (Admin) library.getCurrentUser();
+            for (User user : admin.getUsers()) {
+                streakSeries.getData().add(new XYChart.Data<>(user.getUsername(), user.getIntStreak()));
+            }
+        } else {
+            System.err.println("Current user is not an admin.");
         }
 
         // Add data series to the BarChart

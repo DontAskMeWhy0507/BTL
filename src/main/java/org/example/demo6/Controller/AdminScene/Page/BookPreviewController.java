@@ -28,6 +28,8 @@ import java.util.Objects;
 
 
 public class BookPreviewController {
+    Library library = Library.getInstance();
+
     private Book currentBook;
 
     @FXML
@@ -101,12 +103,12 @@ public class BookPreviewController {
 
     public void borrowBook() {
         Library library = Library.getInstance();
-        library.borrowBook(currentBook);
+        library.getCurrentUser().borrowBook(currentBook);
     }
 
     public void returnBook() {
         Library library = Library.getInstance();
-        library.returnBook(currentBook);
+        library.getCurrentUser().returnBook(currentBook);
     }
 
     public void postComment() {
@@ -173,7 +175,12 @@ public class BookPreviewController {
         File coverImageFile = UpDownFile.downloadFileImage(imageURL,localPath);
 
         // Pass the cover image file correctly to the `upLoadBook` method
-        Library.upLoadBook(currentBook, null, coverImageFile, null);
+        User currentUser = library.getCurrentUser();
+        if (currentUser instanceof Admin) {
+            ((Admin) currentUser).upLoadBook(currentBook, null, coverImageFile, null);
+        } else {
+            System.err.println("Current user is not an admin.");
+        }
     }
 
     public void switchToUpLoad(ActionEvent event) {

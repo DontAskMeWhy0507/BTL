@@ -38,6 +38,8 @@ public class MainSceneClass {
         return instance;
     }
 
+    Library library = Library.getInstance();
+
     @FXML
     private TextField SearchField;
 
@@ -104,8 +106,8 @@ public class MainSceneClass {
             @Override
             protected List<List<Book>> call() throws IOException {
                 // Gọi API và tìm kiếm từ cơ sở dữ liệu
-                List<Book> apiResult = apiGoogleBooks.searchBooks1(searchQuery);
-                List<Book> databaseResult = DBUltis.searchBook(searchQuery);
+                List<Book> apiResult = library.getCurrentUser().searchBooksApi(searchQuery);
+                List<Book> databaseResult = library.getCurrentUser().searchBooksDatabase(searchQuery);
 
                 // Trả về kết quả dưới dạng một danh sách chứa cả hai kết quả
                 List<List<Book>> result = new ArrayList<>();

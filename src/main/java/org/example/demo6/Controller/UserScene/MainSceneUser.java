@@ -1,6 +1,7 @@
 package org.example.demo6.Controller.UserScene;
 
 import com.google.errorprone.annotations.FormatMethod;
+import com.jfoenix.controls.JFXSlider;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
+import org.example.demo6.Controller.AdminScene.Page.ChatAIController;
 import org.example.demo6.Controller.UserScene.Page.SearchPageController;
 
 
@@ -40,14 +42,37 @@ public class MainSceneUser {
     @FXML
     private VBox seeMoreProfile;
 
+    @FXML
+    private ProgressIndicator loadingIndicator;
 
     @FXML
     private ImageView avatar;
 
+    @FXML
+    private ImageView sound;
+
+    @FXML
+    private Slider volumeSlider;
+
+    private Music music;
+
+    private boolean isMuted;
+
     public static ScrollPane staticMainScrollPane1;
 
-    public static void setMainContent(Parent content) {
-        staticMainScrollPane1.setContent(content);
+    @FXML
+    public void initialize() {
+        setUser();
+        staticMainScrollPane1 = mainScrollPane;
+        mainScrollPane.setFitToWidth(true);
+        mainScrollPane.setFitToHeight(true);
+        showHome();
+
+        music = Music.getInstance();
+        volumeSlider.setValue(50);
+        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            music.setVolume(newValue.doubleValue());
+        });
     }
 
 
@@ -80,6 +105,12 @@ public class MainSceneUser {
 
     @FXML
     public void searchButton(ActionEvent event) throws IOException {
+        String searchQuery = SearchField.getText();
+
+        // Hiển thị trạng thái tải trong khi tìm kiếm
+        loadingIndicator.setVisible(true);
+        loadingIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+
         List<Book> ApiResult = apiGoogleBooks.searchBooks1(SearchField.getText());
         DBUltis dbUltis = new DBUltis();
         List<Book> databaseResult = dbUltis.searchBook(SearchField.getText());
@@ -98,6 +129,10 @@ public class MainSceneUser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setMainContent(Parent content) {
+        staticMainScrollPane1.setContent(content);
     }
 
     public void changeAvatar(String avatarPaths) {
@@ -125,27 +160,22 @@ public class MainSceneUser {
 
     }
 
-    @FXML
-    public void initialize() {
-        setUser();
-        staticMainScrollPane1 = mainScrollPane;
-        mainScrollPane.setFitToWidth(true);
-        mainScrollPane.setFitToHeight(true);
-        showHome();
-    }
-
-    public void showHome() {
+    public void ChatAI() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/ChatAI.fxml"));
             Parent homeView = loader.load();
 
-            // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(homeView);
+            // Get the controller instance
+            ChatAIController chatAIController = loader.getController();
 
+            setMainContent(homeView);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     void showSettings(ActionEvent event) {
         try {
@@ -166,23 +196,19 @@ public class MainSceneUser {
             e.printStackTrace();
         }
     }
-    @FXML
-    public void changeAdminView(ActionEvent event) {
+
+    public void showHome() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/View/AdminScene/MainScene.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Home.fxml"));
+            Parent homeView = loader.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(homeView);
+
+        } catch (IOException e) {
             e.printStackTrace();
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                cause.printStackTrace();
-            }
         }
     }
-
 
     public void changeToStreak() {
         try {
@@ -197,5 +223,15 @@ public class MainSceneUser {
         }
     }
 
+    public void muteSound(ActionEvent event) {
+        isMuted = !isMuted;
 
+        if (isMuted) {
+            volumeSlider.setValue(0);
+            sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/mute.png"))));
+        } else {
+            volumeSlider.setValue(50);
+            sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/volume.png"))));
+        }
+    }
 }

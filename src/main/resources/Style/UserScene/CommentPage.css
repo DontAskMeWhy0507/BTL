@@ -1,0 +1,11 @@
+ScrollPane {
+    -fx-background-color: #FFF2D8;
+    -fx-border-radius: 20px;
+}
+
+VBox {
+    -fx-background-color: transparent;
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+    -fx-padding: 10px;
+}

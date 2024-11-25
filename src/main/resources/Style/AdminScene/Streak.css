@@ -20,7 +20,7 @@ Label {
 }
 
 ProgressBar {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
     -fx-accent: #536A5C;
 }
 

@@ -53,26 +53,43 @@ public class MainSceneClass {
     @FXML
     private Slider volumeSlider;
 
-
-    @FXML
-    private Label userName;
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
     @FXML
     private ImageView avatar;
 
     @FXML
     private ProgressIndicator loadingIndicator;
-    // Method to update the avatar
-    public void changeAvatar(String avatarPaths) {
-        Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
-        avatar.setImage(newAvatarImage);
-    }
+
+    @FXML
+    private Label userName;
+
+    @FXML
+    private ImageView sound;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    private boolean isMuted = false;
+
+    private Music music;
 
     public static ScrollPane staticMainScrollPane;
+
+    @FXML
+    public void initialize() {
+        sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/volume.png"))));
+        music = Music.getInstance();
+        volumeSlider.setValue(50);
+        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            setVolume(newValue.doubleValue());
+        });
+
+        setUser();
+        staticMainScrollPane = mainScrollPane;
+        mainScrollPane.setFitToWidth(true);
+        mainScrollPane.setFitToHeight(true);
+        showHome();
+    }
 
     @FXML
     void searchButton(ActionEvent event) {
@@ -134,7 +151,11 @@ public class MainSceneClass {
         new Thread(task).start();
     }
 
-
+    // Method to update the avatar
+    public void changeAvatar(String avatarPaths) {
+        Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
+        avatar.setImage(newAvatarImage);
+    }
 
     public static void setMainContent(Parent content) {
         staticMainScrollPane.setContent(content);
@@ -149,33 +170,67 @@ public class MainSceneClass {
 //        changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
 //        avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
 //    }
-    private Music music;
 
+
+    @FXML
+    void changeToUserView(ActionEvent event) {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/StatisticsView.fxml"));
+            Parent UserView = loader1.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(UserView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void showSettings(ActionEvent event) {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Settings.fxml"));
+            Parent SettingView = loader1.load();
+            Settings settingsController = loader1.getController();
+
+            // Truyền đối tượng MainSceneClass vào SettingsController
+            settingsController.setMainSceneController(this);  // this l
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(SettingView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    public void EnterToSearch(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            searchButton(new ActionEvent(event.getSource(), event.getTarget()));
+        }
+    }
+
+    @FXML
+    public void ChatAI() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/ChatAI.fxml"));
+            Parent homeView = loader.load();
+
+            // Get the controller instance
+            ChatAIController chatAIController = loader.getController();
+
+            setMainContent(homeView);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setUser() {
         changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
         avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
-    }
-
-    // Phương thức điều chỉnh âm lượng
-    private void setVolume(double volume) {
-        music.setVolume(volume / 100);
-    }
-
-    @FXML
-    public void initialize() {
-        music = Music.getInstance();
-        volumeSlider.setValue(50);
-        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            setVolume(newValue.doubleValue());
-        });
-
-
-        setUser();
-        staticMainScrollPane = mainScrollPane;
-        mainScrollPane.setFitToWidth(true);
-        mainScrollPane.setFitToHeight(true);
-        showHome();
     }
 
     public void showHome() {
@@ -255,65 +310,20 @@ public class MainSceneClass {
         }
     }
 
-
-    @FXML
-    void changeToUserView(ActionEvent event) {
-        try {
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/StatisticsView.fxml"));
-            Parent UserView = loader1.load();
-
-            // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(UserView);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // Phương thức điều chỉnh âm lượng
+    public void setVolume(double volume) {
+        music.setVolume(volume / 100);
     }
 
-    @FXML
-    void showSettings(ActionEvent event) {
-        try {
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Settings.fxml"));
-            Parent SettingView = loader1.load();
-            Settings settingsController = loader1.getController();
+    public void muteSound(ActionEvent event) {
+        isMuted = !isMuted;
 
-            // Truyền đối tượng MainSceneClass vào SettingsController
-            settingsController.setMainSceneController(this);  // this l
-            // Đặt nội dung mới vào ScrollPane
-            mainScrollPane.setContent(SettingView);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (isMuted) {
+            volumeSlider.setValue(0);
+            sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/mute.png"))));
+        } else {
+            volumeSlider.setValue(50);
+            sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/volume.png"))));
         }
     }
-
-
-    @FXML
-    public void EnterToSearch(KeyEvent event) throws IOException {
-        if (event.getCode() == KeyCode.ENTER) {
-            searchButton(new ActionEvent(event.getSource(), event.getTarget()));
-        }
-    }
-
-    @FXML
-    public void ChatAI() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/ChatAI.fxml"));
-            Parent homeView = loader.load();
-
-            // Get the controller instance
-            ChatAIController chatAIController = loader.getController();
-
-            setMainContent(homeView);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-    }
-
-
-
-
 }

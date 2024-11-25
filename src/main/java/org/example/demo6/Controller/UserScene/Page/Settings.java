@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-public class Settings {
+public class Settings extends org.example.demo6.Controller.AdminScene.Page.Settings {
     DBUltis DBUltis = new DBUltis();
     Library lib = Library.getInstance();
     private MainSceneUser mainSceneController;
@@ -162,22 +162,6 @@ public class Settings {
         mainSceneController.setUser();
     }
 
-    public void confirmChange() {
-        confirmAvatarSelection();
-        handleChangeUsername();
-        handleChangeEmail();
-        handleChangePassword();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setHeaderText("Changes saved");
-        alert.setContentText("You have successfully changed" +
-                (changeAvatar ? " your avatar" : "") +
-                (changeUsername ? ", your username" : "") +
-                (changeEmail ? ", your email" : "") +
-                (changePassword ? ", your password" : "") +
-                ".");
-        alert.showAndWait();
-    }
     @FXML
     public void uploadAvatar() {
         FileChooser fileChooser = new FileChooser();
@@ -231,5 +215,20 @@ public class Settings {
         }
     }
 
-
+    public void confirmChange() {
+        confirmAvatarSelection();
+        handleChangeUsername();
+        handleChangeEmail();
+        handleChangePassword();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Changes saved");
+        alert.setContentText("You have successfully changed" +
+                (changeAvatar ? " your avatar" : "") +
+                (changeUsername ? ", your username" : "") +
+                (changeEmail ? ", your email" : "") +
+                (changePassword ? ", your password" : "") +
+                ".");
+        alert.showAndWait();
+    }
 }

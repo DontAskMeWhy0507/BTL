@@ -1,0 +1,38 @@
+AnchorPane {
+    -fx-background-color: #FFF8E8;
+    -fx-border-radius: 20px;
+}
+
+VBox {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-spacing: 50px;
+    -fx-alignment: center;
+}
+
+TextArea {
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-font-family: "Merriweather";
+    -fx-font-size: 14px;
+    -fx-line-spacing: 1.15;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.chatBox {
+    -fx-pref-height: 35em !important;
+    -fx-pref-width: 80em !important;
+}
+
+.input {
+    -fx-border-color: black;
+    -fx-background-color: #F7EED3 !important;
+    -fx-pref-height: 10em !important;
+    -fx-pref-width: 80em !important;
+}
+
+.input .content {
+    -fx-background-color: #F7EED3;
+}

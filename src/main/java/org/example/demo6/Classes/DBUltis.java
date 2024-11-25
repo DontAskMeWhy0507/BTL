@@ -322,6 +322,38 @@ public class DBUltis implements Database{
         }
     }
 
+    public List<Book> searchBookByTransaction(String query) {
+        List<Book> books = new ArrayList<>();
+        String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Book book = new Book(rs.getString("isbn"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("category"),
+                        rs.getString("description"),
+                        rs.getString("language"),
+                        rs.getString("publisher"),
+                        LocalDate.parse(rs.getString("published_date")),
+                        rs.getString("book_path"),
+                        rs.getString("cover_image_path"),
+                        rs.getString("audio_path"),
+                        rs.getInt("quantity"));
+                // Create and add the Book object to the list
+                books.add(book);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving books from database: " + e.getMessage());
+        }
+
+        return books;
+    }
 
     public Transaction getTransaction(User user, Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn

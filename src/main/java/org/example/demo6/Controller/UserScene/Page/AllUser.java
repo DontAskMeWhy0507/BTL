@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.DBUltis;
+import org.example.demo6.Classes.Library;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +21,13 @@ public class AllUser {
     @FXML
     public void initialize() {
         // Fetch books from the database
-        books = DBUltis.getBooksFromDatabase();
+
+        books = DBUltis.searchBookByTransaction("SELECT books.* FROM books " +
+                "LEFT JOIN BookTransaction ON books.isbn = BookTransaction.book_id " +
+                "WHERE BookTransaction.user_id = " + Library.getInstance().getCurrentUser().getId() + " " +
+                "AND BookTransaction.status = 'Borrowed' " +
+                "GROUP BY books.isbn"
+        );
         // Populate the GridPane with book buttons
         loadBooksIntoGrid();
     }

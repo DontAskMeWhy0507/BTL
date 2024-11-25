@@ -7,41 +7,31 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Library;
-import org.example.demo6.Classes.Music;
-import javafx.scene.input.KeyCode;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.Key;
-import java.util.Objects;
 import java.util.ResourceBundle;
-
-import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class LoginController implements Initializable {
     @FXML
@@ -81,6 +71,9 @@ public class LoginController implements Initializable {
     private JFXRippler loginRippler;
 
     @FXML
+    private ImageView img;
+
+    @FXML
     void getPassword(ActionEvent event) {
         if (showPass.isSelected()) {
             showPassword.setText(tf_password.getText());
@@ -94,55 +87,105 @@ public class LoginController implements Initializable {
         }
     }
 
+    private boolean isTransitioning = false;
+
     @FXML
     private void loadSignUp(ActionEvent event) throws IOException {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScene/SignUp.fxml"));
-            Scene scene = buttonSignUp.getScene();
 
-            root.translateYProperty().set(scene.getHeight());
-            switchScene.getChildren().add(root);
+            Pane animatedPane = new Pane();
+            animatedPane.getChildren().add(root);
+
+            Scene scene = buttonSignUp.getScene();
+            animatedPane.setPrefSize(scene.getWidth(), scene.getHeight());
+
+            animatedPane.translateYProperty().set(scene.getHeight());// Start off-screen
+
+            // Ensure the image is added only once and stays still
+            if (!switchScene.getChildren().contains(img)) {
+                switchScene.getChildren().add(0, img); // Add the image at the back
+            }
+
+            switchScene.getChildren().add(animatedPane);
 
             Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+            KeyValue kv = new KeyValue(animatedPane.translateYProperty(), 0, Interpolator.EASE_BOTH);
             KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+
             timeline.getKeyFrames().add(kf);
-            timeline.setOnFinished(event1 ->{
+            timeline.setOnFinished(event1 -> {
+                // Remove the mainPane after the transition
                 switchScene.getChildren().remove(mainPane);
+                isTransitioning = false; // Reset the flag
+                buttonSignUp.setDisable(false); // Re-enable the button
             });
+
             timeline.play();
+
+            StackPane.setAlignment(img, Pos.CENTER_RIGHT); // Align the image
+
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();
             if (cause != null) {
                 cause.printStackTrace();
             }
+            isTransitioning = false;
+//            buttonSignUp.setDisable(false); // Re-enable the button
         }
     }
 
+    private boolean isTransitionPass = false; // Flag to prevent multiple transitions
+
     @FXML
     private void loadForgotPassword(ActionEvent event) throws IOException {
+        if (isTransitionPass) return;
+        isTransitionPass = true;
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScene/ForgotPassword.fxml"));
+
+            Pane animatedPane = new Pane();
+            animatedPane.getChildren().add(root);
+
             Scene scene = buttonForgotPassword.getScene();
+            animatedPane.setPrefSize(scene.getWidth(), scene.getHeight());
 
-            root.translateYProperty().set(-scene.getHeight());
-            switchScene.getChildren().add(root);
+            animatedPane.translateYProperty().set(-scene.getHeight()); // Start off-screen
 
+            if (!switchScene.getChildren().contains(img)) {
+                switchScene.getChildren().add(0, img); // Add the image at the back
+            }
+
+            // Add the animatedPane to the switchScene
+            switchScene.getChildren().add(animatedPane);
+
+            // Create the transition animation
             Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+            KeyValue kv = new KeyValue(animatedPane.translateYProperty(), 0, Interpolator.EASE_BOTH);
             KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+
             timeline.getKeyFrames().add(kf);
-            timeline.setOnFinished(event1 ->{
+            timeline.setOnFinished(event1 -> {
                 switchScene.getChildren().remove(mainPane);
+                isTransitionPass = false;
             });
+
             timeline.play();
+
+            StackPane.setAlignment(img, Pos.CENTER_RIGHT);
+
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();
             if (cause != null) {
                 cause.printStackTrace();
             }
+            isTransitionPass = false; // Reset the flag in case of error
         }
     }
 
@@ -158,6 +201,11 @@ public class LoginController implements Initializable {
         AnchorPane.setLeftAnchor(loginRippler, 185.0);
     }
 
+
+    public void setStage(Stage stage) {
+        img.fitWidthProperty().bind(stage.widthProperty());
+        img.fitHeightProperty().bind(stage.heightProperty());
+    }
 
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo
@@ -179,5 +227,4 @@ public class LoginController implements Initializable {
             loginToHome(new ActionEvent(event.getSource(), event.getTarget()));
         }
     }
-
 }

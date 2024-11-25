@@ -52,8 +52,6 @@ public class HomePageUser {
 
     @FXML
     public void initialize() {
-
-
         tieuThuyet = bookTieuThuyet();
         try {
             for (int i = 0; i < 10; i++) {
@@ -82,5 +80,4 @@ public class HomePageUser {
             e.printStackTrace();
         }
     }
-
 }

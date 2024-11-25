@@ -6,7 +6,7 @@
 
 <VBox prefWidth="1000.0" spacing="20.0" stylesheets="@../../../Style/AdminScene/PageSearch.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.SearchPageController">
     <!-- Title for Database results section -->
-    <Label text="Database Search Results" />
+    <Label text="Kết quả theo CSDL" />
 
     <!-- Database results section -->
     <GridPane fx:id="databaseResults" prefWidth="1000.0" VBox.vgrow="ALWAYS">
@@ -14,7 +14,7 @@
     </GridPane>
 
     <!-- Title for API results section -->
-    <Label text="API Search Results" />
+    <Label text="Kết quả theo API" />
 
     <!-- API results section -->
     <GridPane fx:id="apiResults" prefWidth="537.0" VBox.vgrow="ALWAYS">

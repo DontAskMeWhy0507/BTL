@@ -33,7 +33,7 @@
    <left>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="20.0" layoutY="120.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" styleClass="booksManage" text="Home">
+            <Button layoutX="20.0" layoutY="120.0" mnemonicParsing="false" onAction="#showHome" prefHeight="25.0" prefWidth="139.0" styleClass="booksManage" text="Trang chủ">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
@@ -70,7 +70,7 @@
          </children></Pane>
    </left>
    <bottom>
-      <HBox prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="avatarButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moreButton" prefHeight="92.0" prefWidth="200.0" styleClass="username" text="Username">
                <graphic>
@@ -78,16 +78,16 @@
                      <children>
                         <ImageView fx:id="avatar" fitHeight="57.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
-                              <Image url="@../../Image/avatar.png" />
+                              <Image url="@../../Image/Avatar/avatar.png" />
                            </image>
                         </ImageView>
                      </children>
                   </HBox>
                </graphic>
             </Button>
-            <VBox fx:id="seeMoreProfile" prefHeight="95.0" prefWidth="151.0" visible="false">
+            <VBox fx:id="seeMoreProfile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="161.0" visible="false">
                <children>
-                  <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="37.0" prefWidth="155.0" styleClass="openSettings" text="Settings">
+                  <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="46.0" prefWidth="200.0" styleClass="openSettings" text="Cài đặt">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
@@ -96,7 +96,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#logOut" prefHeight="37.0" prefWidth="161.0" styleClass="logout" text="Logout">
+                  <Button mnemonicParsing="false" onAction="#logOut" prefHeight="48.0" prefWidth="139.0" styleClass="logout" text="Đăng xuất">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                            <image>
@@ -109,10 +109,10 @@
             </VBox>
             <Button mnemonicParsing="false" onAction="#muteSound" style="-fx-background-color: transparent;">
                <HBox.margin>
-                  <Insets left="700.0" top="20.0" />
+                  <Insets left="650.0" top="20.0" />
                </HBox.margin>
                <graphic>
-                  <ImageView fx:id="sound" fitHeight="82.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="sound" fitHeight="53.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Image/Icon/volume.png" />
                      </image>
@@ -121,13 +121,13 @@
             </Button>
             <JFXSlider fx:id="volumeSlider" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="156.0">
                <HBox.margin>
-                  <Insets bottom="20.0" left="25.0" right="50.0" top="25.0" />
+                  <Insets bottom="20.0" left="25.0" right="30.0" top="25.0" />
                </HBox.margin>
             </JFXSlider>
          </children>
       </HBox>
    </bottom>
    <center>
-      <ScrollPane fx:id="mainScrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="mainScrollPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1090.0" styleClass="mainPane" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

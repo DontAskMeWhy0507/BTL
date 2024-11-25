@@ -9,15 +9,15 @@
 
    <children>
       <Label prefHeight="50.0" prefWidth="186.0" text="Tiểu thuyết" />
-      <ScrollPane prefHeight="268.0" prefWidth="1112.0">
+      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="1038.0">
          <content>
-            <HBox fx:id="cardLayOut1" prefHeight="246.0" prefWidth="1113.0" />
+            <HBox fx:id="cardLayOut1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="1104.0" />
          </content>
       </ScrollPane>
       <Label prefHeight="50.0" prefWidth="81.0" text="Anime" />
-      <ScrollPane prefHeight="268.0" prefWidth="1112.0">
+      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="1041.0">
          <content>
-            <HBox fx:id="cardLayOut2" prefHeight="246.0" prefWidth="1113.0" />
+            <HBox fx:id="cardLayOut2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="1104.0" />
          </content>
       </ScrollPane>
    </children>

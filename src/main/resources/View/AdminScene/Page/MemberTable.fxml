@@ -12,25 +12,25 @@
         <TableView fx:id="tableView" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="1112.0" styleClass="table" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="73.0">
             <columns>
                 <TableColumn fx:id="tf_ID" prefWidth="108.0" text="ID" />
-                <TableColumn fx:id="tf_name" minWidth="7.2" prefWidth="159.19993591308594" text="Name" />
-                <TableColumn fx:id="tf_password" prefWidth="152.79998779296875" text="Password" />
-                <TableColumn fx:id="tf_role" prefWidth="88.800048828125" text="Role" />
+                <TableColumn fx:id="tf_name" minWidth="7.2" prefWidth="159.19993591308594" text="Tên" />
+                <TableColumn fx:id="tf_password" prefWidth="152.79998779296875" text="Mât khẩu" />
+                <TableColumn fx:id="tf_role" prefWidth="88.800048828125" text="Vai trò" />
                 <TableColumn fx:id="tf_email" minWidth="0.0" prefWidth="160.0" text="Email" />
                 <TableColumn fx:id="tf_avatar" prefWidth="108.79998779296875" text="Avatar" />
-                <TableColumn fx:id="tf_date" prefWidth="114.4000244140625" text="Date of birth" />
+                <TableColumn fx:id="tf_date" prefWidth="114.4000244140625" text="Ngày sinh" />
 
                 <!-- New columns for Streak and Last Access Date -->
                 <TableColumn fx:id="tf_streak" minWidth="0.0" prefWidth="64.7999267578125" text="Streak" />
-                <TableColumn fx:id="tf_lastLoginDate" prefWidth="185.0" text="Last Access Date" />
+                <TableColumn fx:id="tf_lastLoginDate" prefWidth="185.0" text="Lần cuối đăng nhập" />
             </columns>
         </TableView>
 
         <!-- Button controls for actions -->
-        <HBox alignment="CENTER_LEFT" layoutX="41.0" layoutY="8.0" prefHeight="52.0" prefWidth="446.0" spacing="10.0" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="625.0" AnchorPane.topAnchor="8.0">
+        <HBox alignment="CENTER_LEFT" layoutX="41.0" layoutY="8.0" prefHeight="52.0" prefWidth="502.0" spacing="10.0" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="8.0">
             <children>
-                <Button fx:id="btnAddUser" mnemonicParsing="false" onAction="#handleAddUser" text="Add User" />
-                <Button fx:id="btnDeleteUser" mnemonicParsing="false" onAction="#handleDeleteUser" prefHeight="42.0" prefWidth="176.0" text="Remove User" />
-                <Button mnemonicParsing="false" onAction="#loadDatabase" stylesheets="@../../../Style/AdminScene/BookTable.css" text="Load" />
+                <Button fx:id="btnAddUser" mnemonicParsing="false" onAction="#handleAddUser" text="Thêm người dùng" />
+                <Button fx:id="btnDeleteUser" mnemonicParsing="false" onAction="#handleDeleteUser" prefHeight="42.0" prefWidth="176.0" text="Xóa người dùng" />
+                <Button mnemonicParsing="false" onAction="#loadDatabase" stylesheets="@../../../Style/AdminScene/BookTable.css" text="Tải lại" />
             </children>
         </HBox>
 

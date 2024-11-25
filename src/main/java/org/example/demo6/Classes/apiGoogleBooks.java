@@ -18,7 +18,7 @@ public class apiGoogleBooks {
     // Replace with your API Key from Google Cloud Console
     private static final String API_KEY = "AIzaSyCyibUKHM6uRFhx6bzrhHyNDbt1GO3h-Lk";
 
-
+    // tìm sách
     public static List<Book> searchBooks1(String query) throws IOException {
         List<Book> books = new ArrayList<>();
 
@@ -56,6 +56,7 @@ public class apiGoogleBooks {
         return books;
     }
 
+    // ngày phát hành sách
     private static LocalDate parsePublishedDate(String publishedDate) {
         if (publishedDate == null || publishedDate.isBlank()) {
             return LocalDate.now(); // Default to current date if null or empty

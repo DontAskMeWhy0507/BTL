@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../../../Style/AdminScene/Statistics.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.example.demo6.Controller.AdminScene.Page.Statistics">
+<AnchorPane stylesheets="@../../../Style/AdminScene/Statistics.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.Statistics">
     <VBox layoutX="10" layoutY="10" prefHeight="648.0" prefWidth="1112.0" spacing="20" style="-fx-padding: 10px;">
         <!-- Title for Library Statistics -->
-        <Label prefHeight="30.0" prefWidth="248.0" styleClass="bookStats" text="Book proportion" />
+        <Label prefHeight="30.0" prefWidth="248.0" styleClass="bookStats" text="Phân bố sách" />
 
         <!-- Pie Chart for Book Categories (Borrowed) -->
         <PieChart fx:id="bookCategoryChart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250" prefWidth="485.0">
             <!-- You can add data for PieChart in controller -->
         </PieChart>
-      <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="248.0" styleClass="streakStats" text="Streak length" />
+      <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="248.0" styleClass="streakStats" text="Chuỗi" />
 
         <!-- Bar Chart for Top User Streaks -->
         <BarChart fx:id="userStreakBarChart" prefHeight="150.0" prefWidth="1011.0">

@@ -73,6 +73,7 @@ public class SignUpController implements Initializable {
     @FXML
     private JFXCheckBox showPassword;
 
+    // hiển thị mật khẩu
     @FXML
     void getPass (ActionEvent event) {
         if (showPassword.isSelected()) {
@@ -93,11 +94,6 @@ public class SignUpController implements Initializable {
             showRePass.setVisible(false);
         }
     }
-
-    private boolean isTransitionLogin = false;
-
-    @FXML
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -137,26 +133,29 @@ public class SignUpController implements Initializable {
         });
     }
 
+    // kiểm tra mật khẩu mạnh
     private boolean isPasswordStrong(String password) {
         if (password.length() < 8) {
             return false;
         }
-//        String upperCaseChars = "(.*[A-Z].*)";
-//        String lowerCaseChars = "(.*[a-z].*)";
-//        String numbers = "(.*[0-9].*)";
-//        String specialChars = "(.*[!@#$%^&*(),.?\":{}|<>].*)";
-//        return Pattern.matches(upperCaseChars, password) &&
-//                Pattern.matches(lowerCaseChars, password) &&
-//                Pattern.matches(numbers, password) &&
-//                Pattern.matches(specialChars, password);
-        return true;
+        String upperCaseChars = "(.*[A-Z].*)";
+        String lowerCaseChars = "(.*[a-z].*)";
+        String numbers = "(.*[0-9].*)";
+        String specialChars = "(.*[!@#$%^&*(),.?\":{}|<>].*)";
+        return Pattern.matches(upperCaseChars, password) &&
+                Pattern.matches(lowerCaseChars, password) &&
+                Pattern.matches(numbers, password) &&
+                Pattern.matches(specialChars, password);
     }
+
+    // kiểm tra email
     private boolean isEmailValid(String email) {
 //        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 //        return Pattern.matches(emailPattern, email);
         return true;
     }
 
+    // enter để qua đăng nhập
 //    public void Enter(KeyEvent event) {
 //        if(event.getCode() == KeyCode.ENTER) {
 //            handle(new ActionEvent(event.getSource(), event.getTarget()));

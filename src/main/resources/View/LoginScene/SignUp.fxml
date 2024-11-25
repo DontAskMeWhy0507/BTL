@@ -6,10 +6,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="605.0" stylesheets="@../../Style/LoginScene/SignUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginScene.SignUpController">
+<AnchorPane fx:id="mainPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1182.0" stylesheets="@../../Style/LoginScene/SignUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginScene.SignUpController">
    <children>
       <Text layoutX="142.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="createAccount" text="Tạo tài khoản" />
       <TextField fx:id="tf_email" layoutX="65.0" layoutY="178.0" prefHeight="63.0" prefWidth="462.0" promptText="Email của bạn" stylesheets="@../../Style/LoginScene/SignUp.css" />
@@ -21,7 +23,12 @@
       <TextField fx:id="showRePass" disable="true" layoutX="60.0" layoutY="463.0" prefHeight="63.0" prefWidth="462.0" stylesheets="@../../Style/LoginScene/SignUp.css" />
       <JFXButton fx:id="buttonLog_in" layoutX="76.0" layoutY="550.0" styleClass="alrdyAcc" stylesheets="@../../Style/LoginScene/SignUp.css" text="Bạn đã có tài khoản? " textAlignment="CENTER" />
       <Button fx:id="buttonSign_Up" mnemonicParsing="false" prefHeight="55.0" prefWidth="197.0" styleClass="buttonMakeAcc" stylesheets="@../../Style/LoginScene/SignUp.css" text="Tạo tài khoản" />
-      <JFXRippler fx:id="createAcc" layoutX="326.0" layoutY="602.0" prefHeight="58.0" prefWidth="185.0" styleClass="signUpRippler" stylesheets="@../../Style/LoginScene/SignUp.css" />
+      <JFXRippler fx:id="createAcc" layoutX="281.0" layoutY="602.0" prefHeight="58.0" prefWidth="185.0" styleClass="signUpRippler" stylesheets="@../../Style/LoginScene/SignUp.css" />
       <JFXCheckBox fx:id="showPassword" layoutX="373.0" layoutY="556.0" onAction="#getPass" styleClass="showPass" stylesheets="@../../Style/LoginScene/SignUp.css" text="Hiển thị mật khẩu" />
+      <ImageView fitHeight="736.0" fitWidth="589.0" layoutX="593.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Image/temp_lib.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

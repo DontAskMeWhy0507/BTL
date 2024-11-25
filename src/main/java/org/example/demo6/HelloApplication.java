@@ -5,9 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
 import org.example.demo6.Classes.Library;
 import org.example.demo6.Classes.Music;
 import org.example.demo6.Classes.SnowEffect;
@@ -17,36 +16,36 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
 
-    private Library library = Library.getInstance();
-    private Music music = Music.getInstance();
+    private final Library library = Library.getInstance();    // Singleton instance of Library
+    private final Music music = Music.getInstance();          // Singleton instance of Music
 
     @Override
     public void start(@NotNull Stage stage) throws IOException {
-        // Load fonts
+        // Tải font
         Font.loadFont(getClass().getResourceAsStream("/Font/Merriweather/Merriweather-Regular.ttf"), 20);
         Font.loadFont(getClass().getResourceAsStream("/Font/DancingScript/DancingScript-SemiBold.ttf"), 20);
 
-        // Load giao diện chính
+        // Tải giao diện chính
         Parent root = FXMLLoader.load(HelloApplication.class.getResource("/View/LoginScene/Login.fxml"));
 
-        // Tạo một StackPane để chứa giao diện chính và hiệu ứng tuyết
-//        StackPane mainPane = new StackPane();
-//        Pane snowPane = new Pane(); // Lớp chứa tuyết
-//        mainPane.getChildren().addAll(root, snowPane);
+        // Tạo Scene và Pane chính để hiển thị hiệu ứng tuyết
+        Pane mainPane = new Pane();
+        mainPane.getChildren().add(root); // Thêm giao diện chính vào Pane
 
-        // Thiết lập giao diện chính
-        Scene scene = new Scene(root);
+        // Cài đặt Scene
+        Scene scene = new Scene(mainPane);
         stage.setTitle("Library Management System");
         stage.setScene(scene);
         stage.show();
-//        // Tạo hiệu ứng tuyết
-//        SnowEffect snowEffect = new SnowEffect(snowPane);
-//        snowEffect.startSnowing(100); // 100 bông tuyết
 
-        // Xử lý sự kiện khi đóng cửa sổ
+        // Thêm hiệu ứng tuyết
+        SnowEffect snowEffect = new SnowEffect(mainPane);
+        snowEffect.startSnow(5000); // Bắt đầu 200 bông tuyết rơi
+
+        // Xử lý khi đóng ứng dụng
         stage.setOnCloseRequest(e -> library.logOut(null));
 
-        // Chạy nhạc nền
+        // Phát nhạc nền
         music.loop();
     }
 

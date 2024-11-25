@@ -45,7 +45,7 @@
          <JFXCheckBox fx:id="showPass" checkedColor="#aab396" layoutX="354.0" layoutY="424.0" onAction="#getPassword" styleClass="remember" stylesheets="@../../Style/LoginScene/Login.css" text="Hiển thị mật khẩu" />
       </children>
    </AnchorPane>
-   <ImageView fx:id="img" fitHeight="724.0" fitWidth="589.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="img" fitHeight="734.0" fitWidth="597.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../../Image/temp_lib.jpg" />
       </image>

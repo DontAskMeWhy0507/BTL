@@ -40,6 +40,10 @@ public class Review {
         this.rating = rating;
     }
 
+    public Review() {
+
+    }
+
     // Getters and Setters (bỏ qua để tiết kiệm không gian)
 
     public int getId() {

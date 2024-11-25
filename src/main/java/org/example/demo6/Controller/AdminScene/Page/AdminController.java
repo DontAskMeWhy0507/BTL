@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -11,6 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import org.example.demo6.Classes.Admin;
+import org.example.demo6.Classes.Library;
 import org.example.demo6.Classes.Streak;
 import org.example.demo6.Classes.User;
 
@@ -21,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdminController {
+    Library library = Library.getInstance();
 
     private static final Logger LOGGER = Logger.getLogger(AdminController.class.getName());
     private static final String DATABASE_URL = "jdbc:sqlite:database//LibraryMain";
@@ -128,21 +132,23 @@ public class AdminController {
     private void handleDeleteUser() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            if (deleteUserFromDatabase(selectedUser.getId())) {
-                data.remove(selectedUser);
-            }
-        }
-    }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete User");
+            alert.setHeaderText("Are you sure you want to delete this user?");
+            alert.setContentText("User: " + selectedUser.getUsername());
+            alert.showAndWait();
+            if (alert.getResult().getText().equals("OK")) {
+                if (library.getCurrentUser() instanceof Admin) {
+                    Admin admin = (Admin) library.getCurrentUser();
+                    admin.removeUser(selectedUser);
+                    data.remove(selectedUser);
 
-    private boolean deleteUserFromDatabase(int userId) {
-        String query = "DELETE FROM USERS WHERE ID = ?";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, userId);
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Error deleting user from database", e);
-            return false;
+                } else {
+                    System.err.println("Current user is not an admin.");
+                }
+            } else {
+                alert.close();
+            }
         }
     }
 

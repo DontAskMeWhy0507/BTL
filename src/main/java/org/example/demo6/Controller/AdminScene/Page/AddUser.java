@@ -4,7 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.demo6.Classes.Admin;
 import org.example.demo6.Classes.DBUltis;
+import org.example.demo6.Classes.Library;
+import org.example.demo6.Classes.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +17,7 @@ import java.time.LocalDate;
 
 public class AddUser {
     DBUltis dbUltis = new DBUltis();
+    Library library = Library.getInstance();
 
     @FXML
     private ChoiceBox<String> choiceRole;
@@ -63,47 +67,64 @@ public class AddUser {
 
     @FXML
     public void buttonOK() {
-        if (tf_id.getText().isEmpty() || tf_username.getText().isEmpty() || tf_password.getText().isEmpty() ||
-                tf_email.getText().isEmpty() || choiceRole.getValue() == null || dateOfBirth.getValue() == null) {
-            // Alert user to fill all fields
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText(null);
-            alert.setContentText("Please fill all fields");
-            alert.showAndWait();
+        try {
+            int id = Integer.parseInt(tf_id.getText());
 
-        } else if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + tf_id.getText() + "'")) {
-            // Alert user that id is already taken
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText(null);
-            alert.setContentText("ID is already taken");
-            alert.showAndWait();
+            if (tf_id.getText().isEmpty() || tf_username.getText().isEmpty() || tf_password.getText().isEmpty() ||
+                    tf_email.getText().isEmpty() || choiceRole.getValue() == null || dateOfBirth.getValue() == null) {
+                // Alert user to fill all fields
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all fields");
+                alert.showAndWait();
 
-        } else if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + tf_username.getText() + "'")) {
-            // Alert user that username is already taken
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText(null);
-            alert.setContentText("Username is already taken");
-            alert.showAndWait();
+            } else if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + tf_id.getText() + "'")) {
+                // Alert user that id is already taken
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("ID is already taken");
+                alert.showAndWait();
 
-        } else if (dbUltis.findQuery("SELECT * FROM users WHERE email = '" + tf_email.getText() + "'")) {
-            // Alert user that email is already taken
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText(null);
-            alert.setContentText("Email is already taken");
-            alert.showAndWait();
+            } else if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + tf_username.getText() + "'")) {
+                // Alert user that username is already taken
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Username is already taken");
+                alert.showAndWait();
 
+            } else if (dbUltis.findQuery("SELECT * FROM users WHERE email = '" + tf_email.getText() + "'")) {
+                // Alert user that email is already taken
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Email is already taken");
+                alert.showAndWait();
+
+            } else {
+                // Insert user into database
+
+                User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
+
+                if (library.getCurrentUser() instanceof Admin) {
+                    Admin admin = (Admin) library.getCurrentUser();
+                    admin.addUsers(user);
+                    sucessLabel.setText("User added successfully");
+                } else {
+                    System.err.println("Current user is not an admin.");
+                }
+
+            }
         }
-        else {
-            // Insert user into database
-            dbUltis.loadQuery("INSERT INTO users (username, password, role, email, avatar, last_access, streak, date_of_birth, longest_streak) " +
-                    "VALUES ('" + tf_username.getText() + "', '" + tf_password.getText() + "', '" + choiceRole.getValue() + "', '" +
-                    tf_email.getText() + "', '" + "/Image/Avatar/Gekko.png" + "', '" + LocalDate.now().toString() + "', 0, '" +
-                    dateOfBirth.getValue().toString() + "', 0)");
-            sucessLabel.setText("User added successfully");
+        catch (Exception e) {
+            // Alert user that id must be a number
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("ID must be a number");
+            alert.showAndWait();
         }
     }
 }

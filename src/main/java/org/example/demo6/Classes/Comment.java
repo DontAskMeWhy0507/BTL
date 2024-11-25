@@ -9,6 +9,7 @@ public class Comment {
     private String isbn;
     private String timestamp;
 
+    // constructor
     public Comment(int id, int postId, int userId, String content, Integer replyToCommentId, String isbn, String timestamp) {
         this.id = id;
         this.postId = postId;

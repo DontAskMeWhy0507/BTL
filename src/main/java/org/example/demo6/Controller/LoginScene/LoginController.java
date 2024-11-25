@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,7 +35,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     @FXML
-    public StackPane switchScene;
+    private StackPane switchScene;
 
     @FXML
     private AnchorPane mainPane;
@@ -75,9 +74,9 @@ public class LoginController implements Initializable {
     private ImageView img;
 
     private boolean isTransitioning = false;
-
     private boolean isTransitionPass = false;
 
+    // hiện mật khẩu
     @FXML
     void getPassword(ActionEvent event) {
         if (showPass.isSelected()) {
@@ -92,14 +91,7 @@ public class LoginController implements Initializable {
         }
     }
 
-    public StackPane getSwitchScene() {
-        return switchScene;
-    }
-
-    public Pane getMainPane() {
-        return mainPane;
-    }
-
+    // chuyển qua đăng ký
     @FXML
     private void loadSignUp(ActionEvent event) throws IOException {
         if (isTransitioning) return;
@@ -149,6 +141,7 @@ public class LoginController implements Initializable {
         }
     }
 
+    // chuyển qua quên mật khẩu
     @FXML
     private void loadForgotPassword(ActionEvent event) throws IOException {
         if (isTransitionPass) return;
@@ -209,7 +202,7 @@ public class LoginController implements Initializable {
         AnchorPane.setLeftAnchor(loginRippler, 185.0);
     }
 
-
+    // ảnh
     public void setStage(Stage stage) {
         img.fitWidthProperty().bind(stage.widthProperty());
         img.fitHeightProperty().bind(stage.heightProperty());
@@ -230,6 +223,7 @@ public class LoginController implements Initializable {
         }
     }
 
+    // enter để nhập
     public void Enter(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER) {
             loginToHome(new ActionEvent(event.getSource(), event.getTarget()));

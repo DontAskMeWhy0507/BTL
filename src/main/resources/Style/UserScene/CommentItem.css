@@ -1,0 +1,27 @@
+AnchorPane {
+    -fx-background-color: #FFF2D8;
+}
+
+Label {
+    -fx-font-family: "Merriweather";
+}
+
+.username {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+}
+
+.time, .like_number {
+    -fx-font-size: 12px;
+    -fx-text-fill: gray;
+}
+
+.comment {
+    -fx-font-size: 12px;
+    -fx-font-family: "Merriweather";
+    -fx-text-fill: black;
+    -fx-background-color: #F7EED3;
+    -fx-border-color: transparent;
+}
+

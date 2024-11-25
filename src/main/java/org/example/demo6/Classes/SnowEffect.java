@@ -9,38 +9,49 @@ import javafx.util.Duration;
 import java.util.Random;
 
 public class SnowEffect {
-
-    private final Pane snowPane;   // Nơi hiển thị tuyết
+    private final Pane snowPane;
     private final Random random = new Random();
 
     public SnowEffect(Pane snowPane) {
         this.snowPane = snowPane;
     }
 
-    // Phương thức tạo và hiển thị bông tuyết
-    public void startSnowing(int numberOfSnowflakes) {
+    // Bắt đầu hiệu ứng tuyết rơi
+    public void startSnow(int numberOfSnowflakes) {
         for (int i = 0; i < numberOfSnowflakes; i++) {
-            createSnowflake();
+            Circle snowflake = createSnowflake(); // Tạo bông tuyết
+            snowPane.getChildren().add(snowflake); // Thêm vào Pane
+            animateSnowflake(snowflake); // Kích hoạt hiệu ứng
         }
-
     }
 
-    // Tạo bông tuyết và animation rơi
-    private void createSnowflake() {
-        Circle snowflake = new Circle(random.nextDouble() * 3 + 2, Color.WHITE); // Kích thước ngẫu nhiên
-        snowflake.setTranslateX(random.nextDouble() * snowPane.getWidth()); // Vị trí ngang ngẫu nhiên
-        snowflake.setTranslateY(-10); // Bắt đầu từ trên màn hình
+    // Tạo bông tuyết
+    private Circle createSnowflake() {
+        Circle snowflake = new Circle();
+        snowflake.setRadius(1 + random.nextDouble() * 3); // Kích thước ngẫu nhiên (1 - 4 px)
+        Color color = Color.rgb(255, 255, 255, random.nextDouble()); // Màu trắng mờ
+        snowflake.setFill(color);
+        snowflake.setCenterX(random.nextInt((int) snowPane.getWidth())); // Vị trí ngang ngẫu nhiên
+        snowflake.setCenterY(-random.nextInt(200)); // Xuất hiện từ trên màn hình
+        return snowflake;
+    }
 
-        // Animation cho bông tuyết
+    // Tạo hoạt ảnh rơi cho bông tuyết
+    private void animateSnowflake(Circle snowflake) {
         TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(Duration.seconds(random.nextDouble() * 5 + 3)); // Thời gian rơi ngẫu nhiên
         transition.setNode(snowflake);
-        transition.setFromY(-10); // Từ trên
-        transition.setToY(snowPane.getHeight() + 10); // Xuống dưới
-        transition.setOnFinished(e -> snowPane.getChildren().remove(snowflake)); // Xóa bông tuyết khi ra khỏi màn hình
+        transition.setFromY(-200); // Bắt đầu từ ngoài màn hình trên
+        transition.setToY(snowPane.getHeight() + 200); // Rơi xuống ngoài màn hình dưới
+        transition.setDuration(Duration.seconds(5 + random.nextInt(10))); // Thời gian rơi (5-15s)
+        transition.setToX(random.nextDouble() * snowflake.getCenterX()); // Dịch ngang nhẹ khi rơi
 
-        // Thêm vào giao diện và chạy animation
-        snowPane.getChildren().add(snowflake);
-        transition.play();
+        // Lặp lại hoạt ảnh khi kết thúc
+        transition.setOnFinished(event -> {
+            snowflake.setCenterX(random.nextInt((int) snowPane.getWidth())); // Đặt lại vị trí ngang
+            snowflake.setCenterY(-random.nextInt(200)); // Đặt lại vị trí dọc
+            animateSnowflake(snowflake); // Kích hoạt lại hiệu ứng
+        });
+
+        transition.play(); // Bắt đầu hoạt ảnh
     }
 }

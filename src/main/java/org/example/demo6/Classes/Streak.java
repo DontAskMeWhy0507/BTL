@@ -10,6 +10,7 @@ public class Streak {
     private LocalDate today;      // Today's date
     private final int[] milestones = {7, 10, 30}; // Milestone streaks
 
+    // constructor
     public Streak(LocalDate lastAccess, int streak, int longestStreak) {
         this.streak = streak;
         this.longestStreak = longestStreak;
@@ -21,6 +22,7 @@ public class Streak {
         }
     }
 
+    // track days
     public void updateStreak() {
         if (lastAccess != null) {
             long daysBetween = ChronoUnit.DAYS.between(lastAccess, today);
@@ -41,6 +43,7 @@ public class Streak {
         checkMilestone();
     }
 
+    // rewwards.
     public boolean checkMilestone() {
         for (int milestone : milestones) {
             if (streak == milestone) {
@@ -60,6 +63,7 @@ public class Streak {
         return -1; // Nếu không còn milestone nào
     }
 
+    // setters and getters
     public int getStreak() {
         return streak;
     }

@@ -2,11 +2,8 @@ package org.example.demo6.Controller.LoginScene;
 
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -14,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.demo6.Classes.DBUltis;
@@ -64,7 +59,6 @@ public class ForgotPasswordController {
     @FXML
     private JFXCheckBox confirmPass;
 
-    private boolean isTransition = false;
 
     DBUltis dbUltis = new DBUltis();
 
@@ -111,6 +105,30 @@ public class ForgotPasswordController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Email or ID is incorrect");
+            alert.showAndWait();
+        }
+    }
+
+    public void signIn(ActionEvent event) {
+        if (newPassword.getText().equals(confirmPassword.getText())) {
+            dbUltis.loadQuery("UPDATE users SET password = '" + newPassword.getText() + "' WHERE email = '" + email.getText() + "' AND id = '" + maSv.getText() + "'");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Change password successfully");
+            alert.showAndWait();
+            try {
+                changescene(event, "/View/LoginScene/Login.fxml", "Log in");
+            } catch (Exception e) {
+                e.printStackTrace();
+                Throwable cause = e.getCause();
+                if (cause != null) {
+                    cause.printStackTrace();
+                }
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Password and Confirm Password are not the same");
             alert.showAndWait();
         }
     }

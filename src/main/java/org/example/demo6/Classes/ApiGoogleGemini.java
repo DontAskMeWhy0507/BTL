@@ -6,11 +6,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ApiGoogleGemini {
     private static final String API_KEY = "AIzaSyCHlwfVSZxl6ZBZdmJOnO45lzrQ0ppdsc8";

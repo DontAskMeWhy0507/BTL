@@ -41,7 +41,7 @@ public class ChatAIController implements Initializable {
 
         // Clear the input field
         userInput.clear();
-        userInput.appendText("Nhập câu hỏi của bạn");
+        userInput.setPromptText("Nhập câu hỏi của bạn");
 
         // Send the message to the API and get the response
         String aiResponse = apiGoogleGemini.sendPostRequest(userMessage);
@@ -57,6 +57,7 @@ public class ChatAIController implements Initializable {
         userInput.setWrapText(true);
 
         chatDisplay.appendText("Xin chào! Hôm nay tôi có thể giúp gì cho bạn?");
+        chatDisplay.appendText("\n");
     }
 
     public void keyPressed(KeyEvent event) {

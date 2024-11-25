@@ -145,30 +145,6 @@ public class ForgotPasswordController {
             alert.showAndWait();
         }
     }
-
-    public void signIn(ActionEvent event) {
-        if (newPassword.getText().equals(confirmPassword.getText())) {
-            dbUltis.loadQuery("UPDATE users SET password = '" + newPassword.getText() + "' WHERE email = '" + email.getText() + "' AND id = '" + maSv.getText() + "'");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText("Change password successfully");
-            alert.showAndWait();
-            try {
-                changescene(event, "/View/LoginScene/Login.fxml", "Log in");
-            } catch (Exception e) {
-                e.printStackTrace();
-                Throwable cause = e.getCause();
-                if (cause != null) {
-                    cause.printStackTrace();
-                }
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Password and Confirm Password are not the same");
-            alert.showAndWait();
-        }
-    }
 }
 
 

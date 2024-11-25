@@ -28,10 +28,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.demo6.Classes.Library;
+import org.example.demo6.Controller.GeneralController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static org.example.demo6.Controller.GeneralController.loadSceneWithAnimation;
 
 public class LoginController implements Initializable {
     @FXML
@@ -94,100 +97,13 @@ public class LoginController implements Initializable {
     // chuyển qua đăng ký
     @FXML
     private void loadSignUp(ActionEvent event) throws IOException {
-        if (isTransitioning) return;
-        isTransitioning = true;
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScene/SignUp.fxml"));
-
-            Pane animatedPane = new Pane();
-            animatedPane.getChildren().add(root);
-
-            Scene scene = buttonSignUp.getScene();
-            animatedPane.setPrefSize(scene.getWidth(), scene.getHeight());
-
-            animatedPane.translateYProperty().set(scene.getHeight());// Start off-screen
-
-            // Ensure the image is added only once and stays still
-            if (!switchScene.getChildren().contains(img)) {
-                switchScene.getChildren().add(0, img); // Add the image at the back
-            }
-
-            switchScene.getChildren().add(animatedPane);
-
-            Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(animatedPane.translateYProperty(), 0, Interpolator.EASE_BOTH);
-            KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
-
-            timeline.getKeyFrames().add(kf);
-            timeline.setOnFinished(event1 -> {
-                // Remove the mainPane after the transition
-                switchScene.getChildren().remove(mainPane);
-                isTransitioning = false; // Reset the flag
-                buttonSignUp.setDisable(false); // Re-enable the button
-            });
-
-            timeline.play();
-
-            StackPane.setAlignment(img, Pos.CENTER_RIGHT); // Align the image
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                cause.printStackTrace();
-            }
-            isTransitioning = false;
-        }
+        loadSceneWithAnimation(event, "/View/LoginScene/SignUp.fxml", Duration.seconds(1), "DOWN", switchScene, isTransitioning);
     }
 
     // chuyển qua quên mật khẩu
     @FXML
     private void loadForgotPassword(ActionEvent event) throws IOException {
-        if (isTransitionPass) return;
-        isTransitionPass = true;
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScene/ForgotPassword.fxml"));
-
-            Pane animatedPane = new Pane();
-            animatedPane.getChildren().add(root);
-
-            Scene scene = buttonForgotPassword.getScene();
-            animatedPane.setPrefSize(scene.getWidth(), scene.getHeight());
-
-            animatedPane.translateYProperty().set(-scene.getHeight()); // Start off-screen
-
-            if (!switchScene.getChildren().contains(img)) {
-                switchScene.getChildren().add(0, img); // Add the image at the back
-            }
-
-            // Add the animatedPane to the switchScene
-            switchScene.getChildren().add(animatedPane);
-
-            // Create the transition animation
-            Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(animatedPane.translateYProperty(), 0, Interpolator.EASE_BOTH);
-            KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
-
-            timeline.getKeyFrames().add(kf);
-            timeline.setOnFinished(event1 -> {
-                switchScene.getChildren().remove(mainPane);
-                isTransitionPass = false;
-            });
-
-            timeline.play();
-
-            StackPane.setAlignment(img, Pos.CENTER_RIGHT);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                cause.printStackTrace();
-            }
-            isTransitionPass = false; // Reset the flag in case of error
-        }
+        loadSceneWithAnimation(event, "/View/LoginScene/ForgotPassword.fxml", Duration.seconds(1), "UP", switchScene, isTransitionPass);
     }
 
     @Override

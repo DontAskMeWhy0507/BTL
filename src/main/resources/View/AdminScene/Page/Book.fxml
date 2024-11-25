@@ -11,9 +11,9 @@
    <children>
       <Button mnemonicParsing="false" onAction="#switchToBookDetails" prefHeight="174.0" prefWidth="166.0" style="-fx-background-color: transparent;">
          <graphic>
-            <ImageView fx:id="imageBook" fitHeight="175.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageBook" fitHeight="162.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../heart.png" />
+                  <Image url="@../../../Image/Logo_HUET.svg.png" />
                </image></ImageView>
          </graphic>
       </Button>
@@ -21,15 +21,7 @@
       <Label fx:id="authorBook" prefHeight="18.0" prefWidth="313.0" stylesheets="@../../../Style/AdminScene/Book.css" text="NOT FOUND AUTHOR" />
       <AnchorPane>
          <children>
-            <Button layoutX="118.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="42.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Image/Icon/plus.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <Button layoutX="118.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="42.0" style="-fx-background-color: transparent;" />
          </children>
       </AnchorPane>
    </children>

@@ -96,10 +96,5 @@ public class CommentController {
         // Biến lưu trữ sách hiện tại
         displayComments(book);
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        displayComments();
-
     }
-    
 }

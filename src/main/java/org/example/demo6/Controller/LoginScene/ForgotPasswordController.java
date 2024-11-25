@@ -109,27 +109,47 @@ public class ForgotPasswordController {
         isTransition = true;
 
         try {
+            // Ensure we have a valid reference to the loginController and switchScene
+            if (loginController == null || loginController.getSwitchScene() == null) {
+                return;  // Ensure we have a valid reference to loginController
+            }
+
+            // Get references to switchScene and mainPane
             StackPane switchScene = loginController.getSwitchScene();
             Pane mainPane = loginController.getMainPane();
+
+            // Get the current scene that needs to be removed (Forgot Password scene or other pane)
             Pane currentPane = (Pane) switchScene.getChildren().get(switchScene.getChildren().size() - 1);
 
+            // Apply a reverse transition animation (move the current pane off-screen)
             Timeline timeline = new Timeline();
             KeyValue kv = new KeyValue(currentPane.translateYProperty(), switchScene.getHeight(), Interpolator.EASE_BOTH);  // Move down off-screen
             KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
 
             timeline.getKeyFrames().add(kf);
 
-            // Cleanup after the transition
+            // After the transition is complete, remove the current scene and add the main login scene
             timeline.setOnFinished(event1 -> {
-                switchScene.getChildren().remove(currentPane);  // Remove the current pane
+                // Remove the current scene (e.g., Forgot Password)
+                switchScene.getChildren().remove(currentPane);
+
+                // Add the login pane back if it's not already in the stack
                 if (!switchScene.getChildren().contains(mainPane)) {
-                    switchScene.getChildren().add(mainPane);  // Add the original pane back
+                    switchScene.getChildren().add(mainPane);  // Add the main login scene back
                 }
-                isTransition = false;  // Reset the flag
+
+                // After the transition finishes, proceed with changing the scene
+//                try {
+//                    changescene(event, "/View/LoginScene/Login.fxml", "Log in");
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             });
 
+
+            // Start the transition animation
             timeline.play();
-            changescene(event, "/View/LoginScene/Login.fxml", "Log in");
+
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();

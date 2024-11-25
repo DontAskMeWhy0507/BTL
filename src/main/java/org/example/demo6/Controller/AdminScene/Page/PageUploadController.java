@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.demo6.Classes.Admin;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.Library;
 
@@ -15,6 +16,8 @@ import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 public class PageUploadController {
+    Library library = Library.getInstance();
+
     @FXML
     private TextField Authors;
 
@@ -142,7 +145,11 @@ public class PageUploadController {
                     // Tạo đối tượng Book
                     Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate,bookPath ,coverImagePath, audioPathIfHave,quantity);
 
-                    Library.upLoadBook(newBook, selectedFile, selectedImageFile, selectedAudioFile);
+                    if (library.getCurrentUser() instanceof Admin) {
+                        ((Admin) library.getCurrentUser()).upLoadBook(newBook, selectedFile, selectedImageFile, selectedAudioFile);
+                    } else {
+                        System.err.println("Current user is not an admin.");
+                    }
 
                     // Thực hiện các thao tác khác với đối tượng Book (lưu vào cơ sở dữ liệu, hiển thị, ...)
                     System.out.println("Book created: " + newBook.getTitle());

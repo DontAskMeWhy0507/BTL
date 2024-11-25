@@ -31,8 +31,8 @@
             <children>
                 <TextField fx:id="tf_id" promptText="Ma sinh vien" GridPane.columnIndex="1" />
                 <TextField fx:id="tf_username" promptText="Nhap ten tai khoan" stylesheets="@../../../Style/AdminScene/AddUser.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <PasswordField fx:id="showPassword" prefHeight="59.0" prefWidth="389.0" promptText="Nhap mat khau" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField fx:id="tf_password" prefHeight="25.0" prefWidth="362.0" promptText="Nhap mat khau" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="tf_password" prefHeight="59.0" prefWidth="389.0" promptText="Nhap mat khau" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="showPassword" prefHeight="25.0" prefWidth="362.0" promptText="Nhap mat khau" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label text="ID" />
                 <Label text="Tên tài khoản" GridPane.rowIndex="1" />
                 <Label text="Nhập mật khẩu" GridPane.rowIndex="2" />

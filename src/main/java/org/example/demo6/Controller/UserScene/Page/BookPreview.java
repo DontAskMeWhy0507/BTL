@@ -100,12 +100,12 @@ public class BookPreview {
 
     public void borrowBook() {
         Library library = Library.getInstance();
-        library.borrowBook(currentBook);
+        library.getCurrentUser().borrowBook(currentBook);
     }
 
     public void returnBook() {
         Library library = Library.getInstance();
-        library.returnBook(currentBook);
+        library.getCurrentUser().returnBook(currentBook);
     }
 
 
@@ -153,15 +153,6 @@ public class BookPreview {
                 System.err.println("Default image not found");
             }
         }
-    }
-
-    public void addToDatabase() {
-        String imageURL = currentBook.getCoverImagePath();
-        String localPath = "../Uploaded/BookCovers/" + currentBook.getTitle() + ".jpg";
-        File coverImageFile = UpDownFile.downloadFileImage(imageURL,localPath);
-
-        // Pass the cover image file correctly to the `upLoadBook` method
-        Library.upLoadBook(currentBook, null, coverImageFile, null);
     }
 
 

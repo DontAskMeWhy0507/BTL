@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.AdminScene.Page.CommentItemController">
+    <!-- Phần comment chính -->
+    <HBox layoutX="10.399999618530273" layoutY="10.399999618530273" prefHeight="67.0" prefWidth="338.0" spacing="10">
+        <!-- Avatar -->
+        <ImageView fx:id="avatar" fitHeight="40" fitWidth="40">
+            <Image url="@../../../Image/Avatar/avatar.png" />
+        </ImageView>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <Label fx:id="usernameText" layoutY="-8.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Username" />
+                <Label fx:id="commentText" layoutY="14.0" prefHeight="54.0" prefWidth="611.0" text="Comment" wrapText="true" />
+                <Label fx:id="datePost" layoutX="126.0" layoutY="-7.0" style="-fx-font-size: 10px; -fx-text-fill: gray;" text="3 giờ trước" />
+            </children>
+        </AnchorPane>
+    </HBox>
+
+    <!-- Tương tác -->
+    <HBox layoutX="10.399999618530273" layoutY="89.5999984741211" spacing="10">
+        <Label fx:id="rating" layoutX="200.0" layoutY="5.0" style="-fx-text-fill: gray;" text="0 thích" />
+    </HBox>
+
+    <!-- Khu vực hiển thị biểu tượng đã chọn -->
+    <HBox fx:id="selectedIconBox" layoutX="10.399999618530273" layoutY="125.5999984741211" prefHeight="31.0" prefWidth="224.0" spacing="5" visible="false">
+        <ImageView fx:id="selectedIcon" fitHeight="20" fitWidth="20" />
+        <Label fx:id="selectedReactionText" style="-fx-text-fill: gray;" text="" />
+    </HBox>
+   <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="67.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../Image/Icon/star.png" />
+      </image>
+   </ImageView>
+</AnchorPane>

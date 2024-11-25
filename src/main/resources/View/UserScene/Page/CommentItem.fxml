@@ -27,7 +27,7 @@
     <HBox layoutX="10.399999618530273" layoutY="89.5999984741211" spacing="10" />
    <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="149.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../../../Image/Icon/Star.png" />
+         <Image url="@../../../Image/Icon/star.png" />
       </image>
    </ImageView>
      <Label fx:id="rating" layoutX="90.0" layoutY="145.0" prefWidth="44.0" styleClass="like_number" text="0 thích" />

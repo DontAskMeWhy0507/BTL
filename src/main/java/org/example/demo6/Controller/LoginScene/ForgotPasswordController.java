@@ -12,7 +12,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import javafx.util.Duration;
+import javafx.scene.text.Text;
+
 import org.example.demo6.Classes.DBUltis;
 
 import java.io.IOException;
@@ -24,7 +27,10 @@ public class ForgotPasswordController {
     private Scene scene;
     private Parent root;
 
-    private LoginController loginController;
+
+
+    DBUltis dbUltis = new DBUltis();
+
 
     @FXML
     private TextField email;
@@ -60,7 +66,8 @@ public class ForgotPasswordController {
     private JFXCheckBox confirmPass;
 
 
-    DBUltis dbUltis = new DBUltis();
+
+
 
     @FXML
     void showPassword(ActionEvent event) {
@@ -86,6 +93,7 @@ public class ForgotPasswordController {
     public void switchChangePassword(ActionEvent event) {
         boolean check = dbUltis.findQuery("SELECT * FROM users WHERE email = '" + email.getText() + "' AND id = '" + maSv.getText() + "'");
         if (check) {
+
         FadeTransition fade = new FadeTransition(Duration.seconds(0.5), forgetPass);
         fade.setFromValue(1.0);
         fade.setToValue(0.0);
@@ -101,10 +109,39 @@ public class ForgotPasswordController {
         });
 
         fade.play();
+
+            resetPass.setVisible(true);
+            forgetPass.setVisible(false);
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Email or ID is incorrect");
+            alert.showAndWait();
+        }
+
+    }
+
+    public void signIn(ActionEvent event) {
+        if (newPassword.getText().equals(confirmPassword.getText())) {
+            dbUltis.loadQuery("UPDATE users SET password = '" + newPassword.getText() + "' WHERE email = '" + email.getText() + "' AND id = '" + maSv.getText() + "'");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Change password successfully");
+            alert.showAndWait();
+            try {
+                changescene(event, "/View/LoginScene/Login.fxml", "Log in");
+            } catch (Exception e) {
+                e.printStackTrace();
+                Throwable cause = e.getCause();
+                if (cause != null) {
+                    cause.printStackTrace();
+                }
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Password and Confirm Password are not the same");
             alert.showAndWait();
         }
     }

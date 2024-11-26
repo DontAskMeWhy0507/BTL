@@ -90,7 +90,7 @@ public class MainSceneClass {
         staticMainScrollPane = mainScrollPane;
         mainScrollPane.setFitToWidth(true);
         mainScrollPane.setFitToHeight(true);
-        showHome();
+        changeToUserView();
     }
 
     @FXML
@@ -175,7 +175,7 @@ public class MainSceneClass {
 
 
     @FXML
-    void changeToUserView(ActionEvent event) {
+    void changeToUserView() {
         try {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/StatisticsView.fxml"));
             Parent UserView = loader1.load();

@@ -76,7 +76,7 @@ public class BookUnit {
             BookPreview bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
-            MainSceneUser.setMainContent(root);
+            MainSceneUser.setMainContent1(root);
             staticMainScrollPane1.setFitToWidth(true);
             staticMainScrollPane1.setFitToHeight(true);
         } catch (IOException e) {

@@ -23,14 +23,9 @@ public class PathCheck  {
     public static void main(String[] args) {
         List<Book> books;
         DBUltis dbUltis = new DBUltis();
-        books = dbUltis.searchBookByTransaction("SELECT books.* FROM books " +
-                "LEFT JOIN BookTransaction ON books.isbn = BookTransaction.book_id " +
-                "WHERE BookTransaction.user_id = 125 " +
-                "AND BookTransaction.status = 'Borrowed' " +
-                "GROUP BY books.isbn"
-        );
-        while (!books.isEmpty()) {
-            System.out.println("Book: " + books.get(0).getTitle());
+        books =  dbUltis.searchBookByTransaction("SELECT * FROM books ORDER BY published_date DESC LIMIT 10");
+        for (int i = 0; i < books.size(); i++) {
+            System.out.println(books.get(i).getTitle());
         }
     }
 }

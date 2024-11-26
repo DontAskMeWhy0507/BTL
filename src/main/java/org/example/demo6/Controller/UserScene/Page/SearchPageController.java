@@ -1,6 +1,7 @@
 package org.example.demo6.Controller.UserScene.Page;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class SearchPageController extends org.example.demo6.Controller.AdminScene.Page.SearchPageController {
+public class SearchPageController {
 
     @FXML
     private GridPane databaseResults;  // GridPane for database results
@@ -26,13 +27,33 @@ public class SearchPageController extends org.example.demo6.Controller.AdminScen
 
     private final ExecutorService executor = Executors.newFixedThreadPool(2);  // Create a thread pool with 2 threads
 
-//    // Set the search results for both database and API
-//    public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
-//        this.databaseSearchResults = databaseResults;
-//        this.apiSearchResults = apiResults;
-//        displayDatabaseResults();
-//        displayApiResults();
-//    }
+    // Set search results and display them concurrently
+    public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
+        this.databaseSearchResults = databaseResults;
+        this.apiSearchResults = apiResults;
+
+        // Task for displaying database results
+        Task<Void> displayDatabaseTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                displayDatabaseResults();
+                return null;
+            }
+        };
+
+        // Task for displaying API results
+        Task<Void> displayApiTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                displayApiResults();
+                return null;
+            }
+        };
+
+        // Submit tasks to executor
+        executor.submit(displayDatabaseTask);
+        executor.submit(displayApiTask);
+    }
 
     // Display the database results in the first GridPane
     private void displayDatabaseResults() {

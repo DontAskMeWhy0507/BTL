@@ -86,5 +86,11 @@ public class Admin extends User {
                 + book.getAudioPath() + "', quantity = " + book.getQuantity() + " WHERE isbn = '" + book.getIsbn() + "'");
     }
 
+    public void updateProfile(User user) {
+        dbUltis.loadQuery("UPDATE users SET username = '" + user.getUsername() + "', password = '" + user.getPassword()
+                + "', email = '" + user.getEmail() + "', date_of_birth = '" + user.getDateOfBirth().toString()
+                + "', avatar = '" + user.getPathToProfilePicture() + "' WHERE id = " + user.getId());
+    }
+
 }
 

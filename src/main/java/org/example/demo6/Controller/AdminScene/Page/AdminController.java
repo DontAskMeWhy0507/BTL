@@ -205,7 +205,7 @@ public class AdminController {
                 // Refresh the table view after editing
                 loadDataFromDatabase();
             } catch (IOException e) {
-                LOGGER.log(Level.SEVERE, "Error opening EditUser.fxml", e);
+                LOGGER.log(Level.SEVERE, "Error opening AddUser.fxml", e);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);

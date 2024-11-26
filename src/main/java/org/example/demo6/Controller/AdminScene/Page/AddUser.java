@@ -46,6 +46,8 @@ public class AddUser {
     @FXML
     private TextField showPassword;
 
+    
+
     @FXML
     void getPassword(ActionEvent event) {
         if (showPass.isSelected()) {
@@ -68,49 +70,41 @@ public class AddUser {
     @FXML
     public void buttonOK() {
         try {
-            int id = Integer.parseInt(tf_id.getText());
+            // Kiểm tra xem trường tf_id có rỗng không
+            if (tf_id.getText().isEmpty()) {
+                throw new NumberFormatException("ID field is empty");
+            }
 
-            if (tf_id.getText().isEmpty() || tf_username.getText().isEmpty() || tf_password.getText().isEmpty() ||
-                    tf_email.getText().isEmpty() || choiceRole.getValue() == null || dateOfBirth.getValue() == null) {
-                // Alert user to fill all fields
+            // Kiểm tra xem tf_id có phải là số hợp lệ không
+            int id = Integer.parseInt(tf_id.getText().trim());
+
+            // Kiểm tra các trường khác
+            if (tf_username.getText().isEmpty() || tf_password.getText().isEmpty() ||
+                     choiceRole.getValue() == null || dateOfBirth.getValue() == null) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);
                 alert.setContentText("Please fill all fields");
                 alert.showAndWait();
-
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + tf_id.getText() + "'")) {
-                // Alert user that id is already taken
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setTitle("Warning");
+//                alert.setHeaderText(null);
+//                alert.setContentText("ID is already taken");
+//                alert.showAndWait();
                 User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
 
                 if (library.getCurrentUser() instanceof Admin) {
                     Admin admin = (Admin) library.getCurrentUser();
-                    admin.addUsers(user);
+                    admin.updateProfile(user);
                     sucessLabel.setText("User added successfully");
                 } else {
                     System.err.println("Current user is not an admin.");
                 }
-
-            } else if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + tf_username.getText() + "'")) {
-                // Alert user that username is already taken
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText(null);
-                alert.setContentText("Username is already taken");
-                alert.showAndWait();
-
-            } else if (dbUltis.findQuery("SELECT * FROM users WHERE email = '" + tf_email.getText() + "'")) {
-                // Alert user that email is already taken
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText(null);
-                alert.setContentText("Email is already taken");
-                alert.showAndWait();
-
             } else {
-                // Insert user into database
-
-                User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
+                // Logic thêm user vào cơ sở dữ liệu
+                User user = new User(id, tf_username.getText(), tf_password.getText(),
+                        tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
 
                 if (library.getCurrentUser() instanceof Admin) {
                     Admin admin = (Admin) library.getCurrentUser();
@@ -119,18 +113,19 @@ public class AddUser {
                 } else {
                     System.err.println("Current user is not an admin.");
                 }
-
             }
-        }
-        catch (Exception e) {
-            // Alert user that id must be a number
+        } catch (NumberFormatException e) {
+            // Thông báo lỗi nếu ID không hợp lệ
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
             alert.setContentText("ID must be a number");
             alert.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
 
     public void setUser(User user) {
         tf_id.setText(String.valueOf(user.getId()));
@@ -140,4 +135,6 @@ public class AddUser {
         choiceRole.setValue(user.getRole());
         dateOfBirth.setValue(user.getDateOfBirth());
     }
+
+
 }

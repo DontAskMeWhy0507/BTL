@@ -30,23 +30,7 @@ public class CommentItemController {
 
     private int likes = 0;
 
-    // Hiển thị các biểu tượng cảm xúc
-    @FXML
-    private void showReaction(MouseEvent event) {
-        reactionBox.setVisible(true);
-    }
-
-    // Ẩn khu vực cảm xúc
-    @FXML
-    private void hideReaction(MouseEvent event) {
-        reactionBox.setVisible(false);
-    }
-
-    // Xử lý khi người dùng chọn cảm xúc
-
-
-
-
+    // lay du lieu nguoi dung
     public void setData(String avatarPath, String username, String comment, String date, int ratingValue) {
         // Đặt avatar
         if (avatarPath != null) {
@@ -61,5 +45,4 @@ public class CommentItemController {
         datePost.setText(date);
         rating.setText(String.valueOf(ratingValue));
     }
-
 }

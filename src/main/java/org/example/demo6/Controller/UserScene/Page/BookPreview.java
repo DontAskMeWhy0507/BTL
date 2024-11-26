@@ -27,7 +27,10 @@ import java.io.InputStream;
 import java.util.List;
 
 public class BookPreview {
+    private static final int descriptionLength = 200;
+
     private Book currentBook;
+    private String descriptionTemp;
 
     @FXML
     private Label bookTitleLabel;
@@ -65,26 +68,11 @@ public class BookPreview {
     @FXML
     private VBox commentsContainer;
 
-    private static final int descriptionLength = 200;
-
     @FXML
     public Text fullDescription;
 
     @FXML
     private Text rateAvg;
-
-    private String descriptionTemp;
-
-    public void setDescriptionLength (String description) {
-        if (description.length() > descriptionLength) {
-            descriptionTemp = description;
-            bookDescription.setText(description.substring(0, descriptionLength) + "...");
-            viewMoreButton.setVisible(true);
-        } else {
-            bookDescription.setText(description);
-            viewMoreButton.setVisible(false);
-        }
-    }
 
     @FXML
     private void toggleDescription() throws IOException {
@@ -108,7 +96,16 @@ public class BookPreview {
         library.getCurrentUser().returnBook(currentBook);
     }
 
-
+    public void setDescriptionLength (String description) {
+        if (description.length() > descriptionLength) {
+            descriptionTemp = description;
+            bookDescription.setText(description.substring(0, descriptionLength) + "...");
+            viewMoreButton.setVisible(true);
+        } else {
+            bookDescription.setText(description);
+            viewMoreButton.setVisible(false);
+        }
+    }
 
     public void setBookData(Book book) {
         currentBook = book;
@@ -186,6 +183,4 @@ public class BookPreview {
             e.printStackTrace();
         }
     }
-
-
 }

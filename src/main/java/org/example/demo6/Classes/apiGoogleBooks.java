@@ -15,7 +15,6 @@ import java.util.List;
 
 public class apiGoogleBooks {
 
-    // Replace with your API Key from Google Cloud Console
     private static final String API_KEY = "AIzaSyCyibUKHM6uRFhx6bzrhHyNDbt1GO3h-Lk";
 
     // tìm sách

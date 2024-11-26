@@ -27,10 +27,7 @@ public class ForgotPasswordController {
     private Scene scene;
     private Parent root;
 
-
-
     DBUltis dbUltis = new DBUltis();
-
 
     @FXML
     private TextField email;
@@ -64,11 +61,7 @@ public class ForgotPasswordController {
 
     @FXML
     private JFXCheckBox confirmPass;
-
-
-
-
-
+    
     @FXML
     void showPassword(ActionEvent event) {
         if (confirmPass.isSelected()) {

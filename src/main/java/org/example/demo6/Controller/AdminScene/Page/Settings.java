@@ -45,11 +45,13 @@ public class Settings {
     private JFXCheckBox showPass;
 
     @FXML
-            private ImageView avatarAdd1;
+    private ImageView avatarAdd1;
+
     @FXML
-            private ImageView avatarAdd2;
+    private ImageView avatarAdd2;
+
     @FXML
-            private ImageView avatarAdd3;
+    private ImageView avatarAdd3;
 
     boolean changeAvatar = false;
     boolean changeUsername = false;

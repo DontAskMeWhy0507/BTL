@@ -16,6 +16,7 @@ The application is designed to manage library.
 
 
 ## UML diagram
+
 ![uml.png](uml.png)
 
 ## Installation

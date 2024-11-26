@@ -117,7 +117,7 @@ public class PageUploadController {
         });
 
         Confirm.setOnAction(event -> {
-            if (selectedFile != null) {
+            if (selectedFile != null ) {
                 // Hiển thị hộp thoại xác nhận
                 Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmAlert.setTitle("Confirmation");
@@ -136,10 +136,20 @@ public class PageUploadController {
                     String language = Language.getText();
                     String publisher = Publisher.getText();
                     LocalDate publishedDate = PublishedDate.getValue();
-                    int quantity = Integer.parseInt(this.quantity.getText());
+                    int quantity = 0;
+                    try {
+                        quantity = Integer.parseInt(this.quantity.getText());
+                    } catch (NumberFormatException e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Please enter a valid quantity.");
+                        alert.showAndWait();
+                        return;
+                    }
 
                     String bookPath = "/Uploaded/Books/" + selectedFile.getName();
-                    String coverImagePath = (selectedImageFile != null) ? "/Uploaded/BookCovers/" + selectedImageFile.getName() : null;
+                    String coverImagePath = (selectedImageFile != null) ? "/Uploaded/BookCovers/" + selectedImageFile.getName() : "src/main/resources/Image/BookCoverEmpty.jpg";
                     String audioPathIfHave = (selectedAudioFile != null) ? "/Uploaded/AudioBooks/" + selectedAudioFile.getName() : null;
                     // Tạo đối tượng Book
                     Book newBook = new Book(isbn, title, author, category, description, language, publisher, publishedDate,bookPath ,coverImagePath, audioPathIfHave,quantity);
@@ -150,9 +160,20 @@ public class PageUploadController {
                         System.err.println("Current user is not an admin.");
                     }
 
-                    // Thực hiện các thao tác khác với đối tượng Book (lưu vào cơ sở dữ liệu, hiển thị, ...)
-                    System.out.println("Book created: " + newBook.getTitle());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Book uploaded successfully.");
+                    alert.showAndWait();
+
+
                 }
+            }   else if (selectedFile == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Please select a file to upload.");
+                alert.showAndWait();
             }
 
         });

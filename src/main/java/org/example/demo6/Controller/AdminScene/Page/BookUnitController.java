@@ -61,7 +61,7 @@ public class BookUnitController extends Node {
         if (book.getCoverImagePath() != null) {
             imageBook.setImage(new Image(book.getCoverImagePath()));
         } else {
-            imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
+            imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/BookCoverEmpty.jpg")));
         }
     }
 
@@ -73,7 +73,7 @@ public class BookUnitController extends Node {
         if (book.getCoverImagePath() != null) {
             imageBook.setImage(new Image(new File(book.getCoverImagePath()).toURI().toString()));
         } else {
-            imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
+            imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/BookCoverEmpty.jpg")));
         }
     }
 }

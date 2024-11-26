@@ -65,7 +65,7 @@ public class GeneralController {
 
                 // Reapply snow effect to the new scene after fade-in
                 SnowEffect snowEffect = new SnowEffect(mainPane); // Recreate snow effect for the new scene
-                snowEffect.startSnow(200); // Start 200 snowflakes falling
+                snowEffect.startSnow(400); // Start 200 snowflakes falling
             });
 
             // Start the blur effect transition

@@ -20,7 +20,7 @@
 
         private MediaPlayer mediaPlayer;
 
-        // Constructor to initialize the music file
+        // file nhạc
         public Music(String filePath) {
             try {
                 Media media = new Media(new File(filePath).toURI().toString());
@@ -31,28 +31,24 @@
         }
 
 
-        // Method to play music
         public void play() {
             if (mediaPlayer != null) {
                 mediaPlayer.play();
             }
         }
 
-        // Method to pause music
         public void pause() {
             if (mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
                 mediaPlayer.pause();
             }
         }
 
-        // Method to stop music
         public void stop() {
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
             }
         }
 
-        // Method to loop music
         public void loop() {
             if (mediaPlayer != null) {
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);

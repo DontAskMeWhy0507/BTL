@@ -84,6 +84,10 @@ public class MainSceneUser {
         staticMainScrollPane1.setContent(content);
     }
 
+    /**
+     * đăng xuất
+     * @param event cho nút
+     */
     @FXML
     void logOut(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -106,11 +110,19 @@ public class MainSceneUser {
 
     }
 
+    /**
+     * hiển thị nút
+     */
     @FXML
     void moreButton() {
         seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
     }
 
+    /**
+     * nút tra cứu
+     * @param event chuột
+     * @throws IOException ngoại lệ
+     */
     @FXML
     public void searchButton(ActionEvent event) throws IOException {
         String searchQuery = SearchField.getText();
@@ -171,17 +183,26 @@ public class MainSceneUser {
         new Thread(task).start();
     }
 
-
+    /**
+     * thay ava
+     * @param avatarPaths path cho ava
+     */
     public void changeAvatar(String avatarPaths) {
         Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
         avatar.setImage(newAvatarImage);
     }
 
+    /**
+     * set name cho nút hiển thị
+     */
     public void setUser() {
         changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
         avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
     }
 
+    /**
+     * lấy bảng
+     */
     public void showAll() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/All.fxml"));
@@ -194,9 +215,11 @@ public class MainSceneUser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    /**
+     * chuyển qua chatbot
+     */
     public void ChatAI() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/ChatAI.fxml"));
@@ -213,6 +236,10 @@ public class MainSceneUser {
         }
     }
 
+    /**
+     * hiển thị cài đặt
+     * @param event chuột
+     */
     @FXML
     void showSettings(ActionEvent event) {
         try {
@@ -231,12 +258,13 @@ public class MainSceneUser {
         }
     }
 
+    /**
+     * về trang chủ
+     */
     public void showHome() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Home.fxml"));
             Parent homeView = loader.load();
-
-
 
             // Đặt nội dung mới vào ScrollPane
             staticMainScrollPane1 = mainScrollPane;
@@ -251,6 +279,9 @@ public class MainSceneUser {
         }
     }
 
+    /**
+     * chuyển qua streak
+     */
     public void changeToStreak() {
         try {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Streak.fxml"));
@@ -264,6 +295,10 @@ public class MainSceneUser {
         }
     }
 
+    /**
+     * tắt tiếng
+     * @param event chuột
+     */
     public void muteSound(ActionEvent event) {
         isMuted = !isMuted;
 

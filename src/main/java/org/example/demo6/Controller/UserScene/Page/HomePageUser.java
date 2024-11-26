@@ -30,6 +30,10 @@ public class HomePageUser extends BookUnit{
 
     private final ExecutorService executor2 = Executors.newFixedThreadPool(2); // Tạo thread pool với 2 luồng
 
+    /**
+     * sách top.
+     * @return list
+     */
     private List<Book> topBooks() {
         try {
             return apiGoogleBooks.searchBooks1("bestsellers");
@@ -39,6 +43,10 @@ public class HomePageUser extends BookUnit{
         }
     }
 
+    /**
+     * sách mới nhất
+     * @return list sách
+     */
     private List<Book> newestBooks() {
         try {
             return dbUltis.searchBookByTransaction("SELECT * FROM books ORDER BY published_date DESC LIMIT 10");
@@ -48,6 +56,9 @@ public class HomePageUser extends BookUnit{
         }
     }
 
+    /**
+     * hiển thị sách có lượt truy cập cao
+     */
     private void displayTopBooks() {
         Platform.runLater(() -> cardLayOut2.getChildren().clear());
         int columns = 6;
@@ -82,6 +93,9 @@ public class HomePageUser extends BookUnit{
 
     }
 
+    /**
+     * hiển thị sách mới đc thêm vào
+     */
     private void displayNewestBooks() {
         Platform.runLater(() -> cardLayOut1.getChildren().clear());
         int columns = 6;

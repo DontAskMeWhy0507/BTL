@@ -62,7 +62,8 @@ public class ForgotPasswordController extends GeneralController {
 
     @FXML
     private JFXCheckBox confirmPass;
-    
+
+    // hiển thị mật khẩu
     @FXML
     void showPassword(ActionEvent event) {
         if (confirmPass.isSelected()) {
@@ -84,6 +85,7 @@ public class ForgotPasswordController extends GeneralController {
         }
     }
 
+    // chuyển qua reser mật khẩu
     public void switchChangePassword(ActionEvent event) {
         boolean check = dbUltis.findQuery("SELECT * FROM users WHERE email = '" + email.getText() + "' AND id = '" + maSv.getText() + "'");
         if (check) {
@@ -116,6 +118,7 @@ public class ForgotPasswordController extends GeneralController {
 
     }
 
+    // chuyển qua đăng nhập
     public void signIn(ActionEvent event) {
         if (newPassword.getText().equals(confirmPassword.getText())) {
             dbUltis.loadQuery("UPDATE users SET password = '" + newPassword.getText() + "' WHERE email = '" + email.getText() + "' AND id = '" + maSv.getText() + "'");

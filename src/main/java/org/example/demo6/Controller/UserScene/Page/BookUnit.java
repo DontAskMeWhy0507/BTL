@@ -41,7 +41,18 @@ public class BookUnit {
 
 
 
+    // chuyển qua book view
+    @FXML
+    public void switchToBookDetails(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/BookPreview.fxml"));
+            Parent root = fxmlLoader.load();
+            // Lấy controller của trang chi tiết
+            BookPreview bookPreviewController = fxmlLoader.getController();
+            bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
+
+    // dữ liệu sách
     public void setData(Book book) {
         this.currentBook = book;
         nameBook.setText(book.getTitle());

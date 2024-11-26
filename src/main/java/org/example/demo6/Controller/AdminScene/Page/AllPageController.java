@@ -13,51 +13,51 @@ import java.util.List;
 
 public class AllPageController extends MainSceneClass {
     DBUltis DBUltis = new DBUltis();
+
     @FXML
-    private GridPane bookGrid; // Ensure this matches the fx:id in FXML
+    private GridPane bookGrid;
 
     private List<Book> books;
 
     @FXML
     public void initialize() {
-        // Fetch books from the database
+        // lấy sách từ database
         books = DBUltis.getBooksFromDatabase();
-        // Populate the GridPane with book buttons
+        // thêm sách vào bảng
         loadBooksIntoGrid();
     }
 
+    // thêm sách vào bảng
     private void loadBooksIntoGrid() {
         int columns = 7;
         int rows = 6;
         int bookCount = 0;
 
-        // Check if the books list is empty
+        // bảng không có sách
         if (books == null || books.isEmpty()) {
             System.out.println("No books available to display.");
             return;
         }
 
-        // Load books into the grid
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
                 if (bookCount >= books.size()) {
-                    return; // Exit both loops if no more books
+                    return; // không còn sách
                 }
 
                 try {
-                    // Load the FXML for the book pane
+                    // FXML sách
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Book.fxml"));
                     Pane bookPane = loader.load();
 
-                    // Get the controller and set the data for the book
+                    // controller sách
                     BookUnitController controller = loader.getController();
                     controller.setDataAll(books.get(bookCount));
 
-                    // Add the book pane to the grid
+                    // thêm sách
                     bookGrid.add(bookPane, col, row);
                     bookCount++;
                 } catch (IOException e) {
-                    // Log the error with book count for better debugging
                     System.err.println("Failed to load book at index " + bookCount + ": " + e.getMessage());
                 }
             }

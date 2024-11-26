@@ -74,6 +74,7 @@ public class BookPreview extends BookUnit {
     @FXML
     private Text rateAvg;
 
+    // xem miêu tả đầy đủ
     @FXML
     private void toggleDescription() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Description.fxml"));
@@ -86,16 +87,19 @@ public class BookPreview extends BookUnit {
         stage.show();
     }
 
+    // mượn ssachs
     public void borrowBook() {
         Library library = Library.getInstance();
         library.getCurrentUser().borrowBook(currentBook);
     }
 
+    // trả sách
     public void returnBook() {
         Library library = Library.getInstance();
         library.getCurrentUser().returnBook(currentBook);
     }
 
+    // độ dài mặc định trong book preview
     public void setDescriptionLength (String description) {
         if (description.length() > descriptionLength) {
             descriptionTemp = description;
@@ -107,6 +111,7 @@ public class BookPreview extends BookUnit {
         }
     }
 
+    // dữ liệu sách
     public void setBookData(Book book) {
         currentBook = book;
         bookTitleLabel.setText(book.getTitle());
@@ -121,15 +126,12 @@ public class BookPreview extends BookUnit {
         double avgRating = dbUltis.getAverageRatingForBook(book);
         rateAvg.setText(String.format("%.1f", avgRating));
 
-        // Check if cover image path is available and valid
         if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {
             try {
                 if (book.getCoverImagePath().startsWith("http")) {
-                    // Download the image from the URL and set it in the ImageView
                     Image coverImage = new Image(book.getCoverImagePath(), true);  // Use background loading
                     bookCoverImage.setImage(coverImage);
                 } else {
-                    // Load the image from the local file system
                     File coverImageFile = new File(book.getCoverImagePath());
                     Image coverImage = new Image(coverImageFile.toURI().toString());
                     bookCoverImage.setImage(coverImage);
@@ -137,12 +139,10 @@ public class BookPreview extends BookUnit {
 
 
             } catch (Exception e) {
-                // Log or handle error and set a default image in case of an invalid URL
                 System.err.println("Error loading image: " + e.getMessage());
                 bookCoverImage.setImage(new Image(getClass().getResourceAsStream("/Image/heart.jpg")));
             }
         } else {
-            // Set a default image if the cover path is null or empty
             InputStream defaultImageStream = getClass().getResourceAsStream("/Image/heart.jpg");
             if (defaultImageStream != null) {
                 bookCoverImage.setImage(new Image(defaultImageStream));
@@ -152,23 +152,21 @@ public class BookPreview extends BookUnit {
         }
     }
 
-
+    // đăng tải comment
     public void postComment() {
         User user = Library.getInstance().getCurrentUser();
         double ratingValue = ratingBook.getRating();
-        String comment = commentInputField.getText(); // Replace with actual comment input
+        String comment = commentInputField.getText();
 
-        // Create a new Review object
         Review review = new Review(comment, (int) ratingValue, user);
 
-        // Save the review to the database
         DBUltis dbUltis = new DBUltis();
         dbUltis.saveReviewToDatabase(review, currentBook);
 
         System.out.println("Rating: " + ratingValue);
     }
 
-
+    // xem các comment khác
     public void changeToSeenComments() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/CommentSeenPage.fxml"));

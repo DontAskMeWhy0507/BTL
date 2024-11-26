@@ -56,19 +56,15 @@ public class Streak extends MainSceneClass {
 
     // chinh streak
     private void updateStreakDetails() {
-        // Update labels
         streakLabel.setText("Chuỗi hiện tại: " + currentStreak + " ngày");
         longestStreakLabel.setText("Chuỗi dài nhất: " + longestStreak + " ngày");
 
-
-        // Calculate progress to the next milestone
         int nextMilestone = Library.getInstance().getCurrentUser().getStreak().getNextMilestone();
         if (nextMilestone != -1) {
             double progress = (double) currentStreak / nextMilestone;
             streakProgressBar.setProgress(Math.min(1.0, progress));
             milestoneLabel.setText("Mốc tiếp theo: " + nextMilestone + " ngày");
         } else {
-            // If no milestone is left, show maxed-out progress
             streakProgressBar.setProgress(1.0);
             milestoneLabel.setText("Congratulations! You've reached the highest milestone.");
         }

@@ -73,6 +73,7 @@ public class AdminController extends User {
         loadDataFromDatabase();
     }
 
+    // thêm cột
     private void setupTableColumns() {
         // Existing columns
         tf_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -88,6 +89,7 @@ public class AdminController extends User {
         tf_lastLoginDate.setCellValueFactory(new PropertyValueFactory<>("LastLoginDate"));
     }
 
+    // thêm data từ database
     private void loadDataFromDatabase() {
         String query = "SELECT * FROM USERS";
         try (Connection conn = getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
@@ -114,6 +116,7 @@ public class AdminController extends User {
         return DriverManager.getConnection(DATABASE_URL);
     }
 
+    // thêm người dùng
     @FXML
     private void handleAddUser() {
         try {
@@ -128,6 +131,7 @@ public class AdminController extends User {
         }
     }
 
+    // xóa người dùng
     @FXML
     private void handleDeleteUser() {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
@@ -152,12 +156,14 @@ public class AdminController extends User {
         }
     }
 
+    // tải database
     @FXML
     public void loadDatabase() {
         data.clear();
         loadDataFromDatabase();
     }
 
+    // tra theo tên
     @FXML
     public void searchName() {
         data.clear();

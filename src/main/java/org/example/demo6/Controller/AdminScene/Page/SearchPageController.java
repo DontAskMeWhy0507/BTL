@@ -29,7 +29,7 @@ public class SearchPageController {
 
     private final ExecutorService executor = Executors.newFixedThreadPool(2); // Tạo thread pool với 2 luồng
 
-    // Set search results and display them concurrently
+    // sắp xếp kết quả tìm kiếm
     public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
         this.databaseSearchResults = databaseResults;
         this.apiSearchResults = apiResults;
@@ -57,6 +57,7 @@ public class SearchPageController {
         executor.submit(displayApiTask);
     }
 
+    // hiển thị kết quả tìm kiếm từ database
     private void displayDatabaseResults() {
         Platform.runLater(() -> databaseResults.getChildren().clear());
         int columns = 6;
@@ -90,6 +91,7 @@ public class SearchPageController {
         }
     }
 
+    // hiển thị kết quả tìm kiếm theo api
     private void displayApiResults() {
         Platform.runLater(() -> apiResults.getChildren().clear());
         int columns = 6;

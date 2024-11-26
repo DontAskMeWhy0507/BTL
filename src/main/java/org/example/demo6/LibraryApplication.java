@@ -16,8 +16,8 @@ import java.io.IOException;
 
 public class LibraryApplication extends Application {
 
-    private final Library library = Library.getInstance();    // Singleton instance of Library
-    private final Music music = Music.getInstance();          // Singleton instance of Music
+    private final Library library = Library.getInstance();    // Singleton instance của Library
+    private final Music music = Music.getInstance();          // Singleton instance của Music
 
     @Override
     public void start(@NotNull Stage stage) throws IOException {

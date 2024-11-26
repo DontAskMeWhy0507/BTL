@@ -19,12 +19,11 @@ public class Statistics extends MainSceneClass {
 
     @FXML
     public void initialize() {
-        // Load statistics from the library
         loadPieChartData();
         loadBarChartData();
     }
 
-    // Load data for PieChart (book categories borrowed)
+    // dữ liệu biểu đồ tròn
     private void loadPieChartData() {
         ArrayList<Book> books = dbUltis.getBooksFromDatabase();
         while (books.size() > 0) {
@@ -41,13 +40,11 @@ public class Statistics extends MainSceneClass {
         }
     }
 
-    // Load data for BarChart (top user streaks)
+    // dữ liệu biểu đồ cột
     private void loadBarChartData() {
-        // Create a data series for the bar chart
         XYChart.Series<String, Number> streakSeries = new XYChart.Series<>();
         streakSeries.setName("Top User Streak");
 
-        // Get the users from the library
         Library library = Library.getInstance();
         if (library.getCurrentUser() instanceof Admin) {
             Admin admin = (Admin) library.getCurrentUser();
@@ -58,7 +55,6 @@ public class Statistics extends MainSceneClass {
             System.err.println("Current user is not an admin.");
         }
 
-        // Add data series to the BarChart
         userStreakBarChart.getData().add(streakSeries);
     }
 }

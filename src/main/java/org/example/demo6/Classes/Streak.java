@@ -6,11 +6,10 @@ import java.time.temporal.ChronoUnit;
 public class Streak {
     private int streak;
     private int longestStreak;
-    private LocalDate lastAccess; // The last date the user logged in
-    private LocalDate today;      // Today's date
-    private final int[] milestones = {7, 10, 30}; // Milestone streaks
+    private LocalDate lastAccess;
+    private LocalDate today;
+    private final int[] milestones = {7, 10, 30};
 
-    // constructor
     public Streak(LocalDate lastAccess, int streak, int longestStreak) {
         this.streak = streak;
         this.longestStreak = longestStreak;
@@ -22,28 +21,27 @@ public class Streak {
         }
     }
 
-    // track days
+    // cập nhật streak
     public void updateStreak() {
         if (lastAccess != null) {
             long daysBetween = ChronoUnit.DAYS.between(lastAccess, today);
             if (daysBetween == 1) {
                 streak++;
             } else if (daysBetween > 1) {
-                streak = 1; // Reset streak
+                streak = 1;
             }
         } else {
-            streak = 1; // First access
+            streak = 1;
         }
         if (streak > longestStreak) {
-            longestStreak = streak; // Update longestStreak
+            longestStreak = streak;
         }
-        lastAccess = today; // Update last access date
+        lastAccess = today;
 
-        // Check milestone
         checkMilestone();
     }
 
-    // rewwards.
+    // phần thưởng
     public boolean checkMilestone() {
         for (int milestone : milestones) {
             if (streak == milestone) {
@@ -54,6 +52,7 @@ public class Streak {
         return false; // Không đạt milestone nào
     }
 
+    // phần thưởng tiếp theo
     public int getNextMilestone() {
         for (int milestone : milestones) {
             if (streak < milestone) {

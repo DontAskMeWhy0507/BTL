@@ -15,13 +15,13 @@ public class AllUser{
     DBUltis DBUltis = new DBUltis();
 
     @FXML
-    private GridPane bookGrid; // Ensure this matches the fx:id in FXML
+    private GridPane bookGrid;
 
     private List<Book> books;
 
     @FXML
     public void initialize() {
-        // Fetch books from the database
+
 
         books = DBUltis.searchBookByTransaction("SELECT books.* FROM books " +
                 "LEFT JOIN BookTransaction ON books.isbn = BookTransaction.book_id " +
@@ -29,10 +29,10 @@ public class AllUser{
                 "AND BookTransaction.status = 'Borrowed' " +
                 "GROUP BY books.isbn"
         );
-        // Populate the GridPane with book buttons
         loadBooksIntoGrid();
     }
 
+    // thêm sách vào bảng
     private void loadBooksIntoGrid() {
         int columns = 7;
         int rows = 6;
@@ -44,27 +44,22 @@ public class AllUser{
             return;
         }
 
-        // Load books into the grid
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
                 if (bookCount >= books.size()) {
-                    return; // Exit both loops if no more books
+                    return;
                 }
 
                 try {
-                    // Load the FXML for the book pane
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Book.fxml"));
                     Pane bookPane = loader.load();
 
-                    // Get the controller and set the data for the book
                     BookUnit controller = loader.getController();
                     controller.setDataAll(books.get(bookCount));
 
-                    // Add the book pane to the grid
                     bookGrid.add(bookPane, col, row);
                     bookCount++;
                 } catch (IOException e) {
-                    // Log the error with book count for better debugging
                     System.err.println("Failed to load book at index " + bookCount + ": " + e.getMessage());
                 }
             }

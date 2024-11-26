@@ -23,10 +23,11 @@ public class Admin extends User {
         String UPLOAD_DIRECTORY_IMAGE = "Uploaded/BookCovers";
 
         if (dbUltis.findQuery("SELECT * FROM books WHERE isbn = '" + book.getIsbn() + "'")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Book already exists");
-            alert.setContentText("The book with the ISBN " + book.getIsbn() + " already exists in the database.");
+            updateBook(book);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Book updated");
+            alert.setContentText("The book with the ISBN " + book.getIsbn() + " has been updated successfully.");
             alert.showAndWait();
             return;
         }
@@ -60,10 +61,11 @@ public class Admin extends User {
     }
 
     public void addUsers(User user) {
-        dbUltis.loadQuery("INSERT INTO users (username, password, role, email, avatar, last_access, streak, date_of_birth, longest_streak) " +
+        dbUltis.loadQuery("INSERT INTO users (username, password, role, avatar, last_access, streak, date_of_birth, longest_streak) " +
                 "VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getRole() + "', '" +
-                user.getEmail() + "', '" + user.getPathToProfilePicture() + "', '" + LocalDate.now().toString() + "', 0, '" +
+                user.getPathToProfilePicture() + "', '" + LocalDate.now().toString() + "', 0, '" +
                 user.getDateOfBirth().toString() + "', 0)");
+
 
     }
 
@@ -73,6 +75,15 @@ public class Admin extends User {
 
     public void deleteBook(Book book) {
         dbUltis.loadQuery("DELETE FROM books WHERE isbn = " + book.getIsbn());
+    }
+
+    public void updateBook(Book book) {
+        dbUltis.loadQuery("UPDATE books SET title = '" + book.getTitle() + "', author = '" + book.getAuthor()
+                + "', category = '" + book.getCategory() + "', description = '" + book.getDescription()
+                + "', language = '" + book.getLanguage() + "', publisher = '" + book.getPublisher()
+                + "', published_date = '" + book.getPublishedDate().toString() + "', book_path = '"
+                + book.getBookPath() + "', cover_image_path = '" + book.getCoverImagePath() + "', audio_path = '"
+                + book.getAudioPath() + "', quantity = " + book.getQuantity() + " WHERE isbn = '" + book.getIsbn() + "'");
     }
 
 }

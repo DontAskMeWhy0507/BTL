@@ -26,11 +26,12 @@
         </TableView>
 
         <!-- Button controls for actions -->
-        <HBox alignment="CENTER_LEFT" layoutX="41.0" layoutY="8.0" prefHeight="52.0" prefWidth="502.0" spacing="10.0" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="8.0">
+        <HBox alignment="CENTER_LEFT" layoutX="41.0" layoutY="8.0" prefHeight="52.0" prefWidth="590.0" spacing="10.0" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="481.0" AnchorPane.topAnchor="8.0">
             <children>
                 <Button fx:id="btnAddUser" mnemonicParsing="false" onAction="#handleAddUser" text="Thêm người dùng" />
                 <Button fx:id="btnDeleteUser" mnemonicParsing="false" onAction="#handleDeleteUser" prefHeight="42.0" prefWidth="176.0" text="Xóa người dùng" />
                 <Button mnemonicParsing="false" onAction="#loadDatabase" stylesheets="@../../../Style/AdminScene/BookTable.css" text="Tải lại" />
+            <Button mnemonicParsing="false" onAction="#updateUser" prefHeight="42.0" prefWidth="133.0" stylesheets="@../../../Style/AdminScene/BookTable.css" text="Sửa người dùng" />
             </children>
         </HBox>
 

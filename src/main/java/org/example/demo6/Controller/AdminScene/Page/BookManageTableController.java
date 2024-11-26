@@ -169,4 +169,29 @@ public class BookManageTableController {
     public void enterToSeachBookData() {
         tf_findBook.setOnAction(event -> searchBookDatabase1());
     }
+
+
+    /**
+     * This method is used to update the book information
+     */
+    @FXML
+    public void updateBook() {
+        Book selectedBook = tableView.getSelectionModel().getSelectedItem();
+        if (selectedBook != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
+                Parent updateView = loader.load();
+
+                PageUploadController pageUploadController = loader.getController();
+                pageUploadController.setBookDb(selectedBook);
+
+                Stage stage = new Stage();
+                stage.setTitle("Update");
+                stage.setScene(new Scene(updateView));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

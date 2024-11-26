@@ -81,11 +81,15 @@ public class AddUser {
 
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + tf_id.getText() + "'")) {
                 // Alert user that id is already taken
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText(null);
-                alert.setContentText("ID is already taken");
-                alert.showAndWait();
+                User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
+
+                if (library.getCurrentUser() instanceof Admin) {
+                    Admin admin = (Admin) library.getCurrentUser();
+                    admin.addUsers(user);
+                    sucessLabel.setText("User added successfully");
+                } else {
+                    System.err.println("Current user is not an admin.");
+                }
 
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + tf_username.getText() + "'")) {
                 // Alert user that username is already taken
@@ -126,5 +130,14 @@ public class AddUser {
             alert.setContentText("ID must be a number");
             alert.showAndWait();
         }
+    }
+
+    public void setUser(User user) {
+        tf_id.setText(String.valueOf(user.getId()));
+        tf_username.setText(user.getUsername());
+        tf_password.setText(user.getPassword());
+        tf_email.setText(user.getEmail());
+        choiceRole.setValue(user.getRole());
+        dateOfBirth.setValue(user.getDateOfBirth());
     }
 }

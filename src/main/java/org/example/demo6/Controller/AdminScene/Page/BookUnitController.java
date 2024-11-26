@@ -37,6 +37,23 @@ public class BookUnitController extends Node {
 
     private boolean isFavorite = false;
 
+    @FXML
+    public void switchToBookDetails(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/BookPreview.fxml"));
+            Parent root = fxmlLoader.load();
+            // Lấy controller của trang chi tiết
+            BookPreviewController bookPreviewController = fxmlLoader.getController();
+            bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
+
+            MainSceneClass.setMainContent(root);
+            staticMainScrollPane.setFitToWidth(true);
+            staticMainScrollPane.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setData(Book book) {
         this.currentBook = book;
         nameBook.setText(book.getTitle());
@@ -57,25 +74,6 @@ public class BookUnitController extends Node {
             imageBook.setImage(new Image(new File(book.getCoverImagePath()).toURI().toString()));
         } else {
             imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/BookCoverEmpty.jpg")));
-        }
-    }
-
-
-
-    @FXML
-    public void switchToBookDetails(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/BookPreview.fxml"));
-            Parent root = fxmlLoader.load();
-            // Lấy controller của trang chi tiết
-            BookPreviewController bookPreviewController = fxmlLoader.getController();
-            bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
-
-            MainSceneClass.setMainContent(root);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

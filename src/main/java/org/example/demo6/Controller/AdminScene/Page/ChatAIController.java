@@ -27,6 +27,7 @@ public class ChatAIController implements Initializable {
 
     private final ApiGoogleGemini apiGoogleGemini = new ApiGoogleGemini();
 
+    // xu ly cau hoi
     @FXML
     public void handleSendMessage() {
         // Get user input
@@ -60,6 +61,7 @@ public class ChatAIController implements Initializable {
         chatDisplay.appendText("\n");
     }
 
+    // enter de gui, shift + enter de xuong dong
     public void keyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             if (event.isShiftDown()) {

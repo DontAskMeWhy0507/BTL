@@ -34,9 +34,7 @@ public class Streak {
     @FXML
     private ListView<HBox> achievedRewardsList;
 
-
     // Streak data
-
     private int currentStreak = library.getCurrentUser().getStreak().getStreak();
     private int longestStreak = library.getCurrentUser().getStreak().getLongestStreak();
 

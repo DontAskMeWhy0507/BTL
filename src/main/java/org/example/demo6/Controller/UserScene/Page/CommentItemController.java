@@ -28,26 +28,9 @@ public class CommentItemController {
     private Label datePost;
 
     @FXML
-    private HBox reactionBox;
-
-    @FXML
     private Label rating;
 
     private int likes = 0;
-
-    // Hiển thị các biểu tượng cảm xúc
-    @FXML
-    private void showReaction(MouseEvent event) {
-        reactionBox.setVisible(true);
-    }
-
-    // Ẩn khu vực cảm xúc
-    @FXML
-    private void hideReaction(MouseEvent event) {
-        reactionBox.setVisible(false);
-    }
-
-    // Xử lý khi người dùng chọn cảm xúc
 
 
     public void setData(String avatarPath, String username, String comment, String date, int ratingValue) {

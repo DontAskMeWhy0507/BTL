@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CommentController {
-
     @FXML
     private VBox commentList;
 

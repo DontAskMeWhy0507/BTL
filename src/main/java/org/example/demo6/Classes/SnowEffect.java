@@ -29,7 +29,7 @@ public class SnowEffect {
     private Circle createSnowflake() {
         Circle snowflake = new Circle();
         snowflake.setRadius(1 + random.nextDouble() * 3); // Kích thước ngẫu nhiên (1 - 4 px)
-        Color color = Color.rgb(255, 255, 255, random.nextDouble()); // Màu trắng mờ
+        Color color = Color.rgb(255, 99, 71, random.nextDouble()); // Màu hoa phượng rơi (Red-Orange)
         snowflake.setFill(color);
         snowflake.setCenterX(random.nextInt((int) snowPane.getWidth())); // Vị trí ngang ngẫu nhiên
         snowflake.setCenterY(-random.nextInt(200)); // Xuất hiện từ trên màn hình

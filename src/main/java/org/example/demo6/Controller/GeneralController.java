@@ -11,7 +11,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.example.demo6.HelloApplication;
+import org.example.demo6.LibraryApplication;
 import org.example.demo6.Classes.SnowEffect;  // Import your SnowEffect class
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class GeneralController {
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
         try {
             // Load the new scene's root node
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource(fxmlFile));
             Parent newRoot = loader.load();
 
             // Create a new main pane and add the root of the new scene
@@ -65,7 +65,7 @@ public class GeneralController {
 
                 // Reapply snow effect to the new scene after fade-in
                 SnowEffect snowEffect = new SnowEffect(mainPane); // Recreate snow effect for the new scene
-                snowEffect.startSnow(200); // Start 200 snowflakes falling
+                snowEffect.startSnow(400); // Start 200 snowflakes falling
             });
 
             // Start the blur effect transition

@@ -150,15 +150,7 @@ public class SignUpController implements Initializable {
 
     // kiểm tra email
     private boolean isEmailValid(String email) {
-//        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-//        return Pattern.matches(emailPattern, email);
-        return true;
+        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return Pattern.matches(emailPattern, email);
     }
-
-    // enter để qua đăng nhập
-//    public void Enter(KeyEvent event) {
-//        if(event.getCode() == KeyCode.ENTER) {
-//            handle(new ActionEvent(event.getSource(), event.getTarget()));
-//        }
-//    }
 }

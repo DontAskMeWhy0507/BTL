@@ -34,6 +34,7 @@ module org.example.demo6 {
     requires jdk.compiler;
     requires com.google.errorprone.annotations;
     requires com.fasterxml.jackson.databind;
+    requires java.sql;
 
 
 }

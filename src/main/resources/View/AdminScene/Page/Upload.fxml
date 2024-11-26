@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -23,7 +24,10 @@
       <TextField fx:id="Description" layoutX="521.0" layoutY="486.0" prefHeight="66.0" prefWidth="463.0" promptText="Miêu tả sơ lược về nội dung" stylesheets="@../../../Style/AdminScene/Upload.css" />
       <Button fx:id="AudioBook" layoutX="116.0" layoutY="563.0" mnemonicParsing="false" styleClass="addAudioBook" stylesheets="@../../../Style/AdminScene/Upload.css" text="Thêm sách nói (nếu có)" />
       <Button fx:id="Confirm" layoutX="632.0" layoutY="577.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="245.0" styleClass="confirm" stylesheets="@../../../Style/AdminScene/Upload.css" text="Xác nhận" />
-      <ImageView fx:id="BookCover" fitHeight="358.0" fitWidth="265.0" layoutX="76.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="BookCover" fitHeight="358.0" fitWidth="265.0" layoutX="92.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Image/BookCoverEmpty.jpg" />
+         </image></ImageView>
       <Text layoutX="518.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã ISBN" />
       <Text layoutX="518.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên sách" />
       <Text layoutX="782.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên (các) tác giả " />

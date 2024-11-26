@@ -22,9 +22,7 @@ public class Streak {
     @FXML
     private Label rewardLabel;  // Thêm label để hiển thị phần thưởng
 
-
     // Streak data
-
     private int currentStreak = Library.getInstance().getCurrentUser().getStreak().getStreak();
     private int longestStreak = Library.getInstance().getCurrentUser().getStreak().getLongestStreak();
 
@@ -52,6 +50,4 @@ public class Streak {
             milestoneLabel.setText("Congratulations! You've reached the highest milestone.");
         }
     }
-
-
 }

@@ -17,7 +17,7 @@
    <top>
       <Pane prefHeight="54.0" prefWidth="1312.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="SearchField" layoutX="444.0" layoutY="8.0" prefHeight="23.0" prefWidth="379.0" promptText="Tìm kiếm sách" />
+            <TextField fx:id="SearchField" layoutX="446.0" layoutY="8.0" prefHeight="43.0" prefWidth="377.0" promptText="Tìm kiếm sách" />
             <Button layoutX="831.0" layoutY="8.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="25.0" prefWidth="7.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -72,7 +72,7 @@
    <bottom>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="avatarButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moreButton" prefHeight="92.0" prefWidth="200.0" styleClass="username" text="Username">
+            <Button fx:id="avatarButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#moreButton" prefHeight="92.0" prefWidth="212.0" styleClass="username" text="Username">
                <graphic>
                   <HBox alignment="CENTER">
                      <children>

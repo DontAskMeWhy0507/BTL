@@ -116,6 +116,7 @@ public class Settings {
 
     public void initialize() {
         // Set the current user's information
+        setAvatar(lib.getCurrentUser().getPathToProfilePicture());
         avatarAdd1.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 7"));
         avatarAdd2.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 10"));
         avatarAdd3.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 30"));
@@ -178,7 +179,7 @@ public class Settings {
         } else {
             showPassword.setText(passwordField.getText());
             showPassword.setText(showPassword.getText());
-            showPassword.setVisible(true);
+            passwordField.setVisible(true);
             showPassword.setVisible(false);
         }
     }

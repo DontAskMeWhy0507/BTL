@@ -34,6 +34,7 @@ public class UpDownFile {
             System.out.println("Failed to save the file: " + e.getMessage());
         }
     }
+
     public static File downloadFileImage(String imageUrl, String destinationPath) {
         System.out.println("Downloading from URL: " + imageUrl);
         System.out.println("Saving to path: " + destinationPath);
@@ -62,6 +63,4 @@ public class UpDownFile {
             return null;
         }
     }
-
-
 }

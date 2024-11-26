@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,23 +8,23 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="197.0" prefWidth="600.0" stylesheets="@../../../Style/UserScene/CommentItem.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.CommentItemController">
     <!-- Phần comment chính -->
-    <HBox layoutX="10.399999618530273" layoutY="10.399999618530273" prefHeight="67.0" prefWidth="338.0" spacing="10">
+    <HBox layoutX="10.0" layoutY="10.0" prefHeight="123.0" prefWidth="592.0" spacing="10">
         <!-- Avatar -->
         <ImageView fx:id="avatar" fitHeight="64.0" fitWidth="66.0">
             <Image url="@../../../Image/Avatar/avatar.png" />
         </ImageView>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        <AnchorPane prefHeight="123.0" prefWidth="506.0">
             <children>
                 <Label fx:id="usernameText" prefHeight="29.0" prefWidth="77.0" styleClass="username" stylesheets="@../../../Style/UserScene/CommentItem.css" text="Username" />
                 <Label fx:id="datePost" layoutX="103.0" layoutY="6.0" styleClass="time" text="3 giờ trước" />
-            <TextArea fx:id="commentText" layoutY="28.0" prefHeight="93.0" prefWidth="506.0" styleClass="comment" />
+            <Label fx:id="commentText" layoutX="-1.0" layoutY="52.0" styleClass="comment" text="Comment" />
             </children>
         </AnchorPane>
     </HBox>
 
     <!-- Tương tác -->
     <HBox layoutX="10.399999618530273" layoutY="89.5999984741211" spacing="10" />
-   <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="149.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="134.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../../../Image/Icon/star.png" />
       </image>

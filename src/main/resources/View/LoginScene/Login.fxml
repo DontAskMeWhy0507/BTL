@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 
 <StackPane fx:id="switchScene" prefHeight="720.0" prefWidth="1182.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.LoginScene.LoginController">
-   <AnchorPane fx:id="mainPane" prefHeight="720.0" prefWidth="1182.0" stylesheets="@../../Style/LoginScene/Login.css">
+   <AnchorPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1182.0" stylesheets="@../../Style/LoginScene/Login.css">
       <children>
          <TextField fx:id="tf_username" layoutX="100.0" layoutY="218.0" onKeyPressed="#Enter" prefHeight="73.0" prefWidth="416.0" promptText="Tên đăng nhập" styleClass="tf_username" stylesheets="@../../Style/LoginScene/Login.css">
             <font>

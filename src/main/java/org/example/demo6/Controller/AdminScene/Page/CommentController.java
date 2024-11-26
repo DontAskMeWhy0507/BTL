@@ -57,7 +57,6 @@ public class CommentController {
 
     /**
      * Thêm một bình luận vào danh sách hiển thị.
-     *
      * @param review      Đối tượng Review chứa thông tin bình luận.
      * @param dateFormat  Định dạng ngày tháng.
      * @throws IOException Nếu xảy ra lỗi khi tải FXML.
@@ -84,7 +83,6 @@ public class CommentController {
 
     /**
      * Thiết lập dữ liệu sách cho controller và hiển thị bình luận.
-     *
      * @param book Đối tượng Book cần hiển thị bình luận.
      */
     public void setCommentData(Book book) {

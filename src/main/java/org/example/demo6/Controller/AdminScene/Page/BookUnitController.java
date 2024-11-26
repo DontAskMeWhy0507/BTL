@@ -37,31 +37,6 @@ public class BookUnitController extends Node {
 
     private boolean isFavorite = false;
 
-    public void setData(Book book) {
-        this.currentBook = book;
-        nameBook.setText(book.getTitle());
-        authorBook.setText(book.getAuthor());
-        if (book.getCoverImagePath() != null) {
-            imageBook.setImage(new Image(book.getCoverImagePath()));
-        } else {
-            imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
-        }
-    }
-
-
-    public void setDataAll(Book book) {
-        this.currentBook = book;
-        nameBook.setText(book.getTitle());
-        authorBook.setText(book.getAuthor());
-        if (book.getCoverImagePath() != null) {
-            imageBook.setImage(new Image(new File(book.getCoverImagePath()).toURI().toString()));
-        } else {
-            imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/heart.png")));
-        }
-    }
-
-
-
     @FXML
     public void switchToBookDetails(ActionEvent event) {
         try {
@@ -76,6 +51,29 @@ public class BookUnitController extends Node {
             staticMainScrollPane.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setData(Book book) {
+        this.currentBook = book;
+        nameBook.setText(book.getTitle());
+        authorBook.setText(book.getAuthor());
+        if (book.getCoverImagePath() != null) {
+            imageBook.setImage(new Image(book.getCoverImagePath()));
+        } else {
+            imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/BookCoverEmpty.jpg")));
+        }
+    }
+
+
+    public void setDataAll(Book book) {
+        this.currentBook = book;
+        nameBook.setText(book.getTitle());
+        authorBook.setText(book.getAuthor());
+        if (book.getCoverImagePath() != null) {
+            imageBook.setImage(new Image(new File(book.getCoverImagePath()).toURI().toString()));
+        } else {
+            imageBook.setImage(new Image(getClass().getResourceAsStream("/Image/BookCoverEmpty.jpg")));
         }
     }
 }

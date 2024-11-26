@@ -20,22 +20,28 @@
             <!-- Main book details section -->
             <AnchorPane prefHeight="731.0" prefWidth="1112.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                <children>
-                  <ImageView fx:id="bookCoverImage" fitHeight="331.0" fitWidth="296.0" layoutX="45.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookCoverImage" fitHeight="381.0" fitWidth="376.0" layoutX="32.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Image/Logo_HUET.svg.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="bookTitleLabel" layoutX="409.0" layoutY="96.0" prefHeight="37.0" prefWidth="370.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="UET History">
+                  <Label fx:id="bookTitleLabel" layoutX="409.0" layoutY="96.0" prefHeight="37.0" prefWidth="350.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="UET History">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Button fx:id="buttonBorrow" layoutX="113.0" layoutY="516.0" mnemonicParsing="false" onAction="#borrowBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Mượn sách" />
+                  <Button fx:id="buttonBorrow" layoutX="115.0" layoutY="516.0" mnemonicParsing="false" onAction="#borrowBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Mượn sách" />
+
+                  <ImageView fx:id="QRcode" fitHeight="150.0" fitWidth="200.0" layoutX="779.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Image/QR.png" />
+                     </image>
+                  </ImageView>
                   <Text fx:id="bookPublishedDate" layoutX="541.0" layoutY="197.0" text="December 18, 2024" />
                   <Text layoutX="411.0" layoutY="197.0" text="Ngày phát hành" />
-                  <Button layoutX="113.0" layoutY="581.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Trả sách" />
-                  <Button layoutX="381.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm thông tin" />
-                  <Button layoutX="606.0" layoutY="581.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm vào CSDL" />
+                  <Button layoutX="115.0" layoutY="581.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Trả sách" />
+                  <Button layoutX="759.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm thông tin" />
+                  <Button layoutX="572.0" layoutY="581.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm vào CSDL" />
 
                   <!-- Book Metadata -->
                   <Text layoutX="411.0" layoutY="257.0" text="Ngôn ngữ" />
@@ -55,22 +61,22 @@
                   </Text>
                   <Text layoutX="408.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="147.39501953125" />
                   <JFXButton fx:id="viewMoreButton" layoutX="404.0" layoutY="502.0" onAction="#toggleDescription" styleClass="viewMore" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Xem thêm" />
-                  <Rating fx:id="ratingBook" layoutX="135.0" layoutY="654.0" />
-                  <Label fx:id="rateAvg" layoutX="319.0" layoutY="647.0" text="Label" />
+                  <Button layoutX="382.0" layoutY="581.0" mnemonicParsing="false" onAction="#changeToSeenComments" prefHeight="43.0" prefWidth="151.0" text="Xem bình luận" />
                </children>
             </AnchorPane>
 
             <!-- Comment Section -->
             <AnchorPane prefHeight="244.0" prefWidth="965.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                <children>
-                  <TextField fx:id="commentInputField" layoutX="65.0" prefHeight="97.0" prefWidth="471.0" promptText="Thêm bình luận" />
-                  <Button fx:id="postCommentButton" layoutX="65.0" layoutY="111.0" onAction="#postComment" text="Đăng tải bình luận" />
+                  <TextField fx:id="commentInputField" layoutX="65.0" layoutY="25.0" prefHeight="72.0" prefWidth="471.0" promptText="Thêm bình luận" />
+                  <Button fx:id="postCommentButton" layoutX="71.0" layoutY="118.0" onAction="#postComment" prefHeight="41.0" prefWidth="154.0" text="Đăng tải bình luận" />
 
 
                   <VBox fx:id="commentsContainer" layoutX="224.0" layoutY="80.0" prefWidth="85.0" spacing="10.0">
                      <!-- Comments will be added here dynamically -->
                   </VBox>
-                  <Button layoutX="376.0" layoutY="111.0" mnemonicParsing="false" onAction="#changeToSeenComments" text="Xem bình luận" />
+                  <Rating fx:id="ratingBook" layoutX="309.0" layoutY="123.0" prefHeight="25.0" prefWidth="152.0" />
+                  <Label fx:id="rateAvg" layoutX="498.0" layoutY="127.0" styleClass="rateAvg" text="Label" />
 
                </children>
             </AnchorPane>

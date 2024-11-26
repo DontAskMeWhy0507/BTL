@@ -78,17 +78,6 @@ public class BookPreviewController {
 
     private String descriptionTemp;
 
-    public void setDescriptionLength (String description) {
-        if (description.length() > descriptionLength) {
-            descriptionTemp = description;
-            bookDescription.setText(description.substring(0, descriptionLength) + "...");
-            viewMoreButton.setVisible(true);
-        } else {
-            bookDescription.setText(description);
-            viewMoreButton.setVisible(false);
-        }
-    }
-
     @FXML
     private void toggleDescription() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Description.fxml"));
@@ -124,6 +113,17 @@ public class BookPreviewController {
         dbUltis.saveReviewToDatabase(review, currentBook);
 
         System.out.println("Rating: " + ratingValue);
+    }
+
+    public void setDescriptionLength (String description) {
+        if (description.length() > descriptionLength) {
+            descriptionTemp = description;
+            bookDescription.setText(description.substring(0, descriptionLength) + "...");
+            viewMoreButton.setVisible(true);
+        } else {
+            bookDescription.setText(description);
+            viewMoreButton.setVisible(false);
+        }
     }
 
     public void setBookData(Book book) {

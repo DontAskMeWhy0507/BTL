@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,12 +9,10 @@
    <!-- Title for Newest Books section -->
    <Label text="Sách mới nhất trong thư viện" />
 
-   <!-- Newest books section -->
-   <ScrollPane prefWidth="1038.0" prefHeight="252.0" fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" minWidth="1038.0" minHeight="252.0"  >
-      <content>
-         <HBox fx:id="cardLayOut1" prefHeight="237.0" prefWidth="1104.0" minWidth="1104.0" />
-      </content>
-   </ScrollPane>
+   <!-- Newest books section (GridPane instead of ScrollPane) -->
+   <GridPane fx:id="cardLayOut1" prefWidth="1000.0" prefHeight="252.0" minWidth="1000.0" minHeight="252.0">
+      <!-- Newest books will be added here dynamically -->
+   </GridPane>
 
    <!-- Title for Popular Books section -->
    <Label text="Những sách được quan tâm nhiều trên thế giới" />

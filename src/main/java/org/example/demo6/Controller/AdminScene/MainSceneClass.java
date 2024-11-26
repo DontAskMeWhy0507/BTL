@@ -86,6 +86,7 @@ public class MainSceneClass {
         changeToUserView();
     }
 
+    // tìm kiếm
     @FXML
     void searchButton(ActionEvent event) {
         String searchQuery = SearchField.getText();
@@ -146,7 +147,7 @@ public class MainSceneClass {
         new Thread(task).start();
     }
 
-    // Method to update the avatar
+    // thay avatar
     public void changeAvatar(String avatarPaths) {
         Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
         avatar.setImage(newAvatarImage);
@@ -161,6 +162,7 @@ public class MainSceneClass {
         seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
     }
 
+    // chuyển qua trang user
     @FXML
     void changeToUserView() {
         try {
@@ -175,6 +177,7 @@ public class MainSceneClass {
         }
     }
 
+    // cài đặt
     @FXML
     void showSettings(ActionEvent event) {
         try {
@@ -192,6 +195,7 @@ public class MainSceneClass {
         }
     }
 
+    // enter để tra cứu
     @FXML
     public void EnterToSearch(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
@@ -199,6 +203,7 @@ public class MainSceneClass {
         }
     }
 
+    // chat bot
     @FXML
     public void ChatAI() {
         try {
@@ -228,6 +233,7 @@ public class MainSceneClass {
         avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
     }
 
+    // hiển thị bảng member, sách, streak, số liệu, thêm sách
     public void showHome() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/MemberTable.fxml"));
@@ -285,6 +291,7 @@ public class MainSceneClass {
         }
     }
 
+    // đăng xuất
     public void logOut(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Đăng xuất");

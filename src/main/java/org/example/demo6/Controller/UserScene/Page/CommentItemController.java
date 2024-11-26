@@ -32,7 +32,14 @@ public class CommentItemController {
 
     private int likes = 0;
 
-
+    /**
+     * dữ liệu comment
+     * @param avatarPath ava
+     * @param username tên
+     * @param comment nội dung
+     * @param date ngày
+     * @param ratingValue đánh giá
+     */
     public void setData(String avatarPath, String username, String comment, String date, int ratingValue) {
         // Đặt avatar
         if (avatarPath != null) {

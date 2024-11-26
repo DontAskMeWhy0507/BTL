@@ -37,6 +37,7 @@ public class BookUnitController extends Node {
 
     private boolean isFavorite = false;
 
+    // sang preview sách
     @FXML
     public void switchToBookDetails(ActionEvent event) {
         try {
@@ -54,6 +55,7 @@ public class BookUnitController extends Node {
         }
     }
 
+    // dữ liệu sách
     public void setData(Book book) {
         this.currentBook = book;
         nameBook.setText(book.getTitle());

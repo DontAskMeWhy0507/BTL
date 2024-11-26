@@ -32,12 +32,12 @@ public class Admin extends User {
         }
 
 
-        // Upload the book file
+        // thêm file sách
         if (selectedFile != null) {
             UpDownFile.uploadFile(selectedFile, UPLOAD_DIRECTORY_BOOKS);
             book.setBookPath("Uploaded/Books/" + selectedFile.getName());
         }
-        // Upload the cover image
+        // thêm ảnh bìa
         if (selectedCover != null) {
             UpDownFile.uploadFile(selectedCover, UPLOAD_DIRECTORY_IMAGE);
             book.setCoverImagePath("Uploaded/BookCovers/" + selectedCover.getName());
@@ -59,6 +59,7 @@ public class Admin extends User {
         return dbUltis.getUsers();
     }
 
+    // thêm người dùng
     public void addUsers(User user) {
         dbUltis.loadQuery("INSERT INTO users (username, password, role, email, avatar, last_access, streak, date_of_birth, longest_streak) " +
                 "VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getRole() + "', '" +
@@ -67,10 +68,12 @@ public class Admin extends User {
 
     }
 
+    // xóa người dùng
     public void removeUser(User user) {
         dbUltis.loadQuery("DELETE FROM users WHERE id = " + user.getId());
     }
 
+    // xóa sách
     public void deleteBook(Book book) {
         dbUltis.loadQuery("DELETE FROM books WHERE isbn = " + book.getIsbn());
     }

@@ -121,8 +121,7 @@ public class Settings {
        avatarAdd3.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 30"));
     }
 
-
-
+    // xác nhận thay avatar
     public void confirmAvatarSelection() {
         String avatarPath = avatarFile.getPath();
 
@@ -144,7 +143,7 @@ public class Settings {
         avatarFile = new File(imagePath);
     }
 
-    // Methods to handle updating username, email, and password
+    // thay đổi tên, mật khẩu, email
     @FXML
     private void handleChangeUsername() {
         String newUsername = usernameField.getText();
@@ -196,6 +195,7 @@ public class Settings {
         mainSceneController.setUser();
     }
 
+    // xác nhận thay đổi
      public void confirmChange() {
         confirmAvatarSelection();
         handleChangeUsername();

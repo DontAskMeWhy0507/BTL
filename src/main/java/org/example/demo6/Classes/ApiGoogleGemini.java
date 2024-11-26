@@ -30,18 +30,18 @@ public class ApiGoogleGemini {
             }
         """.formatted(text);
 
-            // Build the HTTP request
+            // xây dựng yêu cầu http
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ENDPOINT + "?key=" + API_KEY))
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                     .build();
 
-            // Send the request
+            // gửi yêu cầu
             HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // Parse the response body to extract the text
+            // lấy phần văn bản
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(response.body());
             JsonNode textNode = rootNode.path("candidates").get(0).path("content").path("parts").get(0).path("text");

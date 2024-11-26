@@ -9,19 +9,19 @@ import javafx.stage.Stage;
 public class CheckComment extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        // Load the CommentItem.fxml file
+        // Tải file fxml
         Parent root = FXMLLoader.load(getClass().getResource("/View/UserScene/Page/CommentItem.fxml"));
 
-        // Create a scene with the loaded FXML
+        // scene với fxml
         Scene scene = new Scene(root);
 
-        // Set the scene to the stage
+        // scene vào stage
         stage.setScene(scene);
 
-        // Set the title of the stage
+        // tên stage
         stage.setTitle("Comment Item");
 
-        // Show the stage
+        // hiển thị stage
         stage.show();
     }
 

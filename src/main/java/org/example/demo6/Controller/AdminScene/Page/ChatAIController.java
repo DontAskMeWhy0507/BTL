@@ -30,24 +30,19 @@ public class ChatAIController implements Initializable {
     // xu ly cau hoi
     @FXML
     public void handleSendMessage() {
-        // Get user input
         String userMessage = userInput.getText();
 
         if (userMessage.isEmpty()) {
             return;
         }
 
-        // Append user message to chat display
         chatDisplay.appendText("Bạn: " + userMessage + "\n");
 
-        // Clear the input field
         userInput.clear();
         userInput.setPromptText("Nhập câu hỏi của bạn");
 
-        // Send the message to the API and get the response
         String aiResponse = apiGoogleGemini.sendPostRequest(userMessage);
 
-        // Append AI response to chat display
         chatDisplay.appendText("AI: " + aiResponse + "\n" + "\n");
     }
 

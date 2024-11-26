@@ -30,6 +30,7 @@ public class BookUnit {
     @FXML
     private Label nameBook;
 
+    // chuyển qua book view
     @FXML
     public void switchToBookDetails(ActionEvent event) {
         try {
@@ -47,6 +48,7 @@ public class BookUnit {
         }
     }
 
+    // dữ liệu sách
     public void setData(Book book) {
         this.currentBook = book;
         nameBook.setText(book.getTitle());

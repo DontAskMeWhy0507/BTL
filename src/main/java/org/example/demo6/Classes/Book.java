@@ -19,7 +19,6 @@ public class Book {
     private String coverImagePath;     // Đường dẫn đến ảnh bìa
     private String audioPath;          // Đường dẫn đến file audio
 
-    // Constructor
     public Book(String isbn, String title, String author, String category, String description,
                 String language, String publisher, LocalDate publishedDate, String bookPath,
                 String coverImagePath, String audioPath, int quantity) {

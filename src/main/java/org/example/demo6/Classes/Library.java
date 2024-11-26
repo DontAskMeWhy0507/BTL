@@ -23,7 +23,6 @@ public class Library {
         return (instance == null) ? new Library() : instance;
     }
 
-    // Current user (admin or user)
     private static User currentUser;
 
     public User getCurrentUser() {
@@ -34,12 +33,14 @@ public class Library {
         currentUser = user;
     }
 
+    // đăng ký
     public void signUp(ActionEvent event, String id, String username, String password, String email) {
         if (dbUltis.signUp(id, username, password, email)) {
             changescene(event, "/View/LoginScene/Login.fxml", "Login!");
         }
     }
 
+    // đăng nhập
     public static void logIn(ActionEvent event, String username, String password) {
         // Lấy đối tượng Library duy nhất
         Library library = Library.getInstance();
@@ -60,6 +61,7 @@ public class Library {
         }
     }
 
+    // đăng xuất
     public static void logOut(ActionEvent event) {
         Library library = Library.getInstance();
         if (library.getCurrentUser() == null) {

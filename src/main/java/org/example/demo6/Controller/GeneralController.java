@@ -17,6 +17,12 @@ import org.example.demo6.Classes.SnowEffect;  // Import your SnowEffect class
 import java.io.IOException;
 
 public class GeneralController {
+    /**
+     * chuyển cảnh
+     * @param event chuột
+     * @param fxmlFile đường dẫn file cần chuyển đến
+     * @param title tên
+     */
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
         try {
             // Load the new scene's root node

@@ -46,6 +46,7 @@ public class AddUser {
     @FXML
     private TextField showPassword;
 
+    // hiển thị mật khẩu
     @FXML
     void getPassword(ActionEvent event) {
         if (showPass.isSelected()) {
@@ -65,6 +66,7 @@ public class AddUser {
         choiceRole.setItems(FXCollections.observableArrayList("Admin", "User"));
     }
 
+    // xác nhận thêm người dùng
     @FXML
     public void buttonOK() {
         try {
@@ -80,7 +82,7 @@ public class AddUser {
                 alert.showAndWait();
 
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + tf_id.getText() + "'")) {
-                // Alert user that id is already taken
+                // id đã tồn tại
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);
@@ -88,7 +90,7 @@ public class AddUser {
                 alert.showAndWait();
 
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + tf_username.getText() + "'")) {
-                // Alert user that username is already taken
+                // tên đã tồn tại
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);
@@ -96,7 +98,7 @@ public class AddUser {
                 alert.showAndWait();
 
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE email = '" + tf_email.getText() + "'")) {
-                // Alert user that email is already taken
+                // email đã tồn tại
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);
@@ -104,8 +106,6 @@ public class AddUser {
                 alert.showAndWait();
 
             } else {
-                // Insert user into database
-
                 User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
 
                 if (library.getCurrentUser() instanceof Admin) {
@@ -119,7 +119,7 @@ public class AddUser {
             }
         }
         catch (Exception e) {
-            // Alert user that id must be a number
+            // id là số
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText(null);

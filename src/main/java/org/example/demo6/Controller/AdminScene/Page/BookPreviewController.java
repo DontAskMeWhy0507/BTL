@@ -29,6 +29,7 @@ import java.util.Objects;
 
 public class BookPreviewController {
     Library library = Library.getInstance();
+    private static final int descriptionLength = 200;
 
     private Book currentBook;
 
@@ -59,8 +60,6 @@ public class BookPreviewController {
     @FXML
     private JFXButton viewMoreButton;
 
-    private static final int descriptionLength = 200;
-
     @FXML
     public Text fullDescription;
 
@@ -78,6 +77,7 @@ public class BookPreviewController {
 
     private String descriptionTemp;
 
+    // hiển thị trang miêu tả đầy đủ
     @FXML
     private void toggleDescription() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Description.fxml"));
@@ -90,16 +90,19 @@ public class BookPreviewController {
         stage.show();
     }
 
+    // mượn sách
     public void borrowBook() {
         Library library = Library.getInstance();
         library.getCurrentUser().borrowBook(currentBook);
     }
 
+    // trả sách
     public void returnBook() {
         Library library = Library.getInstance();
         library.getCurrentUser().returnBook(currentBook);
     }
 
+    // đăng tải comment
     public void postComment() {
         User user = Library.getInstance().getCurrentUser();
         double ratingValue = ratingBook.getRating();
@@ -115,6 +118,7 @@ public class BookPreviewController {
         System.out.println("Rating: " + ratingValue);
     }
 
+    // miêu tả trong book preview
     public void setDescriptionLength (String description) {
         if (description.length() > descriptionLength) {
             descriptionTemp = description;
@@ -126,6 +130,7 @@ public class BookPreviewController {
         }
     }
 
+    // setter dữ liệu sách
     public void setBookData(Book book) {
         currentBook = book;
         bookTitleLabel.setText(book.getTitle());
@@ -140,21 +145,21 @@ public class BookPreviewController {
         double avgRating = dbUltis.getAverageRatingForBook(book);
         rateAvg.setText(String.format("%.2f", avgRating));
 
-        // Check if cover image path is available and valid
+        // kiểm tra ảnh và path
         if (book.getCoverImagePath() != null && !book.getCoverImagePath().isEmpty()) {
             try {
                 if (book.getCoverImagePath().startsWith("http")) {
-                    // Download the image from the URL and set it in the ImageView
+                    // Tải ảnh từ url
                     Image coverImage = new Image(book.getCoverImagePath(), true);  // Use background loading
                     bookCoverImage.setImage(coverImage);
                 } else {
-                    // Load the image from the local file system
+                    // tải ảnh từ local
                     File coverImageFile = new File(book.getCoverImagePath());
                     Image coverImage = new Image(coverImageFile.toURI().toString());
                     bookCoverImage.setImage(coverImage);
                 }
             } catch (Exception e) {
-                // Log or handle error and set a default image in case of an invalid URL
+                // ảnh không hợp lệ, thay bằng ảnh mặc định
                 System.err.println("Error loading image: " + e.getMessage());
                 bookCoverImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/heart.jpg"))));
             }
@@ -169,6 +174,7 @@ public class BookPreviewController {
         }
     }
 
+    // thêm sách vào database
     public void addToDatabase() {
         String imageURL = currentBook.getCoverImagePath();
         String localPath = "../Uploaded/BookCovers/" + currentBook.getTitle() + ".jpg";
@@ -183,6 +189,7 @@ public class BookPreviewController {
         }
     }
 
+    // sang trang upload
     public void switchToUpLoad(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
@@ -198,6 +205,7 @@ public class BookPreviewController {
         }
     }
 
+    // xem comment khác
     public void changeToSeenComments() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/CommentSeenPage.fxml"));

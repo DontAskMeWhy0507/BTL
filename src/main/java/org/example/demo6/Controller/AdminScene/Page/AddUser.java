@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 
-public class AddUser {
+public class AddUser extends User{
     DBUltis dbUltis = new DBUltis();
     Library library = Library.getInstance();
 

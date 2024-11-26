@@ -11,7 +11,7 @@ import org.example.demo6.Classes.Library;
 import java.io.IOException;
 import java.util.List;
 
-public class AllUser {
+public class AllUser{
     DBUltis DBUltis = new DBUltis();
 
     @FXML

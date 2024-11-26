@@ -5,10 +5,11 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import org.example.demo6.Classes.*;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.util.ArrayList;
 
-public class Statistics {
+public class Statistics extends MainSceneClass {
     DBUltis dbUltis = new DBUltis();
     @FXML
     private PieChart bookCategoryChart;

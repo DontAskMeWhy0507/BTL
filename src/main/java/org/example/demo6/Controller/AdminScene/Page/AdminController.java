@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AdminController {
+public class AdminController extends User {
     Library library = Library.getInstance();
 
     private static final Logger LOGGER = Logger.getLogger(AdminController.class.getName());

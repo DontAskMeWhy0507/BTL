@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import org.example.demo6.Classes.Admin;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.Library;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
-public class PageUploadController {
+public class PageUploadController extends MainSceneClass {
     Library library = Library.getInstance();
 
     @FXML
@@ -67,7 +68,7 @@ public class PageUploadController {
     private File selectedAudioFile;
 
     @FXML
-    private void initialize() {
+    public void initialize() {
         // Thiết lập hành động khi nhấn nút upload
         uploadButton.setOnAction(event -> {
             // Tạo FileChooser để chọn file

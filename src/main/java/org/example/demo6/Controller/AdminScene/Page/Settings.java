@@ -16,7 +16,7 @@ import org.example.demo6.Controller.UserScene.MainSceneUser;
 
 import java.io.File;
 
-public class Settings {
+public class Settings extends MainSceneClass{
     DBUltis DBUltis = new DBUltis();
     Library lib = Library.getInstance();
     private MainSceneClass mainSceneController;

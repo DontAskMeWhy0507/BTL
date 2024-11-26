@@ -27,7 +27,7 @@ import java.io.InputStream;
 import java.util.Objects;
 
 
-public class BookPreviewController {
+public class BookPreviewController extends BookUnitController {
     Library library = Library.getInstance();
 
     private Book currentBook;

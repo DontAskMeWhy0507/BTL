@@ -5,16 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.example.demo6.Classes.Book;
-import org.example.demo6.Classes.DBUltis;
-import org.example.demo6.Classes.Review;
-import org.example.demo6.Classes.User;
+import org.example.demo6.Classes.*;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class CommentController {
+public class CommentController extends Review {
 
     @FXML
     private VBox commentList;

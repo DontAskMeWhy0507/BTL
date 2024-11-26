@@ -6,11 +6,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.DBUltis;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.io.IOException;
 import java.util.List;
 
-public class AllPageController {
+public class AllPageController extends MainSceneClass {
     DBUltis DBUltis = new DBUltis();
     @FXML
     private GridPane bookGrid; // Ensure this matches the fx:id in FXML

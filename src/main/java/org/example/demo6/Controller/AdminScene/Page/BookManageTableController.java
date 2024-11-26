@@ -16,12 +16,13 @@ import javafx.stage.Stage;
 import org.example.demo6.Classes.Admin;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.Library;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class BookManageTableController {
+public class BookManageTableController extends MainSceneClass {
     Library library = Library.getInstance();
 
     @FXML

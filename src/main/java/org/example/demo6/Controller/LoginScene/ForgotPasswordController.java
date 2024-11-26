@@ -17,12 +17,13 @@ import javafx.util.Duration;
 import javafx.scene.text.Text;
 
 import org.example.demo6.Classes.DBUltis;
+import org.example.demo6.Controller.GeneralController;
 
 import java.io.IOException;
 
 import static org.example.demo6.Controller.GeneralController.changescene;
 
-public class ForgotPasswordController {
+public class ForgotPasswordController extends GeneralController {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -136,6 +137,18 @@ public class ForgotPasswordController {
             alert.setTitle("Error");
             alert.setHeaderText("Password and Confirm Password are not the same");
             alert.showAndWait();
+        }
+    }
+
+    public void returnLogin(ActionEvent event) {
+        try {
+            changescene(event, "/View/LoginScene/Login.fxml", "Log in");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Throwable cause = e.getCause();
+            if (cause != null) {
+                cause.printStackTrace();
+            }
         }
     }
 }

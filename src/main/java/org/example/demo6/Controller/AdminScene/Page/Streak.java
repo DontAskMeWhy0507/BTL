@@ -11,11 +11,12 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Library;
+import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Streak {
+public class Streak extends MainSceneClass {
     DBUltis dbUltis = new DBUltis();
     Library library = Library.getInstance();
 
@@ -39,7 +40,7 @@ public class Streak {
     private int longestStreak = library.getCurrentUser().getStreak().getLongestStreak();
 
     @FXML
-    private void initialize() {
+    public void initialize() {
         updateStreakDetails();
     }
 

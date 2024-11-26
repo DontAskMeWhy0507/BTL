@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.example.demo6</OriginalElement>
+  <nodes>
+    <node x="343.0" y="826.0">org.example.demo6.Controller.UserScene.Page.Settings</node>
+    <node x="249.0" y="186.0">org.example.demo6.Controller.LoginScene.SignUpController</node>
+    <node x="199.0" y="326.0">org.example.demo6.Controller.UserScene.Page.CommentController</node>
+    <node x="-13.0" y="46.0">org.example.demo6.Controller.UserScene.Page.AllUser</node>
+    <node x="-80.5" y="946.0">org.example.demo6.Controller.AdminScene.Page.Statistics</node>
+    <node x="-127.0" y="-14.0">org.example.demo6.PathCheck</node>
+    <node x="270.0" y="766.0">org.example.demo6.Controller.UserScene.Page.Streak</node>
+    <node x="79.0" y="266.0">org.example.demo6.Controller.AdminScene.Page.CommentController</node>
+    <node x="-229.0" y="826.0">org.example.demo6.Controller.AdminScene.MainSceneClass</node>
+    <node x="3.0" y="1006.0">org.example.demo6.Controller.AdminScene.Page.Settings</node>
+    <node x="30.5" y="646.0">org.example.demo6.Controller.AdminScene.Page.SearchPageController</node>
+    <node x="182.0" y="406.0">org.example.demo6.Controller.UserScene.Page.CommentItemController</node>
+    <node x="131.0" y="126.0">org.example.demo6.Controller.AdminScene.Page.ChatAIController</node>
+    <node x="314.0" y="646.0">org.example.demo6.Controller.UserScene.MainSceneUser</node>
+    <node x="32.5" y="826.0">org.example.demo6.Controller.LoginScene.ForgotPasswordController</node>
+    <node x="15.5" y="186.0">org.example.demo6.Controller.LoginScene.LoginController</node>
+    <node x="-34.5" y="326.0">org.example.demo6.LibraryApplication</node>
+    <node x="-75.5" y="586.0">org.example.demo6.Controller.UserScene.Page.BookPreview</node>
+    <node x="100.0" y="466.0">org.example.demo6.Controller.UserScene.Page.BookUnit</node>
+    <node x="-107.0" y="126.0">org.example.demo6.CheckComment</node>
+    <node x="-89.5" y="406.0">org.example.demo6.Controller.UserScene.Page.SearchPageController</node>
+    <node x="-218.5" y="646.0">org.example.demo6.Controller.AdminScene.Page.BookUnitController</node>
+    <node x="-114.0" y="766.0">org.example.demo6.Controller.AdminScene.Page.BookPreviewController</node>
+    <node x="85.0" y="946.0">org.example.demo6.Controller.AdminScene.Page.BookManageTableController</node>
+    <node x="-238.0" y="466.0">org.example.demo6.Controller.AdminScene.Page.CommentItemController</node>
+    <node x="194.5" y="586.0">org.example.demo6.Controller.UserScene.Page.HomePageUser</node>
+    <node x="270.0" y="1006.0">org.example.demo6.Controller.AdminScene.Page.PageUploadController</node>
+    <node x="-153.5" y="266.0">org.example.demo6.Controller.AdminScene.Page.UserManagement</node>
+    <node x="-228.0" y="46.0">org.example.demo6.AppLaunch</node>
+    <node x="-228.5" y="186.0">org.example.demo6.Controller.AdminScene.Page.AdminController</node>
+    <node x="-232.5" y="1006.0">org.example.demo6.Controller.AdminScene.Page.AllPageController</node>
+    <node x="-239.5" y="326.0">org.example.demo6.Controller.AdminScene.Page.AddUser</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.example.demo6.Controller.AdminScene.Page.BookPreviewController" target="org.example.demo6.Controller.AdminScene.Page.BookUnitController" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="740.0" />
+      <point x="-120.0" y="740.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.AdminScene.Page.PageUploadController" target="org.example.demo6.Controller.AdminScene.MainSceneClass" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="380.0" y="920.0" />
+      <point x="-140.0" y="920.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.AdminScene.Page.Statistics" target="org.example.demo6.Controller.AdminScene.MainSceneClass" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-20.0" y="920.0" />
+      <point x="-140.0" y="920.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.AdminScene.Page.AllPageController" target="org.example.demo6.Controller.AdminScene.MainSceneClass" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.UserScene.Page.HomePageUser" target="org.example.demo6.Controller.UserScene.Page.BookUnit" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="280.0" y="560.0" />
+      <point x="160.0" y="560.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.AdminScene.Page.BookManageTableController" target="org.example.demo6.Controller.AdminScene.MainSceneClass" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="220.0" y="920.0" />
+      <point x="-140.0" y="920.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.UserScene.Page.BookPreview" target="org.example.demo6.Controller.UserScene.Page.BookUnit" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="560.0" />
+      <point x="160.0" y="560.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.UserScene.Page.Streak" target="org.example.demo6.Controller.UserScene.MainSceneUser" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="320.0" y="740.0" />
+      <point x="400.0" y="740.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.AdminScene.Page.Settings" target="org.example.demo6.Controller.AdminScene.MainSceneClass" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="60.0" y="920.0" />
+      <point x="-140.0" y="920.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.example.demo6.Controller.UserScene.Page.Settings" target="org.example.demo6.Controller.UserScene.MainSceneUser" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.6722846441947565" showDependencies="false" x="135.0" y="308.03621169916437" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class BookPreview {
+public class BookPreview extends BookUnit {
     private static final int descriptionLength = 200;
 
     private Book currentBook;

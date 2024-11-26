@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-public class Settings {
+public class Settings extends MainSceneUser {
     DBUltis DBUltis = new DBUltis();
     Library lib = Library.getInstance();
     private MainSceneUser mainSceneController;

@@ -4,8 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import org.example.demo6.Classes.Library;
+import org.example.demo6.Controller.UserScene.MainSceneUser;
 
-public class Streak {
+public class Streak extends MainSceneUser {
 
     @FXML
     private ProgressBar streakProgressBar;
@@ -27,7 +28,7 @@ public class Streak {
     private int longestStreak = Library.getInstance().getCurrentUser().getStreak().getLongestStreak();
 
     @FXML
-    private void initialize() {
+    public void initialize() {
         // Initialize UI components with streak data
         updateStreakDetails();
 

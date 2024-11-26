@@ -178,7 +178,7 @@ public class Settings {
         } else {
             showPassword.setText(passwordField.getText());
             showPassword.setText(showPassword.getText());
-            showPassword.setVisible(true);
+            passwordField.setVisible(true);
             showPassword.setVisible(false);
         }
     }

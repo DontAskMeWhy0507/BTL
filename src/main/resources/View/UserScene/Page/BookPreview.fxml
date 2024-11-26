@@ -20,7 +20,7 @@
                 <!-- Main book details section -->
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="942.0" prefWidth="1090.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                     <children>
-                        <ImageView fx:id="bookCoverImage" fitHeight="332.0" fitWidth="292.0" layoutX="32.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bookCoverImage" fitHeight="340.0" fitWidth="338.0" layoutX="27.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../Image/Logo_HUET.svg.png" />
                             </image>

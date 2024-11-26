@@ -1,6 +1,6 @@
 # Library management application using java
 ## Author
-Group 1
+3 idiots
 1. Dang Anh Que - 23020565
 2. Vu Tien Tuan Trung - 23020576
 3. Vu Thanh Tung - 23020572
@@ -9,7 +9,11 @@ Group 1
 The application is designed to manage library.
 1. The application is written in Java and uses JavaFX library.
 2. The application is based on MVC model.
-3. 
+3. The application uses JFoenix and ControlsFX for UI.
+4. The application uses Google Books API for books database.
+5. The application uses Gemini API for chatbot.
+4. The application is designed to support librarian and student, teacher to borrow book.
+
 
 ## UML diagram
 ![UML diagram](
@@ -30,7 +34,15 @@ The application is designed to manage library.
 8. Logout: Instead of choosing "Cài đặt" like above, choose "Đăng xuất" to log out.
 
 ## Demo
-![Demo](
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+![img_8.png](img_8.png)
+![img.png](img.png)
+![img_5.png](img_5.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
 
 ## Future improvements
 1. Add more books.

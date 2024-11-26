@@ -60,11 +60,11 @@
                         <Text layoutX="374.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="111.39501953125" />
                         <JFXButton fx:id="viewMoreButton" layoutX="365.0" layoutY="489.0" onAction="#toggleDescription" styleClass="viewMore" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Xem thêm" />
 
-                  <Text fx:id="rateAvg" layoutX="271.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text fx:id="rateAvg" layoutX="362.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                         <TextField fx:id="commentInputField" layoutX="88.0" layoutY="696.0" prefHeight="97.0" prefWidth="471.0" promptText="Thêm bình luận" />
                         <Button fx:id="postCommentButton" layoutX="367.0" layoutY="826.0" onAction="#postComment" text="Đăng tải bình luận" />
-                  <Button layoutX="370.0" layoutY="560.0" mnemonicParsing="false" onAction="#changeToSeenComments" prefHeight="43.0" prefWidth="157.0" text="Xem bình luận" />
-                  <Rating fx:id="ratingBook" layoutX="75.0" layoutY="648.0" />
+                  <Button layoutX="99.0" layoutY="824.0" mnemonicParsing="false" onAction="#changeToSeenComments" prefHeight="35.0" prefWidth="150.0" text="Xem bình luận" />
+                  <Rating fx:id="ratingBook" layoutX="179.0" layoutY="648.0" />
                     </children>
                 </AnchorPane>
             </children>

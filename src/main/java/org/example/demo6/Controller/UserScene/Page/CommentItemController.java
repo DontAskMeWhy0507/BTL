@@ -22,7 +22,7 @@ public class CommentItemController {
     private Label usernameText;
 
     @FXML
-    private TextArea commentText;
+    private Label commentText;
 
     @FXML
     private Label datePost;
@@ -50,7 +50,7 @@ public class CommentItemController {
 
         // Đặt các giá trị khác
         usernameText.setText(username);
-        commentText.appendText(comment);
+        commentText.setText(comment);
         datePost.setText(date);
         rating.setText(String.valueOf(ratingValue));
     }

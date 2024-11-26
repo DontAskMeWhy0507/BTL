@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 
-public class AddUser extends User{
+public class AddUser extends User {
     DBUltis dbUltis = new DBUltis();
     Library library = Library.getInstance();
 
@@ -91,11 +91,21 @@ public class AddUser extends User{
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + tf_id.getText() + "'")) {
 
                 // id đã tồn tại
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText(null);
-                alert.setContentText("ID is already taken");
-                alert.showAndWait();
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setTitle("Warning");
+//                alert.setHeaderText(null);
+//                alert.setContentText("ID is already taken");
+//                alert.showAndWait();
+
+                User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
+
+                if (library.getCurrentUser() instanceof Admin) {
+                    Admin admin = (Admin) library.getCurrentUser();
+                    admin.updateProfile(user);
+                    sucessLabel.setText("User added successfully");
+                } else {
+                    System.err.println("Current user is not an admin.");
+                }
 
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + tf_username.getText() + "'")) {
                 // tên đã tồn tại
@@ -133,8 +143,8 @@ public class AddUser extends User{
                 User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
 
                 // Logic thêm user vào cơ sở dữ liệu
-                User user = new User(id, tf_username.getText(), tf_password.getText(),
-                        tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
+                //User user = new User(id, tf_username.getText(), tf_password.getText(),
+                        //tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
 
 
                 if (library.getCurrentUser() instanceof Admin) {
@@ -147,9 +157,7 @@ public class AddUser extends User{
             }
 
         }
-        catch (Exception e) {
-            // id là số
-        } catch (NumberFormatException e) {
+        catch (NumberFormatException e) {
             // Thông báo lỗi nếu ID không hợp lệ
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");

@@ -312,7 +312,7 @@ public class MainSceneUser {
     }
 
     @FXML
-    public void EnterToSearch(KeyEvent event) throws IOException {
+    public void enterToSearch(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
             searchButton(new ActionEvent(event.getSource(), event.getTarget()));
         }

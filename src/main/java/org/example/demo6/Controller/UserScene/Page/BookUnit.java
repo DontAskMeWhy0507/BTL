@@ -51,6 +51,14 @@ public class BookUnit {
             BookPreview bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
+            MainSceneUser.setMainContent1(root);
+            staticMainScrollPane1.setFitToWidth(true);
+            staticMainScrollPane1.setFitToHeight(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // dữ liệu sách
     public void setData(Book book) {
@@ -78,20 +86,5 @@ public class BookUnit {
 
 
 
-    @FXML
-    public void switchToBookDetails(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/BookPreview.fxml"));
-            Parent root = fxmlLoader.load();
-            // Lấy controller của trang chi tiết
-            BookPreview bookPreviewController = fxmlLoader.getController();
-            bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
-            MainSceneUser.setMainContent1(root);
-            staticMainScrollPane1.setFitToWidth(true);
-            staticMainScrollPane1.setFitToHeight(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

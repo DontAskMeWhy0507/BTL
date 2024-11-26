@@ -76,7 +76,7 @@ public class BookPreview {
 
     @FXML
     private void toggleDescription() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Description.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Description.fxml"));
         Parent parent = loader.load();
         BookPreview controller = loader.getController();
         controller.fullDescription.setText(descriptionTemp);

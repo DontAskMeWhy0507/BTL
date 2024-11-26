@@ -2,23 +2,26 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1070.0" stylesheets="@../../../Style/UserScene/Home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.HomePageUser">
+<VBox prefWidth="1000.0" spacing="20.0" stylesheets="@../../../Style/UserScene/Home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.HomePageUser">
+   <!-- Title for Newest Books section -->
+   <Label text="Sách mới nhất trong thư viện" />
 
-   <children>
-      <Label prefHeight="50.0" prefWidth="186.0" text="Tiểu thuyết" />
-      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="1038.0">
-         <content>
-            <HBox fx:id="cardLayOut1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="1200.0" />
-         </content>
-      </ScrollPane>
-      <Label prefHeight="50.0" prefWidth="81.0" text="Anime" />
-      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="1041.0">
-         <content>
-            <HBox fx:id="cardLayOut2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="1200.0" />
-         </content>
-      </ScrollPane>
-   </children>
+   <!-- Newest books section -->
+   <ScrollPane prefWidth="1038.0" prefHeight="252.0" fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" minWidth="1038.0" minHeight="252.0"  >
+      <content>
+         <HBox fx:id="cardLayOut1" prefHeight="237.0" prefWidth="1104.0" minWidth="1104.0" />
+      </content>
+   </ScrollPane>
+
+   <!-- Title for Popular Books section -->
+   <Label text="Những sách được quan tâm nhiều trên thế giới" />
+
+   <!-- Popular books section -->
+   <GridPane fx:id="cardLayOut2" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+      <!-- Popular books will be added here dynamically -->
+   </GridPane>
 </VBox>

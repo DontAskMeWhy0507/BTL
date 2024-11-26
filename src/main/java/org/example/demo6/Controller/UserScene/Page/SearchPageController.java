@@ -1,6 +1,7 @@
 package org.example.demo6.Controller.UserScene.Page;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
@@ -13,11 +14,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class SearchPageController extends org.example.demo6.Controller.AdminScene.Page.SearchPageController {
-    private final ExecutorService executor = Executors.newFixedThreadPool(2);
-
-    private List<Book> databaseSearchResults;
-    private List<Book> apiSearchResults;
+public class SearchPageController {
 
     @FXML
     private GridPane databaseResults;  // GridPane for database results
@@ -25,14 +22,37 @@ public class SearchPageController extends org.example.demo6.Controller.AdminScen
     @FXML
     private GridPane apiResults;  // GridPane for API results
 
-    // Create a thread pool with 2 threads
+    private List<Book> databaseSearchResults;
+    private List<Book> apiSearchResults;
 
-    // Set the search results for both database and API
+    private final ExecutorService executor = Executors.newFixedThreadPool(2);  // Create a thread pool with 2 threads
+
+    // Set search results and display them concurrently
     public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
         this.databaseSearchResults = databaseResults;
         this.apiSearchResults = apiResults;
-        displayDatabaseResults();
-        displayApiResults();
+
+        // Task for displaying database results
+        Task<Void> displayDatabaseTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                displayDatabaseResults();
+                return null;
+            }
+        };
+
+        // Task for displaying API results
+        Task<Void> displayApiTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                displayApiResults();
+                return null;
+            }
+        };
+
+        // Submit tasks to executor
+        executor.submit(displayDatabaseTask);
+        executor.submit(displayApiTask);
     }
 
     // Display the database results in the first GridPane
@@ -46,6 +66,8 @@ public class SearchPageController extends org.example.demo6.Controller.AdminScen
                 Platform.runLater(() -> System.out.println("No books available in the database."));
                 return;
             }
+
+
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {

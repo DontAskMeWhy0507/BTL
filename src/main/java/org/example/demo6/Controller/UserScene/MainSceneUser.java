@@ -2,6 +2,7 @@ package org.example.demo6.Controller.UserScene;
 
 import com.google.errorprone.annotations.FormatMethod;
 import com.jfoenix.controls.JFXSlider;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,19 +17,21 @@ import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
 import org.example.demo6.Controller.AdminScene.Page.ChatAIController;
 import org.example.demo6.Controller.UserScene.Page.SearchPageController;
+import org.example.demo6.Controller.UserScene.Page.Settings;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.example.demo6.Controller.AdminScene.MainSceneClass.staticMainScrollPane;
 import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class MainSceneUser {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    Library library = Library.getInstance();
 
     @FXML
     private TextField SearchField;
@@ -75,6 +78,9 @@ public class MainSceneUser {
         });
     }
 
+    public static void setMainContent1(Parent content) {
+        staticMainScrollPane1.setContent(content);
+    }
 
     @FXML
     void logOut(ActionEvent event) {
@@ -111,29 +117,58 @@ public class MainSceneUser {
         loadingIndicator.setVisible(true);
         loadingIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
 
-        List<Book> ApiResult = apiGoogleBooks.searchBooks1(SearchField.getText());
-        DBUltis dbUltis = new DBUltis();
-        List<Book> databaseResult = dbUltis.searchBook(SearchField.getText());
+        // Tạo task cho việc tìm kiếm sách (API và Database)
+        Task<List<List<Book>>> task = new Task<>() {
+            @Override
+            protected List<List<Book>> call() throws IOException {
+                // Gọi API và tìm kiếm từ cơ sở dữ liệu
+                List<Book> apiResult = library.getCurrentUser().searchBooksApi(searchQuery);
+                List<Book> databaseResult = library.getCurrentUser().searchBooksDatabase(searchQuery);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/PageSearch.fxml"));
-            Parent homeView = loader.load();
+                // Trả về kết quả dưới dạng một danh sách chứa cả hai kết quả
+                List<List<Book>> result = new ArrayList<>();
+                result.add(databaseResult);
+                result.add(apiResult);
+                return result;
+            }
+        };
 
-            // Get the controller instance
-            SearchPageController searchPageController = loader.getController();
-            searchPageController.setSearchResults(databaseResult, ApiResult);
+        // Xử lý khi task hoàn thành
+        task.setOnSucceeded(event1 -> {
+            loadingIndicator.setVisible(false); // Ẩn progress indicator khi hoàn thành
 
-            setMainContent(homeView);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            // Lấy kết quả từ task
+            List<Book> databaseResult = task.getValue().get(0);
+            List<Book> apiResult = task.getValue().get(1);
+
+            try {
+                // Tải và hiển thị trang kết quả tìm kiếm
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/PageSearch.fxml"));
+                Parent homeView = loader.load();
+
+                // Lấy controller và truyền kết quả tìm kiếm
+                SearchPageController searchPageController = loader.getController();
+                searchPageController.setSearchResults(databaseResult, apiResult);
+
+                setMainContent1(homeView);
+                staticMainScrollPane1.setFitToWidth(true);
+                staticMainScrollPane1.setFitToHeight(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Xử lý nếu task thất bại
+        task.setOnFailed(event1 -> {
+            loadingIndicator.setVisible(false); // Ẩn progress indicator nếu có lỗi
+            Throwable error = task.getException();
+            System.err.println("Error while searching: " + error.getMessage());
+        });
+
+        // Chạy task trong một thread mới
+        new Thread(task).start();
     }
 
-    public static void setMainContent(Parent content) {
-        staticMainScrollPane1.setContent(content);
-    }
 
     public void changeAvatar(String avatarPaths) {
         Image newAvatarImage = new Image(getClass().getResourceAsStream(avatarPaths));
@@ -151,7 +186,7 @@ public class MainSceneUser {
             Parent homeView = loader.load();
 
 
-            setMainContent(homeView);
+            setMainContent1(homeView);
             staticMainScrollPane1.setFitToWidth(true);
             staticMainScrollPane1.setFitToHeight(true);
         } catch (IOException e) {
@@ -168,9 +203,9 @@ public class MainSceneUser {
             // Get the controller instance
             ChatAIController chatAIController = loader.getController();
 
-            setMainContent(homeView);
-            staticMainScrollPane.setFitToWidth(true);
-            staticMainScrollPane.setFitToHeight(true);
+            setMainContent1(homeView);
+            staticMainScrollPane1.setFitToWidth(true);
+            staticMainScrollPane1.setFitToHeight(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -181,13 +216,10 @@ public class MainSceneUser {
         try {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Settings.fxml"));
             Parent SettingView = loader1.load();
-            org.example.demo6.Controller.UserScene.Page.Settings settingsController = loader1.getController();
-
-            // Create or get an instance of MainSceneUser
-            MainSceneUser mainSceneUserInstance = this;
+            Settings settingsController = loader1.getController();
 
             // Pass the instance to the setMainSceneController method
-            settingsController.setMainSceneController(mainSceneUserInstance);
+            settingsController.setMainSceneController(this);
 
             // Set the new content in the ScrollPane
             mainScrollPane.setContent(SettingView);
@@ -202,8 +234,15 @@ public class MainSceneUser {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Home.fxml"));
             Parent homeView = loader.load();
 
+
+
             // Đặt nội dung mới vào ScrollPane
+            staticMainScrollPane1 = mainScrollPane;
+            mainScrollPane.setFitToWidth(true);
+            mainScrollPane.setFitToHeight(true);
+
             mainScrollPane.setContent(homeView);
+
 
         } catch (IOException e) {
             e.printStackTrace();

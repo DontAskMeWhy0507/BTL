@@ -40,7 +40,7 @@ public class LibraryApplication extends Application {
 
         // Thêm hiệu ứng tuyết
         SnowEffect snowEffect = new SnowEffect(mainPane);
-        snowEffect.startSnow(5000); // Bắt đầu 200 bông tuyết rơi
+        snowEffect.startSnow(200); // Bắt đầu 200 bông tuyết rơi
 
         // Xử lý khi đóng ứng dụng
         stage.setOnCloseRequest(e -> library.logOut(null));

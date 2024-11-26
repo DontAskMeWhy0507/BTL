@@ -1,5 +1,7 @@
 package org.example.demo6.Classes;
 
+import javafx.scene.control.Alert;
+
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,11 +16,20 @@ public class Admin extends User {
         super(id, username, password, email, dateOfBirth,profilePicture, role, streak);
     }
 
-    public static void upLoadBook (Book book, File selectedFile, File selectedCover, File selectedAudio) {
+    public void upLoadBook (Book book, File selectedFile, File selectedCover, File selectedAudio) {
         // Thư mục đích để lưu file
         String UPLOAD_DIRECTORY_BOOKS = "Uploaded/Books";
         String UPLOAD_DIRECTORY_AUDIO = "Uploaded/AudioBooks";
         String UPLOAD_DIRECTORY_IMAGE = "Uploaded/BookCovers";
+
+        if (dbUltis.findQuery("SELECT * FROM books WHERE isbn = '" + book.getIsbn() + "'")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Book already exists");
+            alert.setContentText("The book with the ISBN " + book.getIsbn() + " already exists in the database.");
+            alert.showAndWait();
+            return;
+        }
 
 
         // Upload the book file

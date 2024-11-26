@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-public class Settings extends org.example.demo6.Controller.AdminScene.Page.Settings {
+public class Settings {
     DBUltis DBUltis = new DBUltis();
     Library lib = Library.getInstance();
     private MainSceneUser mainSceneController;
@@ -45,6 +45,13 @@ public class Settings extends org.example.demo6.Controller.AdminScene.Page.Setti
 
     @FXML
     private JFXCheckBox showPass;
+
+    @FXML
+    private ImageView avatarAdd1;
+    @FXML
+    private ImageView avatarAdd2;
+    @FXML
+    private ImageView avatarAdd3;
 
     boolean changeAvatar = false;
     boolean changeUsername = false;
@@ -90,6 +97,51 @@ public class Settings extends org.example.demo6.Controller.AdminScene.Page.Setti
     @FXML
     private void selectAvatar8() {
         setAvatar("/Image/Avatar/Sage.png");
+    }
+
+    @FXML
+    private void selectAvatarAdd1(){
+        setAvatar("/Image/Avatar/Skye1.png");
+    }
+
+    @FXML
+    private void selectAvatarAdd2(){
+        setAvatar("/Image/Avatar/Raze2.png");
+    }
+
+    @FXML
+    private void selectAvatarAdd3(){
+        setAvatar("/Image/Avatar/Killjoy3.png");
+    }
+
+    public void initialize() {
+        // Set the current user's information
+        avatarAdd1.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 7"));
+        avatarAdd2.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 10"));
+        avatarAdd3.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 30"));
+    }
+
+
+
+    public void confirmAvatarSelection() {
+        String avatarPath = avatarFile.getPath();
+
+        // Replace backslashes with forward slashes to standardize the path format
+        avatarPath = avatarPath.replace("\\", "/");
+
+        lib.getCurrentUser().setPathToProfilePicture(avatarPath);
+        System.out.println("Avatar updated to: " + lib.getCurrentUser().getPathToProfilePicture());
+        DBUltis.updateUserInDatabase(lib.getCurrentUser());
+        mainSceneController.setUser();
+        changeAvatar = true;
+
+    }
+
+
+    private void setAvatar(String imagePath) {
+        Image avatarImage = new Image(getClass().getResourceAsStream(imagePath));
+        avatarImageView.setImage(avatarImage);
+        avatarFile = new File(imagePath);
     }
 
     // Methods to handle updating username, email, and password
@@ -138,81 +190,10 @@ public class Settings extends org.example.demo6.Controller.AdminScene.Page.Setti
             return;
         }
         changePassword = true;
+        // Add logic to update the password
         lib.getCurrentUser().setPassword(newPassword);
         DBUltis.updateUserInDatabase(lib.getCurrentUser());
         mainSceneController.setUser();
-    }
-
-    @FXML
-    public void uploadAvatar() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select Avatar");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-        );
-
-        File selectedFile = fileChooser.showOpenDialog(null);
-
-        if (selectedFile != null) {
-            try {
-                // Đường dẫn thư mục đích trong thư mục resources
-                String destinationDir = "src/main/resources/Image/Avatar/";
-                File destinationFolder = new File(destinationDir);
-
-                // Kiểm tra nếu thư mục không tồn tại thì tạo mới
-                if (!destinationFolder.exists()) {
-                    destinationFolder.mkdirs();
-                }
-
-                // Tạo tệp đích trong thư mục Avatar
-                File destinationFile = new File(destinationDir + selectedFile.getName());
-
-                // Copy ảnh vào thư mục Avatar
-                Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                // Cập nhật đường dẫn trong Library
-                String relativePath = "/Image/Avatar/" + selectedFile.getName(); // Đường dẫn tương đối
-                lib.getCurrentUser().setPathToProfilePicture(relativePath);
-                DBUltis.updateUserInDatabase(lib.getCurrentUser());
-
-                // Cập nhật hiển thị ảnh
-                setAvatar(destinationFile.toURI().toString()); // Sử dụng URI của tệp đích
-
-                // Hiển thị thông báo thành công
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText("Avatar Uploaded");
-                alert.setContentText("Your avatar has been updated successfully.");
-                alert.showAndWait();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Upload Failed");
-                alert.setContentText("Failed to upload avatar. Please try again.");
-                alert.showAndWait();
-            }
-        }
-    }
-
-    public void confirmAvatarSelection() {
-        String avatarPath = avatarFile.getPath();
-
-        // Replace backslashes with forward slashes to standardize the path format
-        avatarPath = avatarPath.replace("\\", "/");
-
-        lib.getCurrentUser().setPathToProfilePicture(avatarPath);
-        System.out.println("Avatar updated to: " + lib.getCurrentUser().getPathToProfilePicture());
-        DBUltis.updateUserInDatabase(lib.getCurrentUser());
-        mainSceneController.setUser();
-        changeAvatar = true;
-    }
-
-    private void setAvatar(String imagePath) {
-        Image avatarImage = new Image(getClass().getResourceAsStream(imagePath));
-        avatarImageView.setImage(avatarImage);
-        avatarFile = new File(imagePath);
     }
 
     public void confirmChange() {
@@ -231,4 +212,6 @@ public class Settings extends org.example.demo6.Controller.AdminScene.Page.Setti
                 ".");
         alert.showAndWait();
     }
+
+
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../Style/AdminScene/Description.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo6.Controller.UserScene.Page.BookPreview">
+    <children>
+        <Text fx:id="fullDescription" layoutX="16.0" layoutY="77.0" lineSpacing="1.15" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="568.21630859375" />
+    </children>
+</AnchorPane>

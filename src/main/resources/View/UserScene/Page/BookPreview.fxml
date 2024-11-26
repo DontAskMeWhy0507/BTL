@@ -18,7 +18,7 @@
         <VBox prefHeight="931.0" prefWidth="965.0">
             <children>
                 <!-- Main book details section -->
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="942.0" prefWidth="966.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="942.0" prefWidth="1090.0" stylesheets="@../../../Style/AdminScene/BookPreview.css">
                     <children>
                         <ImageView fx:id="bookCoverImage" fitHeight="332.0" fitWidth="292.0" layoutX="32.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -60,11 +60,11 @@
                         <Text layoutX="374.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung" wrappingWidth="111.39501953125" />
                         <JFXButton fx:id="viewMoreButton" layoutX="365.0" layoutY="489.0" onAction="#toggleDescription" styleClass="viewMore" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Xem thêm" />
 
-                  <Text fx:id="rateAvg" layoutX="271.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <TextField fx:id="commentInputField" layoutX="88.0" layoutY="696.0" prefHeight="97.0" prefWidth="471.0" promptText="Thêm bình luận" />
-                        <Button fx:id="postCommentButton" layoutX="367.0" layoutY="826.0" onAction="#postComment" text="Đăng tải bình luận" />
-                  <Button layoutX="370.0" layoutY="560.0" mnemonicParsing="false" onAction="#changeToSeenComments" prefHeight="43.0" prefWidth="157.0" text="Xem bình luận" />
-                  <Rating fx:id="ratingBook" layoutX="75.0" layoutY="648.0" />
+                  <Text fx:id="rateAvg" layoutX="528.0" layoutY="839.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <TextField fx:id="commentInputField" layoutX="89.0" layoutY="723.0" prefHeight="72.0" prefWidth="471.0" promptText="Thêm bình luận" />
+                        <Button fx:id="postCommentButton" layoutX="87.0" layoutY="817.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#postComment" prefHeight="41.0" prefWidth="172.0" text="Đăng tải bình luận" />
+                  <Button layoutX="365.0" layoutY="560.0" mnemonicParsing="false" onAction="#changeToSeenComments" prefHeight="43.0" prefWidth="157.0" text="Xem bình luận" />
+                  <Rating fx:id="ratingBook" layoutX="332.0" layoutY="817.0" />
                     </children>
                 </AnchorPane>
             </children>

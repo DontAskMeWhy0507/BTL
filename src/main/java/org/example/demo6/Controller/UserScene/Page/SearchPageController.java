@@ -14,6 +14,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class SearchPageController extends org.example.demo6.Controller.AdminScene.Page.SearchPageController {
+    private final ExecutorService executor = Executors.newFixedThreadPool(2);
+
+    private List<Book> databaseSearchResults;
+    private List<Book> apiSearchResults;
 
     @FXML
     private GridPane databaseResults;  // GridPane for database results
@@ -21,18 +25,15 @@ public class SearchPageController extends org.example.demo6.Controller.AdminScen
     @FXML
     private GridPane apiResults;  // GridPane for API results
 
-    private List<Book> databaseSearchResults;
-    private List<Book> apiSearchResults;
+    // Create a thread pool with 2 threads
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(2);  // Create a thread pool with 2 threads
-
-//    // Set the search results for both database and API
-//    public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
-//        this.databaseSearchResults = databaseResults;
-//        this.apiSearchResults = apiResults;
-//        displayDatabaseResults();
-//        displayApiResults();
-//    }
+    // Set the search results for both database and API
+    public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
+        this.databaseSearchResults = databaseResults;
+        this.apiSearchResults = apiResults;
+        displayDatabaseResults();
+        displayApiResults();
+    }
 
     // Display the database results in the first GridPane
     private void displayDatabaseResults() {
@@ -45,8 +46,6 @@ public class SearchPageController extends org.example.demo6.Controller.AdminScen
                 Platform.runLater(() -> System.out.println("No books available in the database."));
                 return;
             }
-
-
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {

@@ -23,33 +23,6 @@ public class HomePageUser {
     private List<Book> tieuThuyet;
     private List<Book> anime;
 
-    private List<Book> topBooks() {
-        try {
-            return apiGoogleBooks.searchBooks1("bestsellers");
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private List<Book> bookTieuThuyet() {
-        try {
-            return apiGoogleBooks.searchBooks1("Tiểu thuyết");
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private List<Book> Anime() {
-        try {
-            return apiGoogleBooks.searchBooks1("Anime");
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     @FXML
     public void initialize() {
         tieuThuyet = bookTieuThuyet();
@@ -78,6 +51,33 @@ public class HomePageUser {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private List<Book> topBooks() {
+        try {
+            return apiGoogleBooks.searchBooks1("bestsellers");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private List<Book> bookTieuThuyet() {
+        try {
+            return apiGoogleBooks.searchBooks1("Tiểu thuyết");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private List<Book> Anime() {
+        try {
+            return apiGoogleBooks.searchBooks1("Anime");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

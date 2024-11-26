@@ -13,6 +13,7 @@ import java.util.List;
 
 public class AllUser {
     DBUltis DBUltis = new DBUltis();
+
     @FXML
     private GridPane bookGrid; // Ensure this matches the fx:id in FXML
 
@@ -69,5 +70,4 @@ public class AllUser {
             }
         }
     }
-
 }

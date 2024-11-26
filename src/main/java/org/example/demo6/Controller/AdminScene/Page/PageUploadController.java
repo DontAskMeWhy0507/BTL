@@ -60,7 +60,6 @@ public class PageUploadController {
     @FXML
     private TextField ISBN;
 
-
     // Biến lưu trữ file đã chọn tạm thời
     private File selectedFile;
     private File selectedImageFile;
@@ -160,6 +159,7 @@ public class PageUploadController {
 
     }
 
+    // setter cho sach
     public void setBookData(Book book) {
         ISBN.setText(book.getIsbn());
         Tittle.setText(book.getTitle());

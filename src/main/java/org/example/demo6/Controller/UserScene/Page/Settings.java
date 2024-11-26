@@ -92,25 +92,6 @@ public class Settings extends org.example.demo6.Controller.AdminScene.Page.Setti
         setAvatar("/Image/Avatar/Sage.png");
     }
 
-    public void confirmAvatarSelection() {
-        String avatarPath = avatarFile.getPath();
-
-        // Replace backslashes with forward slashes to standardize the path format
-        avatarPath = avatarPath.replace("\\", "/");
-
-        lib.getCurrentUser().setPathToProfilePicture(avatarPath);
-        System.out.println("Avatar updated to: " + lib.getCurrentUser().getPathToProfilePicture());
-        DBUltis.updateUserInDatabase(lib.getCurrentUser());
-        mainSceneController.setUser();
-        changeAvatar = true;
-    }
-
-    private void setAvatar(String imagePath) {
-        Image avatarImage = new Image(getClass().getResourceAsStream(imagePath));
-        avatarImageView.setImage(avatarImage);
-        avatarFile = new File(imagePath);
-    }
-
     // Methods to handle updating username, email, and password
     @FXML
     private void handleChangeUsername() {
@@ -213,6 +194,25 @@ public class Settings extends org.example.demo6.Controller.AdminScene.Page.Setti
                 alert.showAndWait();
             }
         }
+    }
+
+    public void confirmAvatarSelection() {
+        String avatarPath = avatarFile.getPath();
+
+        // Replace backslashes with forward slashes to standardize the path format
+        avatarPath = avatarPath.replace("\\", "/");
+
+        lib.getCurrentUser().setPathToProfilePicture(avatarPath);
+        System.out.println("Avatar updated to: " + lib.getCurrentUser().getPathToProfilePicture());
+        DBUltis.updateUserInDatabase(lib.getCurrentUser());
+        mainSceneController.setUser();
+        changeAvatar = true;
+    }
+
+    private void setAvatar(String imagePath) {
+        Image avatarImage = new Image(getClass().getResourceAsStream(imagePath));
+        avatarImageView.setImage(avatarImage);
+        avatarFile = new File(imagePath);
     }
 
     public void confirmChange() {

@@ -1,6 +1,6 @@
 Label {
     -fx-font-family: "Merrriweather";
-    -fx-font-size: 30px;
+    -fx-font-size: 25px;
     -fx-font-weight: bold;
 }
 
@@ -47,4 +47,9 @@ TextField {
     -fx-border-color: black;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
+}
+
+.rateAvg {
+    -fx-font-weight: normal !important;
+    -fx-font-size: 12pt;
 }

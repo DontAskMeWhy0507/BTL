@@ -28,7 +28,7 @@ public class SnowEffect {
     // Tạo bông tuyết
     private Circle createSnowflake() {
         Circle snowflake = new Circle();
-        snowflake.setRadius(1 + random.nextDouble() * 3); // Kích thước ngẫu nhiên (1 - 4 px)
+        snowflake.setRadius(1 + random.nextDouble() * 3);
         Color color = Color.rgb(255, 255, 255, random.nextDouble()); // Màu trắng mờ
         snowflake.setFill(color);
         snowflake.setCenterX(random.nextInt((int) snowPane.getWidth())); // Vị trí ngang ngẫu nhiên
@@ -52,6 +52,6 @@ public class SnowEffect {
             animateSnowflake(snowflake); // Kích hoạt lại hiệu ứng
         });
 
-        transition.play(); // Bắt đầu hoạt ảnh
+        transition.play();
     }
 }

@@ -28,16 +28,9 @@ import static org.example.demo6.Controller.GeneralController.changescene;
 
 public class MainSceneClass {
     DBUltis DBUltis = new DBUltis();
+
     // Singleton
     private static MainSceneClass instance;
-
-    public static MainSceneClass getInstance() {
-        if (instance == null) {
-            instance = new MainSceneClass();
-        }
-        return instance;
-    }
-
     Library library = Library.getInstance();
 
     @FXML
@@ -168,12 +161,6 @@ public class MainSceneClass {
         seeMoreProfile.setVisible(!seeMoreProfile.isVisible());
     }
 
-//    public void resetView() {
-//        changeAvatar(Library.getInstance().getCurrentUser().getPathToProfilePicture());
-//        avatarButton.setText(Library.getInstance().getCurrentUser().getUsername());
-//    }
-
-
     @FXML
     void changeToUserView(ActionEvent event) {
         try {
@@ -196,7 +183,7 @@ public class MainSceneClass {
             Settings settingsController = loader1.getController();
 
             // Truyền đối tượng MainSceneClass vào SettingsController
-            settingsController.setMainSceneController(this);  // this l
+            settingsController.setMainSceneController(this);
             // Đặt nội dung mới vào ScrollPane
             mainScrollPane.setContent(SettingView);
 
@@ -204,7 +191,6 @@ public class MainSceneClass {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     public void EnterToSearch(KeyEvent event) throws IOException {
@@ -228,6 +214,13 @@ public class MainSceneClass {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static MainSceneClass getInstance() {
+        if (instance == null) {
+            instance = new MainSceneClass();
+        }
+        return instance;
     }
 
     public void setUser() {

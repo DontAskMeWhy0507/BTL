@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.effect.GaussianBlur;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.example.demo6.HelloApplication;
+import org.example.demo6.LibraryApplication;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ public class GeneralController {
     public static void changescene(ActionEvent event, String fxmlFile, String title) {
         try {
             // Load the new scene's root node
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource(fxmlFile));
             Parent newRoot = loader.load();
 
             // Get the current stage and scene

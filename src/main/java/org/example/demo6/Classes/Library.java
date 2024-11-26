@@ -79,10 +79,4 @@ public class Library {
         }
         GeneralController.changescene(event, "/View/LoginScene/Login.fxml", "Login");
     }
-
-
-
-
-
-
 }

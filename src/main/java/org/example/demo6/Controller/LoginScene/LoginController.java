@@ -25,7 +25,6 @@ import java.util.ResourceBundle;
 
 import static org.example.demo6.Controller.GeneralController.changescene;
 
-
 public class LoginController implements Initializable {
     @FXML
     private StackPane switchScene;
@@ -116,7 +115,6 @@ public class LoginController implements Initializable {
 
     public void loginToHome(ActionEvent event) {
         // Tạo và hiển thị cảnh báo
-
         try {
             // Giả lập độ trễ khi đăng nhập (thay bằng logic thực tế)
             Library.logIn(event, tf_username.getText(), tf_password.getText());

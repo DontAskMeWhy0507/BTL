@@ -16,7 +16,8 @@ The application is designed to manage library.
 
 
 ## UML diagram
-![uml.png](uml.png).
+
+![uml.png](uml.png)
 
 ## Installation
 1. Clone the project from the repository.

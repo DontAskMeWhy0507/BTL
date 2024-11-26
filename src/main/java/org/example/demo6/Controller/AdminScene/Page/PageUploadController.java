@@ -60,6 +60,7 @@ public class PageUploadController {
     @FXML
     private TextField ISBN;
 
+
     // Biến lưu trữ file đã chọn tạm thời
     private File selectedFile;
     private File selectedImageFile;
@@ -117,8 +118,7 @@ public class PageUploadController {
         });
 
         Confirm.setOnAction(event -> {
-            if (selectedFile != null) {
-                // Hiển thị hộp thoại xác nhận
+
                 Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmAlert.setTitle("Confirmation");
                 confirmAlert.setHeaderText(null);
@@ -138,7 +138,7 @@ public class PageUploadController {
                     LocalDate publishedDate = PublishedDate.getValue();
                     int quantity = Integer.parseInt(this.quantity.getText());
 
-                    String bookPath = "/Uploaded/Books/" + selectedFile.getName();
+                    String bookPath = (selectedFile != null) ? "/Uploaded/Books/" + selectedFile.getName() : null;
                     String coverImagePath = (selectedImageFile != null) ? "/Uploaded/BookCovers/" + selectedImageFile.getName() : null;
                     String audioPathIfHave = (selectedAudioFile != null) ? "/Uploaded/AudioBooks/" + selectedAudioFile.getName() : null;
                     // Tạo đối tượng Book
@@ -153,13 +153,12 @@ public class PageUploadController {
                     // Thực hiện các thao tác khác với đối tượng Book (lưu vào cơ sở dữ liệu, hiển thị, ...)
                     System.out.println("Book created: " + newBook.getTitle());
                 }
-            }
+
 
         });
 
     }
 
-    // setter cho sach
     public void setBookData(Book book) {
         ISBN.setText(book.getIsbn());
         Tittle.setText(book.getTitle());
@@ -169,6 +168,28 @@ public class PageUploadController {
         Language.setText(book.getLanguage());
         Publisher.setText(book.getPublisher());
         PublishedDate.setValue(book.getPublishedDate());
+    }
+
+    public void setBookDb(Book book) {
+        ISBN.setText(book.getIsbn());
+        Tittle.setText(book.getTitle());
+        Authors.setText(book.getAuthor());
+        Categories.setText(book.getCategory());
+        Description.setText(book.getDescription());
+        Language.setText(book.getLanguage());
+        Publisher.setText(book.getPublisher());
+        PublishedDate.setValue(book.getPublishedDate());
+        quantity.setText(String.valueOf(book.getQuantity()));
+        try {
+            String coverImageUrl = book.getCoverImagePath();
+            if (coverImageUrl != null && !coverImageUrl.isEmpty()) {
+                BookCover.setImage(new javafx.scene.image.Image(coverImageUrl));
+            } else {
+                System.err.println("Cover image URL is null or empty.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid URL for book cover image: " + book.getCoverImagePath());
+        }
     }
 }
 

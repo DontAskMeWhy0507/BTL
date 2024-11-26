@@ -24,7 +24,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <HBox alignment="CENTER_LEFT" layoutX="41.0" layoutY="8.0" prefHeight="52.0" prefWidth="446.0" spacing="10.0" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="625.0" AnchorPane.topAnchor="8.0">
+      <HBox alignment="CENTER_LEFT" layoutX="41.0" layoutY="8.0" prefHeight="52.0" prefWidth="539.0" spacing="10.0" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="532.0" AnchorPane.topAnchor="8.0">
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#addBook" text="Thêm sách" textAlignment="CENTER" />
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#deleteBook" prefHeight="42.0" prefWidth="176.0" text="Xóa sách">
@@ -32,6 +32,7 @@
                   <Insets left="20.0" right="20.0" />
                </HBox.margin></Button>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadData" text="Tải lại sách" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateBook" prefHeight="42.0" prefWidth="209.0" text="Sửa sách" />
          </children>
       </HBox>
       <TextField fx:id="tf_findBook" layoutX="814.0" layoutY="13.0" onAction="#searchBookDatabase1" onKeyPressed="#enterToSeachBookData" prefHeight="42.0" prefWidth="257.0" promptText="Tìm tên sách" stylesheets="@../../../Style/AdminScene/BookTable.css" AnchorPane.bottomAnchor="593.0" AnchorPane.leftAnchor="810.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="13.0" />

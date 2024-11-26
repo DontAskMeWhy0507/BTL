@@ -190,4 +190,35 @@ public class AdminController {
     public void entertoSeachName() {
         tf_findName.setOnAction(e -> searchName());
     }
+
+    @FXML
+    public void updateUser() {
+        User selectedUser = tableView.getSelectionModel().getSelectedItem();
+        if (selectedUser != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/AddUser.fxml"));
+                Parent parent = loader.load();
+
+                // Get the controller and set the selected user
+                AddUser controller = loader.getController();
+                controller.setUser(selectedUser);
+
+                Stage stage = new Stage();
+                stage.setTitle("Edit User");
+                stage.setScene(new Scene(parent));
+                stage.showAndWait();
+
+                // Refresh the table view after editing
+                loadDataFromDatabase();
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "Error opening AddUser.fxml", e);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No User Selected");
+            alert.setContentText("Please select a user in the table.");
+            alert.showAndWait();
+        }
+    }
 }

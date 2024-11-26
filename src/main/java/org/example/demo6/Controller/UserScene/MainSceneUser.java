@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
@@ -271,6 +273,13 @@ public class MainSceneUser {
         } else {
             volumeSlider.setValue(50);
             sound.setImage(new Image(String.valueOf(getClass().getResource("/Image/Icon/volume.png"))));
+        }
+    }
+
+    @FXML
+    public void EnterToSearch(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            searchButton(new ActionEvent(event.getSource(), event.getTarget()));
         }
     }
 }

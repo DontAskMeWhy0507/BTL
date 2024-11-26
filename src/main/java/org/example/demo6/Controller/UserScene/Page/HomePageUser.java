@@ -22,7 +22,7 @@ public class HomePageUser {
     DBUltis dbUltis = new DBUltis();
 
     @FXML
-    private HBox cardLayOut1;
+    private GridPane cardLayOut1;
     @FXML
     private GridPane cardLayOut2;
     private List<Book> topBooks;
@@ -84,17 +84,31 @@ public class HomePageUser {
 
     private void displayNewestBooks() {
         Platform.runLater(() -> cardLayOut1.getChildren().clear());
+        int columns = 6;
+        int rows = 1;
+        int bookCount = 0;
+
         if (newestBooks != null) {
-            for (int i = 0; i < 10; i++) {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/View/UserScene/Page/Book.fxml"));
-                    VBox cardBox = fxmlLoader.load();
-                    BookUnit bookUnitController = fxmlLoader.getController();
-                    bookUnitController.setDataAll(newestBooks.get(i));
-                    cardLayOut1.getChildren().add(cardBox);
-                } catch (IOException e) {
-                    e.printStackTrace();
+            for (int row = 0; row < rows; row++) {
+                for (int column = 0; column < columns; column++) {
+                    if (bookCount >= newestBooks.size()) {
+                        break;
+                    }
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Book.fxml"));
+                        Pane bookPane = fxmlLoader.load();
+
+                        BookUnit bookUnitController = fxmlLoader.getController();
+                        bookUnitController.setDataAll(newestBooks.get(bookCount));
+
+                        int finalCol = column;
+                        int finalRow = row;
+
+                        Platform.runLater(() -> cardLayOut1.add(bookPane, finalCol, finalRow));
+                        bookCount++;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

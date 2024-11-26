@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import org.example.demo6.Classes.*;
 import org.example.demo6.Controller.AdminScene.Page.ChatAIController;
 import org.example.demo6.Controller.UserScene.Page.SearchPageController;
+import org.example.demo6.Controller.UserScene.Page.Settings;
 
 
 import java.io.IOException;
@@ -215,13 +216,10 @@ public class MainSceneUser {
         try {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Settings.fxml"));
             Parent SettingView = loader1.load();
-            org.example.demo6.Controller.UserScene.Page.Settings settingsController = loader1.getController();
-
-            // Create or get an instance of MainSceneUser
-            MainSceneUser mainSceneUserInstance = this;
+            Settings settingsController = loader1.getController();
 
             // Pass the instance to the setMainSceneController method
-            settingsController.setMainSceneController(mainSceneUserInstance);
+            settingsController.setMainSceneController(this);
 
             // Set the new content in the ScrollPane
             mainScrollPane.setContent(SettingView);
@@ -236,10 +234,15 @@ public class MainSceneUser {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/Home.fxml"));
             Parent homeView = loader.load();
 
+
+
             // Đặt nội dung mới vào ScrollPane
+            staticMainScrollPane1 = mainScrollPane;
+            mainScrollPane.setFitToWidth(true);
+            mainScrollPane.setFitToHeight(true);
+
             mainScrollPane.setContent(homeView);
-            staticMainScrollPane1.setFitToHeight(true);
-            staticMainScrollPane1.setFitToWidth(true);
+
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -46,7 +46,8 @@ public class AddUser {
     @FXML
     private TextField showPassword;
 
-    
+
+    // hiển thị mật khẩu
 
     @FXML
     void getPassword(ActionEvent event) {
@@ -67,6 +68,7 @@ public class AddUser {
         choiceRole.setItems(FXCollections.observableArrayList("Admin", "User"));
     }
 
+    // xác nhận thêm người dùng
     @FXML
     public void buttonOK() {
         try {
@@ -87,12 +89,37 @@ public class AddUser {
                 alert.setContentText("Please fill all fields");
                 alert.showAndWait();
             } else if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + tf_id.getText() + "'")) {
+
+                // id đã tồn tại
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("ID is already taken");
+                alert.showAndWait();
+
+            } else if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + tf_username.getText() + "'")) {
+                // tên đã tồn tại
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Username is already taken");
+                alert.showAndWait();
+
+            } else if (dbUltis.findQuery("SELECT * FROM users WHERE email = '" + tf_email.getText() + "'")) {
+                // email đã tồn tại
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Email is already taken");
+                alert.showAndWait();
+
 //                Alert alert = new Alert(Alert.AlertType.WARNING);
 //                alert.setTitle("Warning");
 //                alert.setHeaderText(null);
 //                alert.setContentText("ID is already taken");
 //                alert.showAndWait();
                 User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
+
 
                 if (library.getCurrentUser() instanceof Admin) {
                     Admin admin = (Admin) library.getCurrentUser();
@@ -102,9 +129,13 @@ public class AddUser {
                     System.err.println("Current user is not an admin.");
                 }
             } else {
+
+                User user = new User(id, tf_username.getText(), tf_password.getText(), tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
+
                 // Logic thêm user vào cơ sở dữ liệu
                 User user = new User(id, tf_username.getText(), tf_password.getText(),
                         tf_email.getText(), dateOfBirth.getValue(), "/Image/Avatar/Gekko.png", choiceRole.getValue(), null);
+
 
                 if (library.getCurrentUser() instanceof Admin) {
                     Admin admin = (Admin) library.getCurrentUser();
@@ -114,6 +145,10 @@ public class AddUser {
                     System.err.println("Current user is not an admin.");
                 }
             }
+
+        }
+        catch (Exception e) {
+            // id là số
         } catch (NumberFormatException e) {
             // Thông báo lỗi nếu ID không hợp lệ
             Alert alert = new Alert(Alert.AlertType.WARNING);

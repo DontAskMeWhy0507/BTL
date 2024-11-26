@@ -10,16 +10,16 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class UpDownFile {
+    // thêm file sách
     public static void uploadFile(File file, String directoryPath) {
         if (file == null || !file.exists()) {
             System.out.println("File does not exist: " + (file != null ? file.getName() : "null"));
-            return; // Exit if file is null or doesn't exist
+            return;
         }
 
-        // Create destination directory if it doesn't exist
         File dir = new File(directoryPath);
         if (!dir.exists()) {
-            dir.mkdirs(); // Create the directory if it doesn't exist
+            dir.mkdirs();
         }
 
         // Destination path to save the file
@@ -35,6 +35,7 @@ public class UpDownFile {
         }
     }
 
+    // tải ảnh bìa sách
     public static File downloadFileImage(String imageUrl, String destinationPath) {
         System.out.println("Downloading from URL: " + imageUrl);
         System.out.println("Saving to path: " + destinationPath);
@@ -42,14 +43,11 @@ public class UpDownFile {
         Path destination = Paths.get(destinationPath).toAbsolutePath();
 
         try (InputStream in = new URL(imageUrl).openStream()) {
-            // Create parent directories if they don’t exist
             Files.createDirectories(destination.getParent());
 
-            // Download and save the image file
             Files.copy(in, destination, StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Image downloaded successfully to: " + destination.toString());
 
-            // Verify that the file now exists
             File downloadedFile = destination.toFile();
             if (downloadedFile.exists()) {
                 System.out.println("File exists and is accessible: " + downloadedFile.getAbsolutePath());

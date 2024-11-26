@@ -22,7 +22,6 @@ public class User {
 
     private DBUltis dbUltis = new DBUltis();
 
-    // Constructor for initializing the User object
     public User(int id, String username, String password, String email, LocalDate dateOfBirth ,String profilePicture, String role, Streak streak) {
         this.username = username;
         this.id = id;
@@ -32,12 +31,10 @@ public class User {
         this.role = role;
         this.dateOfBirth = dateOfBirth;
 
-        // Initialize lists to avoid NullPointerException
         this.booksBorrowed = new ArrayList<>();
         this.booksReturned = new ArrayList<>();
         this.reviews = new ArrayList<>();
 
-        // Initialize streak (can be null if not passed)
         this.streak = streak;
     }
 
@@ -87,9 +84,8 @@ public class User {
         return streak.getLastAccess();
     }
 
-    // books
 
-
+    // mượn sách
     public void borrowBook(Book book) {
         boolean isInDataBase = dbUltis.findQuery("SELECT * FROM books WHERE isbn = '" + book.getIsbn() + "'");
         boolean isBorrowed = dbUltis.findQuery("SELECT * FROM BookTransaction WHERE book_id = '" + book.getIsbn() + "' AND user_id = " + this.getId() + " AND status = 'Borrowed'");
@@ -131,6 +127,7 @@ public class User {
         }
     }
 
+    // trả sách
     public void returnBook(Book Book) {
         // Tìm giao dịch mà người dùng đã mượn
         Transaction transaction = dbUltis.getTransaction(this, Book);
@@ -163,7 +160,7 @@ public class User {
         }
     }
 
-
+    // tra sách
     public List<Book> searchBooksDatabase(String query) {
         return dbUltis.searchBook(query);
     }

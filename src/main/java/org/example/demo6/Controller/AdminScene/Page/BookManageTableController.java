@@ -53,6 +53,7 @@ public class BookManageTableController {
 
     private ObservableList<Book> data;
 
+    // thêm cột vào bảng
     @FXML
     public void initialize() {
         tf_ISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
@@ -69,6 +70,7 @@ public class BookManageTableController {
         loadDataFromDatabase();
     }
 
+    // lấy dữ liệu từ database
     private void loadDataFromDatabase() {
         String url = "jdbc:sqlite:database//LibraryMain";
         String query = "SELECT * FROM BOOKS";
@@ -97,6 +99,7 @@ public class BookManageTableController {
         }
     }
 
+    // thêm sách vào bảng
     public void addBook(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
@@ -113,6 +116,7 @@ public class BookManageTableController {
         }
     }
 
+    // xóa sách khỏi bảng
     public void deleteBook(ActionEvent event) {
         Book selectedBook = tableView.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
@@ -131,11 +135,13 @@ public class BookManageTableController {
         }
     }
 
+    // thêm sách vào bảng bằng nút
     public void loadData(ActionEvent event) {
         data.clear();
         loadDataFromDatabase();
     }
 
+    // tra trong database
     private void searchBookDatabase(String query) {
         String url = "jdbc:sqlite:database//LibraryMain";
         try (Connection conn = DriverManager.getConnection(url);
@@ -165,7 +171,7 @@ public class BookManageTableController {
         searchBookDatabase(query);
     }
 
-
+    // enter để tương tác với TextField
     public void enterToSeachBookData() {
         tf_findBook.setOnAction(event -> searchBookDatabase1());
     }

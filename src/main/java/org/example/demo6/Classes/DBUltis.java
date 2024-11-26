@@ -9,6 +9,7 @@ import java.util.List;
 
 public class DBUltis implements Database{
 
+    // đăng ký
     public boolean signUp(String id, String username, String password, String email) {
         String url = "jdbc:sqlite:database/LibraryMain";
 
@@ -60,12 +61,12 @@ public class DBUltis implements Database{
 
     }
 
-
+    // đăng nhập
     public User logIn(String username, String password) {
         Connection connection = null;
         PreparedStatement psCheckUserExist = null;
         ResultSet rs = null;
-        User loggedInUser = null;  // Initialize the User object to return
+        User loggedInUser = null;
 
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:database//LibraryMain");
@@ -139,9 +140,10 @@ public class DBUltis implements Database{
             }
         }
 
-        return loggedInUser;  // Return the logged in user (Admin or User)
+        return loggedInUser;
     }
 
+    // lưu sách vào database
     public void saveBookToDatabase(Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
@@ -168,14 +170,14 @@ public class DBUltis implements Database{
             System.out.println("Book saved to database.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
-            e.printStackTrace(); // Log the stack trace for better debugging
+            e.printStackTrace();
         }
     }
 
-        // Method to fetch all books from the database
+    // lấy mọi sách từ database
     public ArrayList<Book> getBooksFromDatabase() {
-        String url = "jdbc:sqlite:database/LibraryMain"; // Adjust the path to your SQLite file
-        String sql = "SELECT * FROM Books"; // SQL query to fetch all books
+        String url = "jdbc:sqlite:database/LibraryMain";
+        String sql = "SELECT * FROM Books";
 
         ArrayList<Book> books = new ArrayList<>();
 
@@ -196,7 +198,6 @@ public class DBUltis implements Database{
                         rs.getString("cover_image_path"),
                         rs.getString("audio_path"),
                         rs.getInt("quantity"));
-                // Create and add the Book object to the list
                 books.add(book);
             }
 
@@ -207,6 +208,7 @@ public class DBUltis implements Database{
         return books;
     }
 
+    // cập nhật thông tin người dùng
     public void updateUserInDatabase(User user) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
 
@@ -228,13 +230,13 @@ public class DBUltis implements Database{
             pstmt.setInt(9, user.getId()); // ID người dùng
 
             pstmt.executeUpdate();
-           // System.out.println("User updated in database.");
         } catch (SQLException e) {
             System.out.println("Database error: " + e.getMessage());
-            e.printStackTrace(); // Log the stack trace for better debugging
+            e.printStackTrace();
         }
     }
 
+    // tra sách
     public List<Book> searchBook (String search) {
         List<Book> books = new ArrayList<>();
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
@@ -275,8 +277,9 @@ public class DBUltis implements Database{
         return books;
     }
 
+    // mượn sách
     public void BorrowBook(Transaction transaction) {
-        String url = "jdbc:sqlite:database//LibraryMain"; // Path to your SQLite database file
+        String url = "jdbc:sqlite:database//LibraryMain";
 
         // SQL statements
         String sqlInsert = "INSERT INTO BookTransaction(user_id, book_id, date_borrowed, due_date, status) " +
@@ -288,19 +291,16 @@ public class DBUltis implements Database{
              PreparedStatement pstmtUpdate = conn.prepareStatement(sqlUpdate)) {
 
             // Set parameters for the INSERT statement
-            pstmtInsert.setInt(1, transaction.getUser().getId()); // Assuming `User` has a method `getId()`
-            pstmtInsert.setString(2, transaction.getBook().getIsbn()); // Assuming `Book` has a method `getId()`
-            pstmtInsert.setString(3, transaction.getDateBorrowed().toString()); // Convert LocalDate to String
-            pstmtInsert.setString(4, transaction.getDueDate().toString()); // Convert LocalDate to String
-            pstmtInsert.setString(5, transaction.getStatus().name()); // Enum status as String
+            pstmtInsert.setInt(1, transaction.getUser().getId());
+            pstmtInsert.setString(2, transaction.getBook().getIsbn());
+            pstmtInsert.setString(3, transaction.getDateBorrowed().toString());
+            pstmtInsert.setString(4, transaction.getDueDate().toString());
+            pstmtInsert.setString(5, transaction.getStatus().name());
 
-            // Execute the INSERT statement
             pstmtInsert.executeUpdate();
 
-            // Set parameters for the UPDATE statement
-            pstmtUpdate.setString(1, transaction.getBook().getIsbn()); // Assuming `Book` has a method `getIsbn()`
+            pstmtUpdate.setString(1, transaction.getBook().getIsbn());
 
-            // Execute the UPDATE statement
             pstmtUpdate.executeUpdate();
 
             System.out.println("Transaction saved to database and book quantity updated.");
@@ -309,6 +309,7 @@ public class DBUltis implements Database{
         }
     }
 
+    // tra sách bằng mượn/trả
     public List<Book> searchBookByTransaction(String query) {
         List<Book> books = new ArrayList<>();
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
@@ -331,7 +332,6 @@ public class DBUltis implements Database{
                         rs.getString("cover_image_path"),
                         rs.getString("audio_path"),
                         rs.getInt("quantity"));
-                // Create and add the Book object to the list
                 books.add(book);
             }
 
@@ -342,6 +342,7 @@ public class DBUltis implements Database{
         return books;
     }
 
+    // thông tin về mượn trả sách
     public Transaction getTransaction(User user, Book book) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
         String sql = "SELECT * FROM BookTransaction WHERE user_id = ? AND book_id = ? AND status = 'Borrowed'";
@@ -376,6 +377,7 @@ public class DBUltis implements Database{
         return null;
     }
 
+    // trả sách
     public void returnBook(Transaction transaction) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Path to your SQLite file
 
@@ -404,6 +406,7 @@ public class DBUltis implements Database{
         }
     }
 
+    // truy vấn sql
     public boolean findQuery(String query) {
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
         String sql = query;
@@ -436,6 +439,7 @@ public class DBUltis implements Database{
         }
     }
 
+    // lấy danh sách người dùng
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
         String url = "jdbc:sqlite:database//LibraryMain"; // Đường dẫn đến file SQLite của bạn
@@ -466,6 +470,7 @@ public class DBUltis implements Database{
         return users;
     }
 
+    // lưu review vào database
     public void saveReviewToDatabase(Review review, Book currentBook) {
         String url = "jdbc:sqlite:database/LibraryMain";
         String selectQuery = "SELECT * FROM Reviews WHERE isbn = ?";
@@ -547,7 +552,7 @@ public class DBUltis implements Database{
     }
 
 
-
+    // lấy đánh giá trung bình
     public double getAverageRatingForBook(Book book) {
         String url = "jdbc:sqlite:database/LibraryMain";
         String query = "SELECT AVG(rating) AS avg_rating FROM Reviews WHERE isbn = ?";
@@ -566,6 +571,8 @@ public class DBUltis implements Database{
         }
         return avgRating;
     }
+
+    // lấy review theo ISBN
     public List<Review> getReviewsByISBN(String isbn) {
         List<Review> reviews = new ArrayList<>();
         String query = "SELECT * FROM reviews WHERE isbn = ?";
@@ -589,7 +596,4 @@ public class DBUltis implements Database{
         }
         return reviews;
     }
-
-
-
 }

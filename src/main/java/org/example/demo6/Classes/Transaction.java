@@ -36,6 +36,8 @@ public class Transaction {
         this.status = status;
     }
 
+
+    // trả sách
     public void returnBook(LocalDate dateReturned) {
         this.dateReturned = dateReturned;
         if (isOverdue()) {
@@ -45,6 +47,7 @@ public class Transaction {
         }
     }
 
+    // quá hạn trả
     public boolean isOverdue() {
         return LocalDate.now().isAfter(dueDate);
     }

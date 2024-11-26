@@ -27,12 +27,15 @@ public class SearchPageController {
 
     private final ExecutorService executor = Executors.newFixedThreadPool(2);  // Create a thread pool with 2 threads
 
-    // Set search results and display them concurrently
+    /**
+     * hiển thị kết quả tra cứu
+     * @param databaseResults từ database
+     * @param apiResults từ api
+     */
     public void setSearchResults(List<Book> databaseResults, List<Book> apiResults) {
         this.databaseSearchResults = databaseResults;
         this.apiSearchResults = apiResults;
 
-        // Task for displaying database results
         Task<Void> displayDatabaseTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
@@ -41,7 +44,6 @@ public class SearchPageController {
             }
         };
 
-        // Task for displaying API results
         Task<Void> displayApiTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
@@ -50,12 +52,13 @@ public class SearchPageController {
             }
         };
 
-        // Submit tasks to executor
         executor.submit(displayDatabaseTask);
         executor.submit(displayApiTask);
     }
 
-    // Display the database results in the first GridPane
+    /**
+     * hiển thị kết quả từ database
+     */
     private void displayDatabaseResults() {
         Platform.runLater(() -> databaseResults.getChildren().clear());
         int columns = 6;
@@ -93,7 +96,9 @@ public class SearchPageController {
         }
     }
 
-    // Display the API results in the second GridPane
+    /**
+     * hiển thị kết quả từ api
+     */
     private void displayApiResults() {
         Platform.runLater(() -> apiResults.getChildren().clear());
         int columns = 6;

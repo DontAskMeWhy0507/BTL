@@ -115,7 +115,6 @@ public class Settings {
     }
 
     public void initialize() {
-        // Set the current user's information
         setAvatar(lib.getCurrentUser().getPathToProfilePicture());
         avatarAdd1.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 7"));
         avatarAdd2.setVisible(DBUltis.findQuery("SELECT 1 FROM users WHERE id = " + lib.getCurrentUser().getId() + " AND LONGEST_STREAK > 10"));
@@ -123,7 +122,9 @@ public class Settings {
     }
 
 
-
+    /**
+     * xác nhận chọn ava
+     */
     public void confirmAvatarSelection() {
         String avatarPath = avatarFile.getPath();
 
@@ -138,14 +139,17 @@ public class Settings {
 
     }
 
-
+    /**
+     * setter
+     * @param imagePath file ava
+     */
     private void setAvatar(String imagePath) {
         Image avatarImage = new Image(getClass().getResourceAsStream(imagePath));
         avatarImageView.setImage(avatarImage);
         avatarFile = new File(imagePath);
     }
 
-    // Methods to handle updating username, email, and password
+    // thay đổi tên. email
     @FXML
     private void handleChangeUsername() {
         String newUsername = usernameField.getText();
@@ -170,6 +174,7 @@ public class Settings {
         mainSceneController.setUser();
     }
 
+    // hiển thị mật khẩu
     @FXML
     void getPassword(ActionEvent event) {
         if (showPass.isSelected()) {
@@ -184,6 +189,7 @@ public class Settings {
         }
     }
 
+    // thay đổi mật khẩu
     @FXML
     private void handleChangePassword() {
         String newPassword = passwordField.getText();
@@ -197,6 +203,9 @@ public class Settings {
         mainSceneController.setUser();
     }
 
+    /**
+     * xác nhận
+     */
     public void confirmChange() {
         confirmAvatarSelection();
         handleChangeUsername();

@@ -58,20 +58,20 @@ public class apiGoogleBooks {
     // ngày phát hành sách
     private static LocalDate parsePublishedDate(String publishedDate) {
         if (publishedDate == null || publishedDate.isBlank()) {
-            return LocalDate.now(); // Default to current date if null or empty
+            return LocalDate.now();
         }
 
         try {
-            if (publishedDate.matches("\\d{4}")) { // Year only (e.g., "1875")
-                return LocalDate.parse(publishedDate + "-01-01"); // Assume January 1
-            } else if (publishedDate.matches("\\d{4}-\\d{2}")) { // Year and month only (e.g., "2024-11")
-                return LocalDate.parse(publishedDate + "-01"); // Assume the first day of the month
-            } else { // Full date (e.g., "2024-11-19")
+            if (publishedDate.matches("\\d{4}")) {
+                return LocalDate.parse(publishedDate + "-01-01");
+            } else if (publishedDate.matches("\\d{4}-\\d{2}")) {
+                return LocalDate.parse(publishedDate + "-01");
+            } else {
                 return LocalDate.parse(publishedDate);
             }
         } catch (DateTimeParseException e) {
             System.err.println("Failed to parse publishedDate: " + publishedDate);
-            return LocalDate.now(); // Default to current date on failure
+            return LocalDate.now();
         }
     }
 

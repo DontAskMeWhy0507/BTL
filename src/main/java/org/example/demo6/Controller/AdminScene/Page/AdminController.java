@@ -196,11 +196,11 @@ public class AdminController extends User {
         User selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/AddUser.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/UpdateUser.fxml"));
                 Parent parent = loader.load();
 
                 // Get the controller and set the selected user
-                AddUser controller = loader.getController();
+                UpdateUser controller = loader.getController();
                 controller.setUser(selectedUser);
 
                 Stage stage = new Stage();

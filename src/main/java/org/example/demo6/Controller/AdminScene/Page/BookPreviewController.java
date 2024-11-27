@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -77,6 +74,18 @@ public class BookPreviewController extends BookUnitController {
 
     private String descriptionTemp;
 
+    private boolean isAPI;
+
+    public void setAPI(boolean API) {
+        isAPI = API;
+    }
+    @FXML
+    public void initialize() {
+        if (!isAPI) {
+           butt
+        }
+    }
+
     // hiển thị trang miêu tả đầy đủ
     @FXML
     private void toggleDescription() throws IOException {
@@ -115,7 +124,12 @@ public class BookPreviewController extends BookUnitController {
         DBUltis dbUltis = new DBUltis();
         dbUltis.saveReviewToDatabase(review, currentBook);
 
-        System.out.println("Rating: " + ratingValue);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thành công");
+        alert.setHeaderText("Bạn đã đăng bình luận thành công.");
+        alert.setContentText("Bạn đã đánh giá " + ratingValue + " sao cho cuốn sách này.");
+        alert.showAndWait();
+
     }
 
     // miêu tả trong book preview
@@ -195,6 +209,9 @@ public class BookPreviewController extends BookUnitController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
             Parent root = loader.load();
 
+            String imageURL = currentBook.getCoverImagePath();
+            String localPath = "../Uploaded/BookCovers/" + currentBook.getTitle() + ".jpg";
+            File coverImageFile = UpDownFile.downloadFileImage(imageURL,localPath);
             // Get the controller and pass the book data
             PageUploadController uploadController = loader.getController();
             uploadController.setBookData(currentBook);

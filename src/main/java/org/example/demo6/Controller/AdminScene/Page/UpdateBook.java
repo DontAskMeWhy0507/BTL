@@ -2,7 +2,6 @@ package org.example.demo6.Controller.AdminScene.Page;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -10,17 +9,16 @@ import org.example.demo6.Classes.Admin;
 import org.example.demo6.Classes.Book;
 import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Library;
-import org.example.demo6.Controller.AdminScene.MainSceneClass;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
-public class PageUploadController extends MainSceneClass {
+public class UpdateBook extends PageUploadController {
     Library library = Library.getInstance();
     DBUltis dbUltis = new DBUltis();
+    Book book;
 
     @FXML
     private TextField Authors;
@@ -185,7 +183,6 @@ public class PageUploadController extends MainSceneClass {
                     }
 
                     // Thực hiện các thao tác khác với đối tượng Book (lưu vào cơ sở dữ liệu, hiển thị, ...)
-                    System.out.println("Book created: " + newBook.getTitle());
                 } catch (IllegalArgumentException e) {
                     showAlert("Warning", e.getMessage());
                 } catch (Exception e) {
@@ -226,7 +223,7 @@ public class PageUploadController extends MainSceneClass {
     }
 
     public void checkDuplicateBook(String isbn) throws Exception {
-        if (dbUltis.findQuery("SELECT * FROM books WHERE isbn = '" + isbn + "'")) {
+        if (dbUltis.findQuery("SELECT * FROM books WHERE isbn = '" + isbn + "'" + "AND isbn != " + book.getIsbn())) {
             throw new Exception("ISBN is already taken");
         }
     }
@@ -241,6 +238,7 @@ public class PageUploadController extends MainSceneClass {
     }
 
     public void setBookData(Book book) {
+        this.book = book;
         ISBN.setText(book.getIsbn());
         Tittle.setText(book.getTitle());
         Authors.setText(book.getAuthor());
@@ -249,14 +247,10 @@ public class PageUploadController extends MainSceneClass {
         Language.setText(book.getLanguage());
         Publisher.setText(book.getPublisher());
         PublishedDate.setValue(book.getPublishedDate());
-        if (book.getCoverImagePath() != null) {
-            BookCover.setImage(new Image(book.getCoverImagePath()));
-        } else {
-            BookCover.setImage(new Image(getClass().getResourceAsStream("/Image/BookCoverEmpty.jpg")));
-        }
     }
 
     public void setBookDb(Book book) {
+        this.book = book;
         ISBN.setText(book.getIsbn());
         Tittle.setText(book.getTitle());
         Authors.setText(book.getAuthor());
@@ -278,4 +272,3 @@ public class PageUploadController extends MainSceneClass {
         }
     }
 }
-

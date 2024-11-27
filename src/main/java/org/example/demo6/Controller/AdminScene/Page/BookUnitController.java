@@ -35,7 +35,11 @@ public class BookUnitController extends Node {
     private Label nameBook;
     private Book currentBook;
 
-    private boolean isFavorite = false;
+    private boolean isAPI;
+
+    public void setAPI(boolean API) {
+        isAPI = API;
+    }
 
     // sang preview sách
     @FXML
@@ -46,6 +50,7 @@ public class BookUnitController extends Node {
             // Lấy controller của trang chi tiết
             BookPreviewController bookPreviewController = fxmlLoader.getController();
             bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
+            bookPreviewController.setAPI(isAPI);
 
             MainSceneClass.setMainContent(root);
             staticMainScrollPane.setFitToWidth(true);
@@ -55,7 +60,7 @@ public class BookUnitController extends Node {
         }
     }
 
-    // dữ liệu sách
+    // dữ liệu sách tu api
     public void setData(Book book) {
         this.currentBook = book;
         nameBook.setText(book.getTitle());
@@ -67,7 +72,7 @@ public class BookUnitController extends Node {
         }
     }
 
-
+    // chuyen sang tu database
     public void setDataAll(Book book) {
         this.currentBook = book;
         nameBook.setText(book.getTitle());

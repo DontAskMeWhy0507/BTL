@@ -9,15 +9,10 @@ import org.example.demo6.Classes.DBUltis;
 import org.example.demo6.Classes.Library;
 import org.example.demo6.Classes.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.time.LocalDate;
-
-public class AddUser extends User {
+public class UpdateUser extends AddUser {
     DBUltis dbUltis = new DBUltis();
     Library library = Library.getInstance();
+    User user;
 
     @FXML
     private ChoiceBox<String> choiceRole;
@@ -129,13 +124,13 @@ public class AddUser extends User {
 
     // Phương thức kiểm tra trùng lặp và ném ngoại lệ
     private void checkDuplicateUser(int id, String username, String email) throws Exception {
-        if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + id + "'")) {
+        if (dbUltis.findQuery("SELECT * FROM users WHERE id = '" + id + "'" + "AND id != " + user.getId())) {
             throw new Exception("ID is already taken");
         }
-        if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + username + "'")) {
+        if (dbUltis.findQuery("SELECT * FROM users WHERE username = '" + username + "'" + "AND id != " + user.getId())) {
             throw new Exception("Username is already taken");
         }
-        if (dbUltis.findQuery("SELECT * FROM users WHERE email = '" + email + "'")) {
+        if (dbUltis.findQuery("SELECT * FROM users WHERE email = '" + email + "'" + "AND id != " + user.getId())) {
             throw new Exception("Email is already taken");
         }
     }
@@ -152,6 +147,7 @@ public class AddUser extends User {
 
 
     public void setUser(User user) {
+        this.user = user;
         tf_id.setText(String.valueOf(user.getId()));
         tf_username.setText(user.getUsername());
         tf_password.setText(user.getPassword());
@@ -162,3 +158,5 @@ public class AddUser extends User {
 
 
 }
+
+

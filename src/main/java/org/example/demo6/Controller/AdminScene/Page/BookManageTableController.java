@@ -186,7 +186,7 @@ public class BookManageTableController extends MainSceneClass {
         Book selectedBook = tableView.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Upload.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/UpdateBook.fxml"));
                 Parent updateView = loader.load();
 
                 PageUploadController pageUploadController = loader.getController();

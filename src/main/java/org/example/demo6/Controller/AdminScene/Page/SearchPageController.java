@@ -79,6 +79,7 @@ public class SearchPageController {
                     Pane bookPane = loader.load();
                     BookUnitController controller = loader.getController();
                     controller.setDataAll(databaseSearchResults.get(bookCount));
+                    controller.setAPI(false);
 
                     int finalCol = col;
                     int finalRow = row;
@@ -113,6 +114,7 @@ public class SearchPageController {
                     Pane bookPane = loader.load();
                     BookUnitController controller = loader.getController();
                     controller.setData(apiSearchResults.get(bookCount));
+                    controller.setAPI(true);
 
                     int finalCol = col;
                     int finalRow = row;

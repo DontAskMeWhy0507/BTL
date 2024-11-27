@@ -78,8 +78,8 @@ public class SearchPageController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Book.fxml"));
                     Pane bookPane = loader.load();
                     BookUnitController controller = loader.getController();
-                    controller.setDataAll(databaseSearchResults.get(bookCount));
                     controller.setAPI(false);
+                    controller.setDataAll(databaseSearchResults.get(bookCount));
 
                     int finalCol = col;
                     int finalRow = row;
@@ -113,8 +113,8 @@ public class SearchPageController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdminScene/Page/Book.fxml"));
                     Pane bookPane = loader.load();
                     BookUnitController controller = loader.getController();
-                    controller.setData(apiSearchResults.get(bookCount));
                     controller.setAPI(true);
+                    controller.setData(apiSearchResults.get(bookCount));
 
                     int finalCol = col;
                     int finalRow = row;

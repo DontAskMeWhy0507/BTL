@@ -72,18 +72,24 @@ public class BookPreviewController extends BookUnitController {
     @FXML
     private VBox commentsContainer;
 
+    @FXML
+    private Button addData;
+
     private String descriptionTemp;
 
     private boolean isAPI;
 
     public void setAPI(boolean API) {
         isAPI = API;
+        addData.setVisible(isAPI);
     }
     @FXML
     public void initialize() {
-        if (!isAPI) {
-           butt
-        }
+//        if (!isAPI) {
+//            addData.setVisible(false);
+//        } else {
+//            addData.setVisible(true);
+//        }
     }
 
     // hiển thị trang miêu tả đầy đủ

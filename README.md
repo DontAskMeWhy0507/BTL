@@ -12,7 +12,8 @@ The application is designed to manage library.
 3. The application uses JFoenix and ControlsFX for UI.
 4. The application uses Google Books API for books database.
 5. The application uses Gemini API for chatbot.
-4. The application is designed to support librarian and student, teacher to borrow book.
+6. The application uses SQLLite for storing database. 
+7. The application is designed to support librarian and student, teacher to borrow book.
 
 
 ## UML diagram

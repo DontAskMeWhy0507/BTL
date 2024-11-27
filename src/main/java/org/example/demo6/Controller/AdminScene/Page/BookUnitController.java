@@ -49,8 +49,8 @@ public class BookUnitController extends Node {
             Parent root = fxmlLoader.load();
             // Lấy controller của trang chi tiết
             BookPreviewController bookPreviewController = fxmlLoader.getController();
-            bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
             bookPreviewController.setAPI(isAPI);
+            bookPreviewController.setBookData(currentBook);  // Truyền đối tượng sách sang trang chi tiết
 
             MainSceneClass.setMainContent(root);
             staticMainScrollPane.setFitToWidth(true);

@@ -40,8 +40,7 @@
                   <Text fx:id="bookPublishedDate" layoutX="541.0" layoutY="197.0" text="December 18, 2024" />
                   <Text layoutX="411.0" layoutY="197.0" text="Ngày phát hành" />
                   <Button layoutX="115.0" layoutY="581.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Trả sách" />
-                  <Button layoutX="759.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm thông tin" />
-                  <Button layoutX="572.0" layoutY="581.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm vào CSDL" />
+                  <Button fx:id="addData" layoutX="605.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToUpLoad" prefHeight="43.0" prefWidth="157.0" stylesheets="@../../../Style/AdminScene/BookPreview.css" text="Thêm thông tin" />
 
                   <!-- Book Metadata -->
                   <Text layoutX="411.0" layoutY="257.0" text="Ngôn ngữ" />

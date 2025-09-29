@@ -36,13 +36,17 @@ public class DBUltis implements Database{
                 return false;
             }
 
+            // Enhanced P-256 password hashing
+            P256Crypto crypto = new P256Crypto(false); // GUI mode
+            String hashedPassword = "P256:" + crypto.hashPassword(password);
+
             String sql = "INSERT INTO Users(id, username, password, email, date_of_birth, avatar, role, last_access, streak, longest_streak) " +
                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             pstmt.setString(2, username);
-            pstmt.setString(3, password);
+            pstmt.setString(3, hashedPassword);
             pstmt.setString(4, email);
             pstmt.setString(5, LocalDate.now().toString());
             pstmt.setString(6, "/Image/Avatar/Gekko.png");
@@ -52,7 +56,7 @@ public class DBUltis implements Database{
             pstmt.setInt(10, 0);
 
             pstmt.executeUpdate();
-            System.out.println("User signed up successfully.");
+            System.out.println("User signed up successfully with P-256 encryption.");
 
         } catch (SQLException e) {
             System.out.println("Error signing up: " + e.getMessage());
@@ -85,7 +89,22 @@ public class DBUltis implements Database{
                 while (rs.next()) {
                     String retrievedPassword = rs.getString("password");
                     String role = rs.getString("role");
-                    if (retrievedPassword.equals(password)) {
+                    
+                    // Enhanced P-256 password verification
+                    P256Crypto crypto = new P256Crypto(false); // GUI mode
+                    boolean passwordValid = false;
+                    
+                    if (retrievedPassword.startsWith("P256:")) {
+                        // P-256 hashed password
+                        String storedHash = retrievedPassword.substring(5);
+                        String inputHash = crypto.hashPassword(password);
+                        passwordValid = inputHash != null && inputHash.equals(storedHash);
+                    } else {
+                        // Legacy plain text password (backward compatibility)
+                        passwordValid = retrievedPassword.equals(password);
+                    }
+                    
+                    if (passwordValid) {
                         // Check the role of the user
                         if (role.equals("Admin")) {
                             loggedInUser = new Admin(rs.getInt("ID"),

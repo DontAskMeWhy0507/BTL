@@ -296,6 +296,22 @@ public class MainSceneUser {
     }
 
     /**
+     * chuyển qua toy mode
+     */
+    public void showToyMode() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserScene/Page/ToyMode.fxml"));
+            Parent toyModeView = loader.load();
+
+            // Đặt nội dung mới vào ScrollPane
+            mainScrollPane.setContent(toyModeView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * tắt tiếng
      * @param event chuột
      */

@@ -67,6 +67,15 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button layoutX="20.0" layoutY="480.0" mnemonicParsing="false" onAction="#showToyMode" styleClass="booksManage" text="Toy Mode">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Image/Icon/fire.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children></Pane>
    </left>
    <bottom>

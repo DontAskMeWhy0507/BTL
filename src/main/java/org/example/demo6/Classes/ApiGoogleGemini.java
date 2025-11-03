@@ -12,6 +12,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class ApiGoogleGemini {
     private static final String API_KEY = "AIzaSyCHlwfVSZxl6ZBZdmJOnO45lzrQ0ppdsc8";
     private static final String ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+    
+    // Reuse HttpClient instance for better performance
+    private static final HttpClient client = HttpClient.newHttpClient();
 
     public static String sendPostRequest(String text) {
         try {
@@ -38,7 +41,6 @@ public class ApiGoogleGemini {
                     .build();
 
             // gửi yêu cầu
-            HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             // lấy phần văn bản

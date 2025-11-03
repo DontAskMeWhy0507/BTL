@@ -20,7 +20,10 @@ public class Library {
     private Library() {}
 
     public static Library getInstance() {
-        return (instance == null) ? new Library() : instance;
+        if (instance == null) {
+            instance = new Library();
+        }
+        return instance;
     }
 
     private static User currentUser;
@@ -70,10 +73,12 @@ public class Library {
         currentUser.getStreak().updateStreak();
 
         DBUltis dbUltis = new DBUltis();
-        dbUltis.loadQuery("UPDATE users SET LAST_ACCESS = '" + LocalDate.now()
-                + "', STREAK = " + library.getCurrentUser().getStreak().getStreak()
-                + ", LONGEST_STREAK = " + library.getCurrentUser().getStreak().getLongestStreak()
-                + " WHERE id = " + library.getCurrentUser().getId());
+        dbUltis.updateUserStreak(
+            library.getCurrentUser().getId(),
+            LocalDate.now(),
+            library.getCurrentUser().getStreak().getStreak(),
+            library.getCurrentUser().getStreak().getLongestStreak()
+        );
 
         library.setCurrentUser(null);
         if (event == null) {

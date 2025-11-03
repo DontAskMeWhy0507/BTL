@@ -11,6 +11,7 @@ module org.example.demo6 {
     requires com.google.api.client.json.jackson2;
     requires com.google.api.services.books;
     requires transitive org.xerial.sqlitejdbc;
+    requires com.zaxxer.hikari;
 
     opens org.example.demo6 to javafx.fxml;
     exports org.example.demo6;

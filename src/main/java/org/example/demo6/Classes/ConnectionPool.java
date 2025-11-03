@@ -24,6 +24,14 @@ public class ConnectionPool {
         config.setMaxLifetime(1800000);
 
         dataSource = new HikariDataSource(config);
+        
+        // Add shutdown hook to close pool when JVM exits
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (dataSource != null && !dataSource.isClosed()) {
+                dataSource.close();
+                System.out.println("Connection pool closed successfully.");
+            }
+        }));
     }
 
     /**
@@ -39,7 +47,7 @@ public class ConnectionPool {
      * Close the connection pool when application shuts down
      */
     public static void close() {
-        if (dataSource != null) {
+        if (dataSource != null && !dataSource.isClosed()) {
             dataSource.close();
         }
     }

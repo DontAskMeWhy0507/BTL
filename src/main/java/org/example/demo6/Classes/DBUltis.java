@@ -599,6 +599,17 @@ public class DBUltis implements Database{
 
     // Update user streak information safely
     public void updateUserStreak(int userId, LocalDate lastAccess, int streak, int longestStreak) {
+        // Validate input parameters
+        if (lastAccess == null) {
+            throw new IllegalArgumentException("lastAccess cannot be null");
+        }
+        if (streak < 0) {
+            throw new IllegalArgumentException("streak cannot be negative");
+        }
+        if (longestStreak < 0) {
+            throw new IllegalArgumentException("longestStreak cannot be negative");
+        }
+        
         String sql = "UPDATE users SET LAST_ACCESS = ?, STREAK = ?, LONGEST_STREAK = ? WHERE id = ?";
 
         try (Connection conn = ConnectionPool.getConnection();

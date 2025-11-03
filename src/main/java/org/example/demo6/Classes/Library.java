@@ -19,7 +19,7 @@ public class Library {
 
     private Library() {}
 
-    public static Library getInstance() {
+    public static synchronized Library getInstance() {
         if (instance == null) {
             instance = new Library();
         }
